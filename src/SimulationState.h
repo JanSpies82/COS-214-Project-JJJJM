@@ -11,12 +11,11 @@ class SimulationManager;
 class Memento;
 class SimulationState;
 
-__abstract class SimulationState
+class SimulationState
 {
-	public: SimulationManager* simulationManagers;
-	public: Memento* mementos;
-
-	public: virtual SimulationState();
+public:
+	SimulationState();
+	virtual ~SimulationState();
 };
 
 #endif

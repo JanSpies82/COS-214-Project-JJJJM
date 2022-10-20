@@ -7,6 +7,8 @@
 // #include "Superpower.h"
 // #include "Backup.h"
 
+#include <vector>
+
 class Map;
 class SimulationState;
 class Superpower;
@@ -15,10 +17,21 @@ class SimulationManager;
 
 class SimulationManager
 {
-	public: Map* maps;
-	public: SimulationState* simulationStates;
-	public: Superpower* superpowers;
-	public: Backup* backups;
+public:
+	SimulationManager();
+	virtual ~SimulationManager();
+	void restoreState();
+	void saveState();
+	void resetSimulation();
+	bool isSimulationRunning();
+	void takeTurn();
+	void startSimulation();
+
+private:
+	Map *map;
+	std::vector<Superpower *> *superpowers;
+	Backup *backup;
+	bool designMode, isRunning;
 };
 
 #endif

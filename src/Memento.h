@@ -11,13 +11,14 @@ class Memento;
 
 class Memento
 {
-	private: SimulationState* state;
-	public: Backup* backups;
-	public: SimulationState* simulationStates;
+public:
+	Memento();
+	~Memento();
+	SimulationState *getState();
+	void setState(SimulationState *_simulationState);
 
-	public: SimulationState* getState();
-
-	public: void setState(SimulationState* s);
+private:
+	SimulationState *state;
 };
 
 #endif
