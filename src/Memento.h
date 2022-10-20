@@ -7,14 +7,34 @@
 
 class Backup;
 class SimulationState;
-class Memento;
 
 class Memento
 {
 public:
+	/**
+	 * @brief Construct a new Memento object
+	 *
+	 */
 	Memento();
+
+	/**
+	 * @brief Destroy the Memento object and delete its stored SimulationState
+	 *
+	 */
 	~Memento();
+
+	/**
+	 * @brief Get the SimulationState object stored by the Memento
+	 *
+	 * @return SimulationState*
+	 */
 	SimulationState *getState();
+
+	/**
+	 * @brief Set the SimulationState object stored by the Memento
+	 *
+	 * @param _state : SimulationState* - the state to store
+	 */
 	void setState(SimulationState *_simulationState);
 
 private:
