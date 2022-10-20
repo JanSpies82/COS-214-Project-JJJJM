@@ -2,12 +2,10 @@
 #ifndef __Backup_h__
 #define __Backup_h__
 
-// #include "SimulationManager.h"
 // #include "Memento.h"
 
 #include <vector>
 
-class SimulationManager;
 class Memento;
 class Backup;
 
@@ -58,7 +56,6 @@ public:
 	void clear();
 
 private:
-	SimulationManager *simulationManager;
 	std::vector<Memento *> *mementos;
 };
 
