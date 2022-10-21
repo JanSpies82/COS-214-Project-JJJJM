@@ -11,9 +11,17 @@ class BottomNeighbour;
 
 class BottomNeighbour: public Neighbour
 {
-	private: StateType* addedState;
+	public:
+		/**
+		 * @brief Set the bottomLocation object to the passed in _bottom parameter
+		 * 
+		 * @param _bottom : Location* - parameter to set the bottomLocation object to 
+		 */
+		void setNeighbour(Location* _neighbour);
 
-	public: void operation();
+	private: 
+		//StateType* addedState;
+		Location* bottomLocation;
 };
 
 #endif

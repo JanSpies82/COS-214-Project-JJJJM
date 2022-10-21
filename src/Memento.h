@@ -26,6 +26,8 @@ public:
 	/**
 	 * @brief Get the SimulationState object stored by the Memento
 	 *
+	 * Exceptions : std::out_of_range if the Memento does not hold a SimulationState
+	 * 
 	 * @return SimulationState*
 	 */
 	SimulationState *getState();

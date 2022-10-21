@@ -11,12 +11,25 @@ class Neighbour;
 
 class Neighbour: public Location
 {
-	private: Location* location;
-	public: Location* locations;
+	public:
+		Location* locations;
 
-	public: void operation();
+		/**
+		 * @brief Set the Neighbour object depending on which type of neighbour calls this function
+		 * 
+		 */
+		virtual void setNeighbour();
 
-	public: virtual Iterator* createIterator();
+		/**
+		 * @brief Create an Iterator object
+		 * 
+		 * @return Iterator* 
+		 */
+		virtual Iterator* createIterator();
+
+	private:
+		Location* location;
+
 };
 
 #endif
