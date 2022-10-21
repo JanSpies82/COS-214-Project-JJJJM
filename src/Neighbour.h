@@ -14,8 +14,17 @@ class Neighbour: public Location
 	public:
 		Location* locations;
 
+		/**
+		 * @brief Set the Neighbour object depending on which type of neighbour calls this function
+		 * 
+		 */
 		virtual void setNeighbour();
 
+		/**
+		 * @brief Create an Iterator object
+		 * 
+		 * @return Iterator* 
+		 */
 		virtual Iterator* createIterator();
 
 	private:
