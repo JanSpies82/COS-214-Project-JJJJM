@@ -17,6 +17,14 @@ class Territory: public Location
 		LocationIterator* locationIterators;
 
 		/**
+		 * @brief Construct a new Territory object
+		 * 
+		 * @param _x : int - x coordinate of the location
+		 * @param _y : int - y coordinate of the location
+		 */
+		Territory(int _x, int _y);
+
+		/**
 		 * @brief Create a Iterator object and store it in locationIterators
 		 * 
 		 * @return Iterator* 
@@ -24,6 +32,8 @@ class Territory: public Location
 		Iterator* createIterator();
 
 	protected:
+		int xCoordinate, yCoordinate;
+
 		/**
 		 * @brief Add a neighbour to the neighbours array
 		 * 

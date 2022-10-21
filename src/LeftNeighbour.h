@@ -17,7 +17,7 @@ class LeftNeighbour: public Neighbour
 		 * 
 		 * @param _left : Location* - parameter to set the leftLocation object to 
 		 */
-		void setleft(Location* _left);
+		void setNeighbour(Location* _neighbour);
 
 	private: 
 		//StateType* addedState;

@@ -22,7 +22,6 @@ class Location
 		LocationIterator* locationIterators;
 		Observer* observers;
 		Neighbour* neighbours;
-		int xCoordinate, yCoordinate;
 
 
 		/**
@@ -31,6 +30,7 @@ class Location
 		 * @return Iterator* 
 		 */
 		virtual Iterator* createIterator() = 0;
+
 	
 	protected:
 		const int RIGHT=0,LEFT=1,UP=2,DOWN=3;

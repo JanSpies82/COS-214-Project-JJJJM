@@ -14,13 +14,13 @@ class Neighbour: public Location
 	public:
 		Location* locations;
 
-		void operation();
+		virtual void setNeighbour();
 
 		virtual Iterator* createIterator();
 
 	private:
 		Location* location;
-		
+
 };
 
 #endif

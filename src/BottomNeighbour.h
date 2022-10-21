@@ -17,7 +17,7 @@ class BottomNeighbour: public Neighbour
 		 * 
 		 * @param _bottom : Location* - parameter to set the bottomLocation object to 
 		 */
-		void setBottom(Location* _bottom);
+		void setNeighbour(Location* _neighbour);
 
 	private: 
 		//StateType* addedState;

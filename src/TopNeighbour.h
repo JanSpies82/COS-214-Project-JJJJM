@@ -17,7 +17,7 @@ class TopNeighbour: public Neighbour
 		 * 
 		 * @param _top : Location* - parameter to set the topLocation object to 
 		 */
-		void settop(Location* _top);
+		void setNeighbour(Location* _neighbour);
 
 	private: 
 		//StateType* addedState;

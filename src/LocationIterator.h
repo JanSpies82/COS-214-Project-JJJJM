@@ -4,8 +4,6 @@ using namespace std;
 #ifndef __LocationIterator_h__
 #define __LocationIterator_h__
 
-// #include "Territory.h"
-// #include "Location.h"
 #include "Iterator.h"
 
 class Territory;
@@ -18,6 +16,12 @@ class LocationIterator: public Iterator
 	public:
 		Location* current;
 		
+		/**
+		 * @brief Sets current to the next location in the sequential iteration of the map
+		 * 
+		 */
+		void next();
+
 		/**
 		 * @brief Sets current to the top left location of the map
 		 * 
@@ -48,9 +52,19 @@ class LocationIterator: public Iterator
 		 */		
 		void up();	
 
-
-		//void isDone();		
-		//void current();
+		/**
+		 * @brief Returns true if sequential iteration is complete and false otherwise
+		 * 
+		 * @return boolean 
+		 */
+		bool isDone();	
+			
+		/**
+		 * @brief Returns the pointer to the current location
+		 * 
+		 * @return Location* 
+		 */
+		Location* getCurrent();
 };
 
 #endif
