@@ -16,9 +16,6 @@ class Map;
 class Map
 {
 	public:
-		Location* locations;
-		SimulationManager* simulationManagers;
-
 		/**
 		 * @brief Construct a new Map object with all locations initialized
 		 * 
@@ -41,11 +38,17 @@ class Map
 		/**
 		 * @brief Get the Location object with matching x and y coordinates
 		 * 
+		 * Exceptions : If x/y coordinate is greater than map size or less than 0
+		 * 
 		 * @param x : int - The x coordinate of the location to be returned
 		 * @param y : int - The y coordinate of the location to be returned
 		 * @return Territory* 
 		 */
 		Territory* getLocation(int x, int y);
+
+	private:
+		Location* location;
+		SimulationManager* simulationManagers;
 };
 
 #endif
