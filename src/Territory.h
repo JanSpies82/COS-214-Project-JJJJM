@@ -13,9 +13,15 @@ class Territory;
 
 class Territory: public Location
 {
-	public: LocationIterator* locationIterators;
-
-	public: Iterator* createIterator();
+	public:
+		LocationIterator* locationIterators;
+		
+		/**
+		 * @brief Create a Iterator object and store it in locationIterators
+		 * 
+		 * @return Iterator* 
+		 */
+		Iterator* createIterator();
 };
 
 #endif
