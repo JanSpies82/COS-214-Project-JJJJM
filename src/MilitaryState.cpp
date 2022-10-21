@@ -2,7 +2,7 @@
 using namespace std;
 
 #include "MilitaryState.h"
-#include "SimulationState.h"
+
 
 MilitaryState::MilitaryState(Military* m) {
 }

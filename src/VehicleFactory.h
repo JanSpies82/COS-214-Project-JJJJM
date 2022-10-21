@@ -3,20 +3,16 @@ using namespace std;
 
 #ifndef __VehicleFactory_h__
 #define __VehicleFactory_h__
-
-// #include "Military.h"
-
-class Military;
-class VehicleFactory;
-
-__abstract class VehicleFactory
+#include"Vehicle.h"
+ class VehicleFactory
 {
-	private: Vehicle* vehicle;
-	public: Military* militarys;
+	public:
+		VehicleFactory();
+		~VehicleFactory();
+		virtual Vehicle* manufactureVehicle() = 0;
 
-	protected: virtual Vehicle* factoryMethod() = 0;
-
-	public: void anOperation();
+		
+		
 };
 
 #endif

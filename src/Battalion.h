@@ -2,14 +2,17 @@
 #ifndef __Battalion_h__
 #define __Battalion_h__
 
-// #include "Military.h"
-
-class Military;
-class Battalion;
 
 class Battalion
 {
-	public: Military* militarys;
+	public:
+		void attack();
+		void addBattalions(Citizen *c);
+		void decreaseBattalions(int deceased);
+		int getBattalionDestroyed();
+	private:
+	int numBattalionDestroys;
+		
 };
 
 #endif

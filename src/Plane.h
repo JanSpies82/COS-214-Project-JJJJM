@@ -6,15 +6,25 @@ using namespace std;
 
 #include "Vehicle.h"
 
-// class Vehicle;
-class Plane;
-
 class Plane: public Vehicle
 {
 
-	public: void findEnemy();
-
-	public: void destroyEnemy();
+	public: 
+		Plane();
+		~Plane();
+		void attack(Country* enemy);
+		void findEnemy();
+		void destroyEnemy(Country * enemy);
+		void setNumBattalionDestroys(int);
+		void setNumTankDetroys(int);
+		void setNumPlanesDestroys(int);
+		int getTankDestroyed();
+		int getBattalionDestroyed();
+		int getPlanesDestroyed();
+	public:
+		int numBattalionDestroys;
+		int numTankDetroys;
+		int numPlanesDestroys;
 };
 
 #endif

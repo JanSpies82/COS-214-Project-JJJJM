@@ -7,9 +7,6 @@ using namespace std;
 #include "Battalion.h"
 #include "Plane.h"
 #include "Ship.h"
-// #include "Country.h"
-// #include "VehicleFactory.h"
-// #include "Vehicle.h"
 
 class Battalion;
 class Plane;
@@ -21,14 +18,24 @@ class Military;
 
 class Military
 {
-	private: vector<Battalion> battalions;
-	private: vector<Plane> planes;
-	private: vector<Ship> ships;
-	private: vector<Tank> tanks;
-	public: Country* countrys;
-	public: VehicleFactory* vehicleFactorys;
-	public: Vehicle* vehicles;
-	public: Battalion* battalions2;
+	public:
+		Military();
+		~Military();
+		int getNumBattalions();
+		int getNumTanks();
+		int getNumPlanes();
+		int getNumShips();
+		int getNumVehicles();
+		void attack();//a bit tricky but sum the up the damage of the entire army well that might be an option
+		
+	private: 
+		vector<Battalion> battalions;
+		vector<Ship> ships;
+		vector<Tank> tanks;
+		//Country* countries;
+		vector<Plane> planes;
+		VehicleFactory* vehicleFactoress;
+		Battalion* battalions;
 };
 
 #endif

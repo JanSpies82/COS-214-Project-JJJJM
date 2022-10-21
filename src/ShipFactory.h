@@ -6,13 +6,15 @@ using namespace std;
 
 #include "VehicleFactory.h"
 
-// class VehicleFactory;
-class ShipFactory;
+
 
 class ShipFactory: public VehicleFactory
 {
 
-	public: Vehicle* factoryMethod();
+	public: 
+		ShipFactory();
+		~ShipFactory();
+		 Vehicle* manufactureVehicle();
 };
 
 #endif

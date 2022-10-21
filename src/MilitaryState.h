@@ -4,12 +4,12 @@ using namespace std;
 #ifndef __MilitaryState_h__
 #define __MilitaryState_h__
 
-#include "SimulationState.h"
+
 
 // class SimulationState;
 class MilitaryState;
 
-class MilitaryState: public SimulationState
+class MilitaryState
 {
 	private: std::time_t timestamp;
 
