@@ -15,13 +15,21 @@ class Territory: public Location
 {
 	public:
 		LocationIterator* locationIterators;
-		
+
 		/**
 		 * @brief Create a Iterator object and store it in locationIterators
 		 * 
 		 * @return Iterator* 
 		 */
 		Iterator* createIterator();
+
+	protected:
+		/**
+		 * @brief Add a neighbour to the neighbours array
+		 * 
+		 * @param _neighbour: The neighbour to be added
+		 */
+		void add(Neighbour* _neighbour);
 };
 
 #endif

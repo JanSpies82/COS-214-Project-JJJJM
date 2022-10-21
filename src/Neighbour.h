@@ -11,12 +11,16 @@ class Neighbour;
 
 class Neighbour: public Location
 {
-	private: Location* location;
-	public: Location* locations;
+	public:
+		Location* locations;
 
-	public: void operation();
+		void operation();
 
-	public: virtual Iterator* createIterator();
+		virtual Iterator* createIterator();
+
+	private:
+		Location* location;
+		
 };
 
 #endif
