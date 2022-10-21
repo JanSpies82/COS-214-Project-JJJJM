@@ -10,23 +10,47 @@ using namespace std;
 
 class Territory;
 class Location;
-// class Iterator;
+class Iterator;
 class LocationIterator;
 
 class LocationIterator: public Iterator
 {
-	public: Territory* territorys;
-	public: Location* locations;
+	public:
+		Location* current;
+		
+		/**
+		 * @brief Sets current to the top left location of the map
+		 * 
+		 */
+		void topLeft();	
 
-	public: void first();
+		/**
+		 * @brief Shifts current pointer to it's right neighbour
+		 * 
+		 */
+		void right();	
 
-	public: void next();
+		/**
+		 * @brief Shifts current pointer to it's left neighbour
+		 * 
+		 */	
+		void left();
 
-	public: void isDone();
+		/**
+		 * @brief Shifts current pointer to it's bottom neighbour
+		 * 
+		 */		
+		void down();
 
-	public: void currentItem();
+		/**
+		 * @brief Shifts current pointer to it's top neighbour
+		 * 
+		 */		
+		void up();	
 
-	public: virtual void current();
+
+		//void isDone();		
+		//void current();
 };
 
 #endif

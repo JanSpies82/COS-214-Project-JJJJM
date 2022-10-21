@@ -6,16 +6,17 @@ using namespace std;
 
 class Iterator;
 
-__abstract class Iterator
+class Iterator
 {
 
-	public: virtual void first() = 0;
-
-	public: virtual void next() = 0;
-
-	public: virtual void isDone() = 0;
-
-	public: virtual void current() = 0;
+	public: 
+		virtual void topLeft() = 0;	
+		virtual void right() = 0;		
+		virtual void left() = 0;		
+		virtual void down() = 0;		
+		virtual void up() = 0;		
+		virtual void isDone() = 0;		
+		virtual void current() = 0;
 };
 
 #endif
