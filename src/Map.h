@@ -15,10 +15,37 @@ class Map;
 
 class Map
 {
-	public: Location* locations;
-	public: SimulationManager* simulationManagers;
+	public:
+		Location* locations;
+		SimulationManager* simulationManagers;
 
-	public: Territory getLocation(int x, int y);
+		/**
+		 * @brief Construct a new Map object with all locations initialized
+		 * 
+		 */
+		Map();
+
+		/**
+		 * @brief Destroy the Map object by deallocating all the location objects
+		 * 
+		 */
+		~Map();
+
+		/**
+		 * @brief Construct a copy of the passed in map pointer
+		 * 
+		 * @param map : Map* - the pointer to be copied into the new map
+		 */
+		Map(Map* map);
+
+		/**
+		 * @brief Get the Location object with matching x and y coordinates
+		 * 
+		 * @param x : int - The x coordinate of the location to be returned
+		 * @param y : int - The y coordinate of the location to be returned
+		 * @return Territory* 
+		 */
+		Territory* getLocation(int x, int y);
 };
 
 #endif

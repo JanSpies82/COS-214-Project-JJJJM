@@ -1,21 +1,29 @@
 #include <exception>
+#include <ctime>
 using namespace std;
 
 #ifndef __MapState_h__
 #define __MapState_h__
 
-#include "SimulationState.h"
+#include "Map.h"
 
 // class SimulationState;
 class MapState;
 
-class MapState: public SimulationState
+class MapState
 {
-	private: std::time_t timestamp;
+	public:
+		/**
+		 * @brief Construct a new Map State object from a passed in Map pointer. Makes a deep copy of every location in a Map
+		 * 
+		 * @param m : Map* - Pointer to the Map object.
+		 */
+		MapState(Map* m);
 
-	public: MapState(Map* m);
+		
+	private: 
+		std::time_t timestamp;
 
-	public: virtual void simulationState();
 };
 
 #endif
