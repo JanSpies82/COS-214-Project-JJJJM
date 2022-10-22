@@ -28,6 +28,8 @@ public:
 	 */
 	SimulationState(SimulationManager *_simulationManager);
 
+  SimulationState();
+
 	/**
 	 * @brief Destroy the Simulation State object and delete all held state objects
 	 *
