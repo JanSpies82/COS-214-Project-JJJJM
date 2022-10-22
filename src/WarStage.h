@@ -9,11 +9,11 @@ using namespace std;
 class Country;
 class WarStage;
 
-__abstract class WarStage
+class WarStage
 {
-	public: Country* countrys;
-
-	public: virtual void handle() = 0;
+	public: 
+    Country* countrys;
+    virtual void handle();
 };
 
 #endif
