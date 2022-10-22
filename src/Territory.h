@@ -4,7 +4,8 @@ using namespace std;
 #ifndef __Territory_h__
 #define __Territory_h__
 
-// #include "LocationIterator.h"
+#include "Country.h"
+#include "LocationIterator.h"
 #include "Location.h"
 
 class LocationIterator;
@@ -31,6 +32,21 @@ class Territory: public Location
 		 */
 		Iterator* createIterator();
 
+		/**
+		 * @brief Return a pointer to the country which owns this territory
+		 * 
+		 * @return Country* 
+		 */
+		Country* getOwnedBy();
+
+
+		/**
+		 * @brief Set which country owns this territory
+		 * 
+		 * @param _newOwner : Country* - the pointer to the new owner of the territory.
+		 */
+		void setOwnedBy(Country* _newOwner);
+
 	protected:
 		int xCoordinate, yCoordinate;
 
@@ -40,6 +56,9 @@ class Territory: public Location
 		 * @param _neighbour: The neighbour to be added
 		 */
 		void add(Neighbour* _neighbour);
+
+	private:
+		Country* ownedBy;
 };
 
 #endif
