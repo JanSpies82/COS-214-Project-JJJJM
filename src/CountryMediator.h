@@ -1,6 +1,3 @@
-#include <exception>
-using namespace std;
-
 #ifndef __CountryMediator_h__
 #define __CountryMediator_h__
 
@@ -11,9 +8,9 @@ class CountryMediator;
 
 class CountryMediator
 {
-	public: Country* countrys;
-
-	public: void notify(Country* country);
+public: 
+  Country* countrys;
+  void notify(Country* country);
 };
 
 #endif

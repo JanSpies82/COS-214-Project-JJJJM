@@ -1,6 +1,3 @@
-#include <exception>
-using namespace std;
-
 #include "Country.h"
 #include "WarStage.h"
 #include "Superpower.h"
@@ -10,23 +7,28 @@ using namespace std;
 #include "CountryMediator.h"
 #include "Strategy.h"
 
-void Country::request() {
-	throw "Not yet implemented";
+void Country::request()
+{
+	return;
 }
 
-void Country::notify() {
-	throw "Not yet implemented";
+void Country::notify()
+{
+	return;
 }
 
-void Country::attach() {
-	throw "Not yet implemented";
+void Country::attach()
+{
+	return;
 }
 
-void Country::detach() {
-	throw "Not yet implemented";
+void Country::detach()
+{
+	return;
 }
 
-void Country::algorithm() {
-	throw "Not yet implemented";
+void Country::algorithm()
+{
+	return;
 }
 

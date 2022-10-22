@@ -1,13 +1,13 @@
 #include <exception>
-using namespace std;
+
+#include <ctime>
 
 #ifndef __MilitaryState_h__
 #define __MilitaryState_h__
 
 
-
-// class SimulationState;
 class MilitaryState;
+class Military;
 
 class MilitaryState
 {

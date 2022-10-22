@@ -9,7 +9,7 @@ class Citizen;
 
 class Citizen
 {
-	public: Country* countrys;
+public: Country* countries;
 };
 
 #endif

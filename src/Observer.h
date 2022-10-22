@@ -9,7 +9,7 @@ using namespace std;
 class Location;
 class Observer;
 
-__abstract class Observer
+class Observer
 {
 	public: Location* locations;
 

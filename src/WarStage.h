@@ -12,8 +12,8 @@ class WarStage;
 class WarStage
 {
 	public: 
-    Country* countrys;
-    virtual void handle();
+    Country* countries;
+    virtual void handle() = 0;
 };
 
 #endif
