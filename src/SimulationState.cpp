@@ -5,6 +5,3 @@ using namespace std;
 #include "SimulationManager.h"
 #include "Memento.h"
 
-SimulationState::SimulationState() {
-}
-

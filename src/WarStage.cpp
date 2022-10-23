@@ -1,5 +1,4 @@
 #include <exception>
-using namespace std;
 
 #include "WarStage.h"
 #include "Country.h"

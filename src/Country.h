@@ -23,26 +23,24 @@ class Country;
 
 class Country
 {
-	private: WarStage warStage;
-	private: Strategy* strategy;
-	private: CountryMediator* mediator;
-	public: Superpower* superpowers;
-	public: WarStage* warStages;
-	public: Military* militarys;
-	public: CountryState* request;
-	public: Citizen* citizens;
-	public: CountryMediator* countryMediators;
-	public: Strategy* strategys;
+public: 
+  void request();
+  void notify();
+  void attach();
+  void detach();
+  void algorithm();
+  Superpower* superpowers;
+  WarStage* warStages;
+  Military* militaries;
+  CountryState* req;
+  Citizen* citizens;
+  CountryMediator* countryMediators;
+  Strategy* strategies;
 
-	public: void request();
-
-	public: void notify();
-
-	public: void attach();
-
-	public: void detach();
-
-	public: void algorithm();
+private:
+  WarStage* warStage;
+  Strategy* strategy;
+  CountryMediator* mediator;
 };
 
 #endif

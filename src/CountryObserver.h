@@ -8,8 +8,9 @@ using namespace std;
 #include "Observer.h"
 
 class ObserverState;
-// class Observer;
+class Observer;
 class CountryObserver;
+class Country;
 
 class CountryObserver: public Observer
 {
