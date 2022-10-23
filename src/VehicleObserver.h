@@ -7,15 +7,18 @@ using namespace std;
 // #include "ObserverState.h"
 #include "Observer.h"
 
-class ObserverState;
-// class Observer;
-class VehicleObserver;
 
 class VehicleObserver: public Observer
 {
-	public: ObserverState* observerStates;
+	public: 
+		/**
+		 * @notify observer of the changes
+		**/
+		virtual void update();
+	private:
+	 	ObserverState* observerStates;
 
-	public: virtual void update();
+	
 };
 
 #endif

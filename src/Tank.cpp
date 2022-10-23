@@ -1,7 +1,7 @@
 #include <exception>
 using namespace std;
 
-#include "Tank_.h"
+#include "Tank.h"
 #include "Vehicle.h"
 
 void Tank_::findEnemy() {

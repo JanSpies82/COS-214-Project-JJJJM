@@ -7,25 +7,36 @@ using namespace std;
 #include "Battalion.h"
 #include "Plane.h"
 #include "Ship.h"
+#include "Tank.h"
 
-class Battalion;
-class Plane;
-class Ship;
-class Country;
-class VehicleFactory;
-class Vehicle;
-class Military;
+
 
 class Military
 {
 	public:
+		/**
+		 **/
 		Military();
+		/**
+		 **/
 		~Military();
+		/**
+		 **/
 		int getNumBattalions();
+		/**
+		 **/
 		int getNumTanks();
+		/**
+		 **/
 		int getNumPlanes();
+		/**
+		 **/
 		int getNumShips();
+		/**
+		 **/
 		int getNumVehicles();
+		/**
+		 **/
 		void attack();//a bit tricky but sum the up the damage of the entire army well that might be an option
 		
 	private: 

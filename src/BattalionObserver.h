@@ -8,18 +8,18 @@ using namespace std;
 #include "Battalion.h"
 #include "Observer.h"
 
-class ObserverState;
-class Battalion;
-// class Observer;
-class BattalionObserver;
-
 class BattalionObserver: public Observer
 {
-	private: ObserverState state;
-	private: Battalion subject;
-	public: ObserverState* observerStates;
-
-	public: void update();
+	public:
+		/**
+		 * @brief notify observer about the changes in the subject
+		 **/
+		void update();
+	private: 
+		ObserverState state;
+		Battalion subject;
+		ObserverState* observerStates;
+	
 };
 
 #endif

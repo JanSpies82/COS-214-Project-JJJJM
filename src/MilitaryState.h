@@ -6,16 +6,32 @@ using namespace std;
 
 
 
-// class SimulationState;
-class MilitaryState;
-
 class MilitaryState
 {
-	private: std::time_t timestamp;
+	
 
-	public: MilitaryState(Military* m);
+	public:
 
-	public: virtual void simulationState();
+		std::time_t timestamp;
+		/**
+		 * @brief construct a MilitaryState Object
+		 * @param Military object
+		**/
+		MilitaryState(Military* m);
+		/**
+		 * @brief stores the state of the military
+		 * @param Military object
+		 **/
+		void storeState(Military * m);
+		/**
+		 * @brief retrieve the militaryState object
+		 * @return the MilitaryState
+		 **/
+		Military* getState();
+		
+		private:
+		vector<Military>* State;
+	
 };
 
 #endif
