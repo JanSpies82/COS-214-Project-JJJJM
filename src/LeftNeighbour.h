@@ -16,7 +16,7 @@ class LeftNeighbour: public Neighbour
 		/**
 		 * @brief Set the leftLocation object to the passed in _left parameter
 		 * 
-		 * @param _left : Location* - parameter to set the leftLocation object to 
+		 * @param _neighbour : Location* - parameter to set the leftLocation object to 
 		 */
 		void setNeighbour(Location* _neighbour);
 

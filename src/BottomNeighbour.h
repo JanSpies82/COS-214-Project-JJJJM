@@ -16,7 +16,7 @@ class BottomNeighbour: public Neighbour
 		/**
 		 * @brief Set the bottomLocation object to the passed in _bottom parameter
 		 * 
-		 * @param _bottom : Location* - parameter to set the bottomLocation object to 
+		 * @param _neighbour : Location* - parameter to set the bottomLocation object to 
 		 */
 		void setNeighbour(Location* _neighbour);
 

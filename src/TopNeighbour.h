@@ -17,7 +17,7 @@ class TopNeighbour: public Neighbour
 		/**
 		 * @brief Set the topLocation object to the passed in _top parameter
 		 * 
-		 * @param _top : Location* - parameter to set the topLocation object to 
+		 * @param _neighbour : Location* - parameter to set the topLocation object to 
 		 */
 		void setNeighbour(Location* _neighbour);
 
