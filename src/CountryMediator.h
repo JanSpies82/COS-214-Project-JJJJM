@@ -9,7 +9,7 @@ class CountryMediator;
 class CountryMediator
 {
 public: 
-  Country* countrys;
+  Country* countries;
   void notify(Country* country);
 };
 
