@@ -10,7 +10,7 @@ class Superpower
 {
 public: 
   SimulationManager* simulationManagers;
-	Country* countrys;
+	Country* countries;
 };
 
 #endif
