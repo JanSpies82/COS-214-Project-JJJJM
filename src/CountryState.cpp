@@ -2,8 +2,7 @@
 #include "Country.h"
 #include "SimulationState.h"
 
-CountryState::CountryState(Country* _request){
-  request = _request;
+CountryState::CountryState(Country* country){
   timestamp = std::time(0);
 }
 

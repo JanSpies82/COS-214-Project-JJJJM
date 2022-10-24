@@ -18,6 +18,9 @@ class CountryObserver: public Observer
 	private: Country* subject;
 	public: ObserverState* observerStates;
 
+  /**
+    * @brief update state when subject changes
+    */
 	public: void update();
 };
 

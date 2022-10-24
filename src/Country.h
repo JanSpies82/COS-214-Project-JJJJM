@@ -24,18 +24,37 @@ class Country;
 class Country
 {
 public: 
+  /**
+    * @brief takes next action in simulation based on current state
+    */
   void request();
+
+  /**
+    * @brief notify each observer of the new current state
+    */
   void notify();
+
+  /**
+    * @brief add new observer to vector of observers
+    */
   void attach();
+  
+  /**
+    * @brief remove observer from vector of observers
+    */
   void detach();
+
+  /**
+    * @brief uses state information to implement next action
+    */
   void algorithm();
+
   Superpower* superpowers;
   WarStage* warStages;
   Military* militaries;
-  CountryState* req;
+  CountryState* state;
   Citizen* citizens;
   CountryMediator* countryMediators;
-  Strategy* strategies;
 
 private:
   WarStage* warStage;

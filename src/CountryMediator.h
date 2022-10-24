@@ -10,6 +10,12 @@ class CountryMediator
 {
 public: 
   Country* countries;
+
+  /**
+    * @brief for all countries, notify them of the new state
+    * 
+    * @param country origin country of updated state
+    */
   void notify(Country* country);
 };
 

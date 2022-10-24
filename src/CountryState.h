@@ -9,9 +9,12 @@ class Country;
 class CountryState
 {
 public:
-  CountryState(Country* c);
-  virtual void simulationState();
-  Country* request;
+  /**
+    * @brief create new country state
+    * 
+    * @param country country to create state for
+    */
+  CountryState(Country* country);
 
 private: 
   std::time_t timestamp;
