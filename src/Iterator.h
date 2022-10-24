@@ -7,6 +7,7 @@ using namespace std;
 #include "Territory.h"
 #include "Location.h"
 
+class Location;
 class Iterator;
 
 class Iterator

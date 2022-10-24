@@ -6,6 +6,7 @@ using namespace std;
 
 #include "Neighbour.h"
 
+class Location;
 // class Neighbour;
 class BottomNeighbour;
 

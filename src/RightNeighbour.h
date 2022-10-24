@@ -7,6 +7,7 @@ using namespace std;
 #include "Neighbour.h"
 
 // class Neighbour;
+class Location;
 class RightNeighbour;
 
 class RightNeighbour: public Neighbour
