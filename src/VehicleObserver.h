@@ -6,7 +6,7 @@ using namespace std;
 
 // #include "ObserverState.h"
 #include "Observer.h"
-
+class ObserverState;
 
 class VehicleObserver: public Observer
 {
