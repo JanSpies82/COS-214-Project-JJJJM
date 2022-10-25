@@ -4,24 +4,25 @@ using namespace std;
 #ifndef __Location_h__
 #define __Location_h__
 
-#include "Map.h"
-#include "LocationIterator.h"
-#include "Observer.h"
-#include "Neighbour.h"
+// #include "Map.h"
+// #include "LocationIterator.h"
+// #include "Observer.h"
+// #include "Neighbour.h"
 
 class Map;
-class LocationIterator;
+// class LocationIterator;
 class Observer;
+class Iterator;
 // class Neighbour;
-class Location;
+// class Location;
 
 class Location
 {
 	public: 
-		Map* maps;
-		LocationIterator* locationIterators;
-		Observer* observers;
-		Neighbour* neighbours;
+		Map* map;
+		// LocationIterator* locationIterator;
+		Observer* observer;
+		// Neighbour* neighbour;
 
 
 		/**
