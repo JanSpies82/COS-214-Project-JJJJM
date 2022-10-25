@@ -1,10 +1,10 @@
 #include "MilitaryState.h"
-
+#include "Military.h"
 
 MilitaryState::MilitaryState(Military* m) {
 }
 
-void MilitaryState::simulationState() {
-	return;
-}
+// void MilitaryState::simulationState() {
+// 	return;
+// }
 
