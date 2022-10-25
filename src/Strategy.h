@@ -7,26 +7,28 @@ using namespace std;
 // #include "Country.h"
 
 class Country;
-class Strategy;
 
 //! Strategy Class
 /*!
  * This class determines the decisions that a country makes.
  */
 
-__abstract class Strategy
+class Strategy
 {
-    public: Strategy(Country*);
     /**
      * @brief Constructor: initialises Country variable
      */
+public:
+    Strategy(Country *);
 
-	public: Country* countrys; /*!< Holds country in which the strategy belongs to */
-
-	public: virtual void algorithm() = 0;
     /**
      * @brief virtual function: Decides on countries next move
      */
+    virtual void algorithm() = 0;
+
+protected:
+    // TODO what is the purpose of this? The country can pass itself in as a parameter in algorithm() and does not need to be stored?
+    Country *country; /*!< Holds country in which the strategy belongs to */
 };
 
 #endif
