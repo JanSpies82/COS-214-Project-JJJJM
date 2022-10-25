@@ -1,6 +1,6 @@
 #include <limits.h>
 #include <stdexcept>
-#include "PlaneFactory.h"
+#include "../src/PlaneFactory.h"
 #include "gtest/gtest.h"
 
 namespace {

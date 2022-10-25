@@ -5,10 +5,11 @@ project (Project_JJJJM)
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
-# Link all files in Task 5 directory
+# Link all files in src directory
 file(GLOB src
      "*.h"
      "*.cpp"
+     "../test/*.cpp"
 )
 
 add_executable(main ${src})

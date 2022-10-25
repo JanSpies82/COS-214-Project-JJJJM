@@ -1,6 +1,6 @@
 #include <limits.h>
 #include <stdexcept>
-#include "Citizen.h"
+#include "../src/Citizen.h"
 #include "gtest/gtest.h"
 
 namespace {

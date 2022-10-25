@@ -1,6 +1,6 @@
 #include <limits.h>
 #include <stdexcept>
-#include "CountryMediator.h"
+#include "../src/CountryMediator.h"
 #include "gtest/gtest.h"
 
 namespace {

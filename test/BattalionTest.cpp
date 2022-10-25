@@ -1,6 +1,6 @@
 #include <limits.h>
 #include <stdexcept>
-#include "Battalion.h"
+#include "../src/Battalion.h"
 #include "gtest/gtest.h"
 
 namespace {

@@ -1,6 +1,6 @@
 #include <limits.h>
 #include <stdexcept>
-#include "Ship.h"
+#include "../src/Ship.h"
 #include "gtest/gtest.h"
 
 namespace {
