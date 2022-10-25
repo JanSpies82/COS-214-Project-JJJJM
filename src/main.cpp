@@ -21,6 +21,15 @@
 #include "../test/TankFactoryTest.cpp"
 #include "../test/TankTest.cpp"
 #include "../test/VehicleObserverTest.cpp"
+#include "../test/RightNeighbourTest.cpp"
+#include "../test/LeftNeighbourTest.cpp"
+#include "../test/TopNeighbourTest.cpp"
+#include "../test/BottomNeighbourTest.cpp"
+#include "../test/TerritoryTest.cpp"
+#include "../test/LocationIteratorTest.cpp"
+#include "../test/MapTest.cpp"
+#include "../test/MapStateTest.cpp"
+
 
 
 int main(int argc, char **argv) {
