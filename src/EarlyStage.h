@@ -13,6 +13,11 @@ class EarlyStage: public WarStage
 {
 
 	public: void handle();
+
+    WarStage* nextStage();
+    /**
+     * @brief initialises a MiddleStage object and returns it
+     */
 };
 
 #endif
