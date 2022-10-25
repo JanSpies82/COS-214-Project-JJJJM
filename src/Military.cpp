@@ -9,6 +9,7 @@ using namespace std;
 #include "VehicleFactory.h"
 #include "Vehicle.h"
 
+<<<<<<< HEAD
 
 Military::Military(){
 
@@ -46,3 +47,5 @@ int Military::getNumVehicles(){
 void Military::attack(Country* enemy){
 
 }
+=======
+>>>>>>> 9b5003816acc0289ff0b93f9fa23c9d166f3902d

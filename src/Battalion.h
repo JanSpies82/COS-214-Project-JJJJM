@@ -24,7 +24,16 @@ class Battalion
 		 **/
 		void attack(Country* enemy);
 
+<<<<<<< HEAD
 		
+=======
+		/**
+		 * @brief converts Citizens into battalions
+		 * @param Citizen object- should be the population
+		 **/
+		void addBattalions(Citizen *_citizen);
+
+>>>>>>> 9b5003816acc0289ff0b93f9fa23c9d166f3902d
 		/**
 		 * @brief sets number of deceased battalions in battle
 		 **/
@@ -43,7 +52,10 @@ class Battalion
 		int getBattalionDestroyed();
 	private:
 	int numBattalionDestroys;
+<<<<<<< HEAD
 	int groupSize;
+=======
+>>>>>>> 9b5003816acc0289ff0b93f9fa23c9d166f3902d
 		
 };
 

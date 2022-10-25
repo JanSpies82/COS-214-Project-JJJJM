@@ -5,6 +5,7 @@
 
 namespace {
 
+<<<<<<< HEAD
    // Test attack()
 	//=============Precondition Testing ===================
 	//Test Precondition passing in NULL 
@@ -19,3 +20,7 @@ TEST(attackTest,TestPreconditionNullptr){
 	}
 }
 
+=======
+    
+}
+>>>>>>> 9b5003816acc0289ff0b93f9fa23c9d166f3902d
