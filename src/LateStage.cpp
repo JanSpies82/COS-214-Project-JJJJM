@@ -8,3 +8,6 @@ void LateStage::handle() {
 	throw "Not yet implemented";
 }
 
+WarStage* LateStage::nextStage(){
+	return NULL;
+};
