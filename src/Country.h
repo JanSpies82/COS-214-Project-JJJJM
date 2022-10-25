@@ -1,5 +1,4 @@
 #include <exception>
-using namespace std;
 
 #ifndef __Country_h__
 #define __Country_h__
@@ -11,6 +10,8 @@ using namespace std;
 // #include "Citizen.h"
 // #include "CountryMediator.h"
 // #include "Strategy.h"
+
+#include <vector>
 
 class WarStage;
 class Superpower;
@@ -49,14 +50,18 @@ public:
     */
   void algorithm();
 
-  Superpower* superpowers;
-  WarStage* warStages;
-  Military* militaries;
-  CountryState* state;
-  Citizen* citizens;
-  CountryMediator* countryMediators;
+  /**
+    * @brief return up-to-date state information
+    */
+  CountryState* getState();
 
 private:
+  std::vector<Superpower*>* superpowers;
+  std::vector<WarStage*>* warStages;
+  std::vector<Military*>* militaries;
+  CountryState* state;
+  std::vector<Citizen*>* citizens;
+  std::vector<CountryMediator*>* countryMediators;  
   WarStage* warStage;
   Strategy* strategy;
   CountryMediator* mediator;
