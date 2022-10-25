@@ -7,7 +7,7 @@ using namespace std;
 MapState::MapState(Map* m) {
 }
 
-void MapState::simulationState() {
-	throw "Not yet implemented";
-}
+// void MapState::simulationState() {
+// 	throw "Not yet implemented";
+// }
 
