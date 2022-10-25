@@ -1,5 +1,4 @@
 #include <exception>
-using namespace std;
 
 #ifndef __SimulationState_h__
 #define __SimulationState_h__
