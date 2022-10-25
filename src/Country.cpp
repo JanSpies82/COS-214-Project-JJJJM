@@ -13,35 +13,30 @@ void Country::request()
 	return;
 }
 
-/**
- * @brief Set the bottomLocation object to the passed in _bottom parameter
- */
 void Country::notify()
 {
 	return;
 }
 
-/**
- * @brief Set the bottomLocation object to the passed in _bottom parameter
- */
 void Country::attach()
 {
 	return;
 }
 
-/**
- * @brief Set the bottomLocation object to the passed in _bottom parameter
- */
 void Country::detach()
 {
 	return;
 }
 
-/**
- * @brief Set the bottomLocation object to the passed in _bottom parameter
- */
 void Country::algorithm()
 {
 	return;
+}
+
+CountryState* Country::getState()
+{
+  // generate current state
+  // return current state
+  return NULL;
 }
 
