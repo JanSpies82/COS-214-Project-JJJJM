@@ -1,6 +1,6 @@
 #include <limits.h>
 #include <stdexcept>
-#include "TopNeighbour.h"
+#include "../src/TopNeighbour.h"
 #include "gtest/gtest.h"
 
 namespace {

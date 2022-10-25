@@ -1,6 +1,6 @@
 #include <limits.h>
 #include <stdexcept>
-#include "LocationIterator.h"
+#include "../src/LocationIterator.h"
 #include "gtest/gtest.h"
 
 namespace {

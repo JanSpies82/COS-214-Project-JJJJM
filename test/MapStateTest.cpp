@@ -1,6 +1,6 @@
 #include <limits.h>
 #include <stdexcept>
-#include "MapState.h"
+#include "../src/MapState.h"
 #include "gtest/gtest.h"
 
 namespace {

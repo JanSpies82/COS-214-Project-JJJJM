@@ -1,6 +1,6 @@
 #include <limits.h>
 #include <stdexcept>
-#include "Territory.h"
+#include "../src/Territory.h"
 #include "gtest/gtest.h"
 
 namespace {
