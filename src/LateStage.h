@@ -13,6 +13,11 @@ class LateStage: public WarStage
 {
 
 	public: void handle();
+
+    WarStage* nextStage();
+    /**
+     * @brief returns NULL
+     */
 };
 
 #endif

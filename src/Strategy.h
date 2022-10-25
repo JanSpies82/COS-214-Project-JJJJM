@@ -10,25 +10,26 @@ class Country;
 
 //! Strategy Class
 /*!
- * This class determines the decisions that a country makes.
+ * This class determines which strategy to choose for a country.
  */
 
 class Strategy
 {
+    public:
     /**
      * @brief Constructor: initialises Country variable
+     *
+     * @param country :Country* - The country that is to be linked to this strategy
      */
-public:
+
     Strategy(Country *);
 
     /**
-     * @brief virtual function: Decides on countries next move
+     * @brief virtual function: Compares strength score to other countries and changes the strategy within a country accordingly
+     *
+     * @param _country:Country* Country that must be compared to everyone else
      */
-    virtual void algorithm() = 0;
-
-protected:
-    // TODO what is the purpose of this? The country can pass itself in as a parameter in algorithm() and does not need to be stored?
-    Country *country; /*!< Holds country in which the strategy belongs to */
+    virtual void algorithm(Country * _country) = 0;
 };
 
 #endif

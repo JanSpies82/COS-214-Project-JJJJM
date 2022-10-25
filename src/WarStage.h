@@ -12,8 +12,14 @@ class WarStage;
 class WarStage
 {
 	public: 
-    Country* countries;
     virtual void handle() = 0;
+    /**
+     * @brief ??
+     */
+     virtual WarStage* nextStage() =0;
+     /**
+      * @brief Returns an object to the next stage of war
+      */
 };
 
 #endif
