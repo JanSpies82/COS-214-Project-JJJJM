@@ -4,18 +4,20 @@ using namespace std;
 #ifndef __Territory_h__
 #define __Territory_h__
 
-#include "Country.h"
-#include "LocationIterator.h"
+// #include "Country.h"
+// #include "LocationIterator.h"
 #include "Location.h"
 
 class LocationIterator;
+class Neighbour;
+class Country;
 // class Location;
-class Territory;
+// class Territory;
 
 class Territory: public Location
 {
 	public:
-		LocationIterator* locationIterators;
+		LocationIterator* locationIterator;
 
 		/**
 		 * @brief Construct a new Territory object

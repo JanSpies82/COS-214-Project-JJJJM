@@ -6,7 +6,7 @@ CountryState::CountryState(Country* country){
   timestamp = std::time(0);
 }
 
-void CountryState::simulationState() {
-	return;
-}
+// void CountryState::simulationState() {
+// 	return;
+// }
 
