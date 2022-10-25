@@ -6,7 +6,7 @@ using namespace std;
 #include "SimulationManager.h"
 #include "Territory.h"
 
-Territory Map::getLocation(int x, int y) {
-	throw "Not yet implemented";
-}
+// Territory Map::getLocation(int x, int y) {
+// 	throw "Not yet implemented";
+// }
 
