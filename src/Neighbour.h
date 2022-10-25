@@ -7,7 +7,8 @@ using namespace std;
 #include "Location.h"
 
 // class Location;
-class Neighbour;
+// class Neighbour;
+class Iterator;
 
 class Neighbour: public Location
 {
