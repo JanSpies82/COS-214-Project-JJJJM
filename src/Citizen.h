@@ -9,7 +9,8 @@ class Citizen;
 
 class Citizen
 {
-public: Country* countries;
+public:
+  std::vector<Country*>* countries;
 };
 
 #endif
