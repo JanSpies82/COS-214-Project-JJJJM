@@ -1,6 +1,6 @@
 #include <limits.h>
 #include <stdexcept>
-#include "Country.h"
+#include "../src/Country.h"
 #include "gtest/gtest.h"
 
 namespace {
