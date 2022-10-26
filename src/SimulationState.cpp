@@ -44,6 +44,18 @@ MapState *SimulationState::getMapState()
     return mapState;
 }
 
+void SimulationState::addCountryState(CountryState *_countryState)
+{
+    countryStates->push_back(_countryState);
+}
+
+CountryState *SimulationState::getCountryState(int index)
+{
+    if (index < 0 || index >= countryStates->size())
+        __throw_out_of_range("CountryState index out of range");
+    return countryStates->at(index);
+}
+
 time_t SimulationState::getTimestamp()
 {
     return this->timestamp;
