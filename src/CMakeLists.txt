@@ -14,3 +14,4 @@ file(GLOB src
 
 add_executable(main ${src})
 target_link_libraries(main ${GTEST_LIBRARIES} pthread)
+set(CMAKE_BUILD_TYPE Debug)
