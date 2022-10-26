@@ -56,6 +56,18 @@ CountryState *SimulationState::getCountryState(int index)
     return countryStates->at(index);
 }
 
+void SimulationState::addMilitaryState(MilitaryState *_militaryState)
+{
+    militaryStates->push_back(_militaryState);
+}
+
+MilitaryState *SimulationState::getMilitaryState(int index)
+{
+    if (index < 0 || index >= militaryStates->size())
+        __throw_out_of_range("MilitaryState index out of range");
+    return militaryStates->at(index);
+}
+
 time_t SimulationState::getTimestamp()
 {
     return this->timestamp;
