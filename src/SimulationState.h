@@ -68,7 +68,7 @@ public:
 	/**
 	 * @brief Get the Country State object stored by the SimulationState
 	 *
-	 * Exceptions : std::out_of_range if the SimulationState does not hold a CountryState
+	 * Exceptions : std::out_of_range if the index is out of range
 	 * 
 	 * @param index : int - Index of the CountryState object to return.
 	 * @return CountryState*
@@ -78,7 +78,7 @@ public:
 	/**
 	 * @brief Get the Military State object stored by the SimulationState
 	 *
-	 * Exceptions : std::out_of_range if the SimulationState does not hold a MilitaryState
+	 * Exceptions : std::out_of_range if the index is out of range
 	 * 
 	 * @param index : int - Index of the MilitaryState object to return.
 	 * @return MilitaryState*
