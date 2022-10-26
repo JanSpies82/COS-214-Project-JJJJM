@@ -31,7 +31,7 @@ namespace
         delete memento;
     }
 
-    TEST(MementoTest, GetStateNotSet)
+    TEST(MementoTest, GetStateNeg)
     {
         Memento *memento = new Memento();
         try
@@ -50,13 +50,14 @@ namespace
         delete memento;
     }
 
-    TEST(MementoTest, GetStateSet)
+    TEST(MementoTest, GetStatePos)
     {
         Memento *memento = new Memento();
         SimulationState *simulationState = new SimulationState(NULL);
         memento->setState(simulationState);
         EXPECT_EQ(memento->getState(), simulationState);
         delete memento;
+        // delete simulationState;
     }
 
 }

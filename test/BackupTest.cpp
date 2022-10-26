@@ -43,6 +43,8 @@ namespace
         EXPECT_EQ(backup->getMemento(), m2);
         EXPECT_EQ(backup->getMementoCount(), 0);
         delete backup;
+        delete m1;
+        delete m2;
     }
 
     TEST(BackupTest, GetMementoNeg)
