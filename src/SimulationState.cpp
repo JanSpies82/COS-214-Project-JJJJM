@@ -16,10 +16,11 @@ SimulationState::SimulationState(SimulationManager *_simulationManager)
     militaryStates = new vector<MilitaryState *>();
 }
 
-SimulationState::~SimulationState(){
+SimulationState::~SimulationState()
+{
     if (mapState != NULL)
         delete mapState;
-        
+
     for (int i = 0; i < countryStates->size(); i++)
         delete countryStates->at(i);
     delete countryStates;
@@ -28,6 +29,20 @@ SimulationState::~SimulationState(){
         delete militaryStates->at(i);
     delete militaryStates;
 };
+
+void SimulationState::setMapState(MapState *_mapState)
+{
+    if (mapState != NULL)
+        delete mapState;
+    mapState = _mapState;
+}
+
+MapState *SimulationState::getMapState()
+{
+    if (mapState == NULL)
+        __throw_out_of_range("SimulationState does not hold a MapState");
+    return mapState;
+}
 
 time_t SimulationState::getTimestamp()
 {
