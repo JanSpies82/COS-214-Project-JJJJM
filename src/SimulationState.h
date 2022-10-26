@@ -36,6 +36,8 @@ public:
 	/**
 	 * @brief Set the Map State object stored by the SimulationState
 	 *
+	 * If a MapState is already stored, it is deleted
+	 * 
 	 * @param _mapState : MapState* - Pointer to the MapState object.
 	 */
 	void setMapState(MapState *_mapState);
