@@ -68,6 +68,16 @@ MilitaryState *SimulationState::getMilitaryState(int index)
     return militaryStates->at(index);
 }
 
+int SimulationState::getCountryStateCount()
+{
+    return countryStates->size();
+}
+
+int SimulationState::getMilitaryStateCount()
+{
+    return militaryStates->size();
+}
+
 time_t SimulationState::getTimestamp()
 {
     return this->timestamp;
