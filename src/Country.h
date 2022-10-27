@@ -70,24 +70,57 @@ public:
     * @brief generates a vector of military coefficients reflecting military strength
     * @return a vector of int coefficients
     */
-  std::vector<int> getMilitaryCoefficients();
+  std::vector<int> getMilitaryCoefficients()
+  {
+
+  };
 
   /**
     * @brief generates a vector of map coefficients reflecting the strength
     * of this country's position on the map
     * @return a vector of int coefficients
     */
-  std::vector<int> getMapCoefficients();
+  std::vector<int> getMapCoefficients()
+  {
+
+  };
 
   /**
     * @brief generates a vector of domestic coefficients reflecting the internal strength
     * of this country
     * @return a vector of int coefficients
     */
-  std::vector<int> getDomesticCoefficients();
+  std::vector<int> getDomesticCoefficients()
+  {
+
+  };
+
+  /**
+    * @brief getter for numCitizens attribute
+    * @return returns current number of citizens of this country
+    */
+  int getNumCitizens()
+  {
+    return numCitizens;
+  };
+
+  /**
+   * @brief sets the value of class attribute numCitizens
+   * @param int new value of numCitizens
+   */
+  void setNumCitizens(int _numCitizens)
+  {
+    if (_numCitizens < 0)
+    {
+      throw std::invalid_argument("_numCitizens must be greater than 0");
+      return;
+    }
+    numCitizens = _numCitizens;
+  };
   
 
 private:
+  int numCitizens;
   MapState* mapState;
   Military* military;
   WarStage* warStage;
@@ -95,6 +128,9 @@ private:
   CountryState* state;
   Superpower* superpower;
   CountryMediator* mediator;
+  std::vector<int> militaryCoefficients;
+  std::vector<int> mapCoefficients;
+  std::vector<int> domesticCoefficients;
 };
 
 #endif

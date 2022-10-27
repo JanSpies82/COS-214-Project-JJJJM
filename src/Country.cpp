@@ -55,7 +55,12 @@ double Country::getCountryRating()
   mapCoefficients = getMapCoefficients();
   domesticCoefficients = getDomesticCoefficients();
 
+  double strengthRating = 0.0;
 
+  for (int i = 0; i < militaryCoefficients.size(); i++)
+  {
+    strengthRating += militaryCoefficients[i]; // * militaryWeights[i];
+  }
 }
 
 std::vector<int> Country::getMilitaryCoefficients()

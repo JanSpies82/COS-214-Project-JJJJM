@@ -31,7 +31,7 @@ class MilitaryState
 		Military* getState();
 		
 		private:
-		std::vector<Military*>* State;
+		std::vector<Military*>* state;
 		std::time_t timestamp;
 	
 };
