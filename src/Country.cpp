@@ -114,3 +114,122 @@ std::vector<int> Country::getDomesticCoefficients()
   return domesticCoefficients;
 }
 
+double Country::getPoliticalStability()
+{
+  return politicalStability;
+};
+
+void Country::setPoliticalStability(double _politicalStability)
+{
+  if (_politicalStability < 0)
+  {
+    throw std::invalid_argument("_politicalStability must be greater than 0");
+    return;
+  }
+  politicalStability = _politicalStability;
+};
+
+double Country::getDomesticMorale()
+{
+  return domesticMorale;
+};
+
+void Country::setDomesticMorale(double _domesticMorale)
+{
+  if (_domesticMorale < 0)
+  {
+    throw std::invalid_argument("_domesticMorale must be greater than 0");
+    return;
+  }
+  domesticMorale = _domesticMorale;
+};
+
+double Country::getDomesticMorale()
+{
+  return domesticMorale;
+};
+
+void Country::setDomesticMorale(double _domesticMorale)
+{
+  if (_domesticMorale < 0)
+  {
+    throw std::invalid_argument("_domesticMorale must be greater than 0");
+    return;
+  }
+  domesticMorale = _domesticMorale;
+};
+
+double Country::getSelfReliance()
+{
+  return selfReliance;
+};
+
+void Country::setSelfReliance(double _selfReliance)
+{
+  if (_selfReliance < 0)
+  {
+    throw std::invalid_argument("_selfReliance must be greater than 0");
+    return;
+  }
+  selfReliance = _selfReliance;
+};
+
+double Country::getBorderStrength() 
+{
+  return borderStrength;
+};
+
+void Country::setBorderStrength(double _borderStrength)
+{
+  if (_borderStrength < 0)
+  {
+    throw std::invalid_argument("_borderStrength must be greater than 0");
+    return;
+  }
+  borderStrength = _borderStrength;
+};
+
+double Country::getCapitalSafety()
+{
+  return capitalSafety;
+};
+
+void Country::setCapitalSafety(double _capitalSafety)
+{
+  if (_capitalSafety < 0)
+  {
+    throw std::invalid_argument("_capitalSafety must be greater than 0");
+    return;
+  }
+  capitalSafety = _capitalSafety;
+};
+
+double Country::getWarSentiment()
+{
+  return warSentiment;
+};
+
+void Country::setWarSentiment(double _warSentiment)
+{
+  if (_warSentiment < 0)
+  {
+    throw std::invalid_argument("_warSentiment must be greater than 0");
+    return;
+  }
+  warSentiment = _warSentiment;
+};
+
+double Country::getTradeRouteSafety()
+{
+  return tradeRouteSafety;
+};
+
+void Country::setTradeRouteSafety(double _tradeRouteSafety)
+{
+  if (_tradeRouteSafety < 0)
+  {
+    throw std::invalid_argument("_tradeRouteSafety must be greater than 0");
+    return;
+  }
+  tradeRouteSafety = _tradeRouteSafety;
+};
