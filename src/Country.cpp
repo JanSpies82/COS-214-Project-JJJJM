@@ -1,3 +1,5 @@
+/// @author Jake Weatherhead
+
 #include "Country.h"
 #include "WarStage.h"
 #include "Superpower.h"
@@ -8,7 +10,7 @@
 
 Country::Country() 
 {
-  
+
 }
 
 void Country::request()
