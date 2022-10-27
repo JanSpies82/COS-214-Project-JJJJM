@@ -17,7 +17,16 @@ public:
   CountryState(Country* country);
 
 private: 
+  friend class Country;
   std::time_t timestamp;
+  int numCitizens;
+  double politicalStability;
+  double domesticMorale;
+  double selfReliance;
+  double borderStrength;
+  double capitalSafety;
+  double supportForWar;
+  double tradeRouteSafety;
 };
 
 #endif
