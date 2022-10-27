@@ -25,7 +25,7 @@ private:
   double selfReliance;
   double borderStrength;
   double capitalSafety;
-  double supportForWar;
+  double warSentiment;
   double tradeRouteSafety;
 };
 
