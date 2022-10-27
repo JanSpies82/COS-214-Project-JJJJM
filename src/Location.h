@@ -37,7 +37,7 @@ class Location
 		 * 
 		 * @return Location* 
 		 */
-		virtual Location* getRight();
+		virtual Location* getRight() = 0;
 
 		/**
 		 * @brief Returns left neighbour if it has a left neighbour return null otherwise
@@ -46,7 +46,7 @@ class Location
 		 * 
 		 * @return Location* 
 		 */
-		virtual Location* getLeft();
+		virtual Location* getLeft() = 0;
 
 		/**
 		 * @brief Returns top neighbour if it has a top neighbour return null otherwise
@@ -55,7 +55,7 @@ class Location
 		 * 
 		 * @return Location* 
 		 */
-		virtual Location* getTop();
+		virtual Location* getTop() = 0;
 
 		/**
 		 * @brief Returns bottom neighbour if it has a bottom neighbour return null otherwise
@@ -64,7 +64,7 @@ class Location
 		 * 
 		 * @return Location* 
 		 */
-		virtual Location* getBottom();
+		virtual Location* getBottom() = 0;
 	
 	protected:
 		const int RIGHT=0,LEFT=1,UP=2,DOWN=3;

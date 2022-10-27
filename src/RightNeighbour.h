@@ -15,9 +15,10 @@ class RightNeighbour: public Neighbour
 		/**
 		 * @brief The constructor for right neighbour
 		 * 
-		 * @param _location : Location* - adds this location as the right neighbour of a location 
+		 * @param _neighbour : Location* - Adds this location as the right neighbour of a location
+		 * @param _location : Location* - Location to which _neighbour is added  
 		 */
-		RightNeighbour(Location* _location);
+		RightNeighbour(Location* _location, Location* _neighbour);
 
 		/**
 		 * @brief Set the rightLocation object to the passed in _right parameter
@@ -26,9 +27,42 @@ class RightNeighbour: public Neighbour
 		 */
 		void setNeighbour(Location* _neighbour);
 
-	private: 
-		//StateType* addedState;
-		Location* rightLocation;
+		 /**
+		 * @brief Calls the getRight function of location.
+		 * 
+		 * Exceptions : null_pointer_exception
+		 * 
+		 * @return Location* 
+		 */
+		Location* getRight();
+
+		/**
+		 * @brief Returns right neighbour if it has a right neighbour return null otherwise.
+		 * 
+		 * Exceptions : null_pointer_exception
+		 * 
+		 * @return Location* 
+		 */
+		Location* getLeft();
+
+		/**
+		 * @brief Calls the getRight function of location.
+		 * 
+		 * Exceptions : null_pointer_exception
+		 * 
+		 * @return Location* 
+		 */
+		Location* getTop();
+
+		/**
+		 * @brief Calls the getRight function of location.
+		 * 
+		 * Exceptions : null_pointer_exception
+		 * 
+		 * @return Location* 
+		 */
+		Location* getBottom();
+
 };
 
 #endif

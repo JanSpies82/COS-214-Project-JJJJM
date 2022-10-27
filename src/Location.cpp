@@ -7,7 +7,4 @@ using namespace std;
 #include "Observer.h"
 #include "Neighbour.h"
 
-Iterator* Location::createIterator() {
-	throw "Not yet implemented";
-}
 

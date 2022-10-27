@@ -4,8 +4,9 @@ using namespace std;
 #include "Neighbour.h"
 #include "Location.h"
 
-Neighbour::Neighbour(Location* _location){
-    this->neighbour=_location;
+Neighbour::Neighbour(Location* _location, Location* _neighbour){
+    this->location=_location;
+    this->neighbour=_neighbour;
 }
 
 // void Neighbour::operation() {

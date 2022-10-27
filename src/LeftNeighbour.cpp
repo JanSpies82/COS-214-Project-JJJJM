@@ -3,9 +3,26 @@ using namespace std;
 
 #include "LeftNeighbour.h"
 
-LeftNeighbour::LeftNeighbour(Location* _location) : Neighbour(_location){}
+LeftNeighbour::LeftNeighbour(Location* _location, Location* _neighbour) : Neighbour(_location, _neighbour){}
 
-// void LeftNeighbour::operation() {
-// 	throw "Not yet implemented";
-// }
+Location* LeftNeighbour::getRight(){
+    if(location!=NULL)
+        return this->location->getRight();
+    return NULL;
+}
 
+Location* LeftNeighbour::getLeft(){
+    return neighbour;
+}
+
+Location* LeftNeighbour::getTop(){
+    if(location!=NULL)
+        return this->location->getTop();
+    return NULL;
+}
+
+Location* LeftNeighbour::getBottom(){
+    if(location!=NULL)
+        return this->location->getBottom();
+    return NULL;
+}

@@ -11,12 +11,14 @@ class BottomNeighbour;
 class BottomNeighbour: public Neighbour
 {
 	public:
+
 		/**
 		 * @brief The constructor for bottom neighbour
 		 * 
-		 * @param _location : Location* - adds this location as the bottom neighbour of a location 
+		 * @param _neighbour : Location* - adds this location as the bottom neighbour of a location 
+		 * @param _location : Location* - location to which _neighbour is added 
 		 */
-		BottomNeighbour(Location* _location);
+		BottomNeighbour(Location* _location, Location* _neighbour);
 
 		/**
 		 * @brief Set the bottomLocation object to the passed in _bottom parameter
@@ -25,9 +27,41 @@ class BottomNeighbour: public Neighbour
 		 */
 		void setNeighbour(Location* _neighbour);
 
-	private: 
-		//StateType* addedState;
-		Location* bottomLocation;
+		 /**
+		 * @brief Calls the getBottom function of location.
+		 * 
+		 * Exceptions : null_pointer_exception
+		 * 
+		 * @return Location* 
+		 */
+		Location* getRight();
+
+		/**
+		 * @brief Calls the getBottom function of location.
+		 * 
+		 * Exceptions : null_pointer_exception
+		 * 
+		 * @return Location* 
+		 */
+		Location* getLeft();
+
+		/**
+		 * @brief Calls the getBottom function of location.
+		 * 
+		 * Exceptions : null_pointer_exception
+		 * 
+		 * @return Location* 
+		 */
+		Location* getTop();
+
+		/**
+		 * @brief Returns bottom neighbour if it has a bottom neighbour return null otherwise.
+		 * 
+		 * Exceptions : null_pointer_exception
+		 * 
+		 * @return Location* 
+		 */
+		Location* getBottom();
 };
 
 #endif

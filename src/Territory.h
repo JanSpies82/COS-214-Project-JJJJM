@@ -18,22 +18,22 @@ class Territory: public Location
 		LocationIterator* locationIterator;
 
 		/**
-		 * @brief Construct a new Territory object
+		 * @brief Construct a new Territory object.
 		 * 
-		 * @param _x : int - x coordinate of the location
-		 * @param _y : int - y coordinate of the location
+		 * @param _x : int - x coordinate of the location.
+		 * @param _y : int - y coordinate of the location.
 		 */
 		Territory(int _x, int _y);
 
 		/**
-		 * @brief Create a Iterator object and store it in locationIterators
+		 * @brief Create an Iterator object and store it in locationIterators.
 		 * 
 		 * @return Iterator* 
 		 */
 		Iterator* createIterator();
 
 		/**
-		 * @brief Return a pointer to the country which owns this territory
+		 * @brief Return a pointer to the country which owns this territory.
 		 * 
 		 * @return Country* 
 		 */
@@ -41,7 +41,7 @@ class Territory: public Location
 
 
 		/**
-		 * @brief Set which country owns this territory
+		 * @brief Set which country owns this territory.
 		 * 
 		 * @param _newOwner : Country* - the pointer to the new owner of the territory.
 		 */
