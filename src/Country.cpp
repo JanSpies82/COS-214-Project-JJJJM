@@ -8,9 +8,23 @@
 #include "CountryMediator.h"
 #include "Strategy.h"
 
+/// @todo fine-tune weights and numWeights per class
 Country::Country() 
 {
+  for (int i = 0; i < 10; i++)
+  {
+    mapWeights.push_back(0.2);
+  }
 
+  for (int i = 0; i < 10; i++)
+  {
+    militaryWeights.push_back(0.2);
+  }
+
+  for (int i = 0; i < 10; i++)
+  {
+    domesticWeights.push_back(0.2);
+  }
 }
 
 void Country::request()
@@ -45,6 +59,10 @@ CountryState* Country::getState()
   return NULL;
 }
 
+/**
+ * @brief  composite function that generates this country's strength score
+ * @return the strength score of this country
+ */
 double Country::getCountryRating()
 {
   std::vector<int> militaryCoefficients;
@@ -59,8 +77,20 @@ double Country::getCountryRating()
 
   for (int i = 0; i < militaryCoefficients.size(); i++)
   {
-    strengthRating += militaryCoefficients[i]; // * militaryWeights[i];
+    strengthRating += militaryCoefficients[i] * militaryWeights.at(i);
   }
+
+  for (int i = 0; i < mapCoefficients.size(); i++)
+  {
+    strengthRating += mapCoefficients[i] * mapWeights.at(i);
+  }
+
+  for (int i = 0; i < domesticCoefficients.size(); i++)
+  {
+    strengthRating += domesticCoefficients[i] * domesticWeights.at(i);
+  }
+
+  return strengthRating;
 }
 
 std::vector<int> Country::getMilitaryCoefficients()

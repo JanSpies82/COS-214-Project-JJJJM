@@ -128,9 +128,9 @@ private:
   CountryState* state;
   Superpower* superpower;
   CountryMediator* mediator;
-  std::vector<int> militaryCoefficients;
-  std::vector<int> mapCoefficients;
-  std::vector<int> domesticCoefficients;
+  std::vector<double> mapWeights;
+  std::vector<double> militaryWeights;
+  std::vector<double> domesticWeights;
 };
 
 #endif
