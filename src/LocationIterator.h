@@ -1,9 +1,7 @@
-#include <exception>
-using namespace std;
-
 #ifndef __LocationIterator_h__
 #define __LocationIterator_h__
 
+#include <exception>
 #include "Iterator.h"
 
 class Territory;

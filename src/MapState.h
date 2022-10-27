@@ -1,10 +1,8 @@
-#include <exception>
-#include <ctime>
-using namespace std;
-
 #ifndef __MapState_h__
 #define __MapState_h__
 
+#include <exception>
+#include <ctime>
 #include "Map.h"
 
 // class SimulationState;

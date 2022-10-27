@@ -1,9 +1,7 @@
-#include <exception>
-using namespace std;
-
 #ifndef __Territory_h__
 #define __Territory_h__
 
+#include <exception>
 // #include "Country.h"
 // #include "LocationIterator.h"
 #include "Location.h"
@@ -51,13 +49,6 @@ class Territory: public Location
 
 	protected:
 		int xCoordinate, yCoordinate;
-
-		/**
-		 * @brief Add a neighbour to the neighbours array
-		 * 
-		 * @param _neighbour: The neighbour to be added
-		 */
-		void add(Neighbour* _neighbour);
 
 	private:
 		Country* ownedBy;

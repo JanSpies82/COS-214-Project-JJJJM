@@ -1,9 +1,7 @@
-#include <exception>
-using namespace std;
-
 #ifndef __Map_h__
 #define __Map_h__
 
+#include <exception>
 // #include "Location.h"
 // #include "SimulationManager.h"
 #include "Territory.h"

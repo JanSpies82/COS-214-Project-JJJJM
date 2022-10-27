@@ -2,7 +2,8 @@
 using namespace std;
 
 #include "LeftNeighbour.h"
-// #include "Neighbour.h"
+
+LeftNeighbour::LeftNeighbour(Location* _location) : Neighbour(_location){}
 
 // void LeftNeighbour::operation() {
 // 	throw "Not yet implemented";

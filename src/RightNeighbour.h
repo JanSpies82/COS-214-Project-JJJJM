@@ -1,9 +1,7 @@
-#include <exception>
-using namespace std;
-
 #ifndef __RightNeighbour_h__
 #define __RightNeighbour_h__
 
+#include <exception>
 #include "Neighbour.h"
 
 // class Neighbour;
@@ -13,6 +11,14 @@ class RightNeighbour;
 class RightNeighbour: public Neighbour
 {
 	public:
+
+		/**
+		 * @brief The constructor for right neighbour
+		 * 
+		 * @param _location : Location* - adds this location as the right neighbour of a location 
+		 */
+		RightNeighbour(Location* _location);
+
 		/**
 		 * @brief Set the rightLocation object to the passed in _right parameter
 		 * 

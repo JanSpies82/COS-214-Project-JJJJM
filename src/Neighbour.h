@@ -1,9 +1,7 @@
-#include <exception>
-using namespace std;
-
 #ifndef __Neighbour_h__
 #define __Neighbour_h__
 
+#include <exception>
 #include "Location.h"
 
 // class Location;
@@ -13,13 +11,13 @@ class Iterator;
 class Neighbour: public Location
 {
 	public:
-		Location* locations;
 
 		/**
-		 * @brief Set the Neighbour object depending on which type of neighbour calls this function
+		 * @brief Constructor for Neighbour class
 		 * 
+		 * @param _location : Location* - Pointer to the added neighbour location.
 		 */
-		virtual void setNeighbour();
+		Neighbour(Location* _location);
 
 		/**
 		 * @brief Create an Iterator object
@@ -29,7 +27,7 @@ class Neighbour: public Location
 		virtual Iterator* createIterator();
 
 	private:
-		Location* location;
+		Location* neighbour;
 
 };
 
