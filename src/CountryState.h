@@ -15,6 +15,7 @@ public:
     * @param country country to create state for
     */
   CountryState(Country* country);
+  CountryState* clone();
 
 private: 
   friend class Country;
