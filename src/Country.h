@@ -128,6 +128,14 @@ private:
   CountryState* state;
   Superpower* superpower;
   CountryMediator* mediator;
+  int numCitizens;
+  double politicalStability;
+  double domesticMorale;
+  double selfReliance;
+  double borderStrength;
+  double capitalSafety;
+  double supportForWar;
+  double tradeRouteSafety;
   std::vector<double> mapWeights;
   std::vector<double> militaryWeights;
   std::vector<double> domesticWeights;
