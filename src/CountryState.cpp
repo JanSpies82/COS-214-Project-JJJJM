@@ -12,3 +12,19 @@ CountryState::CountryState(Country* country){
   tradeRouteSafety = country->getTradeRouteSafety();
 }
 
+CountryState::CountryState(const CountryState& cs)
+{
+  timestamp = cs.timestamp;
+  numCitizens = cs.numCitizens;
+  politicalStability = cs.politicalStability;
+  domesticMorale = cs.domesticMorale;
+  borderStrength = cs.borderStrength;
+  capitalSafety = cs.capitalSafety;
+  warSentiment = cs.warSentiment;
+  tradeRouteSafety = cs.tradeRouteSafety;
+}
+
+CountryState* CountryState::clone()
+{
+  return new CountryState(*this);
+}
