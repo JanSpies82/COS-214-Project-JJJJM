@@ -25,6 +25,7 @@ public:
 	 *
 	 * @param _simulationManager : SimulationManager* - Pointer to the SimulationManager object.
 	 */
+	//TODO decide wether SimulationManager is necessary
 	SimulationState(SimulationManager *_simulationManager);
 
 	/**
