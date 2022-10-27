@@ -1,5 +1,3 @@
-/// @author Jake Weatherhead
-
 #include "Country.h"
 #include "WarStage.h"
 #include "Superpower.h"
