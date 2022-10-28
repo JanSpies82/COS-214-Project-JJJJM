@@ -8,3 +8,5 @@ using namespace std;
 #include "Neighbour.h"
 
 
+Location::~Location(){}
+
