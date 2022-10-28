@@ -3,6 +3,7 @@ project (Project_JJJJM)
 
 # Locate GTest
 find_package(GTest REQUIRED)
+find_package(Threads REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
 # Link all files in src directory
