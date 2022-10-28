@@ -28,7 +28,7 @@ class TopNeighbour: public Neighbour
 		 */
 		void setNeighbour(Location* _neighbour);
 		
- /**
+ 		/**
 		 * @brief Calls the getTop function of location.
 		 * 
 		 * Exceptions : null_pointer_exception

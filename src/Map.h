@@ -40,13 +40,12 @@ class Map
 		 * 
 		 * @param x : int - The x coordinate of the location to be returned
 		 * @param y : int - The y coordinate of the location to be returned
-		 * @return Territory* 
+		 * @return Location* 
 		 */
-		Territory* getLocation(int x, int y);
+		Location* getLocation(int x, int y);
 
 	private:
-		Location* location;
-		SimulationManager* simulationManagers;
+		Location* topLeft;
 };
 
 #endif

@@ -47,6 +47,42 @@ class Territory: public Location
 		 */
 		void setOwnedBy(Country* _newOwner);
 
+		 /**
+		 * @brief Returns null.
+		 * 
+		 * Exceptions : null_pointer_exception
+		 * 
+		 * @return Location* 
+		 */
+		Location* getRight();
+
+		/**
+		 * @brief  Returns null.
+		 * 
+		 * Exceptions : null_pointer_exception
+		 * 
+		 * @return Location* 
+		 */
+		Location* getLeft();
+
+		/**
+		 * @brief Returns null.
+		 * 
+		 * Exceptions : null_pointer_exception
+		 * 
+		 * @return Location* 
+		 */
+		Location* getTop();
+
+		/**
+		 * @brief Returns null.
+		 * 
+		 * Exceptions : null_pointer_exception
+		 * 
+		 * @return Location* 
+		 */
+		Location* getBottom();
+
 	protected:
 		int xCoordinate, yCoordinate;
 
