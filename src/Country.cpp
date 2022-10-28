@@ -93,6 +93,16 @@ double Country::getCountryRating()
   return strengthRating;
 }
 
+int Country::getNumCitizens()
+{
+  return numCitizens;
+}
+
+void Country::setNumCitizens(int _numCitizens)
+{
+  numCitizens = _numCitizens;
+}
+
 std::vector<int> Country::getMilitaryCoefficients()
 {
   std::vector<int> militaryCoefficients;
@@ -127,21 +137,6 @@ void Country::setPoliticalStability(double _politicalStability)
     return;
   }
   politicalStability = _politicalStability;
-};
-
-double Country::getDomesticMorale()
-{
-  return domesticMorale;
-};
-
-void Country::setDomesticMorale(double _domesticMorale)
-{
-  if (_domesticMorale < 0)
-  {
-    throw std::invalid_argument("_domesticMorale must be greater than 0");
-    return;
-  }
-  domesticMorale = _domesticMorale;
 };
 
 double Country::getDomesticMorale()
