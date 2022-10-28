@@ -6,9 +6,7 @@ using namespace std;
 LeftNeighbour::LeftNeighbour(Location* _location, Location* _neighbour) : Neighbour(_location, _neighbour){}
 
 Location* LeftNeighbour::getRight(){
-    if(location!=NULL)
-        return this->location->getRight();
-    return NULL;
+    return this->location->getRight();
 }
 
 Location* LeftNeighbour::getLeft(){
@@ -16,15 +14,11 @@ Location* LeftNeighbour::getLeft(){
 }
 
 Location* LeftNeighbour::getTop(){
-    if(location!=NULL)
-        return this->location->getTop();
-    return NULL;
+    return this->location->getTop();
 }
 
 Location* LeftNeighbour::getBottom(){
-    if(location!=NULL)
-        return this->location->getBottom();
-    return NULL;
+    return this->location->getBottom();
 }
 
 LeftNeighbour::~LeftNeighbour(){}

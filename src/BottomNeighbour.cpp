@@ -7,21 +7,15 @@ using namespace std;
 BottomNeighbour::BottomNeighbour(Location* _location, Location* _neighbour) : Neighbour(_location, _neighbour){}
 
 Location* BottomNeighbour::getRight(){
-    if(location!=NULL)
-        return this->location->getRight();
-    return NULL;
+    return this->location->getRight();
 }
 
 Location* BottomNeighbour::getLeft(){
-    if(location!=NULL)
-        return this->location->getLeft();
-    return NULL;
+    return this->location->getLeft();
 }
 
 Location* BottomNeighbour::getTop(){
-    if(location!=NULL)
-        return this->location->getTop();
-    return NULL;
+    return this->location->getTop();
 }
 
 Location* BottomNeighbour::getBottom(){

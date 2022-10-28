@@ -11,21 +11,15 @@ Location* RightNeighbour::getRight(){
 }
 
 Location* RightNeighbour::getLeft(){
-    if(location!=NULL)
-        return this->location->getLeft();
-    return NULL;
+    return this->location->getLeft();
 }
 
 Location* RightNeighbour::getTop(){
-    if(location!=NULL)
-        return this->location->getTop();
-    return NULL;
+    return this->location->getTop();
 }
 
 Location* RightNeighbour::getBottom(){
-    if(location!=NULL)
-        return this->location->getBottom();
-    return NULL;
+    return this->location->getBottom();
 }
 
 RightNeighbour::~RightNeighbour(){}
