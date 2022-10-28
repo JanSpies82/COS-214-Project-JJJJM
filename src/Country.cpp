@@ -59,19 +59,25 @@ CountryState* Country::getState()
   return NULL;
 }
 
-/**
- * @brief  composite function that generates this country's strength score
- * @return the strength score of this country
- */
+int Country::getNumCitizens()
+{
+  return numCitizens;
+}
+
+void Country::setNumCitizens(int _numCitizens)
+{
+  numCitizens = _numCitizens;
+}
+
 double Country::getCountryRating()
 {
   std::vector<int> militaryCoefficients;
   std::vector<int> mapCoefficients;
   std::vector<int> domesticCoefficients;
 
-  militaryCoefficients = getMilitaryCoefficients();
-  mapCoefficients = getMapCoefficients();
-  domesticCoefficients = getDomesticCoefficients();
+  militaryCoefficients = getMilitaryCoefficients(getMilitaryState());
+  mapCoefficients = getMapCoefficients(getMapState());
+  domesticCoefficients = getDomesticCoefficients(getCountryState());
 
   double strengthRating = 0.0;
 
@@ -93,20 +99,12 @@ double Country::getCountryRating()
   return strengthRating;
 }
 
-int Country::getNumCitizens()
-{
-  return numCitizens;
-}
-
-void Country::setNumCitizens(int _numCitizens)
-{
-  numCitizens = _numCitizens;
-}
-
-std::vector<int> Country::getMilitaryCoefficients()
+std::vector<int> Country::getMilitaryCoefficients(MilitaryState* m)
 {
   std::vector<int> militaryCoefficients;
-  // evaluate all aspects of military
+
+
+  
   return militaryCoefficients;
 }
 
@@ -152,12 +150,12 @@ void Country::setDomesticMorale(double _domesticMorale)
     return;
   }
   domesticMorale = _domesticMorale;
-};
+}
 
 double Country::getSelfReliance()
 {
   return selfReliance;
-};
+}
 
 void Country::setSelfReliance(double _selfReliance)
 {
@@ -167,12 +165,12 @@ void Country::setSelfReliance(double _selfReliance)
     return;
   }
   selfReliance = _selfReliance;
-};
+}
 
 double Country::getBorderStrength() 
 {
   return borderStrength;
-};
+}
 
 void Country::setBorderStrength(double _borderStrength)
 {
@@ -182,12 +180,12 @@ void Country::setBorderStrength(double _borderStrength)
     return;
   }
   borderStrength = _borderStrength;
-};
+}
 
 double Country::getCapitalSafety()
 {
   return capitalSafety;
-};
+}
 
 void Country::setCapitalSafety(double _capitalSafety)
 {
@@ -197,12 +195,12 @@ void Country::setCapitalSafety(double _capitalSafety)
     return;
   }
   capitalSafety = _capitalSafety;
-};
+}
 
 double Country::getWarSentiment()
 {
   return warSentiment;
-};
+}
 
 void Country::setWarSentiment(double _warSentiment)
 {
@@ -212,12 +210,12 @@ void Country::setWarSentiment(double _warSentiment)
     return;
   }
   warSentiment = _warSentiment;
-};
+}
 
 double Country::getTradeRouteSafety()
 {
   return tradeRouteSafety;
-};
+}
 
 void Country::setTradeRouteSafety(double _tradeRouteSafety)
 {
@@ -227,4 +225,19 @@ void Country::setTradeRouteSafety(double _tradeRouteSafety)
     return;
   }
   tradeRouteSafety = _tradeRouteSafety;
-};
+}
+
+MilitaryState* Country::getMilitaryState()
+{
+  return NULL;
+}
+
+MapState* Country::getMapState()
+{
+  return NULL;
+}
+
+CountryState* Country::getCountryState()
+{
+  return NULL;
+}
