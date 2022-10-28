@@ -32,12 +32,19 @@ Map::Map(){
     for (int j = 0; j < 23; j++)
     {
         arr1[j] = new Territory(j,0);
+        arr2[j]=NULL;
     }
 
     for (int i = 0; i < 26; i++)
     {
-        if(i!=0)
-            arr1=arr2;
+        if(i!=0){
+            for (int j = 0; j < 23; j++)
+            {
+                arr1[j]=arr2[j];
+            }
+            
+            
+        }
 
         for (int j = 0; j < 23; j++)
         {
@@ -67,5 +74,8 @@ Map::Map(){
     }
     
 }
+    Map::~Map(){
+        
+    }
 
 
