@@ -7,7 +7,7 @@ using namespace std;
 TopNeighbour::TopNeighbour(Location* _location, Location* _neighbour) : Neighbour(_location, _neighbour){}
 
 Location* TopNeighbour::getRight(){
-    return neighbour;
+    return this->location->getRight();
 }
 
 Location* TopNeighbour::getLeft(){
@@ -15,7 +15,7 @@ Location* TopNeighbour::getLeft(){
 }
 
 Location* TopNeighbour::getTop(){
-    return this->location->getTop();
+    return neighbour;
 }
 
 Location* TopNeighbour::getBottom(){
