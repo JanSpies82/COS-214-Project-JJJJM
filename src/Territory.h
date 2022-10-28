@@ -90,6 +90,8 @@ class Territory: public Location
 
 	private:
 		Country* ownedBy;
+		bool capital;
+		bool isLand;
 };
 
 #endif
