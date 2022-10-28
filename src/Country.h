@@ -22,12 +22,13 @@ class CountryMediator;
 class Strategy;
 class Country;
 class MapState;
+class MilitaryState;
 
 class Country
 {
 public: 
   /**
-   * @brief  Default constructor
+   * @brief default constructor
    */
   Country();
 
@@ -182,8 +183,25 @@ public:
    * @param double new value of tradeRouteSafety
    */
   void setTradeRouteSafety(double _tradeRouteSafety);
-  
 
+  /**
+   * @brief getter for this country's military state
+   * @return returns this country's militaryState object
+  */
+  MilitaryState* getMilitaryState();
+
+  /**
+   * @brief getter for this country's map state
+   * @return returns this country's mapState object
+  */
+  MapState* getMapState();
+
+  /**
+   * @brief getter for this country's strategy
+   * @return returns this country's strategy object
+  */
+  CountryState* getCountryState();
+  
 private:
   int numCitizens;
   MapState* mapState;
@@ -191,6 +209,7 @@ private:
   WarStage* warStage;
   Strategy* strategy;
   CountryState* state;
+  MilitaryState* militaryState;
   Superpower* superpower;
   CountryMediator* mediator;
   double politicalStability;
