@@ -4,6 +4,9 @@
 #include "gtest/gtest.h"
 
 namespace {
-
+TEST(MapTest, Constructor){
+    Map* m=new Map();
+    delete m;
+}
     
 }
