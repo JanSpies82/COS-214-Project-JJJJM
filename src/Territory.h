@@ -87,6 +87,11 @@ class Territory: public Location
 
 		char getColour();
 
+		bool hasRight();
+		bool hasLeft();
+		bool hasTop();
+		bool hasBottom();
+
 	protected:
 		int xCoordinate, yCoordinate;
 

@@ -66,6 +66,11 @@ class Neighbour: public Location
 
 		virtual ~Neighbour();
 
+		virtual bool hasBottom() = 0;
+		virtual bool hasRight() = 0;
+		virtual bool hasLeft() = 0;
+		virtual bool hasTop() = 0;
+
 	protected:
 		Location* location;
 		Location* neighbour;

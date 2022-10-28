@@ -67,6 +67,11 @@ class Location
 		virtual Location* getBottom() = 0;
 
 		virtual ~Location();
+
+		virtual bool hasBottom() = 0;
+		virtual bool hasRight() = 0;
+		virtual bool hasLeft() = 0;
+		virtual bool hasTop() = 0;
 	
 	protected:
 		const int RIGHT=0,LEFT=1,UP=2,DOWN=3;

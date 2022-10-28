@@ -39,3 +39,19 @@ Territory::~Territory(){
 char Territory::getColour(){
     return colour;
 }
+
+bool Territory::hasRight(){
+    return false;
+}
+
+bool Territory::hasLeft(){
+    return false;
+}
+
+bool Territory::hasTop(){
+    return false;
+}
+
+bool Territory::hasBottom(){
+    return false;
+}

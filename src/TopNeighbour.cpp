@@ -25,3 +25,19 @@ Location* TopNeighbour::getBottom(){
 TopNeighbour::~TopNeighbour(){
     delete location;
 }
+
+bool TopNeighbour::hasRight(){
+    return location->hasRight();
+}
+
+bool TopNeighbour::hasLeft(){
+    return location->hasLeft();
+}
+
+bool TopNeighbour::hasTop(){
+    return true;
+}
+
+bool TopNeighbour::hasBottom(){
+    return location->hasBottom();
+}

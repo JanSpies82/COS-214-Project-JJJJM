@@ -64,6 +64,11 @@ class BottomNeighbour: public Neighbour
 		Location* getBottom();
 
 		~BottomNeighbour();
+
+		bool hasRight();
+		bool hasLeft();
+		bool hasTop();
+		bool hasBottom();
 };
 
 #endif
