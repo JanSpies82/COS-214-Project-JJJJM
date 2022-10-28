@@ -127,7 +127,7 @@ std::vector<int> Country::getDomesticCoefficients()
 double Country::getPoliticalStability()
 {
   return politicalStability;
-};
+}
 
 void Country::setPoliticalStability(double _politicalStability)
 {
@@ -137,12 +137,12 @@ void Country::setPoliticalStability(double _politicalStability)
     return;
   }
   politicalStability = _politicalStability;
-};
+}
 
 double Country::getDomesticMorale()
 {
   return domesticMorale;
-};
+}
 
 void Country::setDomesticMorale(double _domesticMorale)
 {
