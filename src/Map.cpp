@@ -75,6 +75,21 @@ Map::Map(){
     
 }
     Map::~Map(){
+        // Location* curr=topLeft;
+        // Location* next;
+        // Location* nextRow;
+        // for (int i = 0; i < 26; i++)//Check index later
+        // {
+        //     nextRow=topLeft->getBottom();
+        //     for (int j = 0; j < 23; j++)//Check index later
+        //     {
+        //         next=curr->getRight();
+        //         delete curr;
+        //         curr=next;
+        //     }
+        //     curr=nextRow;
+
+        // }
         
     }
 
