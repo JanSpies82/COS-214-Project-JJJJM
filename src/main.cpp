@@ -3,7 +3,6 @@
 #include "../test/BackupTest.cpp"
 #include "../test/BattalionTest.cpp"
 #include "../test/BattalionObserverTest.cpp"
-#include "../test/CitizenTest.cpp"
 #include "../test/CountryTest.cpp"
 #include "../test/CountryObserverTest.cpp"	
 #include "../test/CountryMediatorTest.cpp"
