@@ -83,6 +83,8 @@ class Territory: public Location
 		 */
 		Location* getBottom();
 
+		~Territory();
+
 	protected:
 		int xCoordinate, yCoordinate;
 
