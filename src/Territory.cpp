@@ -1,11 +1,13 @@
 using namespace std;
+#include <iostream>
 #include <stdexcept>
 #include "Territory.h"
 #include "LocationIterator.h"
 #include "Location.h"
 
 Territory::Territory(int _x, int _y){
-    
+    xCoordinate=_x;
+    yCoordinate=_y;
 }
 
 Iterator* Territory::createIterator() {
@@ -14,23 +16,21 @@ Iterator* Territory::createIterator() {
 
 Location* Territory::getRight(){
     __throw_out_of_range("No Right Neighbour");
-    
-    //return NULL;
 }
 
 Location* Territory::getLeft(){
-        __throw_out_of_range("No Left Neighbour");
-    return NULL;
+    __throw_out_of_range("No Left Neighbour");
 }
 
 Location* Territory::getTop(){
-        __throw_out_of_range("No Top Neighbour");
-    return NULL;
+    __throw_out_of_range("No Top Neighbour");
 }
 
 Location* Territory::getBottom(){
-        __throw_out_of_range("No Bottom Neighbour");
-    return NULL;
+    __throw_out_of_range("No Bottom Neighbour");
 }
 
-Territory::~Territory(){}
+Territory::~Territory(){
+    
+    
+}
