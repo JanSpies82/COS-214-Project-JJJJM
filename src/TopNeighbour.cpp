@@ -22,4 +22,6 @@ Location* TopNeighbour::getBottom(){
     return this->location->getBottom();
 }
 
-TopNeighbour::~TopNeighbour(){}
+TopNeighbour::~TopNeighbour(){
+    delete location;
+}

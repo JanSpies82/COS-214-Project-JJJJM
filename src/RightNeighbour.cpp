@@ -1,6 +1,6 @@
 #include <exception>
 using namespace std;
-
+#include <iostream>
 #include "RightNeighbour.h"
 #include "Neighbour.h"
 
@@ -22,4 +22,6 @@ Location* RightNeighbour::getBottom(){
     return this->location->getBottom();
 }
 
-RightNeighbour::~RightNeighbour(){}
+RightNeighbour::~RightNeighbour(){
+    delete location;
+}
