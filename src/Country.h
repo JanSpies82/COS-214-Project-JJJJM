@@ -193,7 +193,6 @@ private:
   CountryState* state;
   Superpower* superpower;
   CountryMediator* mediator;
-  int numCitizens;
   double politicalStability;
   double domesticMorale;
   double selfReliance;
