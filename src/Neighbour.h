@@ -64,6 +64,8 @@ class Neighbour: public Location
 		 */
 		Location* getBottom() = 0;
 
+		virtual ~Neighbour();
+
 	protected:
 		Location* location;
 		Location* neighbour;

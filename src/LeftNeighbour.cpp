@@ -26,3 +26,5 @@ Location* LeftNeighbour::getBottom(){
         return this->location->getBottom();
     return NULL;
 }
+
+LeftNeighbour::~LeftNeighbour(){}

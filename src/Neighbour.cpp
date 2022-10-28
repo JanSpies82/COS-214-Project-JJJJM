@@ -9,6 +9,11 @@ Neighbour::Neighbour(Location* _location, Location* _neighbour){
     this->neighbour=_neighbour;
 }
 
+Neighbour::~Neighbour(){}
+
+Iterator* Neighbour::createIterator(){
+    return NULL;
+}
 // void Neighbour::operation() {
 // 	throw "Not yet implemented";
 // }

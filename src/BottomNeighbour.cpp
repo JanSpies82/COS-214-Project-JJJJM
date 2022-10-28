@@ -27,3 +27,5 @@ Location* BottomNeighbour::getTop(){
 Location* BottomNeighbour::getBottom(){
     return neighbour;
 }
+
+BottomNeighbour::~BottomNeighbour(){}

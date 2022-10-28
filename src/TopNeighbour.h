@@ -63,6 +63,8 @@ class TopNeighbour: public Neighbour
 		 * @return Location* 
 		 */
 		Location* getBottom();
+
+				~TopNeighbour();
 };
 
 #endif
