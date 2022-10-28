@@ -5,9 +5,10 @@ using namespace std;
 #include "LocationIterator.h"
 #include "Location.h"
 
-Territory::Territory(int _x, int _y){
+Territory::Territory(int _x, int _y, char _colour){
     xCoordinate=_x;
     yCoordinate=_y;
+    colour=_colour;
 }
 
 Iterator* Territory::createIterator() {
@@ -33,4 +34,8 @@ Location* Territory::getBottom(){
 Territory::~Territory(){
     
     
+}
+
+char Territory::getColour(){
+    return colour;
 }

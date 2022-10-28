@@ -23,7 +23,7 @@ class Territory: public Location
 		 * @param _x : int - x coordinate of the location.
 		 * @param _y : int - y coordinate of the location.
 		 */
-		Territory(int _x, int _y);
+		Territory(int _x, int _y, char _colour);
 
 		/**
 		 * @brief Create an Iterator object and store it in locationIterators.
@@ -85,11 +85,14 @@ class Territory: public Location
 
 		~Territory();
 
+		char getColour();
+
 	protected:
 		int xCoordinate, yCoordinate;
 
 	private:
 		Country* ownedBy;
+		char colour;
 		bool capital;
 		bool isLand;
 };
