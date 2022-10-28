@@ -10,3 +10,6 @@ using namespace std;
 // 	throw "Not yet implemented";
 // }
 
+Map::Map(){}
+
+Map::~Map(){}
