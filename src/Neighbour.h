@@ -16,13 +16,6 @@ class Neighbour: public Location
 
 		virtual ~Neighbour();
 
-		/**
-		 * @brief Create an Iterator object.
-		 * 
-		 * @return Iterator* 
-		 */
-		virtual Iterator* createIterator();
-
 		virtual char getColour();
 		virtual void add(Location* _neighbour);
 

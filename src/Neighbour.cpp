@@ -22,9 +22,6 @@ Neighbour::~Neighbour(){
         delete location;
 }
 
-Iterator* Neighbour::createIterator(){
-    return NULL;
-}
 
 char Neighbour::getColour(){
     location->getColour();

@@ -66,3 +66,7 @@ bool Location::hasBottom(){
     else
         return false;    
 }
+
+Iterator* Location::createIterator(){
+    return new LocationIterator(this);
+}

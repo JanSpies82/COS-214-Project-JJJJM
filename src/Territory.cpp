@@ -19,10 +19,6 @@ void Territory::add(Location* _neighbour){
         location=_neighbour;
 }
 
-Iterator* Territory::createIterator() {
-	throw "Not yet implemented";
-}
-
 Territory::~Territory(){
     if(location!=NULL)
         delete location;

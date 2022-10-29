@@ -27,7 +27,7 @@ class Location
 		 * 
 		 * @return Iterator* 
 		 */
-		virtual Iterator* createIterator() = 0;
+		Iterator* createIterator();
 
 		/**
 		 * @brief Returns right neighbour if it has a right neighbour return null otherwise

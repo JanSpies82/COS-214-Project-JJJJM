@@ -31,13 +31,6 @@ class Territory: public Location
 		void add(Location* _neighbour);
 
 		/**
-		 * @brief Create an Iterator object and store it in locationIterators.
-		 * 
-		 * @return Iterator* 
-		 */
-		Iterator* createIterator();
-
-		/**
 		 * @brief Return a pointer to the country which owns this territory.
 		 * 
 		 * @return Country* 
