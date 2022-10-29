@@ -55,7 +55,7 @@ public:
   /**
     * @brief uses state information to implement next action
     */
-  void algorithm();
+  void takeTurn();
 
   /**
     * @brief return up-to-date state information
@@ -191,10 +191,23 @@ public:
   MilitaryState* getMilitaryState();
 
   /**
+   * @brief setter for this country's military state
+   * @param MilitaryState* new military state
+  */
+  void setMilitaryState(MilitaryState* _militaryState);
+
+  /**
    * @brief getter for this country's map state
    * @return returns this country's mapState object
   */
   MapState* getMapState();
+
+  /**
+   * @brief setter for this country's map state
+   * @param MapState* new map state
+  */
+
+  void setMapState(MapState* _mapState);
 
   /**
    * @brief getter for this country's strategy
@@ -219,6 +232,7 @@ private:
   double capitalSafety;
   double warSentiment;
   double tradeRouteSafety;
+  std::vector<Country*>* enemies;
   std::vector<double> mapWeights;
   std::vector<double> militaryWeights;
   std::vector<double> domesticWeights;
