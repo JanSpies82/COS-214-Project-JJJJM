@@ -201,6 +201,11 @@ public:
    * @return returns this country's strategy object
   */
   CountryState* getCountryState();
+
+  std::vector<double> compareMilitary(Country* a, Country* b);
+  std::vector<double> compareDomestic(Country* a, Country* b);
+  std::vector<double> compareMap(Country* a, Country* b);
+
   
 private:
   int numCitizens;
@@ -208,7 +213,7 @@ private:
   Military* military;
   WarStage* warStage;
   Strategy* strategy;
-  CountryState* state;
+  CountryState* countryState;
   MilitaryState* militaryState;
   Superpower* superpower;
   CountryMediator* mediator;
