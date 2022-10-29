@@ -57,7 +57,7 @@ public:
     * @brief generates a countries strength rating based on various state comparisons with enemy
     * @return the strength rating of this country
     */
-  double getCountryRating(Country* enemy);
+  double* getCountryRating(Country* enemy);
 
   /**
     * @brief compares two state paramters and returns countryA's advantage
