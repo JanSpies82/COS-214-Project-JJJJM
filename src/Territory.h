@@ -22,8 +22,9 @@ class Territory: public Location
 		 * 
 		 * @param _x : int - x coordinate of the location.
 		 * @param _y : int - y coordinate of the location.
+		 * @param _colour : char - colour of the territory.
 		 */
-		Territory(int _x, int _y, char _colour);
+		Territory(int _x, int _y, char _colour='a');
 
 		/**
 		 * @brief Create an Iterator object and store it in locationIterators.
