@@ -1,28 +1,70 @@
-#include <exception>
 using namespace std;
 
 #include "LocationIterator.h"
-#include "Territory.h"
 #include "Location.h"
-// #include "Iterator.h"
+#include <stdexcept>
 
-// void LocationIterator::first() {
-// 	throw "Not yet implemented";
-// }
+LocationIterator::LocationIterator(Location *_location)
+{
+    current = _location;
+    movRight = true;
+}
 
-// void LocationIterator::next() {
-// 	throw "Not yet implemented";
-// }
+LocationIterator::~LocationIterator()
+{
+}
 
-// void LocationIterator::isDone() {
-// 	throw "Not yet implemented";
-// }
+void LocationIterator::first()
+{
+    while (current->hasLeft())
+        current = current->getLeft();
 
-// void LocationIterator::currentItem() {
-// 	throw "Not yet implemented";
-// }
+    while (current->hasTop())
+        current = current->getTop();
 
-// void LocationIterator::current() {
-// 	throw "Not yet implemented";
-// }
+    movRight = true;
+}
 
+void LocationIterator::next()
+{
+    if (!hasNext())
+        throw out_of_range("No next location");
+
+    if (movRight)
+    {
+        if (current->hasRight())
+            current = current->getRight();
+        else
+        {
+            current = current->getBottom();
+            movRight = false;
+        }
+    }
+    else
+    {
+        if (current->hasLeft())
+            current = current->getLeft();
+        else
+        {
+            current = current->getBottom();
+            movRight = true;
+        }
+    }
+}
+
+bool LocationIterator::isDone()
+{
+    return !hasNext();
+}
+
+Location *LocationIterator::getCurrent()
+{
+    return current;
+}
+
+bool LocationIterator::hasNext()
+{
+    if (movRight)
+        return current->hasRight() || current->hasBottom();
+    return current->hasLeft() || current->hasBottom();
+}
