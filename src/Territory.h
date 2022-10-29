@@ -26,6 +26,10 @@ class Territory: public Location
 		 */
 		Territory(int _x, int _y, char _colour='a');
 
+		~Territory();
+
+		void add(Location* _neighbour);
+
 		/**
 		 * @brief Create an Iterator object and store it in locationIterators.
 		 * 
@@ -48,50 +52,7 @@ class Territory: public Location
 		 */
 		void setOwnedBy(Country* _newOwner);
 
-		 /**
-		 * @brief Returns null.
-		 * 
-		 * Exceptions : null_pointer_exception
-		 * 
-		 * @return Location* 
-		 */
-		Location* getRight();
-
-		/**
-		 * @brief  Returns null.
-		 * 
-		 * Exceptions : null_pointer_exception
-		 * 
-		 * @return Location* 
-		 */
-		Location* getLeft();
-
-		/**
-		 * @brief Returns null.
-		 * 
-		 * Exceptions : null_pointer_exception
-		 * 
-		 * @return Location* 
-		 */
-		Location* getTop();
-
-		/**
-		 * @brief Returns null.
-		 * 
-		 * Exceptions : null_pointer_exception
-		 * 
-		 * @return Location* 
-		 */
-		Location* getBottom();
-
-		~Territory();
-
 		char getColour();
-
-		bool hasRight();
-		bool hasLeft();
-		bool hasTop();
-		bool hasBottom();
 
 	protected:
 		int xCoordinate, yCoordinate;

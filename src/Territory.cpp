@@ -9,49 +9,25 @@ Territory::Territory(int _x, int _y, char _colour){
     xCoordinate=_x;
     yCoordinate=_y;
     colour=_colour;
+    location=NULL;
+}
+
+void Territory::add(Location* _neighbour){
+    if(location!=NULL)
+        location->add(_neighbour);
+    else
+        location=_neighbour;
 }
 
 Iterator* Territory::createIterator() {
 	throw "Not yet implemented";
 }
 
-Location* Territory::getRight(){
-    __throw_out_of_range("No Right Neighbour");
-}
-
-Location* Territory::getLeft(){
-    __throw_out_of_range("No Left Neighbour");
-}
-
-Location* Territory::getTop(){
-    __throw_out_of_range("No Top Neighbour");
-}
-
-Location* Territory::getBottom(){
-    __throw_out_of_range("No Bottom Neighbour");
-}
-
 Territory::~Territory(){
-    
-    
+    if(location!=NULL)
+        delete location;
 }
 
 char Territory::getColour(){
     return colour;
-}
-
-bool Territory::hasRight(){
-    return false;
-}
-
-bool Territory::hasLeft(){
-    return false;
-}
-
-bool Territory::hasTop(){
-    return false;
-}
-
-bool Territory::hasBottom(){
-    return false;
 }
