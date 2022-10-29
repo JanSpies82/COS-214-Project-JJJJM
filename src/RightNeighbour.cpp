@@ -1,43 +1,15 @@
-#include <exception>
-using namespace std;
 #include <iostream>
+#include <exception>
 #include "RightNeighbour.h"
-#include "Neighbour.h"
 
-RightNeighbour::RightNeighbour(Location* _location, Location* _neighbour) : Neighbour(_location, _neighbour){}
+using namespace std;
+
+RightNeighbour::RightNeighbour(Location* _neighbour) : Neighbour(_neighbour){}
 
 Location* RightNeighbour::getRight(){
     return neighbour;
 }
 
-Location* RightNeighbour::getLeft(){
-    return this->location->getLeft();
-}
-
-Location* RightNeighbour::getTop(){
-    return this->location->getTop();
-}
-
-Location* RightNeighbour::getBottom(){
-    return this->location->getBottom();
-}
-
-RightNeighbour::~RightNeighbour(){
-    delete location;
-}
-
 bool RightNeighbour::hasRight(){
     return true;
-}
-
-bool RightNeighbour::hasLeft(){
-    return location->hasLeft();
-}
-
-bool RightNeighbour::hasTop(){
-    return location->hasTop();
-}
-
-bool RightNeighbour::hasBottom(){
-    return location->hasBottom();
 }
