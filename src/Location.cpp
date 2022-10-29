@@ -41,7 +41,7 @@ Location* Location::getBottom(){
 
 bool Location::hasRight(){
     if(location!=NULL)
-        return location->hasLeft();
+        return location->hasRight();
     else
         return false;    
 }
