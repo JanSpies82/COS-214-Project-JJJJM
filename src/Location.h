@@ -18,9 +18,7 @@ class Location
 {
 	public: 
 		Map* map;
-		// LocationIterator* locationIterator;
 		Observer* observer;
-		// Neighbour* neighbour;
 
 		virtual ~Location();
 
