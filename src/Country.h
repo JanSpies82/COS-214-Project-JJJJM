@@ -76,26 +76,6 @@ public:
   double compareAspect(double countryA, double countryB);
 
   /**
-    * @brief generates a vector of military coefficients reflecting military strength
-    * @return a vector of int coefficients
-    */
-  std::vector<int> getMilitaryCoefficients();
-
-  /**
-    * @brief generates a vector of map coefficients reflecting the strength
-    * of this country's position on the map
-    * @return a vector of int coefficients
-    */
-  std::vector<int> getMapCoefficients();
-
-  /**
-    * @brief generates a vector of domestic coefficients reflecting the internal strength
-    * of this country
-    * @return a vector of int coefficients
-    */
-  std::vector<int> getDomesticCoefficients();
-
-  /**
     * @brief getter for numCitizens attribute
     * @return returns current number of citizens of this country
     */
