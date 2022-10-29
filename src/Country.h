@@ -63,10 +63,26 @@ public:
   CountryState* getState();
 
   /**
-    * @brief generates a countries strength rating based on various state information
+    * @brief generates a countries strength rating based on various state comparisons with enemy
     * @return the strength rating of this country
     */
-  double getCountryRating();
+  double getCountryRating(Country* enemy);
+
+  /**
+    * @brief compares two state paramters and returns countryA's advantage
+    * @param countryA the country to return the advantage of
+    * @param countryB the enemy country to compare to
+    * @return a comparable value of the advantage of countryA
+    */
+  double compareAspect(int countryA, int countryB);
+
+  /**
+    * @brief compares two state paramters and returns countryA's advantage
+    * @param countryA the country to return the advantage of
+    * @param countryB the enemy country to compare to
+    * @return a comparable value of the advantage of countryA
+    */
+  double compareAspect(double countryA, double countryB);
 
   /**
     * @brief generates a vector of military coefficients reflecting military strength
