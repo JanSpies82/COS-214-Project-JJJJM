@@ -130,14 +130,84 @@ void Country::setMapState(MapState* _mapState)
 // getCountryRating()
 ///////////////////////////////////////////////////////////
 
-double Country::getCountryRating(Country* enemy)
-{
-  std::vector<double> strengthScores;
-  MilitaryState* thisMilitarystate = getMilitaryState();
-  MilitaryState* enemyMilitaryState = enemy->getMilitaryState();
+/// @todo finalize militaryState parameters
 
-  double strengthRating = 0.0;
-  return strengthRating;
+double* Country::getCountryRating(Country* b)
+{
+  std::vector<double> strengthScoresA;
+  std::vector<double> strengthScoresB;
+  std::vector<double> aspectScores;
+
+  aspectScores = compareMilitary(this, b);
+  for (double score : aspectScores)
+    strengthScoresA.push_back(score);
+
+  aspectScores = compareMilitary(b, this);
+  for (double score : aspectScores)
+    strengthScoresA.push_back(score);
+
+  aspectScores = compareDomestic(this, b);
+  for (double score : aspectScores)
+    strengthScoresA.push_back(score);
+
+  aspectScores = compareDomestic(b, this);
+  for (double score : aspectScores)
+    strengthScoresA.push_back(score);
+
+  aspectScores = compareMap(this, b);
+  for (double score : aspectScores)
+    strengthScoresA.push_back(score);
+
+  aspectScores = compareMap(b, this);
+  for (double score : aspectScores)
+    strengthScoresB.push_back(score);
+
+  double strengthA = 0.0;
+  for (double score : strengthScoresA)
+    strengthA += score;
+  strengthA /= strengthScoresA.size();
+
+  double strengthB = 0.0;
+  for (double score : strengthScoresB)
+    strengthB += score;
+  strengthB /= strengthScoresB.size();
+
+  double scores[2];
+  scores[0] = strengthA;
+  scores[1] = strengthB;
+  return scores;
+}
+
+///////////////////////////////////////////////////////////
+// compareMilitary()
+///////////////////////////////////////////////////////////
+
+std::vector<double> Country::compareMilitary(Country* a, Country* b)
+{
+  std::vector<double> ratingsA;
+  return ratingsA;
+}
+
+///////////////////////////////////////////////////////////
+// compareDomestic(Country)
+///////////////////////////////////////////////////////////
+
+std::vector<double> Country::compareDomestic(Country* a, Country* b)
+{
+  std::vector<double> ratingsA;
+
+  return ratingsA;
+}
+
+///////////////////////////////////////////////////////////
+// compareMap()
+///////////////////////////////////////////////////////////
+std::vector<double> Country::compareMap(Country* a, Country* b)
+{
+  std::vector<double> ratingsA;
+  std::vector<double> ratingsB;
+
+  return ratingsA;
 }
 
 ///////////////////////////////////////////////////////////
@@ -351,7 +421,7 @@ MapState* Country::getMapState()
 
 CountryState* Country::getCountryState()
 {
-  return NULL;
+  return CountryState;
 }
 
 ///////////////////////////////////////////////////////////
