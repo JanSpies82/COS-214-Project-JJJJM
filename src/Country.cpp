@@ -195,14 +195,12 @@ std::vector<double> Country::compareMilitary(Country* a, Country* b)
 std::vector<double> Country::compareDomestic(Country* a, Country* b)
 {
   std::vector<double> ratingsA;
-  CountryState* stateA = a->getState();
-  CountryState* stateB = b->getState();
-  double politicalStabilityA = compareAspect(a->getPoliticalStability(), b->getPoliticalStability());
-  double domesticMoraleA = compareAspect(a->getDomesticMorale(), b->getDomesticMorale());
-  double borderStrengthA = compareAspect(a->getBorderStrength(), b->getBorderStrength());
-  double capitalSafetyA = compareAspect(a->getCapitalSafety(), b->getCapitalSafety());
-  double warSentimentA = compareAspect(a->getWarSentiment(), b->getWarSentiment());
-  double tradeRouteSafetyA = compareAspect(a->getTradeRouteSafety(), b->getTradeRouteSafety());
+  ratingsA.push_back(compareAspect(a->getPoliticalStability(), b->getPoliticalStability()));
+  ratingsA.push_back(compareAspect(a->getDomesticMorale(), b->getDomesticMorale()));
+  ratingsA.push_back(compareAspect(a->getBorderStrength(), b->getBorderStrength()));
+  ratingsA.push_back(compareAspect(a->getCapitalSafety(), b->getCapitalSafety()));
+  ratingsA.push_back(compareAspect(a->getWarSentiment(), b->getWarSentiment()));
+  ratingsA.push_back(compareAspect(a->getTradeRouteSafety(), b->getTradeRouteSafety()));
   return ratingsA;
 }
 
