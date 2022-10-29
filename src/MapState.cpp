@@ -5,9 +5,14 @@ using namespace std;
 #include "SimulationState.h"
 
 MapState::MapState(Map* m) {
+    mapState=m->clone();
 }
 
-// void MapState::simulationState() {
-// 	throw "Not yet implemented";
-// }
+MapState::~MapState(){
+    delete mapState;
+}
+
+Map* MapState::clone(){
+    return mapState->clone();
+}
 

@@ -5,9 +5,6 @@
 #include <ctime>
 #include "Map.h"
 
-// class SimulationState;
-class MapState;
-
 class MapState
 {
 	public:
@@ -18,8 +15,12 @@ class MapState
 		 */
 		MapState(Map* m);
 
+		~MapState();
+
+		Map* clone();
 		
 	private: 
+		Map* mapState;
 		std::time_t timestamp;
 
 };
