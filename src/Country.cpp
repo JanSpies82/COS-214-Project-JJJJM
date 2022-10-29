@@ -421,7 +421,7 @@ MapState* Country::getMapState()
 
 CountryState* Country::getCountryState()
 {
-  return CountryState;
+  return countryState;
 }
 
 ///////////////////////////////////////////////////////////
