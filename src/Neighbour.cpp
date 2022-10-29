@@ -1,24 +1,31 @@
 #include <exception>
+#include <stdexcept>
 using namespace std;
 
 #include "Neighbour.h"
 #include "Location.h"
 
-Neighbour::Neighbour(Location* _location, Location* _neighbour){
-    this->location=_location;
+Neighbour::Neighbour(Location* _neighbour){
     this->neighbour=_neighbour;
+    location=NULL;
 }
 
-Neighbour::~Neighbour(){}
+void Neighbour::add(Location* _neighbour){
+    if(location!=NULL)
+        location->add(_neighbour);
+    else
+        location=_neighbour;
+}
+
+Neighbour::~Neighbour(){
+    if(location!=NULL)
+        delete location;
+}
 
 Iterator* Neighbour::createIterator(){
     return NULL;
 }
-// void Neighbour::operation() {
-// 	throw "Not yet implemented";
-// }
 
-// Iterator* Neighbour::createIterator() {
-// 	throw "Not yet implemented";
-// }
-
+char Neighbour::getColour(){
+    location->getColour();
+}
