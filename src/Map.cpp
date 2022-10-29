@@ -1,6 +1,7 @@
 #include <exception>
 #include <iostream>
 #include <cstring>
+
 using namespace std;
 
 #include "Map.h"
@@ -103,34 +104,38 @@ Map::Map(){
     }
     
 }
-    Map::~Map(){
-        Location* curr=topLeft;
-        Location* next;
-        Location* nextRow;
-        for (int i = 0; i < 26; i++)//Check index later
+
+Map::~Map(){
+    Location* curr=topLeft;
+    Location* next;
+    Location* nextRow;
+    for (int i = 0; i < 26; i++)//Check index later
+    {
+        nextRow=curr->getBottom();
+        for (int j = 0; j < 23; j++)//Check index later
         {
-            nextRow=curr->getBottom();
-            for (int j = 0; j < 23; j++)//Check index later
-            {
-                next=curr->getRight();
-                delete curr;
-                curr=next;
-            }
-            curr=nextRow;
-
+            next=curr->getRight();
+            delete curr;
+            curr=next;
         }
-        
-    }
+        curr=nextRow;
 
-    Location* Map::getTopLeft(){
-        return topLeft;
     }
+    
+}
 
-    void Map::printMap(){
-        Location* curr=topLeft;
+Location* Map::getTopLeft(){
+    return topLeft;
+}
+
+void Map::printMap(){
+    Location* curr=topLeft;
+    Location* nextRow=topLeft;
+    int j=0;
+    while(curr->hasBottom()){
+        if(nextRow->hasBottom())
+            nextRow=nextRow->getBottom();
         while(curr->hasRight()){
-            cout<<"NoW"<<endl;
-            curr=curr->getRight();
             char c=curr->getColour();
             string x="";
             switch (c){
@@ -165,13 +170,60 @@ Map::Map(){
                         x="\x1B[105m  \033[0m";//Scandenavia bright magenta
                 break;
             }
+
             int n=x.length();
             char char_array[n + 1];
-            strcpy(char_array, x.c_str());
-            printf(char_array);
-
-
+            std::strcpy(char_array, x.c_str());
+            std::printf(char_array);
+            curr=curr->getRight();
         }
+        std::printf("\n");
+        curr=nextRow;
+    }
+}
+
+Map* Map::clone(){
+    Location* arr1[24];
+    Location* arr2[24];
+
+    for (int j = 0; j < 24; j++)
+    {
+        arr1[j] = ((Territory*)this->getLocation(j,0))->clone();
     }
 
+    for (int i = 0; i < 26; i++)
+    {
+        if(i!=0){
+            for (int j = 0; j < 24; j++)
+            {
+                arr1[j]=arr2[j];
+            }
+        }
 
+        for (int j = 0; j < 24; j++)
+        {
+            arr2[j] =((Territory*)this->getLocation(j,i))->clone();
+        }
+        
+        for (int k = 0; k < 23; k++)
+        {
+            arr1[k]->add(new RightNeighbour(arr1[k+1]));
+            arr2[k]->add(new RightNeighbour(arr2[k+1]));
+            arr1[k]->add(new BottomNeighbour(arr2[k]));
+            arr2[k]->add(new TopNeighbour(arr1[k]));
+        }
+
+        for (int k = 1; k < 24; k++)
+        {
+            arr1[k]->add(new LeftNeighbour(arr1[k-1]));
+            arr2[k]->add(new LeftNeighbour(arr2[k-1]));
+
+            if(k==24){
+                arr1[k]->add(new BottomNeighbour(arr2[k]));
+                arr2[k]->add(new TopNeighbour(arr1[k]));
+            }
+        }
+        if(i==0)
+            topLeft = arr1[0];
+    }    
+}

@@ -48,6 +48,8 @@ class Map
 
 		void printMap();
 
+		Map* clone();
+
 	private:
 		Location* topLeft;
 };
