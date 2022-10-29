@@ -195,6 +195,8 @@ std::vector<double> Country::compareMilitary(Country* a, Country* b)
 std::vector<double> Country::compareDomestic(Country* a, Country* b)
 {
   std::vector<double> ratingsA;
+  CountryState* stateA = a->getState();
+  CountryState* stateB = b->getState();
 
   return ratingsA;
 }
@@ -216,7 +218,7 @@ std::vector<double> Country::compareMap(Country* a, Country* b)
 
 double Country::compareAspect(int countryA, int countryB)
 {
-
+  return countryA/countryB;
 }
 
 ///////////////////////////////////////////////////////////
@@ -225,7 +227,7 @@ double Country::compareAspect(int countryA, int countryB)
 
 double Country::compareAspect(double countryA, double countryB)
 {
-
+  return countryA/countryB;
 }
 
 ///////////////////////////////////////////////////////////
