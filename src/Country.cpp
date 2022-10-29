@@ -8,49 +8,62 @@
 #include "CountryMediator.h"
 #include "Strategy.h"
 
-/// @todo fine-tune weights and numWeights per class
+///////////////////////////////////////////////////////////
+// Country
+///////////////////////////////////////////////////////////
+
 Country::Country() 
 {
-  for (int i = 0; i < 10; i++)
-  {
-    mapWeights.push_back(0.2);
-  }
-
-  for (int i = 0; i < 10; i++)
-  {
-    militaryWeights.push_back(0.2);
-  }
-
-  for (int i = 0; i < 10; i++)
-  {
-    domesticWeights.push_back(0.2);
-  }
 }
+
+///////////////////////////////////////////////////////////
+// request
+///////////////////////////////////////////////////////////
 
 void Country::request()
 {
 	return;
 }
 
+///////////////////////////////////////////////////////////
+// notify
+///////////////////////////////////////////////////////////
+
 void Country::notify()
 {
 	return;
 }
+
+///////////////////////////////////////////////////////////
+// attach
+///////////////////////////////////////////////////////////
 
 void Country::attach()
 {
 	return;
 }
 
+///////////////////////////////////////////////////////////
+// detach
+///////////////////////////////////////////////////////////
+
 void Country::detach()
 {
 	return;
 }
 
-void Country::algorithm()
+///////////////////////////////////////////////////////////
+// takeTurn
+///////////////////////////////////////////////////////////
+
+void Country::takeTurn()
 {
 	return;
 }
+
+///////////////////////////////////////////////////////////
+// getState
+///////////////////////////////////////////////////////////
 
 CountryState* Country::getState()
 {
@@ -59,67 +72,89 @@ CountryState* Country::getState()
   return NULL;
 }
 
+///////////////////////////////////////////////////////////
+// getNumCitizens
+///////////////////////////////////////////////////////////
+
 int Country::getNumCitizens()
 {
   return numCitizens;
 }
+
+///////////////////////////////////////////////////////////
+// setNumCitizens
+///////////////////////////////////////////////////////////
 
 void Country::setNumCitizens(int _numCitizens)
 {
   numCitizens = _numCitizens;
 }
 
-double Country::getCountryRating()
+///////////////////////////////////////////////////////////
+// getMilitaryState
+///////////////////////////////////////////////////////////
+
+MilitaryState* Country::getMilitaryState()
 {
-  std::vector<int> militaryCoefficients;
-  std::vector<int> mapCoefficients;
-  std::vector<int> domesticCoefficients;
+  return militaryState;
+}
 
-  militaryCoefficients = getMilitaryCoefficients(getMilitaryState());
-  mapCoefficients = getMapCoefficients(getMapState());
-  domesticCoefficients = getDomesticCoefficients(getCountryState());
+///////////////////////////////////////////////////////////
+// setMilitaryState
+///////////////////////////////////////////////////////////
 
-  double strengthRating = 0.0;
+void Country::setMilitaryState(MilitaryState* _militaryState)
+{
+  militaryState = _militaryState;
+}
 
-  for (int i = 0; i < militaryCoefficients.size(); i++)
-  {
-    strengthRating += militaryCoefficients[i] * militaryWeights.at(i);
-  }
+///////////////////////////////////////////////////////////
+// getMapState
+///////////////////////////////////////////////////////////
 
-  for (int i = 0; i < mapCoefficients.size(); i++)
-  {
-    strengthRating += mapCoefficients[i] * mapWeights.at(i);
-  }
+MapState* Country::getMapState()
+{
+  return mapState;
+}
 
-  for (int i = 0; i < domesticCoefficients.size(); i++)
-  {
-    strengthRating += domesticCoefficients[i] * domesticWeights.at(i);
-  }
+///////////////////////////////////////////////////////////
+// setMapState
+///////////////////////////////////////////////////////////
+
+void Country::setMapState(MapState* _mapState)
+{
+  mapState = _mapState;
+}
+
+///////////////////////////////////////////////////////////
+// getCountryRating
+///////////////////////////////////////////////////////////
+
+double Country::getCountryRating(Country* enemy)
+{
+  std::vector<double> strengthScores;
+  MilitaryState* thisMilitarystate = getMilitaryState();
+  MilitaryState* enemyMilitaryState = enemy->getMilitaryState();
 
   return strengthRating;
 }
 
-std::vector<int> Country::getMilitaryCoefficients(MilitaryState* m)
+///////////////////////////////////////////////////////////
+// compareAspect(int, int)
+///////////////////////////////////////////////////////////
+
+double Country::compareAspect(int countryA, int countryB)
 {
-  std::vector<int> militaryCoefficients;
 
-
-  
-  return militaryCoefficients;
 }
 
-std::vector<int> Country::getMapCoefficients()
-{
-  std::vector<int> mapCoefficients;
-  // evaluate all aspects of map
-  return mapCoefficients;
-}
+///////////////////////////////////////////////////////////
+// compareAspect(double, double)
+///////////////////////////////////////////////////////////
 
-std::vector<int> Country::getDomesticCoefficients()
+double Country::compareAspect(double countryA, double countryB)
 {
-  std::vector<int> domesticCoefficients;
-  // evaluate all domestic aspects of this country
-  return domesticCoefficients;
+
 }
 
 double Country::getPoliticalStability()
