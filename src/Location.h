@@ -22,6 +22,7 @@ class Location
 		Observer* observer;
 		// Neighbour* neighbour;
 
+		virtual ~Location();
 
 		/**
 		 * @brief Abstract function which specifies that all inheriting classes should have a createIterator() function.
@@ -37,7 +38,7 @@ class Location
 		 * 
 		 * @return Location* 
 		 */
-		virtual Location* getRight() = 0;
+		virtual Location* getRight();
 
 		/**
 		 * @brief Returns left neighbour if it has a left neighbour return null otherwise
@@ -46,7 +47,7 @@ class Location
 		 * 
 		 * @return Location* 
 		 */
-		virtual Location* getLeft() = 0;
+		virtual Location* getLeft();
 
 		/**
 		 * @brief Returns top neighbour if it has a top neighbour return null otherwise
@@ -55,7 +56,7 @@ class Location
 		 * 
 		 * @return Location* 
 		 */
-		virtual Location* getTop() = 0;
+		virtual Location* getTop();
 
 		/**
 		 * @brief Returns bottom neighbour if it has a bottom neighbour return null otherwise
@@ -64,16 +65,17 @@ class Location
 		 * 
 		 * @return Location* 
 		 */
-		virtual Location* getBottom() = 0;
+		virtual Location* getBottom();
 
-		virtual ~Location();
-
-		virtual bool hasBottom() = 0;
-		virtual bool hasRight() = 0;
-		virtual bool hasLeft() = 0;
-		virtual bool hasTop() = 0;
+		virtual void add(Location* _neighbour) = 0;
+		virtual bool hasBottom();
+		virtual bool hasRight();
+		virtual bool hasLeft();
+		virtual bool hasTop();
+		virtual char getColour() = 0;
 	
 	protected:
+		Location* location;
 		const int RIGHT=0,LEFT=1,UP=2,DOWN=3;
 };
 
