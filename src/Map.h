@@ -44,6 +44,10 @@ class Map
 		 */
 		Location* getLocation(int x, int y);
 
+		Location* getTopLeft();
+
+		void printMap();
+
 	private:
 		Location* topLeft;
 };
