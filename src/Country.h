@@ -1,17 +1,8 @@
-#include <exception>
-
 #ifndef __Country_h__
 #define __Country_h__
 
-#include "WarStage.h"
-// #include "Superpower.h"
-// #include "Military.h"
-// #include "CountryState.h"
-// #include "Citizen.h"
-// #include "CountryMediator.h"
-// #include "Strategy.h"
-
 #include <vector>
+#include <exception>
 
 class WarStage;
 class Superpower;
