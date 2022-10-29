@@ -31,3 +31,8 @@ Territory::~Territory(){
 char Territory::getColour(){
     return colour;
 }
+
+Location* Territory::clone(){
+    Location* tClone=new Territory(this->xCoordinate, this->yCoordinate, this->colour);
+    return tClone;
+}

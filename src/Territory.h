@@ -52,6 +52,8 @@ class Territory: public Location
 		 */
 		void setOwnedBy(Country* _newOwner);
 
+		Location* clone();
+		
 		char getColour();
 
 	protected:
