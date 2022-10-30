@@ -14,14 +14,14 @@ using namespace std;
 #include "LeftNeighbour.h"
 #include "LocationIterator.h"
 
-Location* Map::getLocation(int x, int y) {//Need to add exception handling
+Location* Map::getLocation(int _x, int _y) {//Need to add exception handling
     Location* next=topLeft;
-	for (int i = 0; i < x; i++)
+	for (int i = 0; i < _x; i++)
     {
         next=next->getRight();
     }
 
-	for (int i = 0; i < y; i++)
+	for (int i = 0; i < _y; i++)
     {
         next=next->getBottom();
     }
@@ -106,22 +106,14 @@ Map::Map(){
     
 }
 
-Map::~Map(){
-    Location* curr=topLeft;
-    Location* next;
-    Location* nextRow;
-    for (int i = 0; i < 26; i++)//Check index later
-    {
-        nextRow=curr->getBottom();
-        for (int j = 0; j < 23; j++)//Check index later
-        {
-            next=curr->getRight();
-            delete curr;
-            curr=next;
-        }
-        curr=nextRow;
+Map::Map(Location* _cloneTopLeft){
+    topLeft=_cloneTopLeft;
+}
 
-    }
+Map::~Map(){
+    // LocationIterator* it=topLeft->createIterator();
+
+    
     // Iterator* it = topLeft->createIterator();
     // it->first();
     // while(!it->isDone()){
@@ -180,24 +172,21 @@ void Map::printMap(){
                 break;
             }
 
-            int n=x.length();
-            char char_array[n + 1];
-            std::strcpy(char_array, x.c_str());
-            std::printf(char_array);
+            cout<<x;
             curr=curr->getRight();
         }
-        std::printf("\n");
+        cout<<endl;
         curr=nextRow;
     }
 }
 
-Map* Map::clone(){
+Map::Map(Map* _oldMap){
     Location* arr1[24];
     Location* arr2[24];
 
     for (int j = 0; j < 24; j++)
     {
-        arr1[j] = ((Territory*)this->getLocation(j,0))->clone();
+        arr1[j] = ((Territory*)_oldMap->getLocation(j,0))->clone();
     }
 
     for (int i = 0; i < 26; i++)
@@ -211,7 +200,7 @@ Map* Map::clone(){
 
         for (int j = 0; j < 24; j++)
         {
-            arr2[j] =((Territory*)this->getLocation(j,i))->clone();
+            arr2[j] =((Territory*)_oldMap->getLocation(j,i))->clone();
         }
         
         for (int k = 0; k < 23; k++)
@@ -234,5 +223,5 @@ Map* Map::clone(){
         }
         if(i==0)
             topLeft = arr1[0];
-    }    
+    }  
 }
