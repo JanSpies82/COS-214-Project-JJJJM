@@ -12,6 +12,7 @@ using namespace std;
 #include "TopNeighbour.h"
 #include "BottomNeighbour.h"
 #include "LeftNeighbour.h"
+#include "LocationIterator.h"
 
 Location* Map::getLocation(int x, int y) {//Need to add exception handling
     Location* next=topLeft;
@@ -121,6 +122,14 @@ Map::~Map(){
         curr=nextRow;
 
     }
+    // Iterator* it = topLeft->createIterator();
+    // it->first();
+    // while(!it->isDone()){
+    //     Location *l = it->getCurrent();
+    //     it->next();
+    //     delete l;
+    // }
+    // delete it;
     
 }
 
