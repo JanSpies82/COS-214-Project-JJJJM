@@ -25,11 +25,11 @@ class Strategy
     Strategy(Country *);
 
     /**
-     * @brief virtual function: Compares strength score to other countries and changes the strategy within a country accordingly
-     *
-     * @param _country:Country* Country that must be compared to everyone else
+     * @brief virtual function representing the implementation of a strategy.
+     * 
+     * @param countryB the country being attacked by calling country
      */
-    virtual void algorithm(Country * _country) = 0;
+    virtual void takeTurn(Country* countryB) = 0;
 };
 
 #endif
