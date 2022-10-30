@@ -7,13 +7,13 @@
 namespace {
 TEST(MapTest, Constructor){
     Map* m=new Map();
-    m->printMap();
-    Location* l=m->getTopLeft();
-    int i=0;
-    while(l->hasRight()){
-        std::cout<<i++;
-        l=l->getRight();
-    }
+    // m->printMap();
+    // Location* l=m->getTopLeft();
+    // int i=0;
+    // while(l->hasRight()){
+    //     std::cout<<i++;
+    //     l=l->getRight();
+    // }
     delete m;
 }
     
