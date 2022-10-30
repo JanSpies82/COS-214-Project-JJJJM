@@ -50,6 +50,11 @@ public:
   void takeTurn(Country* countryB);
 
   /**
+   * @brief sets the country's strategy
+  */
+  void setStrategy();
+
+  /**
     * @brief return up-to-date state information
     */
   CountryState* getState();
@@ -65,7 +70,7 @@ public:
     * @brief compares two state paramters and returns countryA's advantage
     * @param countryA state parameter of countryA
     * @param countryB state parameter of countryB
-    * @return a comparable value of the advantage of countryA
+p    * @return a comparable value of the advantage of countryA
     */
   double compareAspect(int countryA, int countryB);
 

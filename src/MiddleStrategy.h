@@ -8,7 +8,7 @@ class MiddleStrategy : public Strategy
 public:
     MiddleStrategy();
     virtual ~MiddleStrategy();
-    virtual void takeTurn(double strengthA, double strengthB);
+    virtual void takeTurn(double* strengthRatings);
 };
 
 #endif // MIDDLE_STRATEGY_H

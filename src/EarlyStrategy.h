@@ -8,7 +8,7 @@ class EarlyStrategy : public Strategy
 public:
   EarlyStrategy();
   virtual ~EarlyStrategy();
-  virtual void takeTurn(double strengthA, double strengthB);
+  virtual void takeTurn(double* strengthRatings);
 };
 
 #endif // EARLY_STRATEGY_H

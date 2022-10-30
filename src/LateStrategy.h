@@ -8,7 +8,7 @@ class LateStrategy : public Strategy
 public:
     LateStrategy();
     virtual ~LateStrategy();
-    virtual void takeTurn(double strengthA, double strengthB);
+    virtual void takeTurn(double* strengthRatings);
 };
 
 #endif // LATE_STRATEGY_H

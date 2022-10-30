@@ -29,7 +29,7 @@ class Strategy
      * 
      * @param countryB the country being attacked by calling country
      */
-    virtual void takeTurn(Country* countryB) = 0;
+    virtual void takeTurn(double* strengthRatings) = 0;
 };
 
 #endif
