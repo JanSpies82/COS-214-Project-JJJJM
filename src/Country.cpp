@@ -59,7 +59,18 @@ void Country::detach()
 
 void Country::takeTurn(Country* countryB)
 {
-	// strategy.takeTurn(countryB);
+  setStrategy();
+  double* strengthRatings = getCountryRating(countryB);
+	strategy->takeTurn(strengthRatings);
+}
+
+///////////////////////////////////////////////////////////
+// setWarStage()
+///////////////////////////////////////////////////////////
+
+void Country::setStrategy()
+{
+  // set strategy to appropriate strategy based on war stage
 }
 
 ///////////////////////////////////////////////////////////
