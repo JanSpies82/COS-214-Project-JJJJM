@@ -131,8 +131,6 @@ void Country::setMapState(MapState* _mapState)
 // getCountryRating()
 ///////////////////////////////////////////////////////////
 
-/// @todo finalize militaryState parameters
-
 double* Country::getCountryRating(Country* b)
 {
   std::vector<double> strengthScoresA;
@@ -401,7 +399,7 @@ MilitaryState* Country::getMilitaryState()
 
 MapState* Country::getMapState()
 {
-  return NULL;
+  return mapState;
 }
 
 ///////////////////////////////////////////////////////////
