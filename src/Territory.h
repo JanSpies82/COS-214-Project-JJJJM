@@ -10,9 +10,8 @@ class Country;
 
 class Territory: public Location
 {
+	
 	public:
-		LocationIterator* locationIterator;
-
 		/**
 		 * @brief Construct a new Territory object.
 		 * 
@@ -63,7 +62,18 @@ class Territory: public Location
 		 */
 		char getColour();
 
+		/**
+		 * @brief Return the xCoordinate value.
+		 * 
+		 * @return int 
+		 */
 		int getX();
+
+		/**
+		 * @brief Return the yCoordinate value.
+		 * 
+		 * @return int 
+		 */
 		int getY();
 
 	protected:
@@ -74,6 +84,7 @@ class Territory: public Location
 		char colour;
 		bool isCapital;
 		bool isLand;
+
 };
 
 #endif

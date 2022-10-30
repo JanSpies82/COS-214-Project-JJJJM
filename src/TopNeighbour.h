@@ -5,8 +5,8 @@
 
 class TopNeighbour: public Neighbour
 {
-	public:
 	
+	public:
 		/**
 		 * @brief The constructor for top neighbour.
 		 * 

@@ -5,8 +5,8 @@
 
 class Neighbour: public Location
 {
-	public:
 
+	public:
 		/**
 		 * @brief Constructor for Neighbour class.
 		 * 

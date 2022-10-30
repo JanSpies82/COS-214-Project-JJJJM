@@ -10,8 +10,8 @@ class Map;
 
 class Map
 {
-	public:
 
+	public:
 		/**
 		 * @brief Construct a new Map object initializing all locations in the Map.
 		 * 
@@ -41,7 +41,7 @@ class Map
 		/**
 		 * @brief Get the Location object with matching x and y coordinates.
 		 * 
-		 * Exceptions : std::__throw_out_of_range
+		 * Exceptions : std::__throw_out_of_range if _x>24 or _x<0 or _y>26 or _y<0.
 		 * 
 		 * @param _x : int - The x coordinate of the location to be returned.
 		 * @param _y : int - The y coordinate of the location to be returned.
@@ -66,6 +66,7 @@ class Map
 	private:
 		void printLocation(char _col);
 		Location* topLeft;
+
 };
 
 #endif

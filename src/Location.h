@@ -7,8 +7,12 @@ class Iterator;
 
 class Location
 {
-	public: 
 
+	public: 
+		/**
+		 * @brief Destructor for the Location class.
+		 * 
+		 */
 		virtual ~Location();
 		
 		/**
@@ -21,15 +25,16 @@ class Location
 		/**
 		 * @brief If location is NULL throw exception else call getRight on the location object.
 		 * 
-		 * Exceptions : std::__throw_out_of_range
+		 * Exceptions : std::__throw_out_of_range if this location has no right neighbour.
 		 * 
 		 * @return Location* 
 		 */
 		virtual Location* getRight();
+
 		/**
 		 * @brief If location is NULL throw exception else call getLeft on the location object.
 		 * 
-		 * Exceptions : std::__throw_out_of_range
+		 * Exceptions : std::__throw_out_of_range if this location has no left neighbour.
 		 * 
 		 * @return Location* 
 		 */
@@ -38,7 +43,7 @@ class Location
 		/**
 		 * @brief If location is NULL throw exception else call getTop on the location object.
 		 * 
-		 * Exceptions : std::__throw_out_of_range
+		 * Exceptions : std::__throw_out_of_range if this location has no top neighbour.
 		 * 
 		 * @return Location* 
 		 */
@@ -47,7 +52,7 @@ class Location
 		/**
 		 * @brief If location is NULL throw exception else call getBottom on the location object.
 		 * 
-		 * Exceptions : std::__throw_out_of_range
+		 * Exceptions : std::__throw_out_of_range if this location has no bottom neighbour.
 		 * 
 		 * @return Location* 
 		 */
@@ -56,7 +61,7 @@ class Location
 		/**
 		 * @brief Abstract function specifying how to add neighbour to a location.
 		 * 
-		 * @param _neighbour 
+		 * @param _neighbour : Location* -  Pointer to the neighbour to be added.
 		 */
 		virtual void add(Location* _neighbour) = 0;
 
@@ -102,6 +107,7 @@ class Location
 	protected:
 		Location* location;
 		const int RIGHT=0,LEFT=1,UP=2,DOWN=3;
+
 };
 
 #endif
