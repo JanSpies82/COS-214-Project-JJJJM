@@ -19,6 +19,14 @@ void Territory::add(Location* _neighbour){
         location=_neighbour;
 }
 
+Country* Territory::getOwnedBy(){
+    return ownedBy;
+}
+
+void Territory::setOwnedBy(Country* _newOwner){
+    ownedBy=_newOwner;
+}
+
 Territory::~Territory(){
     if(location!=NULL)
         delete location;
@@ -30,5 +38,6 @@ char Territory::getColour(){
 
 Location* Territory::clone(){
     Location* tClone=new Territory(this->xCoordinate, this->yCoordinate, this->colour);
+    ((Territory*)tClone)->setOwnedBy(this->getOwnedBy());
     return tClone;
 }

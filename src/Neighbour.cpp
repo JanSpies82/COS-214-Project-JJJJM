@@ -22,7 +22,6 @@ Neighbour::~Neighbour(){
         delete location;
 }
 
-
 char Neighbour::getColour(){
-    location->getColour();
+    return location->getColour();
 }

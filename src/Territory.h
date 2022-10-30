@@ -2,15 +2,11 @@
 #define __Territory_h__
 
 #include <exception>
-// #include "Country.h"
-// #include "LocationIterator.h"
 #include "Location.h"
 
 class LocationIterator;
 class Neighbour;
 class Country;
-// class Location;
-// class Territory;
 
 class Territory: public Location
 {
@@ -26,8 +22,17 @@ class Territory: public Location
 		 */
 		Territory(int _x, int _y, char _colour='a');
 
+		/**
+		 * @brief Destructor for the Territory class. Delete location if location is not NULL.
+		 * 
+		 */
 		~Territory();
 
+		/**
+		 * @brief If location is NULL set location to equal _neighbour else call add on location sending _neighbour in as the parameter.
+		 * 
+		 * @param _neighbour : Location* - Pointer to the location to be added.
+		 */
 		void add(Location* _neighbour);
 
 		/**
@@ -37,7 +42,6 @@ class Territory: public Location
 		 */
 		Country* getOwnedBy();
 
-
 		/**
 		 * @brief Set which country owns this territory.
 		 * 
@@ -45,8 +49,18 @@ class Territory: public Location
 		 */
 		void setOwnedBy(Country* _newOwner);
 
+		/**
+		 * @brief Create a copy of this locations attributes except for anything to do with it's neighbour.
+		 * 
+		 * @return Location* 
+		 */
 		Location* clone();
 		
+		/**
+		 * @brief Return the colour attribute.
+		 * 
+		 * @return char 
+		 */
 		char getColour();
 
 	protected:
@@ -55,7 +69,7 @@ class Territory: public Location
 	private:
 		Country* ownedBy;
 		char colour;
-		bool capital;
+		bool isCapital;
 		bool isLand;
 };
 

@@ -1,9 +1,6 @@
 #ifndef __Map_h__
 #define __Map_h__
 
-#include <exception>
-// #include "Location.h"
-// #include "SimulationManager.h"
 #include "Territory.h"
 
 class Location;
@@ -14,41 +11,57 @@ class Map;
 class Map
 {
 	public:
+
 		/**
-		 * @brief Construct a new Map object with all locations initialized
+		 * @brief Construct a new Map object initializing all locations in the Map.
 		 * 
 		 */
 		Map();
 
 		/**
-		 * @brief Destroy the Map object by deallocating all the location objects
+		 * @brief Construct a new Map object and set topLeft to _cloneTopLeft.
+		 * 
+		 * @param _cloneTopLeft 
+		 */
+		Map(Location* _cloneTopLeft);
+
+		/**
+		 * @brief Call delete on each location in the Map using an iterator.
 		 * 
 		 */
 		~Map();
 
 		/**
-		 * @brief Construct a copy of the passed in map pointer
+		 * @brief Construct a copy of the passed in map pointer.
 		 * 
-		 * @param map : Map* - the pointer to be copied into the new map
+		 * @param map : Map* - the pointer to be copied into the new map.
 		 */
-		Map(Map* map);
+		Map(Map* _oldMap);
 
 		/**
-		 * @brief Get the Location object with matching x and y coordinates
+		 * @brief Get the Location object with matching x and y coordinates.
 		 * 
-		 * Exceptions : If x/y coordinate is greater than map size or less than 0
+		 * Exceptions : std::__throw_out_of_range
 		 * 
-		 * @param x : int - The x coordinate of the location to be returned
-		 * @param y : int - The y coordinate of the location to be returned
+		 * @param _x : int - The x coordinate of the location to be returned.
+		 * @param _y : int - The y coordinate of the location to be returned.
+		 * 
 		 * @return Location* 
 		 */
-		Location* getLocation(int x, int y);
+		Location* getLocation(int _x, int _y);
 
+		/**
+		 * @brief Get the topLeft location.
+		 * 
+		 * @return Location* 
+		 */
 		Location* getTopLeft();
 
+		/**
+		 * @brief Prints to console a representation of the map. Each location will have a colour representing a country that owns said location.
+		 * 
+		 */
 		void printMap();
-
-		Map* clone();
 
 	private:
 		Location* topLeft;
