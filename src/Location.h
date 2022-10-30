@@ -2,17 +2,10 @@
 #define __Location_h__
 
 #include <exception>
-// #include "Map.h"
-// #include "LocationIterator.h"
-// #include "Observer.h"
-// #include "Neighbour.h"
 
 class Map;
-// class LocationIterator;
 class Observer;
 class Iterator;
-// class Neighbour;
-// class Location;
 
 class Location
 {
