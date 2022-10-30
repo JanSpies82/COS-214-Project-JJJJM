@@ -4,6 +4,7 @@
 #include "WarStage.h"
 #include "Superpower.h"
 #include "Military.h"
+#include "MilitaryState.h"
 #include "CountryState.h"
 #include "CountryMediator.h"
 #include "Strategy.h"
@@ -185,6 +186,12 @@ double* Country::getCountryRating(Country* b)
 std::vector<double> Country::compareMilitary(Country* a, Country* b)
 {
   std::vector<double> ratingsA;
+  MilitaryState* mA = a->getMilitaryState();
+  MilitaryState* mB = b->getMilitaryState();
+  ratingsA.push_back(compareAspect(mA->getNumTroops(), mB->getNumTroops()));
+  ratingsA.push_back(compareAspect(mA->getNumTanks(), mB->getNumTanks()));
+  ratingsA.push_back(compareAspect(mA->getNumPlanes(), mB->getNumPlanes()));
+  ratingsA.push_back(compareAspect(mA->getNumShips(), mB->getNumShips()));
   return ratingsA;
 }
 
