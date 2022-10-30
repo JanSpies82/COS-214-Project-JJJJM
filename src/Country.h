@@ -45,8 +45,9 @@ public:
 
   /**
     * @brief uses state information to implement next action
+    * @param countryB the country that is being attacked
     */
-  void takeTurn();
+  void takeTurn(Country* countryB);
 
   /**
     * @brief return up-to-date state information
@@ -62,16 +63,16 @@ public:
 
   /**
     * @brief compares two state paramters and returns countryA's advantage
-    * @param countryA the country to return the advantage of
-    * @param countryB the enemy country to compare to
+    * @param countryA state parameter of countryA
+    * @param countryB state parameter of countryB
     * @return a comparable value of the advantage of countryA
     */
   double compareAspect(int countryA, int countryB);
 
   /**
     * @brief compares two state paramters and returns countryA's advantage
-    * @param countryA the country to return the advantage of
-    * @param countryB the enemy country to compare to
+    * @param countryA state parameter of countryA
+    * @param countryB state parameter of countryB
     * @return a comparable value of the advantage of countryA
     */
   double compareAspect(double countryA, double countryB);
