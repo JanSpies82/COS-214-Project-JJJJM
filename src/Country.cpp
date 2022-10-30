@@ -386,7 +386,7 @@ void Country::setTradeRouteSafety(double _tradeRouteSafety)
 
 MilitaryState* Country::getMilitaryState()
 {
-  return NULL;
+  return militaryState;
 }
 
 ///////////////////////////////////////////////////////////
