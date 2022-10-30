@@ -57,9 +57,9 @@ void Country::detach()
 // takeTurn()
 ///////////////////////////////////////////////////////////
 
-void Country::takeTurn()
+void Country::takeTurn(Country* countryB)
 {
-	return;
+	// strategy.takeTurn(countryB);
 }
 
 ///////////////////////////////////////////////////////////
