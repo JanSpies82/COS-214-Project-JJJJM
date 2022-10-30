@@ -41,3 +41,11 @@ Location* Territory::clone(){
     ((Territory*)tClone)->setOwnedBy(this->getOwnedBy());
     return tClone;
 }
+
+int Territory::getX(){
+    return xCoordinate;
+}
+
+int Territory::getY(){
+    return yCoordinate;
+}

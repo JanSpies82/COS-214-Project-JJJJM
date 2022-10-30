@@ -103,6 +103,61 @@ namespace {
         delete rightRight;
 
     }
+
+    TEST(TerritoryTest, ExtensiveTest){
+        Location* t00=new Territory(0,0,0);
+        Location* t10=new Territory(1,0,0);
+        Location* t20=new Territory(2,0,0);
+        Location* t01=new Territory(0,1,0);
+        Location* t11=new Territory(1,1,0);
+        Location* t21=new Territory(2,1,0);
+        Location* t02=new Territory(0,2,0);
+        Location* t12=new Territory(1,2,0);
+        Location* t22=new Territory(2,2,0);
+
+        t00->add(new RightNeighbour(t10));
+        t10->add(new RightNeighbour(t20));
+        t01->add(new RightNeighbour(t11));
+        t11->add(new RightNeighbour(t21));
+        t02->add(new RightNeighbour(t12));
+        t12->add(new RightNeighbour(t22));
+
+        t00->add(new BottomNeighbour(t01));
+        t01->add(new BottomNeighbour(t02));
+        t10->add(new BottomNeighbour(t11));
+        t11->add(new BottomNeighbour(t12));
+        t20->add(new BottomNeighbour(t21));
+        t21->add(new BottomNeighbour(t22));
+
+        t10->add(new LeftNeighbour(t00));
+        t20->add(new LeftNeighbour(t10));
+        t11->add(new LeftNeighbour(t01));
+        t21->add(new LeftNeighbour(t11));
+        t12->add(new LeftNeighbour(t02));
+        t22->add(new LeftNeighbour(t12));
+
+        t01->add(new TopNeighbour(t00));
+        t02->add(new TopNeighbour(t01));
+        t11->add(new TopNeighbour(t10));
+        t12->add(new TopNeighbour(t11));
+        t21->add(new TopNeighbour(t20));
+        t22->add(new TopNeighbour(t21));
+
+        // t12->add(new RightNeighbour(t00));
+        // t12->add(new RightNeighbour(t22));
+        // t12->add(new RightNeighbour(t12));
+        
+
+        delete t00;
+        delete t10;
+        delete t20;
+        delete t01;
+        delete t11;
+        delete t21;
+        delete t02;
+        delete t12;
+        delete t22;
+    }
     
 }
 

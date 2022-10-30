@@ -54,7 +54,7 @@ protected:
 	Location *current;
 	Location* nextLocation;
 	bool hasNext();
-	bool movRight;
+	Location* nextRow();
 };
 
 #endif

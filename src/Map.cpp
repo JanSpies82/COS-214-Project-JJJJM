@@ -14,23 +14,10 @@ using namespace std;
 #include "LeftNeighbour.h"
 #include "LocationIterator.h"
 
-Location* Map::getLocation(int _x, int _y) {//Need to add exception handling
-    Location* next=topLeft;
-	for (int i = 0; i < _x; i++)
-    {
-        next=next->getRight();
-    }
-
-	for (int i = 0; i < _y; i++)
-    {
-        next=next->getBottom();
-    }
-    
-    return next;
-}
 
 Map::Map(){
-        string mapVal[27]={
+
+    string mapVal[27]={
         "000000000000000099000066",
         "000000000000000996666666",
         "000000000000009996666666",
@@ -66,44 +53,45 @@ Map::Map(){
     for (int j = 0; j < 24; j++)
     {
         arr1[j] = new Territory(j,0, mapVal[0][j]);
+        arr2[j] = arr1[j];
     }
 
-    for (int i = 0; i < 26; i++)
+    for (int j = 0; j < 24; j++)//Probably Correct
     {
-        if(i!=0){
-            for (int j = 0; j < 24; j++)
-            {
-                arr1[j]=arr2[j];
-            }
-        }
+        if(j!=23)
+            arr1[j]->add(new RightNeighbour(arr1[j+1]));
 
-        for (int j = 0; j < 24; j++)
+        if(j!=0)
+            arr1[j]->add(new LeftNeighbour(arr1[j-1]));
+    }
+
+    for (int i = 1; i < 27; i++)//Check this index
+    {
+        for (int j = 0; j < 24; j++)//Probably Correct
         {
+            arr1[j]=arr2[j];
             arr2[j] = new Territory(j,i, mapVal[i][j]);
         }
-        
-        for (int k = 0; k < 23; k++)
-        {
-            arr1[k]->add(new RightNeighbour(arr1[k+1]));
-            arr2[k]->add(new RightNeighbour(arr2[k+1]));
-            arr1[k]->add(new BottomNeighbour(arr2[k]));
-            arr2[k]->add(new TopNeighbour(arr1[k]));
-        }
 
-        for (int k = 1; k < 24; k++)
+        for (int j = 0; j < 24; j++)//Probably Correct
         {
-            arr1[k]->add(new LeftNeighbour(arr1[k-1]));
-            arr2[k]->add(new LeftNeighbour(arr2[k-1]));
-
-            if(k==24){
-                arr1[k]->add(new BottomNeighbour(arr2[k]));
-                arr2[k]->add(new TopNeighbour(arr1[k]));
+            if(j!=23)
+            {
+                arr2[j]->add(new RightNeighbour(arr2[j+1]));
             }
+
+            if(j!=0)
+            {
+                arr2[j]->add(new LeftNeighbour(arr2[j-1]));
+            }
+
+            arr1[j]->add(new BottomNeighbour(arr2[j]));
+            arr2[j]->add(new TopNeighbour(arr1[j]));
         }
-        if(i==0)
-            topLeft = arr1[0];
+        if(i==1)
+            topLeft=arr1[0];
+
     }
-    
 }
 
 Map::Map(Location* _cloneTopLeft){
@@ -111,117 +99,153 @@ Map::Map(Location* _cloneTopLeft){
 }
 
 Map::~Map(){
-    // LocationIterator* it=topLeft->createIterator();
 
-    
-    // Iterator* it = topLeft->createIterator();
-    // it->first();
-    // while(!it->isDone()){
-    //     Location *l = it->getCurrent();
-    //     it->next();
-    //     delete l;
-    // }
-    // delete it;
-    
+    Iterator* it = topLeft->createIterator();
+
+    it->first();
+    while(!it->isDone()){
+        Location* l=it->getCurrent();
+        it->next();
+        delete l;
+    }
+
+    delete it->getCurrent();
+    delete it;  
 }
 
 Location* Map::getTopLeft(){
     return topLeft;
 }
 
-void Map::printMap(){
-    Location* curr=topLeft;
-    Location* nextRow=topLeft;
-    int j=0;
-    while(curr->hasBottom()){
-        if(nextRow->hasBottom())
-            nextRow=nextRow->getBottom();
-        while(curr->hasRight()){
-            char c=curr->getColour();
-            string x="";
-            switch (c){
-                case '0':
-                        x="\x1B[44m  \033[0m";//sea blue
-                break;
-                case '1':
-                    x="\x1B[102m  \033[0m";//Land green later green used for other things
-                break;
-                case '2':
-                    x="\x1B[45m  \033[0m"; //Spain + Portuagal Magenta
-                break;
-                case '3':
-                        x="\x1B[46m  \033[0m";//UK Cyan
-                break;
-                case '4':
-                        x="\x1B[107m  \033[0m";//France White
-                break;
-                case '5':
-                        x="\x1B[106m  \033[0m";//Greece+Bulkans bright cyan
-                break;
-                case '6':
-                        x="\x1B[102m  \033[0m";//Easter Europe+Russia green
-                break;
-                case '7':
-                        x="\x1B[41m  \033[0m";//Germany Red
-                break;
-                case '8':
-                        x="\x1B[43m  \033[0m";//Italy Yellow
-                break;
-                case '9':
-                        x="\x1B[105m  \033[0m";//Scandenavia bright magenta
-                break;
-            }
+Location* Map::getLocation(int _x, int _y) {
 
-            cout<<x;
-            curr=curr->getRight();
-        }
-        cout<<endl;
-        curr=nextRow;
+    if(_x<0)
+        throw out_of_range("Invalid X parameter. Expected greater than or equal to 0 and less than 24. Recieved: "+_x);
+
+    if(_y<0)
+        throw out_of_range("Invalid Y parameter. Expected greater than or equal to 0 and less than 27. Recieved: "+_x);
+
+    Location* next=topLeft;
+
+	for (int i = 0; i < _x; i++)
+    {
+        if(!next->hasRight())
+            throw out_of_range("Invalid X parameter. Expected greater than or equal to 0 and less than 24. Recieved: "+_x);
+            next=next->getRight();
     }
+
+	for (int i = 0; i < _y; i++)
+    {
+        if(!next->hasBottom())
+            throw out_of_range("Invalid Y parameter. Expected greater than or equal to 0 and less than 27. Recieved: "+_x);
+        next=next->getBottom();
+    }
+    
+    return next;
+}
+
+void Map::printMap(){
+
+    Iterator* it = topLeft->createIterator();
+
+    while(!it->isDone()){
+
+        printLocation(it->getCurrent()->getColour());
+        it->next();            
+
+        if(!it->getCurrent()->hasLeft())
+            std::cout<<endl;
+    }
+
+    printLocation(it->getCurrent()->getColour());
+
+    std::cout<<endl;
+    delete it;
 }
 
 Map::Map(Map* _oldMap){
+
     Location* arr1[24];
     Location* arr2[24];
 
     for (int j = 0; j < 24; j++)
     {
         arr1[j] = ((Territory*)_oldMap->getLocation(j,0))->clone();
+        arr2[j] = arr1[j];
     }
 
-    for (int i = 0; i < 26; i++)
+    for (int j = 0; j < 24; j++)//Probably Correct
     {
-        if(i!=0){
-            for (int j = 0; j < 24; j++)
+        if(j!=23)
+            arr1[j]->add(new RightNeighbour(arr1[j+1]));
+
+        if(j!=0)
+            arr1[j]->add(new LeftNeighbour(arr1[j-1]));
+    }
+
+    for (int i = 1; i < 27; i++)//Check this index
+    {
+        for (int j = 0; j < 24; j++)//Probably Correct
+        {
+            arr1[j]=arr2[j];
+            arr2[j] = ((Territory*)_oldMap->getLocation(j,i))->clone();
+        }
+
+        for (int j = 0; j < 24; j++)//Probably Correct
+        {
+            if(j!=23)
             {
-                arr1[j]=arr2[j];
+                arr2[j]->add(new RightNeighbour(arr2[j+1]));
             }
-        }
 
-        for (int j = 0; j < 24; j++)
-        {
-            arr2[j] =((Territory*)_oldMap->getLocation(j,i))->clone();
-        }
-        
-        for (int k = 0; k < 23; k++)
-        {
-            arr1[k]->add(new RightNeighbour(arr1[k+1]));
-            arr2[k]->add(new RightNeighbour(arr2[k+1]));
-            arr1[k]->add(new BottomNeighbour(arr2[k]));
-            arr2[k]->add(new TopNeighbour(arr1[k]));
-        }
-
-        for (int k = 1; k < 24; k++)
-        {
-            arr1[k]->add(new LeftNeighbour(arr1[k-1]));
-            arr2[k]->add(new LeftNeighbour(arr2[k-1]));
-
-            if(k==24){
-                arr1[k]->add(new BottomNeighbour(arr2[k]));
-                arr2[k]->add(new TopNeighbour(arr1[k]));
+            if(j!=0)
+            {
+                arr2[j]->add(new LeftNeighbour(arr2[j-1]));
             }
+
+            arr1[j]->add(new BottomNeighbour(arr2[j]));
+            arr2[j]->add(new TopNeighbour(arr1[j]));
         }
-        if(i==0)
-            topLeft = arr1[0];
-    }  
+        if(i==1)
+            topLeft=arr1[0];
+
+    }
+
+}
+
+void Map::printLocation(char _col){
+     string x="";
+        switch (_col){
+            case '0':
+                x="\x1B[44m  \033[0m";//sea blue
+            break;
+            case '1':
+                x="\x1B[102m  \033[0m";//Land green later green used for other things
+            break;
+            case '2':
+                x="\x1B[45m  \033[0m"; //Spain + Portuagal Magenta
+            break;
+            case '3':
+                    x="\x1B[46m  \033[0m";//UK Cyan
+            break;
+            case '4':
+                    x="\x1B[107m  \033[0m";//France White
+            break;
+            case '5':
+                    x="\x1B[106m  \033[0m";//Greece+Bulkans bright cyan
+            break;
+            case '6':
+                    x="\x1B[102m  \033[0m";//Easter Europe+Russia green
+            break;
+            case '7':
+                    x="\x1B[41m  \033[0m";//Germany Red
+            break;
+            case '8':
+                    x="\x1B[43m  \033[0m";//Italy Yellow
+            break;
+            case '9':
+                    x="\x1B[105m  \033[0m";//Scandenavia bright magenta
+            break;
+        }
+        std::cout<<x;
 }

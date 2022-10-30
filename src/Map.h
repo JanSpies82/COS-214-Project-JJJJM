@@ -64,6 +64,7 @@ class Map
 		void printMap();
 
 	private:
+		void printLocation(char _col);
 		Location* topLeft;
 };
 

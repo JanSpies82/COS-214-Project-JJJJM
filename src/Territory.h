@@ -63,6 +63,9 @@ class Territory: public Location
 		 */
 		char getColour();
 
+		int getX();
+		int getY();
+
 	protected:
 		int xCoordinate, yCoordinate;
 

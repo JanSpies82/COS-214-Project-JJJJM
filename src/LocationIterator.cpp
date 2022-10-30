@@ -7,24 +7,10 @@ using namespace std;
 LocationIterator::LocationIterator(Location *_location)
 {
     current = _location;
-    movRight = true;
-    if (hasNext())
-    {
-        if (movRight)
-        {
-            if (current->hasRight())
-                nextLocation = current->getRight();
-            else
-                nextLocation = current->getBottom();
-        }
-        else
-        {
-            if (current->hasLeft())
-                nextLocation = current->getLeft();
-            else
-                nextLocation = current->getBottom();
-        }
-    }
+    if(current->hasRight())
+        nextLocation = current->getRight();
+    else if(current->hasBottom())
+        nextLocation = nextRow();
 }
 
 LocationIterator::~LocationIterator()
@@ -39,7 +25,6 @@ void LocationIterator::first()
     while (current->hasTop())
         current = current->getTop();
 
-    movRight = true;
 }
 
 void LocationIterator::next()
@@ -49,29 +34,15 @@ void LocationIterator::next()
 
     current = nextLocation;
 
-    if (hasNext())
+    if(current->hasRight())
     {
-        if (movRight)
-        {
-            if (current->hasRight())
-                nextLocation = current->getRight();
-            else
-            {
-                nextLocation = current->getBottom();
-                movRight = false;
-            }
-        }
-        else
-        {
-            if (current->hasLeft())
-                nextLocation = current->getLeft();
-            else
-            {
-                nextLocation = current->getBottom();
-                movRight = true;
-            }
-        }
+        nextLocation=current->getRight();
     }
+    else if(current->hasBottom())
+    {
+        nextLocation=nextRow();
+    }
+    
 }
 
 bool LocationIterator::isDone()
@@ -79,14 +50,27 @@ bool LocationIterator::isDone()
     return !hasNext();
 }
 
-Location *LocationIterator::getCurrent()
+Location* LocationIterator::getCurrent()
 {
     return current;
 }
 
 bool LocationIterator::hasNext()
 {
-    if (movRight)
-        return current->hasRight() || current->hasBottom();
-    return current->hasLeft() || current->hasBottom();
+    return current->hasRight() || current->hasBottom();
+}
+
+Location* LocationIterator::nextRow(){
+    Location* temp=current;
+
+    if(temp->hasBottom())
+        temp=temp->getBottom();
+    else
+        return temp;
+
+    while(temp->hasLeft())
+        temp=temp->getLeft();
+
+    return temp;
+    
 }

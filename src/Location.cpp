@@ -9,8 +9,6 @@
 using namespace std;
 
 Location::~Location(){}
-
-
 Location* Location::getRight(){
     if(location!=NULL)
         return location->getRight();

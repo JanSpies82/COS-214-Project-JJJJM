@@ -9,6 +9,8 @@ class Location
 {
 	public: 
 
+		virtual ~Location();
+		
 		/**
 		 * @brief Returns a new Iterator object with current set to this Location.
 		 * 
