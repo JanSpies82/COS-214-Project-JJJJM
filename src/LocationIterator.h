@@ -52,6 +52,7 @@ public:
 
 protected:
 	Location *current;
+	Location* nextLocation;
 	bool hasNext();
 	bool movRight;
 };

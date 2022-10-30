@@ -8,6 +8,23 @@ LocationIterator::LocationIterator(Location *_location)
 {
     current = _location;
     movRight = true;
+    if (hasNext())
+    {
+        if (movRight)
+        {
+            if (current->hasRight())
+                nextLocation = current->getRight();
+            else
+                nextLocation = current->getBottom();
+        }
+        else
+        {
+            if (current->hasLeft())
+                nextLocation = current->getLeft();
+            else
+                nextLocation = current->getBottom();
+        }
+    }
 }
 
 LocationIterator::~LocationIterator()
@@ -30,24 +47,29 @@ void LocationIterator::next()
     if (!hasNext())
         throw out_of_range("No next location");
 
-    if (movRight)
+    current = nextLocation;
+
+    if (hasNext())
     {
-        if (current->hasRight())
-            current = current->getRight();
-        else
+        if (movRight)
         {
-            current = current->getBottom();
-            movRight = false;
+            if (current->hasRight())
+                nextLocation = current->getRight();
+            else
+            {
+                nextLocation = current->getBottom();
+                movRight = false;
+            }
         }
-    }
-    else
-    {
-        if (current->hasLeft())
-            current = current->getLeft();
         else
         {
-            current = current->getBottom();
-            movRight = true;
+            if (current->hasLeft())
+                nextLocation = current->getLeft();
+            else
+            {
+                nextLocation = current->getBottom();
+                movRight = true;
+            }
         }
     }
 }
