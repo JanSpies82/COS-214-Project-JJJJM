@@ -55,9 +55,10 @@ public:
 
   /**
     * @brief generates a countries strength rating based on various state comparisons with enemy
+    * @param countryB the country that this country is implementing a strategy against
     * @return the strength rating of this country
     */
-  double* getCountryRating(Country* enemy);
+  double* getCountryRating(Country* countryB);
 
   /**
     * @brief compares two state paramters and returns countryA's advantage
@@ -83,7 +84,7 @@ public:
 
   /**
    * @brief sets the value of class attribute numCitizens
-   * @param int new value of numCitizens
+   * @param _numCitizens new value of numCitizens
    */
   void setNumCitizens(int _numCitizens);
 
@@ -95,7 +96,7 @@ public:
 
   /**
    * @brief sets the value of class attribute politicalStability
-   * @param double new value of politicalStability
+   * @param _politicalStability new value of politicalStability
    */
   void setPoliticalStability(double _politicalStability);
 
@@ -107,7 +108,7 @@ public:
 
   /**
    * @brief sets the value of class attribute domesticMorale
-   * @param double new value of domesticMorale
+   * @param _domesticMorale new value of domesticMorale
    */
   void setDomesticMorale(double _domesticMorale);
 
@@ -119,7 +120,7 @@ public:
 
   /**
    * @brief sets the value of class attribute selfReliance
-   * @param double new value of selfReliance
+   * @param _selfReliance new value of selfReliance
    */
   void setSelfReliance(double _selfReliance);
 
@@ -131,7 +132,7 @@ public:
 
   /**
    * @brief sets the value of class attribute borderStrength
-   * @param double new value of borderStrength
+   * @param _borderStrength new value of borderStrength
    */
   void setBorderStrength(double _borderStrength);
 
@@ -143,7 +144,7 @@ public:
 
   /**
    * @brief sets the value of class attribute capitalSafety
-   * @param double new value of capitalSafety
+   * @param _capitalSafety new value of capitalSafety
    */
   void setCapitalSafety(double _capitalSafety);
 
@@ -155,7 +156,7 @@ public:
 
   /**
    * @brief sets the value of class attribute warSentiment
-   * @param double new value of warSentiment
+   * @param _warSentiment new value of warSentiment
    */
   void setWarSentiment(double _warSentiment);
 
@@ -167,7 +168,7 @@ public:
 
   /**
    * @brief sets the value of class attribute tradeRouteSafety
-   * @param double new value of tradeRouteSafety
+   * @param _tradeRouteSafety new value of tradeRouteSafety
    */
   void setTradeRouteSafety(double _tradeRouteSafety);
 
@@ -179,7 +180,7 @@ public:
 
   /**
    * @brief setter for this country's military state
-   * @param MilitaryState* new military state
+   * @param _militaryState new military state
   */
   void setMilitaryState(MilitaryState* _militaryState);
 
@@ -191,9 +192,8 @@ public:
 
   /**
    * @brief setter for this country's map state
-   * @param MapState* new map state
+   * @param _mapState new map state
   */
-
   void setMapState(MapState* _mapState);
 
   /**
@@ -202,9 +202,14 @@ public:
   */
   CountryState* getCountryState();
 
+  /**
+   * @brief setter for this country's state
+   * @param _countryState new country state
+  */
+  void setCountryState(CountryState* _countryState);
+
   std::vector<double> compareMilitary(Country* a, Country* b);
   std::vector<double> compareDomestic(Country* a, Country* b);
-  std::vector<double> compareMap(Country* a, Country* b);
 
   
 private:
