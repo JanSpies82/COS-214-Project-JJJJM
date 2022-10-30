@@ -230,9 +230,6 @@ private:
   double warSentiment;
   double tradeRouteSafety;
   std::vector<Country*>* enemies;
-  std::vector<double> mapWeights;
-  std::vector<double> militaryWeights;
-  std::vector<double> domesticWeights;
 };
 
 #endif
