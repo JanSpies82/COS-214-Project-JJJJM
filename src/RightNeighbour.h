@@ -6,22 +6,26 @@
 class RightNeighbour: public Neighbour
 {
 	public:
+	
 		/**
-		 * @brief The constructor for right neighbour
+		 * @brief The constructor for right neighbour.
 		 * 
-		 * @param _neighbour : Location* - Adds this location as the right neighbour of a location
+		 * @param _neighbour : Location* - Pointer to the right neighbour.
 		 */
 		RightNeighbour(Location* _neighbour);
 
 		 /**
-		 * @brief Calls the getRight function of location.
-		 * 
-		 * Exceptions : null_pointer_exception
+		 * @brief Returns right neighbour.
 		 * 
 		 * @return Location* 
 		 */
 		Location* getRight();
 
+		/**
+		 * @brief Always returns true since RightNeighbour will always have a right neighbour.
+		 * 
+		 * @return true 
+		 */
 		bool hasRight();
 };
 

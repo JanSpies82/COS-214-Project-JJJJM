@@ -6,22 +6,26 @@
 class TopNeighbour: public Neighbour
 {
 	public:
+	
 		/**
-		 * @brief The constructor for top neighbour
+		 * @brief The constructor for top neighbour.
 		 * 
-		 * @param _neighbour : Location* - adds this location as the top neighbour of a location 
+		 * @param _neighbour : Location* - Pointer to top neighbour.
 		 */
 		TopNeighbour(Location* _neighbour);
 
 		/**
-		 * @brief Returns top neighbour if it has a top neighbour return null otherwise.
-		 * 
-		 * Exceptions : null_pointer_exception
+		 * @brief Returns top neighbour.
 		 * 
 		 * @return Location* 
 		 */
 		Location* getTop();
 
+		/**
+		 * @brief Always returns true since TopNeighbour will always have a top neighbour.
+		 * 
+		 * @return true 
+		 */
 		bool hasTop();
 };
 

@@ -6,22 +6,26 @@
 class LeftNeighbour: public Neighbour
 {
 	public:
+	
 		/**
-		 * @brief The constructor for left neighbour
+		 * @brief The constructor for left neighbour.
 		 * 
-		 * @param _neighbour : Location* - adds this location as the left neighbour of a location 
+		 * @param _neighbour : Location* - Pointer to the left neighbour.
 		 */
 		LeftNeighbour(Location* _neighbour);
 
 		/**
-		 * @brief Returns left neighbour if it has a left neighbour return null otherwise.
-		 * 
-		 * Exceptions : null_pointer_exception
+		 * @brief Returns left neighbour.
 		 * 
 		 * @return Location* 
 		 */
 		Location* getLeft();
 
+		/**
+		 * @brief Always returns true since LeftNeighbour will always have a left neighbour.
+		 * 
+		 * @return true 
+		 */
 		bool hasLeft();
 };
 
