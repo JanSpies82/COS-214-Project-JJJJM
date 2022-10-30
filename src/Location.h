@@ -1,8 +1,6 @@
 #ifndef __Location_h__
 #define __Location_h__
 
-#include <exception>
-
 class Map;
 class Observer;
 class Iterator;
@@ -10,59 +8,93 @@ class Iterator;
 class Location
 {
 	public: 
-		Map* map;
-		Observer* observer;
-
-		virtual ~Location();
 
 		/**
-		 * @brief Abstract function which specifies that all inheriting classes should have a createIterator() function.
+		 * @brief Returns a new Iterator object with current set to this Location.
 		 * 
 		 * @return Iterator* 
 		 */
 		Iterator* createIterator();
 
 		/**
-		 * @brief Returns right neighbour if it has a right neighbour return null otherwise
+		 * @brief If location is NULL throw exception else call getRight on the location object.
 		 * 
-		 * Exceptions : null_pointer_exception
+		 * Exceptions : std::__throw_out_of_range
 		 * 
 		 * @return Location* 
 		 */
 		virtual Location* getRight();
-
 		/**
-		 * @brief Returns left neighbour if it has a left neighbour return null otherwise
+		 * @brief If location is NULL throw exception else call getLeft on the location object.
 		 * 
-		 * Exceptions : null_pointer_exception
+		 * Exceptions : std::__throw_out_of_range
 		 * 
 		 * @return Location* 
 		 */
 		virtual Location* getLeft();
 
 		/**
-		 * @brief Returns top neighbour if it has a top neighbour return null otherwise
+		 * @brief If location is NULL throw exception else call getTop on the location object.
 		 * 
-		 * Exceptions : null_pointer_exception
+		 * Exceptions : std::__throw_out_of_range
 		 * 
 		 * @return Location* 
 		 */
 		virtual Location* getTop();
 
 		/**
-		 * @brief Returns bottom neighbour if it has a bottom neighbour return null otherwise
+		 * @brief If location is NULL throw exception else call getBottom on the location object.
 		 * 
-		 * Exceptions : null_pointer_exception
+		 * Exceptions : std::__throw_out_of_range
 		 * 
 		 * @return Location* 
 		 */
 		virtual Location* getBottom();
 
+		/**
+		 * @brief Abstract function specifying how to add neighbour to a location.
+		 * 
+		 * @param _neighbour 
+		 */
 		virtual void add(Location* _neighbour) = 0;
+
+		/**
+		 * @brief Return false if location is NULL and call hasBottom on location otherwise.
+		 * 
+		 * @return true 
+		 * @return false 
+		 */
 		virtual bool hasBottom();
+
+		/**
+		 * @brief Return false if location is NULL and call hasRight on location otherwise.
+		 * 
+		 * @return true 
+		 * @return false 
+		 */
 		virtual bool hasRight();
+
+		/**
+		 * @brief Return false if location is NULL and call hasLeft on location otherwise.
+		 * 
+		 * @return true 
+		 * @return false 
+		 */
 		virtual bool hasLeft();
+
+		/**
+		 * @brief Return false if location is NULL and call hasTop on location otherwise.
+		 * 
+		 * @return true 
+		 * @return false 
+		 */
 		virtual bool hasTop();
+
+		/**
+		 * @brief Abstract function specifying how to get a locations colour.
+		 * 
+		 * @return char 
+		 */
 		virtual char getColour() = 0;
 	
 	protected:
