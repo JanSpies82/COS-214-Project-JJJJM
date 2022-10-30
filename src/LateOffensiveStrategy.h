@@ -10,7 +10,7 @@ class LateOffensiveStrategy : public Strategy
 public:
     LateOffensiveStrategy();
     ~LateOffensiveStrategy();
-    void takeTurn(Country* countryB);
+    virtual void takeTurn(Country* countryB);
 };
 
 #endif

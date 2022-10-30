@@ -10,7 +10,7 @@ class EarlyNeutralStrategy : public Strategy
 public:
     EarlyNeutralStrategy();
     ~EarlyNeutralStrategy();
-    void takeTurn(Country* countryB);
+    virtual void takeTurn(Country* countryB);
 };
 
 

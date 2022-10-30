@@ -10,7 +10,7 @@ class EarlyDefensiveStrategy : public Strategy
 public:
     EarlyDefensiveStrategy();
     ~EarlyDefensiveStrategy();
-    void takeTurn(Country* countryB);
+    virtual void takeTurn(Country* countryB);
 };
 
 #endif

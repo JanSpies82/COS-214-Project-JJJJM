@@ -10,7 +10,7 @@ class MiddleDefensiveStrategy : public Strategy
 public:
     MiddleDefensiveStrategy();
     ~MiddleDefensiveStrategy();
-    void takeTurn(Country* countryB);
+    virtual void takeTurn(Country* countryB);
 };
 
 #endif

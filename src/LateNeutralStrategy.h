@@ -10,7 +10,7 @@ class LateNeutralStrategy : public Strategy
 public:
     LateNeutralStrategy();
     ~LateNeutralStrategy();
-    void takeTurn(Country* countryB);
+    virtual void takeTurn(Country* countryB);
 };
 
 #endif

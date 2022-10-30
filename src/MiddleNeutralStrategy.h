@@ -11,7 +11,7 @@ class MiddleNeutralStrategy : public Strategy
 public:
     MiddleNeutralStrategy();
     ~MiddleNeutralStrategy();
-    void takeTurn(Country* countryB);
+    virtual void takeTurn(Country* countryB);
 };
 
 #endif
