@@ -155,14 +155,6 @@ double* Country::getCountryRating(Country* b)
   for (double score : aspectScores)
     strengthScoresA.push_back(score);
 
-  aspectScores = compareMap(this, b);
-  for (double score : aspectScores)
-    strengthScoresA.push_back(score);
-
-  aspectScores = compareMap(b, this);
-  for (double score : aspectScores)
-    strengthScoresB.push_back(score);
-
   double strengthA = 0.0;
   for (double score : strengthScoresA)
     strengthA += score;
