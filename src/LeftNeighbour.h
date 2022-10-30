@@ -5,8 +5,8 @@
 
 class LeftNeighbour: public Neighbour
 {
-	public:
 	
+	public:
 		/**
 		 * @brief The constructor for left neighbour.
 		 * 
@@ -27,6 +27,7 @@ class LeftNeighbour: public Neighbour
 		 * @return true 
 		 */
 		bool hasLeft();
+
 };
 
 #endif

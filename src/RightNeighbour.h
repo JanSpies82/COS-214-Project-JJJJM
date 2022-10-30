@@ -5,8 +5,8 @@
 
 class RightNeighbour: public Neighbour
 {
-	public:
 	
+	public:
 		/**
 		 * @brief The constructor for right neighbour.
 		 * 

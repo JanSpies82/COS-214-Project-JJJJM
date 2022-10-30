@@ -5,8 +5,8 @@
 
 class BottomNeighbour: public Neighbour
 {
-	public:
 	
+	public:
 		/**
 		 * @brief The constructor for bottom neighbour.
 		 * 
@@ -27,6 +27,7 @@ class BottomNeighbour: public Neighbour
 		 * @return true 
 		 */
 		bool hasBottom();
+
 };
 
 #endif

@@ -6,8 +6,8 @@
 
 class MapState
 {
-	public:
 	
+	public:
 		/**
 		 * @brief Construct a new Map State object from a passed in Map pointer. Calls copy contructor of the Map class passing in m as parameter and sets mapState equal to the result.
 		 * 
