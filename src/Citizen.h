@@ -3,6 +3,7 @@
 #define __Citizen_h__
 
 // #include "Country.h"
+#include <vector>
 
 class Country;
 class Citizen;

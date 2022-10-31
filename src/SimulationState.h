@@ -1,5 +1,4 @@
 #include <exception>
-using namespace std;
 
 #ifndef __SimulationState_h__
 #define __SimulationState_h__
@@ -26,6 +25,7 @@ public:
 	 *
 	 * @param _simulationManager : SimulationManager* - Pointer to the SimulationManager object.
 	 */
+	//TODO decide wether SimulationManager is necessary
 	SimulationState(SimulationManager *_simulationManager);
 
 	/**
@@ -37,6 +37,8 @@ public:
 	/**
 	 * @brief Set the Map State object stored by the SimulationState
 	 *
+	 * If a MapState is already stored, it is deleted
+	 * 
 	 * @param _mapState : MapState* - Pointer to the MapState object.
 	 */
 	void setMapState(MapState *_mapState);
@@ -67,7 +69,7 @@ public:
 	/**
 	 * @brief Get the Country State object stored by the SimulationState
 	 *
-	 * Exceptions : std::out_of_range if the SimulationState does not hold a CountryState
+	 * Exceptions : std::out_of_range if the index is out of range
 	 * 
 	 * @param index : int - Index of the CountryState object to return.
 	 * @return CountryState*
@@ -77,7 +79,7 @@ public:
 	/**
 	 * @brief Get the Military State object stored by the SimulationState
 	 *
-	 * Exceptions : std::out_of_range if the SimulationState does not hold a MilitaryState
+	 * Exceptions : std::out_of_range if the index is out of range
 	 * 
 	 * @param index : int - Index of the MilitaryState object to return.
 	 * @return MilitaryState*

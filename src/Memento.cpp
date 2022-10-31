@@ -1,13 +1,28 @@
+/// @author Janco Spies
 
 #include "Memento.h"
-#include "Backup.h"
 #include "SimulationState.h"
 
-SimulationState* Memento::getState() {
+using namespace std;
+
+Memento::Memento()
+{
+	state = NULL;
+}
+
+Memento::~Memento()
+{
+	delete state;
+}
+
+SimulationState *Memento::getState()
+{
+	if (state == NULL)
+		__throw_out_of_range("Memento does not hold a SimulationState");
 	return this->state;
 }
 
-void Memento::setState(SimulationState* s) {
-	this->state = s;
+void Memento::setState(SimulationState *_simulationState)
+{
+	this->state = _simulationState;
 }
-
