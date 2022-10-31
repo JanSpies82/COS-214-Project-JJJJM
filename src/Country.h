@@ -25,21 +25,25 @@ public:
 
   /**
     * @brief takes next action in simulation based on current state
+    * @todo rename and implement
     */
   void request();
 
   /**
     * @brief notify each observer of the new current state
+    * @todo rename and implement
     */
   void notify();
 
   /**
     * @brief add new observer to vector of observers
+    * @todo rename and implement
     */
   void attach();
   
   /**
     * @brief remove observer from vector of observers
+    * @todo rename and implement
     */
   void detach();
 
@@ -51,11 +55,13 @@ public:
 
   /**
    * @brief sets the country's strategy
+   * @todo implement
   */
   void setStrategy();
 
   /**
     * @brief return up-to-date state information
+    * @todo review for deletion
     */
   CountryState* getState();
 
