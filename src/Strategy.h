@@ -19,17 +19,50 @@ class Strategy
     /**
      * @brief Constructor: initialises Country variable
      *
-     * @param country :Country* - The country that is to be linked to this strategy
      */
 
-    Strategy(Country *);
+    Strategy(); //Let strategy be reusable by not holding a country object
 
     /**
      * @brief virtual function representing the implementation of a strategy.
      * 
+     * @param strengthRatings double array holding the strength values of the 2 countries
+     * @param countryA the country that is making the move (calling country)
      * @param countryB the country being attacked by calling country
      */
-    virtual void takeTurn(double* strengthRatings) = 0;
+    virtual void takeTurn(double* strengthRatings,Country* countryA, Country* countryB) = 0;
+    /*  double strengthRatings[2];
+        strengthRatings[0] = strengthA;
+        strengthRatings[1] = strengthB;*/
+
+    private:
+    /**
+     * @brief virtual function representing the implementation of a turn when Country A is stronger than Country B
+     * 
+     * @param countryA the country that is making the move (calling country)
+     * @param countryB the country being attacked by calling country
+     */
+        virtual void strongerMove(Country* countryA, Country* countryB) = 0;
+
+    /**
+     * @brief virtual function representing the implementation of a turn when Country A has equal strength with Country B
+     * 
+     * @param countryA the country that is making the move (calling country)
+     * @param countryB the country being attacked by calling country
+     */
+
+        virtual void equalStrength(Country* countryA, Country* countryB) = 0;
+
+        /**
+     * @brief virtual function representing the implementation of a turn when Country A is weaker than Country B
+     * 
+     * @param countryA the country that is making the move (calling country)
+     * @param countryB the country being attacked by calling country
+     */
+        virtual void weakerMove(Country* countryA, Country* countryB) =0;
+
+
+
 };
 
 #endif
