@@ -7,6 +7,7 @@
 #include "MilitaryState.h"
 #include "CountryState.h"
 #include "CountryMediator.h"
+#include "EarlyStrategy.h"
 #include "Strategy.h"
 
 ///////////////////////////////////////////////////////////
@@ -54,6 +55,24 @@ void Country::detach()
 }
 
 ///////////////////////////////////////////////////////////
+// incrementTurnCount()
+///////////////////////////////////////////////////////////
+
+void Country::incrementTurnCount()
+{
+  turnCount += 1;
+}
+
+///////////////////////////////////////////////////////////
+// getTurnCount()
+///////////////////////////////////////////////////////////
+
+int Country::getTurnCount()
+{
+  return turnCount;
+}
+
+///////////////////////////////////////////////////////////
 // takeTurn()
 ///////////////////////////////////////////////////////////
 
@@ -70,7 +89,20 @@ void Country::takeTurn(Country* countryB)
 
 void Country::setStrategy()
 {
-  // set strategy to appropriate strategy based on war stage
+  delete strategy;
+  strategy = NULL;
+  
+  if (getTurnCount() < 5) 
+  {
+    strategy = new EarlyStrategy();
+    return;
+  }
+  if (getTurnCount() < 15) 
+  {
+    strategy = new MiddleStage();
+    return;
+  }
+  strategy = new LateStage();
 }
 
 ///////////////////////////////////////////////////////////
