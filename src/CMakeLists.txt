@@ -11,6 +11,7 @@ file(GLOB src
      "*.cpp"
      "../test/*.cpp"
 )
+set(CMAKE_BUILD_TYPE Debug)
 
 add_executable(main ${src})
 target_link_libraries(main ${GTEST_LIBRARIES} pthread)

@@ -1,5 +1,5 @@
 #include <exception>
-using namespace std;
+
 
 #ifndef __ShipFactory_h__
 #define __ShipFactory_h__

@@ -1,10 +1,18 @@
 #include <exception>
 using namespace std;
 
+#include"Tank.h"
 #include "TankFactory.h"
 #include "VehicleFactory.h"
 
-// Vehicle* TankFactory::factoryMethod() {
-// 	throw "Not yet implemented";
-// }
+		TankFactory::TankFactory(){
+			
+		}
+		
+		TankFactory::~TankFactory(){
+
+		}
+		Vehicle* TankFactory::manufactureVehicle(){
+			return new Tank();
+		}
 

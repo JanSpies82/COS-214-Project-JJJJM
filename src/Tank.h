@@ -1,5 +1,4 @@
 #include <exception>
-using namespace std;
 
 #ifndef __Tank__h__
 #define __Tank__h__
@@ -19,9 +18,14 @@ class Tank: public Vehicle
 		 **/
 		Tank();
 		/**
+		 * @brief constructs the Tank Object
+		 * @param int - damage
+		 **/
+		Tank(int,int);
+		/**
 		 * @brief destroys the Tank Object
 		 **/
-		~Tank();
+		virtual ~Tank();
 		/**
 		 * @brief attacks an enemy country 
 		 * @param Country* - passes in country to be attacked

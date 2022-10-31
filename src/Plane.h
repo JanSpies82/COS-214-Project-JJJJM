@@ -1,5 +1,5 @@
 #include <exception>
-using namespace std;
+
 
 #ifndef __Plane_h__
 #define __Plane_h__
@@ -22,7 +22,7 @@ class Plane: public Vehicle
 		/**
 		 * @brief destroys the Plane Object
 		 **/
-		~Plane();
+		virtual ~Plane();
 
 		/**
 		 * @brief Plane attacks an enemy country 

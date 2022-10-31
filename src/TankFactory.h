@@ -1,5 +1,4 @@
 #include <exception>
-using namespace std;
 
 #ifndef __TankFactory_h__
 #define __TankFactory_h__
