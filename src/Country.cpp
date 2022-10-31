@@ -180,6 +180,8 @@ void Country::setMapState(MapState* _mapState)
 // getCountryRating()
 ///////////////////////////////////////////////////////////
 
+/// @todo work with Jake_M to implement military-related functions
+
 double* Country::getCountryRating(Country* b, double* strengthRatings)
 {
   std::vector<double> strengthScoresA;
