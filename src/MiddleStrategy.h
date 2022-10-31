@@ -8,10 +8,10 @@ class MiddleStrategy : public Strategy
 public:
   MiddleStrategy();
   virtual ~MiddleStrategy();
-  virtual void takeTurn(double* strengthRatings);
-  void implementDefense(double* strengthRatings, Country* countryA, Country* countryB);
-  void implementNeutral(double* strengthRatings, Country* countryA, Country* countryB);
-  void implementOffense(double* strengthRatings, Country* countryA, Country* countryB);
+  virtual void takeTurn(double* strengthRatings, Country* countryA, Country* countryB);
+  void defendBorders(Country* countryA, Country* countryB);
+  void airstrikeCapital(Country* countryA, Country* countryB);
+  void launchInvasion(Country* countryA, Country* countryB);
 };
 
 #endif // MIDDLE_STRATEGY_H
