@@ -6,9 +6,12 @@
 class MiddleStrategy : public Strategy
 {
 public:
-    MiddleStrategy();
-    virtual ~MiddleStrategy();
-    virtual void takeTurn(double* strengthRatings);
+  MiddleStrategy();
+  virtual ~MiddleStrategy();
+  virtual void takeTurn(double* strengthRatings);
+  void implementDefense(double* strengthRatings, Country* countryA, Country* countryB);
+  void implementNeutral(double* strengthRatings, Country* countryA, Country* countryB);
+  void implementOffense(double* strengthRatings, Country* countryA, Country* countryB);
 };
 
 #endif // MIDDLE_STRATEGY_H
