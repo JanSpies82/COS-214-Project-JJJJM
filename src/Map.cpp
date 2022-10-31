@@ -1,3 +1,5 @@
+/// @author Julian Pienaar
+
 #include <exception>
 #include <iostream>
 #include <cstring>

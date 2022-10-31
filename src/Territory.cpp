@@ -1,3 +1,5 @@
+/// @author Julian Pienaar
+
 using namespace std;
 #include <iostream>
 #include <stdexcept>

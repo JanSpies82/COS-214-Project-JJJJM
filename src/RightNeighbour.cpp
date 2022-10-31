@@ -1,3 +1,5 @@
+/// @author Julian Pienaar
+
 #include <iostream>
 #include <exception>
 #include "RightNeighbour.h"

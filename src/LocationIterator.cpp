@@ -1,3 +1,5 @@
+/// @author Janco Spies
+
 using namespace std;
 
 #include "LocationIterator.h"
