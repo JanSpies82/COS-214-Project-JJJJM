@@ -3,18 +3,18 @@
 
 #include <iostream>
 
-void MiddleStrategy::takeTurn(double* strengthRatings, Country* countryA, Country* countryB) 
-{
-  double powerBalance = strengthRatings[0] - strengthRatings[1];
-  if (powerBalance < -0.5) 
-    defendBorders(countryA, countryB);
-  if (powerBalance < 0.5 && powerBalance > -0.5) 
-    airstrikeCapital(countryA, countryB);
-  if (powerBalance > 0.5) 
-    launchInvasion(countryA, countryB);
-}
+// void MiddleStrategy::takeTurn(double* strengthRatings, Country* countryA, Country* countryB) 
+// {
+//   double powerBalance = strengthRatings[0] - strengthRatings[1];
+//   if (powerBalance < -0.5) 
+//     defendBorders(countryA, countryB);
+//   if (powerBalance < 0.5 && powerBalance > -0.5) 
+//     airstrikeCapital(countryA, countryB);
+//   if (powerBalance > 0.5) 
+//     launchInvasion(countryA, countryB);
+// }
 
-void MiddleStrategy::defendBorders(Country* countryA, Country* countryB) 
+void MiddleStrategy::defensiveMove(Country* countryA, Country* countryB) 
 {
   std::cout << "MiddleStrategy::defendBorders selected" << std::endl;
   double randomOutcome = (double)rand() / (double)RAND_MAX;
@@ -53,7 +53,7 @@ void MiddleStrategy::defendBorders(Country* countryA, Country* countryB)
   countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.65);
 }
 
-void MiddleStrategy::airstrikeCapital(Country* countryA, Country* countryB) 
+void MiddleStrategy::neutralMove(Country* countryA, Country* countryB) 
 {
   std::cout << "MiddleStrategy::airstrikeCaptial selected" << std::endl;
   double randomOutcome = (double)rand() / (double)RAND_MAX;
@@ -85,7 +85,7 @@ void MiddleStrategy::airstrikeCapital(Country* countryA, Country* countryB)
   countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.95);
 }
 
-void MiddleStrategy::launchInvasion(Country* countryA, Country* countryB) 
+void MiddleStrategy::offensiveMove(Country* countryA, Country* countryB) 
 {
   std::cout << "MiddleStrategy::launchInvasion selected" << std::endl;
   double randomOutcome = (double)rand() / (double)RAND_MAX;

@@ -3,18 +3,18 @@
 
 #include <iostream>
 
-void LateStrategy::takeTurn(double* strengthRatings, Country* countryA, Country* countryB) 
-{
-  double powerBalance = strengthRatings[0] - strengthRatings[1];
-  if (powerBalance < -0.5) 
-    surrender(countryA, countryB);
-  if (powerBalance < 0.5 && powerBalance > -0.5) 
-    launchAttacks(countryA, countryB);
-  if (powerBalance > 0.5) 
-    occupyCapital(countryA, countryB);
-}
+// void LateStrategy::takeTurn(double* strengthRatings, Country* countryA, Country* countryB) 
+// {
+//   double powerBalance = strengthRatings[0] - strengthRatings[1];
+//   if (powerBalance < -0.5) 
+//     surrende(countryA, countryB);
+//   if (powerBalance < 0.5 && powerBalance > -0.5) 
+//     launchAttacks(countryA, countryB);
+//   if (powerBalance > 0.5) 
+//     occupyCapital(countryA, countryB);
+// }
 
-void LateStrategy::surrender(Country* countryA, Country* countryB) 
+void LateStrategy::defensiveMove(Country* countryA, Country* countryB) 
 {
   countryA->setPoliticalStability(0);
   countryA->setDomesticMorale(0);
@@ -24,7 +24,7 @@ void LateStrategy::surrender(Country* countryA, Country* countryB)
   countryA->setTradeRouteSafety(0); 
 }
 
-void LateStrategy::launchAttacks(Country* countryA, Country* countryB) 
+void LateStrategy::neutralMove(Country* countryA, Country* countryB) 
 {
   std::cout << "LateStrategy::launchAttacks selected" << std::endl;
   double randomOutcome = (double)rand() / (double)RAND_MAX;
@@ -63,7 +63,7 @@ void LateStrategy::launchAttacks(Country* countryA, Country* countryB)
   countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.65);
 }
 
-void LateStrategy::occupyCapital(Country* countryA, Country* countryB) 
+void LateStrategy::offensiveMove(Country* countryA, Country* countryB) 
 {
   std::cout << "LateStrategy::occupyCapital selected" << std::endl;
   double randomOutcome = (double)rand() / (double)RAND_MAX;
