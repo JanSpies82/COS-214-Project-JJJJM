@@ -18,6 +18,8 @@ class Ship: public Vehicle
 		 * @brief constructs the Ship Object
 		 **/
 		Ship();
+
+		Ship(int,int);
 		/**
 		 * @brief destroys the Ship Object
 		 **/

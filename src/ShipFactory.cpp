@@ -12,6 +12,10 @@ using namespace std;
 
 		}
 
+		Vehicle* ShipFactory::manufactureVehicle(int damageBatallion,int damageToShip){
+			return new Ship(damageBatallion,damageToShip);
+		}
+
 		Vehicle* ShipFactory::manufactureVehicle(){
 			return new Ship();
 		}

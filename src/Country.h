@@ -12,7 +12,7 @@
 // #include "Strategy.h"
 
 #include <vector>
-
+#include<string>
 class WarStage;
 class Superpower;
 class Military;
@@ -54,6 +54,11 @@ public:
     * @brief return up-to-date state information
     */
   CountryState* getState();
+
+  std::string getName();
+
+  Military* getMilitary();
+
 
 private:
   std::vector<Superpower*>* superpowers;

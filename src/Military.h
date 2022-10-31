@@ -21,12 +21,7 @@ class Military
 		 */
 		Military();
 
-		/**
-		 * @brief construct military objects 
-		 * @param int,int,int
-		 */
-		Military(int,int,int);
-
+		Military(Military*);
 		/**
 		 * @brief destruct military objects
 		 */
@@ -49,32 +44,19 @@ class Military
 		 * 
 		 *  
 		 */
-		void insertPlanes(vector<Plane*> planes);
-		/**
-		 * 
-		 *  
-		 */
+		
 		void insertTanks(Tank* tanks);
 		/**
 		 * 
 		 *  
 		 */
-		void insertTanks(vector<Tank*> tanks);
-		/**
-		 * 
-		 *  
-		 */
+		
 		void insertShips(Ship* ship);
 		/**
 		 * 
 		 *  
 		 */
-		void insertShips(vector<Ship*> ships);
-		/**
-		 * 
-		 * 
-		 * 
-		 */
+		
 		void clearShips();
 		/**
 		 * 
@@ -141,16 +123,36 @@ class Military
 		 */
 		void attack(Country* enemy);//a bit tricky but sum the up the damage of the entire army well that might be an option
 		/**
-		*@brief retrieve the battallions
+		*@brief retrieve the 
+		*
+		* @return Batalion*
 		*/
-		Battalion* getBatallions();
+		std::vector<Battalion*>* getBatallions();
 		/**
 		 * 
 		 * 
 		 * 
 		 */
+		Military * getMilitary();
+		/**
+		 * 
+		 * 
+		 * 
+		 */
+		std::vector<Ship*>* getShips();
+		/**
+		 * 
+		 * 
+		 * 
+		 */ 
+		std::vector<Tank*>* getTanks();
+		/**
+		 * 
+		 * 
+		 * 
+		 */
+		std::vector<Plane*>*  getPlanes();
 
-		
 	private: 
 		std::vector<Battalion*>* battalions;
 		std::vector<Ship*>* ships;

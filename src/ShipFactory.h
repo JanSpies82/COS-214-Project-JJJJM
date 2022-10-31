@@ -26,6 +26,7 @@ class ShipFactory: public VehicleFactory
 		 * @return Vehicle* but this class will send a Ship object 
 		 **/
 		 Vehicle* manufactureVehicle();
+		 Vehicle* manufactureVehicle(int,int);
 };
 
 #endif

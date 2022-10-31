@@ -5,35 +5,23 @@ using namespace std;
 #include "Battalion.h"
 #include "Plane.h"
 #include "Ship.h"
+#include "Tank.h"
 #include "Country.h"
 #include "VehicleFactory.h"
 #include "Vehicle.h"
 
 
 Military::Military(){
-	shipDamage=2;
-	tankDamage=3;
-	planeDamage=1;
-	battalionDamage=5;
 	 
-	battalions =new <Battalion*>();
-	ships=new <Ship*>;
-	tanks=new <Tank*>();
-	planes=new <Plane*>();
-	vehicleFactories=new <VehicleFactory*>();
+	battalions =new vector<Battalion*>();
+	ships=new vector<Ship*>();
+	tanks=new vector<Tank*>();
+	planes=new vector<Plane*>();
+	vehicleFactories=new vector<VehicleFactory*>();
 }
 
-Military::Military(int pDamage,int sDamage,int tDamage,int bDamage){
-	shipDamage=sDamage;
-	tankDamage=tDamage;
-	planeDamage=pDamage;
-	battalionDamage=bDamage;
+Military::Military(Military* copy){
 
-	battalions =new <Battalion*>();
-	ships=new <Ship*>;
-	tanks=new <Tank*>();
-	planes=new <Plane*>();
-	vehicleFactories=new <VehicleFactory*>();
 }
 
 Military::~Military(){
@@ -53,45 +41,36 @@ Military::~Military(){
 
 void Military::insertPlanes(Plane* plane){	
 	if(plane!=NULL){
-		planes->insert(plane);
+		this->planes->insert(this->planes->begin(),plane);
 	}else{
-		cout<<"NULL plane error"<<endl;
+		throw "NULL plane error";
 	}
 }	
 
-void Military::insertPlanes(vector<Plane*> _plane){
-	for (int i = 0; i < this->_plane->size(); i++)
-		this->planes->insert(this->planes->begin(), _plane_>at(i));
-}	
+	
 
 void Military::insertTanks(Tank* _tanks){
 	if(_tanks!=NULL){
-		tanks->insert(_tanks);
+		this->tanks->insert(this->tanks->begin(),_tanks);
 	}else{
-		cout<<"NULL tank error"<<endl;
+		throw "NULL tank error";
 	}
 }	
 
-void Military::insertTanks(vector<Tank*> _tanks){
-	for (int i = 0; i < this->_tanks->size(); i++)
-		this->tanks->insert(this->tanks->begin(), _tanks);
-}	
+
 
 void Military::insertShips(Ship* ship){
 	if(ship!=NULL){
-		ships->insert(ship);
+		this->ships->insert(this->ships->begin(),ship);
 	}else{
-		cout<<"NULL ship error"<<endl;
+		throw "NULL ship error";
 	}
 }
 
-void Military::insertShips(vector<Ship*> _ships){
-	for (int i = 0; i < this->_ships->size(); i++)
-		this->ships->insert(this->ships->begin(), _ships);	
-}	
+
 
 void Military:: addBattalions(){
-	battalions->insert(new Battalion());
+	
 }
 
 int Military::getNumBattalions(){
@@ -115,25 +94,39 @@ int Military::getNumVehicles(){
 }
 
 void Military::attack(Country* enemy){
-	
+	if(battalions->size()>0){
+		battalions->at(0)->attack(enemy);
+	}
+
+	if(planes->size()>0){
+		planes->at(0)->attack(enemy);
+	}
+
+	if(ships->size()>0){
+		ships->at(0)->attack(enemy);
+	}
+
+	if(tanks->size()>0){
+		ships->at(0)->attack(enemy);
+	}
 }
 
-Battalion* Military:: getBatallions(){
+std::vector<Battalion*>* Military:: getBatallions(){
 		if(battalions->size()>0)
 			return battalions;
 }
 
-Plane* Military:: getPlanes(){
+std::vector<Plane*>* Military:: getPlanes(){
 		if(battalions->size()>0)
 			return planes;
 }
 
-Tank* Military:: getTanks(){
+std::vector<Tank*>* Military:: getTanks(){
 		if(battalions->size()>0)
 			return tanks;
 }
 
-Ship* Military:: getShips(){
+std::vector<Ship*>* Military:: getShips(){
 		if(battalions->size()>0)
 			return ships;
 }
@@ -141,9 +134,9 @@ Ship* Military:: getShips(){
 void Military::clearTanks()
 {
     for (int i = 0; i < this->tanks->size(); i++)
-        delete this->tanks>at(i);
+        delete this->tanks->at(i);
     
-    this->tanks->clear();
+    this->clearTanks();
 }
 
 void Military::clearShips()
@@ -151,7 +144,7 @@ void Military::clearShips()
     for (int i = 0; i < this->ships->size(); i++)
         delete this->ships->at(i);
     
-    this->ships->clear();
+    this->clearShips();
 }
 
 void Military::clearPlanes()
@@ -159,14 +152,18 @@ void Military::clearPlanes()
     for (int i = 0; i < this->planes->size(); i++)
         delete this->planes->at(i);
     
-    this->planes->clear();
+    this->clearPlanes();
 }
 
 void Military::clearBatalions()
 {
-    for (int i = 0; i < this->batalions->size(); i++)
-        delete this->batalions->at(i);
+    for (int i = 0; i < this->battalions->size(); i++)
+        delete this->battalions->at(i);
     
-    this->batalions->clear();
+    this->clearBatalions();
 }
 
+
+Military* Military::getMilitary(){
+	return this;
+}

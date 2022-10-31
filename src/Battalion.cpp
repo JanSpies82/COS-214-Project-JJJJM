@@ -20,7 +20,7 @@ using namespace std;
 
 		
 		void Battalion::attack(Country* enemy){
-			if(enemy!=NULL){
+			/*if(enemy!=NULL){
 				vector<Battalion*> *fighters=enemy->getMilitary()->getBattalions();
 				vector<Battalion*>::iterator *it;
 				*it=fighters->begin();
@@ -29,7 +29,7 @@ using namespace std;
 					delete it;
 					it++;
 				}
-			}
+			}*/
 		}
 	
 		

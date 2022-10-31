@@ -17,7 +17,12 @@ class MilitaryState
    * @param Military object
   **/
   MilitaryState(Military* m);
-
+  /**
+   * 
+   * 
+   * 
+   */
+  ~MilitaryState();
   /**
    * @brief stores the state of the military
    * @param Military object
@@ -70,6 +75,12 @@ class MilitaryState
    * @param numShips the new number of ships
   */
   void setNumShips(int numShips);
+  /**
+   * 
+   * 
+   * 
+   */
+   Military* getState(); 
 		
 private:
 	Military* State;

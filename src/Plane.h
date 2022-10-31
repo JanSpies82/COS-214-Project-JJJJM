@@ -10,7 +10,7 @@ class Country;
 	 * @brief The Plane class is an inherited class from vehicle. 
 	 * defines the operations and attributes of the Plane class
 	 **/
-class Plane: public Vehicle
+class Plane : public Vehicle
 {
 
 	public: 
@@ -18,6 +18,8 @@ class Plane: public Vehicle
 		 * @brief constructs the Plane Object
 		 **/
 		Plane();
+		Plane(int,int,int);
+
 
 		/**
 		 * @brief destroys the Plane Object
@@ -78,7 +80,7 @@ class Plane: public Vehicle
 		int getPlanesDestroyed();
 	private:
 		int numBattalionDestroys;
-		int numTankDetroys;
+		int numTankDestroys;
 		int numPlanesDestroys;
 };
 

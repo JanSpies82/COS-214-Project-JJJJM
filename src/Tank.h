@@ -62,7 +62,7 @@ class Tank: public Vehicle
 		int getTankDestroyed();
 	private: 
 		int numBattalionDestroys;
-		int numTankDetroys;
+		int numTankDestroys;
 
 };
 

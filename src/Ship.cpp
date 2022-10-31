@@ -1,9 +1,12 @@
 #include <exception>
-using namespace std;
-#include<vectors>
+#include<iostream>
+#include<vector>
 #include "Ship.h"
+#include "Battalion.h"
 #include "Vehicle.h"
-
+#include "Military.h"
+#include"Country.h"
+using namespace std;
 
 	Ship::Ship(){ 
 		numBattalionDestroys=2;
@@ -16,25 +19,24 @@ using namespace std;
 	}
 
 	Ship::~Ship(){
-		cout<<"Ship destroyed"<<endl; 
+		
 	}
 	
 	void Ship::attack(Country* enemy){
-		if(enemy!-NULL){
-				vector<Ship*> *ships=enemy->getMilitary()->getShips();
-				vector<Ship*>::iterator *it;
-				it=ships->begin();
-				int i =0;
-				while(i<numShipDestroys){
-					*it->remove();
-					it++;
+		if(enemy!=NULL){
+				vector<Ship*> *fighters1=enemy->getMilitary()->getShips();
+				if(fighters1->size()>numShipDestroys){
+				for (int i = 0; i < numShipDestroys; i++)
+        			delete fighters1->at(i);
+				}else{
+					enemy->getMilitary()->clearBatalions();
 				}
-				vector<Battalion*> * fighters=enemy->getMilitary()->getBattalions();
-				vector<Battalion*>::iterator *itr;
-				i=0;
-				while(i<numBattalionDestroys){
-					*itr->remove();
-					itr++;
+				vector<Battalion*> *fighters2=enemy->getMilitary()->getBatallions();
+				if(fighters2->size()>numBattalionDestroys){
+					for (int i = 0; i < numBattalionDestroys; i++)
+        				delete fighters2->at(i);
+				}else{
+					enemy->getMilitary()->clearBatalions();
 				}
 
 			}
@@ -45,7 +47,7 @@ using namespace std;
 	}
 	
 	void Ship::destroyEnemy(Country* enemy){
-		cout<<enemy-getName()<<" country has been defeated"<<endl;
+		cout<<enemy->getName()<<" country has been defeated"<<endl;
 		delete enemy;
 	}
 	

@@ -3,6 +3,7 @@
 
 MilitaryState::MilitaryState(Military * m){
 	State=m;
+	
 }
 
 MilitaryState::~MilitaryState(){
@@ -17,17 +18,21 @@ Military* MilitaryState:: getState(){
     return State;
 }
 
- int MilitaryState::getNumShips(){
- 	m->getNumShips();
+ void MilitaryState::setNumShips(int n){
+ 	numShips=n;
  }
- int MilitaryState::getNumPlanes(){
- 	m->getNumPlanes();
+ 
+ void MilitaryState::setNumPlanes(int n){
+ 	numPlanes=n;
+  }  
+ void MilitaryState::setNumTanks(int n){
+ 	numTanks=n;
+    
  }
- int MilitaryState::getNumTanks(){
- 	m->getNumTanks();
+ void MilitaryState::setNumTroops(int n){
+ 	numTroops=n;
+    
  }
- int MilitaryState::getNumTroops(){
- 	m->getNumBattalions();
- }
+ 
 
 

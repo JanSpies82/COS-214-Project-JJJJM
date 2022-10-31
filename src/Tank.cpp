@@ -1,65 +1,66 @@
 #include <exception>
-using namespace std;
+#include<iostream>
+#include "Military.h"
+#include "Battalion.h"
 #include<vector>
 #include "Tank.h"
 #include "Vehicle.h"
+#include "Country.h"
+using namespace std;
 
-		Tank::Tank(){
-			numBattalionDestroys=5;
-			numTankDestroys=2;
-		}
+Tank::Tank(){
+	numBattalionDestroys=5;
+	numTankDestroys=2;
+}
 		
-		Tank::Tank(int damageToBatallion,int damageToTanks){
-			numBattalionDestroys=damageToBatallion;
-			numTankDetroys=damageToTanks;
+Tank::Tank(int damageToBatallion,int damageToTanks){
+	numBattalionDestroys=damageToBatallion;
+	numTankDestroys=damageToTanks;
+}
+Tank::~Tank(){
+	
+}
+		
+void Tank::attack(Country* enemy){
+	if(enemy!=NULL){
+		vector<Battalion*> *fighters1=enemy->getMilitary()->getBatallions();
+		if(fighters1->size()>numBattalionDestroys){
+			for (int i = 0; i < numBattalionDestroys; i++)
+    	   		delete fighters1->at(i);
+		}else{
+			enemy->getMilitary()->clearBatalions();
+		}
+			
+		vector<Tank*> * fighters2=enemy->getMilitary()->getTanks();
+		if(fighters2->size()>numTankDestroys){
+			for (int i = 0; i < numTankDestroys; i++)
+    	   		delete fighters2->at(i);
+		}else{
+			enemy->getMilitary()->clearTanks();
 		}
 
-		Tank::~Tank(){
-			cout<<"Tank destroyed"<<endl;
-		}
+	}
+}
 		
-		void Tank::attack(Country* enemy){
-			if(enemy!-NULL){
-				vector<Tank*> *tanks=enemy->getMilitary()->getTanks();
-				vector<Tank*>::iterator *it;
-				it=tanks->begin();
-				int i =0;
-				while(i<numTankDestroys){
-					*it->remove();
-					it++;
-				}
-				vector<Battalion*> * fighters=enemy->getMilitary()->getBattalions();
-				vector<Battalion*>::iterator *itr;
-				i=0;
-				while(i<numBattalionDestroys){
-					*itr->remove();
-					itr++;
-				}
-
-			}
-		}
+void Tank::findEnemy(){
+}
 		
-		void Tank::findEnemy(){
-
-		}
+void Tank::destroyEnemy(Country* enemy){
+	cout<<enemy->getName()<<" country has been defeated"<<endl;
+	delete enemy;
+}
 		
-		void Tank::destroyEnemy(Country* enemy){
-			cout<<enemy-getName()<<" country has been defeated"<<endl;
-			delete enemy;
-		}
+void Tank::setNumBattalionDestroys(int batt){
+	numBattalionDestroys=batt;
+}
+void Tank::setNumTankDetroys(int tanks){
+	numTankDestroys=tanks;
+}
 		
-		void Tank::setNumBattalionDestroys(int batt){
-			numBattalionDestroys=batt;
-		}
+int Tank::getBattalionDestroyed(){
+	return numBattalionDestroys;
+}
 		
-		void Tank::setNumTankDetroys(int tanks){
-			numTankDestroys=tanks;
-		}
-		
-		int Tank::getBattalionDestroyed(){
-			return numBattalionDestroys;
-		}
-		
-		int Tank::getTankDestroyed(){
-			return numTankDestroys;
-		}
+int Tank::getTankDestroyed(){
+	return numTankDestroys;
+}
