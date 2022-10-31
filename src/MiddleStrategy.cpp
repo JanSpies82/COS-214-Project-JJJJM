@@ -20,7 +20,7 @@ void MiddleStrategy::defendBorders(Country* countryA, Country* countryB)
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.3
   // CountryB chance of success : 0.7
-  if (randomOutcome <= 0.3) // CountryA successfully defended its borders
+  if (randomOutcome <= 0.3) // CountryA successfully defended its border/s
   {
     countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
     countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
