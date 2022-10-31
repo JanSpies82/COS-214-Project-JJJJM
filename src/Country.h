@@ -21,10 +21,7 @@ public:
   /**
    * @brief default constructor
    */
-  Country()
-  {
-    turnCount = 0;
-  };
+  Country();
 
   /**
     * @brief takes next action in simulation based on current state
