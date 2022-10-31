@@ -64,7 +64,7 @@ public:
     * @param countryB the country that this country is implementing a strategy against
     * @return the strength rating of this country
     */
-  double* getCountryRating(Country* countryB);
+  double* getCountryRating(Country* countryB, double* strengthRatings);
 
   /**
     * @brief compares two state paramters and returns countryA's advantage
