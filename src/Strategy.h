@@ -31,30 +31,30 @@ public:
    */
   virtual void takeTurn(double* strengthRatings, Country* countryA, Country* countryB);
 
-private:
-  // /**
-  //  * @brief virtual function representing the implementation of a turn when Country A is stronger than Country B
-  //  * 
-  //  * @param countryA the country that is making the move (calling country)
-  //  * @param countryB the country being attacked by calling country
-  //  */
-  // virtual void strongerMove(Country* countryA, Country* countryB) = 0;
+protected:
+  /**
+   * @brief virtual function representing the implementation of a turn when Country A is stronger than Country B
+   * 
+   * @param countryA the country that is making the move (calling country)
+   * @param countryB the country being attacked by calling country
+   */
+  virtual void offensiveMove(Country* countryA, Country* countryB) = 0;
 
-  // /**
-  //  * @brief virtual function representing the implementation of a turn when Country A has equal strength with Country B
-  //  * 
-  //  * @param countryA the country that is making the move (calling country)
-  //  * @param countryB the country being attacked by calling country
-  //  */
-  // virtual void equalStrength(Country* countryA, Country* countryB) = 0;
+  /**
+   * @brief virtual function representing the implementation of a turn when Country A has equal strength with Country B
+   * 
+   * @param countryA the country that is making the move (calling country)
+   * @param countryB the country being attacked by calling country
+   */
+  virtual void neutralMove(Country* countryA, Country* countryB) = 0;
 
-  // /**
-  //  * @brief virtual function representing the implementation of a turn when Country A is weaker than Country B
-  //  * 
-  //  * @param countryA the country that is making the move (calling country)
-  //  * @param countryB the country being attacked by calling country
-  //  */
-  // virtual void weakerMove(Country* countryA, Country* countryB) =0;
+  /**
+   * @brief virtual function representing the implementation of a turn when Country A is weaker than Country B
+   * 
+   * @param countryA the country that is making the move (calling country)
+   * @param countryB the country being attacked by calling country
+   */
+  virtual void defensiveMove(Country* countryA, Country* countryB) = 0;
 
 
 

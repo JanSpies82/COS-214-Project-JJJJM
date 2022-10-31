@@ -17,10 +17,12 @@ public:
   */
   ~EarlyStrategy();
 
-  /**
-   * @brief a decision function that determines the exact strategy to be used
-  */
-  virtual void takeTurn(double* strengthRatings, Country* countryA, Country* countryB);
+  // /**
+  //  * @brief a decision function that determines the exact strategy to be used
+  // */
+  // virtual void takeTurn(double* strengthRatings, Country* countryA, Country* countryB);
+
+protected:
 
   /**
    * @brief virtual function representing the implementation of a turn 
@@ -29,7 +31,7 @@ public:
    * @param countryA the country that is making the move (calling country)
    * @param countryB the country being attacked by calling country
    */
-  void negotiate(Country* countryA, Country* countryB);
+  void defensiveMove(Country* countryA, Country* countryB);
 
   /**
    * @brief virtual function representing the implementation of a turn 
@@ -38,7 +40,7 @@ public:
    * @param countryA the country that is making the move (calling country)
    * @param countryB the country being attacked by calling country
    */
-  void taxImports(Country* countryA, Country* countryB);
+  void neutralMove(Country* countryA, Country* countryB);
 
   /**
    * @brief virtual function representing the implementation of a turn 
@@ -47,7 +49,7 @@ public:
    * @param countryA the country that is making the move (calling country)
    * @param countryB the country being attacked by calling country
    */
-  void banImports(Country* countryA, Country* countryB);
+  void offensiveMove(Country* countryA, Country* countryB);
 
 };
 
