@@ -1,7 +1,6 @@
 #ifndef __CountryMediator_h__
 #define __CountryMediator_h__
 
-
 #include <vector>
 
 class Country;

@@ -3,3 +3,5 @@
 #include "SimulationManager.h"
 #include "Country.h"
 
+Superpower::~Superpower(){}
+
