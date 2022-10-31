@@ -61,7 +61,7 @@ void Country::takeTurn(Country* countryB)
 {
   setStrategy();
   double* strengthRatings = getCountryRating(countryB);
-	strategy->takeTurn(strengthRatings);
+	strategy->takeTurn(strengthRatings, this, countryB);
 }
 
 ///////////////////////////////////////////////////////////
