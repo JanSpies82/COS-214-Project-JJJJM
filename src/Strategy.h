@@ -30,7 +30,7 @@ class Strategy
      * @param countryA the country that is making the move (calling country)
      * @param countryB the country being attacked by calling country
      */
-    virtual void takeTurn(double* strengthRatings,Country* countryA, Country* countryB) = 0;
+    void takeTurn(double* strengthRatings,Country* countryA, Country* countryB);
     /*  double strengthRatings[2];
         strengthRatings[0] = strengthA;
         strengthRatings[1] = strengthB;*/
