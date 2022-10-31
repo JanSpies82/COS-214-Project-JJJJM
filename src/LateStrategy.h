@@ -8,10 +8,10 @@ class LateStrategy : public Strategy
 public:
     LateStrategy();
     virtual ~LateStrategy();
-    virtual void takeTurn(double* strengthRatings);
-    void implementDefense(double* strengthRatings, Country* countryA, Country* countryB);
-    void implementNeutral(double* strengthRatings, Country* countryA, Country* countryB);
-    void implementOffense(double* strengthRatings, Country* countryA, Country* countryB);
+    virtual void takeTurn(double* strengthRatings, Country* countryA, Country* countryB);
+    void surrender(Country* countryA, Country* countryB);
+    void launchAttacks(Country* countryA, Country* countryB);
+    void occupyCapital(Country* countryA, Country* countryB);
 };
 
 #endif // LATE_STRATEGY_H
