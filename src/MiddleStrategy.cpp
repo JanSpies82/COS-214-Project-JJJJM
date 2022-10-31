@@ -76,7 +76,7 @@ void MiddleStrategy::airstrikeCapital(Country* countryA, Country* countryB)
     countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.65);
     return;
   }
-  // CountryB stopped the neutralised countryA's airforce
+  // CountryB neutralised countryA's airforce
   countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
   countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
   countryA->setBorderStrength(countryA->getBorderStrength() * 0.95);
