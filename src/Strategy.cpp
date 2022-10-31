@@ -1,14 +1,17 @@
 #include <exception>
-using namespace std;
 
 #include "Strategy.h"
 #include "Country.h"
 
-// void Strategy::algorithm() {
-// 	throw "Not yet implemented";
-// }
+Strategy::Strategy()
+{
+}
 
-// void Strategy::takeTurn(double* strengthRatings,Country* countryA, Country* countryB)
+void Strategy::takeTurn(double* strengthRatings, Country* countryA, Country* countryB)
+{
+}
+
+// void Strategy::takeTurn(double* strengthRatings, Country* countryA, Country* countryB)
 // {
 //     //ifCountryA is weaker than CountryB
 //     if(strengthRatings[0] < strengthRatings[1])
