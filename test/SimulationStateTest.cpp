@@ -4,8 +4,10 @@
 #include "../src/MapState.h"
 #include "../src/CountryState.h"
 #include "../src/MilitaryState.h"
+#include "../src/Country.h"
+#include "../src/Map.h"
+#include "../src/Military.h"
 #include "gtest/gtest.h"
-
 
 // class IteratorTest : public testing::Test
 // {
@@ -39,11 +41,11 @@ namespace
     // public:
     //     FakeMapState() : MapState(NULL) {}
     // };
-    class FakeCountryState : public CountryState
-    {
-    public:
-        FakeCountryState() : CountryState(NULL) {}
-    };
+    // class FakeCountryState : public CountryState
+    // {
+    // public:
+    //     FakeCountryState() : CountryState(NULL) {}
+    // };
     class FakeMilitaryState : public MilitaryState
     {
     public:
@@ -62,7 +64,7 @@ namespace
     TEST(SimulationStateTest, SetMapState)
     {
         SimulationState *simulationState = new SimulationState(NULL);
-        Map* m1 = new Map();
+        Map *m1 = new Map();
         MapState *map1 = new MapState(m1);
         simulationState->setMapState(map1);
         EXPECT_EQ(simulationState->getMapState(), map1);
@@ -79,7 +81,7 @@ namespace
     {
         SimulationState *simulationState = new SimulationState(NULL);
         EXPECT_THROW(simulationState->getMapState(), std::out_of_range);
-        Map* m1 = new Map();
+        Map *m1 = new Map();
         MapState *map1 = new MapState(m1);
         simulationState->setMapState(map1);
         EXPECT_EQ(simulationState->getMapState(), map1);
@@ -90,32 +92,40 @@ namespace
     TEST(SimulationStateTest, AddCountryState)
     {
         SimulationState *simulationState = new SimulationState(NULL);
-        CountryState *countryState1 = new FakeCountryState();
+        Country *c1 = new Country();
+        CountryState *countryState1 = new CountryState(c1);
         simulationState->addCountryState(countryState1);
         EXPECT_EQ(simulationState->getCountryStateCount(), 1);
         EXPECT_EQ(simulationState->getCountryState(0), countryState1);
-        CountryState *countryState2 = new FakeCountryState();
+        Country *c2 = new Country();
+        CountryState *countryState2 = new CountryState(c2);
         simulationState->addCountryState(countryState2);
         EXPECT_EQ(simulationState->getCountryStateCount(), 2);
         EXPECT_EQ(simulationState->getCountryState(0), countryState1);
         EXPECT_EQ(simulationState->getCountryState(1), countryState2);
         delete simulationState;
+        delete c1;
+        delete c2;
     }
 
     TEST(SimulationStateTest, GetCountryState)
     {
         SimulationState *simulationState = new SimulationState(NULL);
         EXPECT_THROW(simulationState->getCountryState(0), std::out_of_range);
-        CountryState *countryState1 = new FakeCountryState();
+        Country *c1 = new Country();
+        CountryState *countryState1 = new CountryState(c1);
         simulationState->addCountryState(countryState1);
         EXPECT_EQ(simulationState->getCountryState(0), countryState1);
         EXPECT_THROW(simulationState->getCountryState(1), std::out_of_range);
-        CountryState *countryState2 = new FakeCountryState();
+        Country *c2 = new Country();
+        CountryState *countryState2 = new CountryState(c2);
         simulationState->addCountryState(countryState2);
         EXPECT_EQ(simulationState->getCountryState(0), countryState1);
         EXPECT_EQ(simulationState->getCountryState(1), countryState2);
         EXPECT_THROW(simulationState->getCountryState(2), std::out_of_range);
         delete simulationState;
+        delete c1;
+        delete c2;
     }
 
     TEST(SimulationStateTest, AddMilitaryState)
