@@ -8,6 +8,8 @@
 #include "CountryState.h"
 #include "CountryMediator.h"
 #include "EarlyStrategy.h"
+#include "MiddleStrategy.h"
+#include "LateStrategy.h"
 #include "Strategy.h"
 
 ///////////////////////////////////////////////////////////
@@ -80,7 +82,8 @@ int Country::getTurnCount()
 void Country::takeTurn(Country* countryB)
 {
   setStrategy();
-  double* strengthRatings = getCountryRating(countryB);
+  double* strengthRatings;
+  getCountryRating(countryB, strengthRatings);
 	strategy->takeTurn(strengthRatings, this, countryB);
 }
 
@@ -100,10 +103,10 @@ void Country::setStrategy()
   }
   if (getTurnCount() < 15) 
   {
-    strategy = new MiddleStage();
+    strategy = new MiddleStrategy();
     return;
   }
-  strategy = new LateStage();
+  strategy = new LateStrategy();
 }
 
 ///////////////////////////////////////////////////////////
@@ -175,7 +178,7 @@ void Country::setMapState(MapState* _mapState)
 // getCountryRating()
 ///////////////////////////////////////////////////////////
 
-double* Country::getCountryRating(Country* b)
+double* Country::getCountryRating(Country* b, double* strengthRatings)
 {
   std::vector<double> strengthScoresA;
   std::vector<double> strengthScoresB;
@@ -207,10 +210,9 @@ double* Country::getCountryRating(Country* b)
     strengthB += score;
   strengthB /= strengthScoresB.size();
 
-  double scores[2];
-  scores[0] = strengthA;
-  scores[1] = strengthB;
-  return scores;
+  strengthRatings[0] = strengthA;
+  strengthRatings[1] = strengthB;
+  return strengthRatings;
 }
 
 ///////////////////////////////////////////////////////////
