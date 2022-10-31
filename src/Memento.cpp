@@ -1,3 +1,4 @@
+/// @author Janco Spies
 
 #include "Memento.h"
 #include "SimulationState.h"

@@ -1,3 +1,5 @@
+/// @author Janco Spies
+
 #include <exception>
 using namespace std;
 
