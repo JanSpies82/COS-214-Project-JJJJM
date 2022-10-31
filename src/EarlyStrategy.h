@@ -9,9 +9,9 @@ public:
   EarlyStrategy();
   virtual ~EarlyStrategy();
   virtual void takeTurn(double* strengthRatings, Country* countryA, Country* countryB);
-  void implementDefense(double* strengthRatings, Country* countryA, Country* countryB);
-  void implementNeutral(double* strengthRatings, Country* countryA, Country* countryB);
-  void implementOffense(double* strengthRatings, Country* countryA, Country* countryB);
+  void negotiate(Country* countryA, Country* countryB);
+  void taxImports(Country* countryA, Country* countryB);
+  void banImports(Country* countryA, Country* countryB);
 
 };
 
