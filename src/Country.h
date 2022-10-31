@@ -73,7 +73,7 @@ public:
     * @brief compares two state paramters and returns countryA's advantage
     * @param countryA state parameter of countryA
     * @param countryB state parameter of countryB
-p    * @return a comparable value of the advantage of countryA
+    * @return a comparable value of the advantage of countryA
     */
   double compareAspect(int countryA, int countryB);
 
