@@ -214,9 +214,29 @@ public:
   */
   void setCountryState(CountryState* _countryState);
 
+  /**
+   * @brief compares the various aspects of two countries' militaries
+   * @param a the country implementing a strategy against b
+   * @param b the country being attacked by a
+  */
   std::vector<double> compareMilitary(Country* a, Country* b);
+
+  /**
+   * @brief compares the various aspects of two countries' internal states
+   * @param a the country implementing a strategy against b
+   * @param b the country being attacked by a
+  */
   std::vector<double> compareDomestic(Country* a, Country* b);
+
+  /**
+   * @brief increments turnCount by 1 indicating the stage of war
+  */
   void incrementTurnCount();
+
+  /**
+   * @brief getter for turnCount
+   * @return returns the current turnCount
+  */
   int getTurnCount();
 
   
