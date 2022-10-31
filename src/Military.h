@@ -28,19 +28,29 @@ class Military
 
 		/**
 		 **/
-		int getNumBattalions();
+		int getNumBattalions()
+    {
+      return battalions->size();
+    }
+		/**
+		 **/
+		int getNumTanks() 
+    {
+      return tanks->size();
+    }
+		/**
+		 **/
+		int getNumPlanes()
+    {
+      return planes->size();
+    };
 
 		/**
 		 **/
-		int getNumTanks();
-
-		/**
-		 **/
-		int getNumPlanes();
-
-		/**
-		 **/
-		int getNumShips();
+		int getNumShips() 
+    {
+      return ships->size();
+    };
 
 		/**
 		 **/
