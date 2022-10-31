@@ -21,7 +21,10 @@ public:
   /**
    * @brief default constructor
    */
-  Country();
+  Country()
+  {
+    turnCount = 0;
+  };
 
   /**
     * @brief takes next action in simulation based on current state
@@ -216,9 +219,12 @@ p    * @return a comparable value of the advantage of countryA
 
   std::vector<double> compareMilitary(Country* a, Country* b);
   std::vector<double> compareDomestic(Country* a, Country* b);
+  void incrementTurnCount();
+  int getTurnCount();
 
   
 private:
+  int turnCount;
   int numCitizens;
   MapState* mapState;
   Military* military;
