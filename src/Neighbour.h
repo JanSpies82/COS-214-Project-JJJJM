@@ -1,35 +1,41 @@
-#include <exception>
-using namespace std;
-
 #ifndef __Neighbour_h__
 #define __Neighbour_h__
 
 #include "Location.h"
 
-// class Location;
-// class Neighbour;
-class Iterator;
-
 class Neighbour: public Location
 {
+
 	public:
-		Location* locations;
+		/**
+		 * @brief Constructor for Neighbour class.
+		 * 
+		 * @param _neighbour : Location* - Pointer to the added neighbour location.
+		 */
+		Neighbour(Location* _neighbour);
 
 		/**
-		 * @brief Set the Neighbour object depending on which type of neighbour calls this function
+		 * @brief Destructor for the Neighbour class.
 		 * 
 		 */
-		virtual void setNeighbour();
+		virtual ~Neighbour();
 
 		/**
-		 * @brief Create an Iterator object
+		 * @brief Call getColour on the location object.
 		 * 
-		 * @return Iterator* 
+		 * @return char 
 		 */
-		virtual Iterator* createIterator();
+		virtual char getColour();
 
-	private:
-		Location* location;
+		/**
+		 * @brief If location is NULL set location to equal _neighbour else call add on location sending _neighbour in as the parameter.
+		 * 
+		 * @param _neighbour : Location* - Pointer to the location to be added.
+		 */
+		virtual void add(Location* _neighbour);
+
+	protected:
+		Location* neighbour;
 
 };
 

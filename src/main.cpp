@@ -33,5 +33,7 @@
 
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
+    //Terminal command for valgrind:
+    //valgrind --tool=memcheck --leak-check=yes --track-origins=yes --log-file=valg.txt ./main
     return RUN_ALL_TESTS();
 }
