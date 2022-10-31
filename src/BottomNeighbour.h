@@ -1,28 +1,33 @@
-#include <exception>
-using namespace std;
-
 #ifndef __BottomNeighbour_h__
 #define __BottomNeighbour_h__
 
 #include "Neighbour.h"
 
-class Location;
-// class Neighbour;
-class BottomNeighbour;
-
 class BottomNeighbour: public Neighbour
 {
+	
 	public:
 		/**
-		 * @brief Set the bottomLocation object to the passed in _bottom parameter
+		 * @brief The constructor for bottom neighbour.
 		 * 
-		 * @param _neighbour : Location* - parameter to set the bottomLocation object to 
+		 * @param _neighbour : Location* - Pointer to the bottom neighbour. 
 		 */
-		void setNeighbour(Location* _neighbour);
+		BottomNeighbour(Location* _neighbour);
 
-	private: 
-		//StateType* addedState;
-		Location* bottomLocation;
+		/**
+		 * @brief Returns bottom neighbour.
+		 * 
+		 * @return Location* 
+		 */
+		Location* getBottom();
+
+		/**
+		 * @brief Always returns true since BottomNeighbour will always have a bottom neighbour.
+		 * 
+		 * @return true 
+		 */
+		bool hasBottom();
+
 };
 
 #endif

@@ -1,13 +1,22 @@
+/// @author Julian Pienaar
+
 #include <exception>
+
 using namespace std;
 
+#include "Map.h"
 #include "MapState.h"
 #include "SimulationState.h"
 
-MapState::MapState(Map* m) {
+MapState::MapState(Map* _m) {
+    mapState=new Map(_m);
 }
 
-// void MapState::simulationState() {
-// 	throw "Not yet implemented";
-// }
+MapState::~MapState(){
+    delete mapState;
+}
+
+Map* MapState::clone(){
+    return new Map(mapState);
+}
 
