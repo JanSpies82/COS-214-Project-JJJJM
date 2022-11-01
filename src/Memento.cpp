@@ -10,6 +10,11 @@ Memento::Memento()
 	state = NULL;
 }
 
+Memento::Memento(SimulationState *_simulationState)
+{
+	this->state = _simulationState;
+}
+
 Memento::~Memento()
 {
 	delete state;
