@@ -66,7 +66,9 @@ public:
     */
   CountryState* getState();
 
-  //TODO add documentation/refinement
+  /**
+   * @brief returns the country's name
+  */
   std::string getName();
 
   Military* getMilitary();
@@ -258,6 +260,7 @@ public:
 private:
   int turnCount;
   int numCitizens;
+  std::string name;
   MapState* mapState;
   Military* military;
   WarStage* warStage;
