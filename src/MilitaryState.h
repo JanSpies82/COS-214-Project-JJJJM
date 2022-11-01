@@ -81,15 +81,15 @@ class MilitaryState
    * 
    */
    Military* getState(); 
-    void setNumBattalions();
-    int getNumBatalions();		
+    void setNumBatalions(int);
+    int getNumBattalions();		
 private:
 	Military* State;
 	int numTroops;
     int numTanks;
     int numPlanes;
     int numShips;
-    int numBattalions;
+    int numBatalions;
 	std::time_t timestamp;
 
 	

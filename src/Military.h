@@ -165,6 +165,7 @@ class Military
 		std::vector<Battalion*>* battalions;
 		std::vector<Ship*>* ships;
 		std::vector<Tank*>* tanks;
+		int numTroops;
 		//Country* countries;
 		std::vector<Plane*>* planes;
 		std::vector<VehicleFactory*>* vehicleFactories;
