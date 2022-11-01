@@ -31,28 +31,31 @@ class WarStage
         /**
          * @brief Moves current warstage to next warstage
         */
-        virtual void changeStage() = 0;
+        virtual WarStage* changeStage() = 0;
 
         /**
          * @brief increments round/turn to go to the next round
         */
         void incrementRound();
-        /**
-         * @brief sets the simulationLength: how many turns/rounds do we want to run the simulation for
-         * 
-         * @param length, the length wanted for the simulation
-        */
-        void setSimulationLength(int length);
+        // /**
+        //  * @brief sets the simulationLength: how many turns/rounds do we want to run the simulation for
+        //  * 
+        //  * @param length, the length wanted for the simulation
+        // */
+        // void setSimulationLength(int length);
+        
         /**
          * @brief returns the current round we are on
         */
         int getCurrentRound();
+        //void setCurrentRound(int round);
 
     
     protected:
         WarStage();
-        int simulationLength;
+        //int simulationLength;
         int currentRound; 
+
     
     public: 
     // virtual void handle() = 0;

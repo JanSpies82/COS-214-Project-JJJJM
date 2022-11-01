@@ -24,20 +24,32 @@
 // }
 
 WarStage::WarStage(){
-	simulationLength = 0;
+	//simulationLength = 0;
 	currentRound = 0;
 }
 
-void WarStage::setSimulationLength(int length){
-	simulationLength = length;
-}
+// void WarStage::setSimulationLength(int length){
+// 	simulationLength = length;
+// }
 
 int WarStage::getCurrentRound(){
 	return currentRound;
 }
 
-
-
 void WarStage::incrementRound(){
-	currentRound++;
+	// int earlyStage = simulationLength * 0.3;
+	// int midStage = simulationLength * 0.9;
+
+	// if(currentRound < earlyStage){
+	// 	currentRound++;
+	// 	if(currentRound = earlyStage)
+	// 		changeStage();
+	// } 
+	// else if(currentRound < midStage){
+	// 	currentRound++;
+	// 	if(currentRound = midStage)
+	// 		changeStage();
+	// }
+	// else
+		currentRound++;
 }

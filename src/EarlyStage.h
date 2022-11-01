@@ -28,7 +28,7 @@ class EarlyStage: public WarStage
         /**
          * @brief Moves current warstage to next warstage
         */
-        void changeStage();
+        WarStage* changeStage();
     protected:
         static WarStage* onlyInstance;
         EarlyStage();

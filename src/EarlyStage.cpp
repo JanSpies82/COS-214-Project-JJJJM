@@ -4,6 +4,7 @@ using namespace std;
 #include "EarlyStage.h"
 #include "WarStage.h"
 
+
 WarStage* EarlyStage::onlyInstance = 0;
 
 WarStage* EarlyStage::getInstance() {
@@ -21,23 +22,22 @@ WarStage* EarlyStage::getInstance(int length) {
 }
 
 EarlyStage::EarlyStage(){
-	simulationLength = 0;
 	currentRound = 0;
 }
 
-EarlyStage::EarlyStage(int length){
-	simulationLength = length;
-	currentRound = 0;
+EarlyStage::EarlyStage(int round){
+	currentRound = round;
 }
 
 WarStage* EarlyStage::clone(){
-
+	WarStage* clone = new EarlyStage(currentRound);
+	return clone;
 }
 
 int EarlyStage::getWarStage(){
-	
+	return 0;
 }
 
-void EarlyStage::changeStage(){
-
+WarStage* EarlyStage::changeStage(){
+	return MiddleStage::getInstance(currentRound);
 }
