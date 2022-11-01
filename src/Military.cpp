@@ -48,7 +48,6 @@ void Military::insertPlanes(Plane* plane){
 }	
 
 	
-
 void Military::insertTanks(Tank* _tanks){
 	if(_tanks!=NULL){
 		this->tanks->insert(this->tanks->begin(),_tanks);
@@ -56,7 +55,6 @@ void Military::insertTanks(Tank* _tanks){
 		throw "NULL tank error";
 	}
 }	
-
 
 
 void Military::insertShips(Ship* ship){
@@ -166,4 +164,12 @@ void Military::clearBatalions()
 
 Military* Military::getMilitary(){
 	return this;
+}
+
+void Military::setNumTroops(int t){
+	numTroops=t;
+}
+
+int Military::getNumTroops(){
+	return numTroops;
 }

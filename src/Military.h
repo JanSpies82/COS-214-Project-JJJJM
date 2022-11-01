@@ -12,7 +12,6 @@ class Battalion;
 class Country;
 
 
-
 class Military
 {
 	public:
@@ -152,7 +151,16 @@ class Military
 		 * 
 		 */
 		std::vector<Plane*>*  getPlanes();
-
+		/**
+		 * 
+		 * 
+		 */
+		void setNumTroops(int);
+		/**
+		 * 
+		 * 
+		 */
+		 int getNumTroops(); 
 	private: 
 		std::vector<Battalion*>* battalions;
 		std::vector<Ship*>* ships;
@@ -161,10 +169,6 @@ class Military
 		std::vector<Plane*>* planes;
 		std::vector<VehicleFactory*>* vehicleFactories;
 		
-		int battalionDamage;
-		int tankDamage;
-		int shipDamage;
-		int planeDamage;
 };
 
 #endif
