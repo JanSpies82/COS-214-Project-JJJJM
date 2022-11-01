@@ -216,10 +216,23 @@ public:
   */
   void incrementTurnCount();
 
+  /**
+   * @brief getter for this country's capital
+   * 
+   * @return returns this country's capital location object
+  */
   Location* getCapital();
 
+  /**
+   * @brief setter for this country's capital
+   * 
+   * @param _capital new capital location object
+  */
   void setCapital(Location* _capital);
 
+  /**
+   * @brief setter for this country's locations, performs a shallow copy of the passed in locations vector
+  */
   void setLocations(std::vector<Location*>* _locations);
   
 private:
