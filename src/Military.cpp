@@ -1,4 +1,5 @@
 #include <vector>
+#include <iostream>
 using namespace std;
 
 #include "Military.h"
@@ -33,25 +34,27 @@ Military::Military(Military* copy){
 }
 
 Military::~Military(){
-	//delete each element
+	
 	clearShips();
+
 	clearTanks();
+	
 	clearPlanes();
+	
 	clearBatalions();
 
-	
-	//delete the vectors
 	delete battalions;
 	delete tanks;
 	delete planes;
 	delete vehicleFactories;
+	
 }
 
 void Military::insertPlanes(Plane* plane){	
 	if(plane!=NULL){
 		this->planes->insert(this->planes->begin(),plane);
 	}else{
-		throw "NULL plane error";
+		__throw_invalid_argument("NULL plane error");
 	}
 }	
 
@@ -59,7 +62,7 @@ void Military::insertBatalions(Battalion* batt){
 	if(batt!=NULL){
 		this->battalions->insert(this->battalions->begin(),batt);
 	}else{
-		throw "NULL plane error";
+		__throw_invalid_argument("NULL plane error");
 	}
 }
 	
@@ -67,7 +70,7 @@ void Military::insertTanks(Tank* _tanks){
 	if(_tanks!=NULL){
 		this->tanks->insert(this->tanks->begin(),_tanks);
 	}else{
-		throw "NULL tank error";
+		__throw_invalid_argument("NULL tank error");
 	}
 }	
 
@@ -76,7 +79,7 @@ void Military::insertShips(Ship* ship){
 	if(ship!=NULL){
 		this->ships->insert(this->ships->begin(),ship);
 	}else{
-		throw "NULL ship error";
+		__throw_invalid_argument("NULL ship error");
 	}
 }
 
@@ -148,32 +151,24 @@ void Military::clearTanks()
 {
     for (int i = 0; i < this->tanks->size(); i++)
         delete this->tanks->at(i);
-    
-    this->clearTanks();
 }
 
 void Military::clearShips()
 {
-    for (int i = 0; i < this->ships->size(); i++)
+	for (int i = 0; i < this->ships->size(); i++)
         delete this->ships->at(i);
-    
-    this->clearShips();
 }
 
 void Military::clearPlanes()
 {
     for (int i = 0; i < this->planes->size(); i++)
         delete this->planes->at(i);
-    
-    this->clearPlanes();
 }
 
 void Military::clearBatalions()
 {
     for (int i = 0; i < this->battalions->size(); i++)
         delete this->battalions->at(i);
-    
-    this->clearBatalions();
 }
 
 

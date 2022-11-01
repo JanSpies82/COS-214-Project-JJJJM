@@ -20,8 +20,8 @@ using namespace std;
 
 		
 		void Battalion::attack(Country* enemy){
-			/*if(enemy!=NULL){
-				vector<Battalion*> *fighters=enemy->getMilitary()->getBattalions();
+			if(enemy!=NULL){
+				vector<Battalion*> *fighters=enemy->getMilitary()->getBatallions();
 				vector<Battalion*>::iterator *it;
 				*it=fighters->begin();
 				int i =0;
@@ -29,7 +29,9 @@ using namespace std;
 					delete it;
 					it++;
 				}
-			}*/
+			}else{
+				__throw_invalid_argument("NULLPTR PASSED IN");
+			}
 		}
 	
 		

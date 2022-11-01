@@ -13,7 +13,7 @@ TEST(BatalionTest,TestPreconditionNullptr){
 	Battalion * person=new Battalion();
 	try{
 		person->attack(NULL);
-		FAIL();
+		FAIL()<<"Expected std::invalid_argument";
 	}catch(std::invalid_argument & err){
 		EXPECT_EQ(err.what(),std::string("NULLPTR PASSED IN"));
 	}catch(...){
