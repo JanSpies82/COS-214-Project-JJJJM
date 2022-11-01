@@ -11,6 +11,6 @@ file(GLOB test
 )
 
 list(FILTER test EXCLUDE REGEX ".*main\\.cpp$")
-add_executable(test ${test})
-target_link_libraries(test ${GTEST_LIBRARIES} pthread)
+add_executable(testO ${test})
+target_link_libraries(testO ${GTEST_LIBRARIES} pthread)
 set(CMAKE_BUILD_TYPE Debug)

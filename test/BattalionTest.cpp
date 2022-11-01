@@ -19,6 +19,7 @@ TEST(BatalionTest,TestPreconditionNullptr){
 	}catch(...){
 		FAIL();
 	}
+	delete person;
 }
     
 }

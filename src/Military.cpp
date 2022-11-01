@@ -46,6 +46,7 @@ Military::~Military(){
 	delete battalions;
 	delete tanks;
 	delete planes;
+	delete ships;
 	delete vehicleFactories;
 	
 }

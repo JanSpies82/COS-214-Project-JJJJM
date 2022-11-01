@@ -83,6 +83,8 @@ namespace {
 		}catch(...){
 			FAIL();
 		}
+
+		delete military;
 	}
 
 }
