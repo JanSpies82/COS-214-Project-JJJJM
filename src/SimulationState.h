@@ -10,10 +10,10 @@
 #include <ctime>
 
 class SimulationManager;
-class SimulationState;
 class MapState;
-class CountryState;
-class MilitaryState;
+class SuperpowerState;
+// class CountryState;
+// class MilitaryState;
 
 class SimulationState
 {
@@ -44,18 +44,42 @@ public:
 	void setMapState(MapState *_mapState);
 
 	/**
-	 * @brief Add a CountryState object to the SimulationState
+	 * @brief Add a SuperpowerState object to the SimulationState
 	 *
-	 * @param _countryState : CountryState* - Pointer to the CountryState object.
+	 * @param _superpowerState : SuperpowerState* - Pointer to the SuperpowerState object.
 	 */
-	void addCountryState(CountryState *_countryState);
+	void addSuperpowerState(SuperpowerState *_superpowerState);
 
 	/**
-	 * @brief Add a MilitaryState object to the SimulationState
+	 * @brief Get the number of SuperpowerState objects stored by the SimulationState
 	 *
-	 * @param _militaryState : MilitaryState* - Pointer to the MilitaryState object.
+	 * @return int
 	 */
-	void addMilitaryState(MilitaryState *_militaryState);
+	int getSuperpowerStateCount();
+
+	/**
+	 * @brief Get the SuperpowerState object stored by the SimulationState
+	 *
+	 * Exceptions : std::out_of_range if the index is out of range
+	 * 
+	 * @param index : int - Index of the SuperpowerState object to return.
+	 * @return SuperpowerState*
+	 */
+	SuperpowerState *getSuperpowerState(int _index);
+
+	// /**
+	//  * @brief Add a CountryState object to the SimulationState
+	//  *
+	//  * @param _countryState : CountryState* - Pointer to the CountryState object.
+	//  */
+	// void addCountryState(CountryState *_countryState);
+
+	// /**
+	//  * @brief Add a MilitaryState object to the SimulationState
+	//  *
+	//  * @param _militaryState : MilitaryState* - Pointer to the MilitaryState object.
+	//  */
+	// void addMilitaryState(MilitaryState *_militaryState);
 
 	/**
 	 * @brief Get the Map State object stored by the SimulationState
@@ -66,39 +90,39 @@ public:
 	 */
 	MapState *getMapState();
 
-	/**
-	 * @brief Get the Country State object stored by the SimulationState
-	 *
-	 * Exceptions : std::out_of_range if the index is out of range
-	 * 
-	 * @param index : int - Index of the CountryState object to return.
-	 * @return CountryState*
-	 */
-	CountryState *getCountryState(int index);
+	// /**
+	//  * @brief Get the Country State object stored by the SimulationState
+	//  *
+	//  * Exceptions : std::out_of_range if the index is out of range
+	//  * 
+	//  * @param index : int - Index of the CountryState object to return.
+	//  * @return CountryState*
+	//  */
+	// CountryState *getCountryState(int index);
 
-	/**
-	 * @brief Get the Military State object stored by the SimulationState
-	 *
-	 * Exceptions : std::out_of_range if the index is out of range
-	 * 
-	 * @param index : int - Index of the MilitaryState object to return.
-	 * @return MilitaryState*
-	 */
-	MilitaryState *getMilitaryState(int index);
+	// /**
+	//  * @brief Get the Military State object stored by the SimulationState
+	//  *
+	//  * Exceptions : std::out_of_range if the index is out of range
+	//  * 
+	//  * @param index : int - Index of the MilitaryState object to return.
+	//  * @return MilitaryState*
+	//  */
+	// MilitaryState *getMilitaryState(int index);
 
-	/**
-	 * @brief Get the number of CountryState objects stored by the SimulationState
-	 *
-	 * @return int
-	 */
-	int getCountryStateCount();
+	// /**
+	//  * @brief Get the number of CountryState objects stored by the SimulationState
+	//  *
+	//  * @return int
+	//  */
+	// int getCountryStateCount();
 
-	/**
-	 * @brief Get the number of MilitaryState objects stored by the SimulationState
-	 *
-	 * @return int
-	 */
-	int getMilitaryStateCount();
+	// /**
+	//  * @brief Get the number of MilitaryState objects stored by the SimulationState
+	//  *
+	//  * @return int
+	//  */
+	// int getMilitaryStateCount();
 
 	/**
 	 * @brief Get the Timestamp object stored by the SimulationState
@@ -110,8 +134,9 @@ public:
 private:
 	MapState *mapState;
 	SimulationManager *simulationManager;
-	std::vector<CountryState *> *countryStates;
-	std::vector<MilitaryState *> *militaryStates;
+	// std::vector<CountryState *> *countryStates;
+	// std::vector<MilitaryState *> *militaryStates;
+	std::vector<SuperpowerState *> *superpowerStates;
 	std::time_t timestamp;
 };
 
