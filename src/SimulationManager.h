@@ -32,6 +32,8 @@ private:
 	std::vector<Superpower *> *superpowers;
 	Backup *backup;
 	bool designMode, isRunning;
+	void setSuperpowers();
+	void setDesignMode();
 };
 
 #endif

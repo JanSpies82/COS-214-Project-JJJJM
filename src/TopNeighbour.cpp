@@ -1,10 +1,17 @@
+/// @author Julian Pienaar
+
+#include <iostream>
 #include <exception>
+#include "TopNeighbour.h"
+
 using namespace std;
 
-#include "TopNeighbour.h"
-#include "Neighbour.h"
+TopNeighbour::TopNeighbour(Location* _neighbour) : Neighbour(_neighbour){}
 
-// void TopNeighbour::operation() {
-// 	throw "Not yet implemented";
-// }
+Location* TopNeighbour::getTop(){
+    return neighbour;
+}
 
+bool TopNeighbour::hasTop(){
+    return true;
+}

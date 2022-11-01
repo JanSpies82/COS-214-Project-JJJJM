@@ -1,3 +1,5 @@
+/// @author Jake Weatherhead
+
 #include "CountryMediator.h"
 #include "Country.h"
 

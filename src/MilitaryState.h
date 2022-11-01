@@ -1,10 +1,10 @@
+///@author Jake Mahloko
+
 #include <exception>
-
-#include <ctime>
-
 #ifndef __MilitaryState_h__
 #define __MilitaryState_h__
 
+#include <ctime>
 #include <vector>
 
 class Military;
@@ -90,9 +90,7 @@ private:
     int numPlanes;
     int numShips;
     int numBattalions;
-	std::time_t timestamp;
-
-	
+	std::time_t timestamp;	
 };
 
 #endif
