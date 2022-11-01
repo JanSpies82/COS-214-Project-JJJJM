@@ -25,6 +25,11 @@ public:
   Country();
 
   /**
+   * @brief parameterised constructor
+  */
+  Country(CountryState* cs, MilitaryState* ms);
+
+  /**
     * @brief takes next action in simulation based on current state
     * @todo rename and implement
     */
@@ -72,7 +77,6 @@ public:
   std::string getName();
 
   Military* getMilitary();
-
 
   /**
     * @brief generates a countries strength rating based on various state comparisons with enemy
@@ -194,30 +198,6 @@ public:
   void setTradeRouteSafety(double _tradeRouteSafety);
 
   /**
-   * @brief getter for this country's military state
-   * @return returns this country's militaryState object
-  */
-  MilitaryState* getMilitaryState();
-
-  /**
-   * @brief setter for this country's military state
-   * @param _militaryState new military state
-  */
-  void setMilitaryState(MilitaryState* _militaryState);
-
-  /**
-   * @brief getter for this country's map state
-   * @return returns this country's mapState object
-  */
-  MapState* getMapState();
-
-  /**
-   * @brief setter for this country's map state
-   * @param _mapState new map state
-  */
-  void setMapState(MapState* _mapState);
-
-  /**
    * @brief getter for this country's strategy
    * @return returns this country's strategy object
   */
@@ -251,24 +231,18 @@ public:
   void incrementTurnCount();
 
   /**
-   * @brief getter for turnCount
-   * @return returns the current turnCount
+   * @brief setter for this 
   */
-  int getTurnCount();
-
   
 private:
+  Military* military;
+  WarStage* warStage;
+  CountryMediator* mediator;
+
   int turnCount;
   int numCitizens;
   std::string name;
-  MapState* mapState;
-  Military* military;
-  WarStage* warStage;
   Strategy* strategy;
-  CountryState* countryState;
-  MilitaryState* militaryState;
-  Superpower* superpower;
-  CountryMediator* mediator;
   double politicalStability;
   double domesticMorale;
   double selfReliance;
@@ -276,6 +250,7 @@ private:
   double capitalSafety;
   double warSentiment;
   double tradeRouteSafety;
+  CountryState* countryState;
   std::vector<Country*>* enemies;
 };
 
