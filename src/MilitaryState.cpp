@@ -33,11 +33,12 @@ Military* MilitaryState:: getState(){
  	numTroops=n;  
  }
 
- void MilitaryState::setNumBatalion(int b){
-    numBattalions=b;
- }
+//TODO remove or fix these functions
+//  void MilitaryState::setNumBatalion(int b){
+//     numBattalions=b;
+//  }
  
-int MilitaryState::getNumBattalions(){
-    return numBatalions;
-}
+// int MilitaryState::getNumBattalions(){
+//     return numBatalions;
+// }
 
