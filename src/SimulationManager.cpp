@@ -33,6 +33,6 @@ void SimulationManager::saveState(){
     state->setMapState(map->getState());
     state->addSuperpowerState(superpowers->at(0)->getState());
     state->addSuperpowerState(superpowers->at(1)->getState());
-    state->setWarStage(warStage->clone());
+    // state->setWarStage(warStage->clone());
     backup->addMemento(new Memento(state));
 }
