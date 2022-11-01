@@ -41,7 +41,7 @@ private:
 	void setUpFrance(Country *_france);
 	void setUpBalkans(Country *_balkans);
 	void setUpSpainPortugal(Country *_spainPortugal);
-	void setUpEastEurope(Country *_eastEurope);
+	void setUpSovietUnion(Country *_sovietUnion);
 	void setUpScandanavia(Country *_scandanavia);
 	void setUpGermany(Country *_germany);
 	void setUpItaly(Country *_italy);
