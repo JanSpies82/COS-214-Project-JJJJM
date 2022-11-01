@@ -13,10 +13,30 @@ class WarStage;
 class WarStage
 {
 	public:
+        // /**
+        //  * @brief initialises our singleton object and returns it
+        // */
+        // virtual WarStage* getInstance();
+
         /**
-         * @brief initialises our singleton object and returns it
+         * @brief Creates a copy of the singleton class and returns for storage purposes
         */
-        static WarStage* getInstance();
+        virtual WarStage* clone()=0;
+
+        /**
+         * @brief handle() function: Calculates if currentRound is within its current warstage, and returns warstage int
+        */
+        virtual int getWarStage() = 0;
+
+        /**
+         * @brief Moves current warstage to next warstage
+        */
+        virtual void changeStage() = 0;
+
+        /**
+         * @brief increments round/turn to go to the next round
+        */
+        void incrementRound();
         /**
          * @brief sets the simulationLength: how many turns/rounds do we want to run the simulation for
          * 
@@ -24,26 +44,15 @@ class WarStage
         */
         void setSimulationLength(int length);
         /**
-         * @brief increments round/turn to go to the next round
-        */
-        void incrementRound();
-        /**
          * @brief returns the current round we are on
         */
         int getCurrentRound();
-        /**
-         * @brief calculates which war stage we are on and returns it via a string
-        */
-        string getWarStage();
+
     
     protected:
         WarStage();
-    
-    private:
-        static WarStage* onlyInstance;
         int simulationLength;
-        int currentRound;
-        string warStage;
+        int currentRound; 
     
     public: 
     // virtual void handle() = 0;

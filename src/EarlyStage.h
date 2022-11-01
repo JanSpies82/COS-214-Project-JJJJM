@@ -11,13 +11,29 @@ class EarlyStage;
 
 class EarlyStage: public WarStage
 {
+    public:    
+        static WarStage* getInstance();
+        static WarStage* getInstance(int length);
 
-	public: void handle();
+        /**
+         * @brief Creates a copy of the singleton class and returns for storage purposes
+        */
+        WarStage* clone();
 
-    /**
-     * @brief initialises a MiddleStage object and returns it
-     */
-    WarStage* nextStage();
+        /**
+         * @brief handle() function: Calculates if currentRound is within its current warstage, and returns warstage int
+        */
+        int getWarStage();
+
+        /**
+         * @brief Moves current warstage to next warstage
+        */
+        void changeStage();
+    protected:
+        static WarStage* onlyInstance;
+        EarlyStage();
+        EarlyStage(int length);
+	
 };
 
 #endif
