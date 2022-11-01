@@ -3,9 +3,9 @@
 #include "WarStage.h"
 #include "Country.h"
 
-void WarStage::handle() {
-	throw "Not yet implemented";
-}
+// void WarStage::handle() {
+// 	throw "Not yet implemented";
+// }
 
 #include <exception>
 
