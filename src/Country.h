@@ -2,6 +2,7 @@
 #define __Country_h__
 
 #include <vector>
+#include<string>
 #include <exception>
 
 class WarStage;
@@ -64,6 +65,12 @@ public:
     * @todo review for deletion
     */
   CountryState* getState();
+
+  //TODO add documentation/refinement
+  std::string getName();
+
+  Military* getMilitary();
+
 
   /**
     * @brief generates a countries strength rating based on various state comparisons with enemy

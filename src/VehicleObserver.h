@@ -1,5 +1,5 @@
 #include <exception>
-using namespace std;
+
 
 #ifndef __VehicleObserver_h__
 #define __VehicleObserver_h__
