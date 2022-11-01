@@ -8,6 +8,7 @@ using namespace std;
 		Battalion::Battalion(){
 			numBattalionDestroys=5;
 			groupSize=20;
+			obs=new vector<BattalionObserver*>();
 		}
 		Battalion::Battalion(int damage){
 			numBattalionDestroys=damage;
@@ -15,24 +16,24 @@ using namespace std;
 		}
 		
 		Battalion::~Battalion(){
-			cout<<"Battalion executed \n";
+			clearObservers();
+    		delete obs;
 		}
 
 		
-		void Battalion::attack(Country* enemy){
-			if(enemy!=NULL){
-				vector<Battalion*> *fighters=enemy->getMilitary()->getBatallions();
-				vector<Battalion*>::iterator *it;
-				*it=fighters->begin();
-				int i =0;
-				while(i<numBattalionDestroys){
-					delete it;
-					it++;
-				}
-			}else{
-				__throw_invalid_argument("NULLPTR PASSED IN");
-			}
+void Battalion::attack(Country* enemy){
+	if(enemy!=NULL){
+		vector<Battalion*> *fighters1=enemy->getMilitary()->getBatallions();
+		if(fighters1->size()>numBattalionDestroys){
+			for (int i = 0; i < numBattalionDestroys; i++)
+    	   		delete fighters1->at(i);
+		}else if(fighters1->size()>0){
+			enemy->getMilitary()->clearBatalions();
 		}
+	}else{
+			__throw_invalid_argument("NULLPTR PASSED IN");
+	}
+}
 	
 		
 		void Battalion::setNumBattalionDestroys(int n){
@@ -44,10 +45,19 @@ using namespace std;
 			return numBattalionDestroys;
 		}
 
-		void Battalion::attach(BattalionObserver obs){
-
+		void Battalion::attach(BattalionObserver *o){
+			obs->push_back(o);
 		}
 
-		void Battalion::dettach(BattalionObserver obs){
-			
+		void Battalion::dettach(BattalionObserver *o){
+			for(int i=0;i<obs->size();i++){
+				if(o==obs->at(i)){
+					delete obs->at(i);
+				}
+			}
 		}
+
+void Battalion::clearObservers(){
+    for(int i=0;i<obs->size();i++)
+        delete this->obs->at(i); 
+}

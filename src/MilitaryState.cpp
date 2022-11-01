@@ -4,12 +4,19 @@
 #include "Ship.h"
 #include "Plane.h"
 #include "Battalion.h"
+#include"BattalionObserver.h"
+#include<iostream>
+MilitaryState::MilitaryState(){
+    State=NULL;
+}
+
 MilitaryState::MilitaryState(Military * m){
 	State=m;
+    
 }
 
 MilitaryState::~MilitaryState(){
-
+   
 }
 		
 void MilitaryState::storeState(Military * m){
@@ -17,19 +24,28 @@ void MilitaryState::storeState(Military * m){
 }
 
 Military* MilitaryState:: getState(){
-    return new Military(State);
-}
+    if(State!=NULL)
+        return State;
+    else{
+        __throw_invalid_argument("NULLPTR RECIEVED");
+    }
+}   
 
  void MilitaryState::setNumShips(int n){
- 	if(n==State->getNumShips()){
+ 	if(n==0){
+        this->State->clearShips();
+    }
+    else if(n==State->getNumShips()){
 
     }else if(n>State->getNumShips()){
         int sizeOfinput=n-State->getNumShips();
         for(int i =0;i<sizeOfinput;i++){
-            State->insertShips(new Ship());
+            this->State->insertShips(new Ship());
         }
     }else{
+
         int sizeOfRemove=State->getNumPlanes()-n;
+        std::cout<<sizeOfRemove<<" needs to be delete\n";
         for(int i =0;i<sizeOfRemove;i++){
             delete this->State->getShips()->at(i);
         }
@@ -39,7 +55,10 @@ Military* MilitaryState:: getState(){
  }
  
  void MilitaryState::setNumPlanes(int n){
- 	if(n==State->getNumPlanes()){
+ 	if(n==0){
+        State->clearPlanes();
+    }
+    else if(n==State->getNumPlanes()){
 
     }else if(n>State->getNumPlanes()){
         int sizeOfinput=n-State->getNumPlanes();
@@ -55,7 +74,10 @@ Military* MilitaryState:: getState(){
     numPlanes=State->getNumPlanes();
   }  
  void MilitaryState::setNumTanks(int n){
- 	if(n==State->getNumTanks()){
+ 	if(n==0){
+        this->State->clearTanks();
+    }
+    else if(n==State->getNumTanks()){
 
     }else if(n>State->getNumTanks()){
         int sizeOfinput=n-State->getNumTanks();
@@ -63,6 +85,7 @@ Military* MilitaryState:: getState(){
             State->insertTanks(new Tank());
         }
     }else{
+
         int sizeOfRemove=State->getNumTanks()-n;
         for(int i =0;i<sizeOfRemove;i++){
             delete this->State->getTanks()->at(i);
@@ -77,12 +100,15 @@ Military* MilitaryState:: getState(){
  }
 
  void MilitaryState::setNumBatalion(int n){
-    if(n==State->getNumBattalions()){
+    if(n==0){
+        State->clearBatalions();
+    }
+    else if(n==State->getNumBattalions()){
 
     }else if(n>State->getNumBattalions()){
         int sizeOfinput=n-State->getNumBattalions();
         for(int i =0;i<sizeOfinput;i++){
-            State->insertTanks(new Tank());
+            State->insertBatalions(new Battalion());
         }
     }else{
         int sizeOfRemove=State->getNumBattalions()-n;
@@ -94,17 +120,28 @@ Military* MilitaryState:: getState(){
     numBattalions=State->getNumBattalions();
 }
 int MilitaryState::getNumBattalions(){
+
+    numBattalions=State->getNumBattalions();
     return numBattalions;
 }
 
 int MilitaryState::getNumPlanes(){
+    numPlanes=State->getNumPlanes();
     return numPlanes;
 }
 
 int MilitaryState::getNumShips(){
+    numShips=State->getNumShips();
     return numShips;
 }
 
 int MilitaryState::getNumTanks(){
+    numTanks=State->getNumTanks();
     return numTanks;
 }
+
+int MilitaryState::getNumTroops(){
+    numTroops=State->getNumTroops();
+    return numTroops; 
+}
+

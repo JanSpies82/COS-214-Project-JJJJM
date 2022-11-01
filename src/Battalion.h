@@ -1,7 +1,7 @@
 
 #ifndef __Battalion_h__
 #define __Battalion_h__
-
+#include<vector>
 class Country;
 class Citizen;
 class BattalionObserver;
@@ -46,11 +46,13 @@ class Battalion
 		 * 
 		 * 
 		 * */
-		void attach(BattalionObserver obs);
-		void dettach(BattalionObserver obs);
+		void attach(BattalionObserver *obs);
+		void dettach(BattalionObserver *obs);
+		void clearObservers();
 	private:
 	int numBattalionDestroys;
 	int groupSize;
+	std::vector<BattalionObserver*> * obs;
 		
 };
 

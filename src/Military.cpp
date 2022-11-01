@@ -150,26 +150,31 @@ std::vector<Ship*>* Military:: getShips(){
 
 void Military::clearTanks()
 {
+
     for (int i = 0; i < this->tanks->size(); i++)
         delete this->tanks->at(i);
+    tanks->clear();
 }
 
 void Military::clearShips()
 {
 	for (int i = 0; i < this->ships->size(); i++)
         delete this->ships->at(i);
+    ships->clear();
 }
 
 void Military::clearPlanes()
 {
     for (int i = 0; i < this->planes->size(); i++)
         delete this->planes->at(i);
+    planes->clear();
 }
 
 void Military::clearBatalions()
 {
     for (int i = 0; i < this->battalions->size(); i++)
         delete this->battalions->at(i);
+    battalions->clear();
 }
 
 
