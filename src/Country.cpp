@@ -436,10 +436,16 @@ void Country::setCountryState(CountryState *_countryState)
   countryState = _countryState;
 }
 
-// TODO implement these methods
-std::string Country::getName(){};
+///////////////////////////////////////////////////////////
+// getCountryName()
+///////////////////////////////////////////////////////////
+
+std::string Country::getName()
+{
+  return name;
+};
 
 Military *Country::getMilitary()
 {
-  return NULL;
+  return military;
 }
