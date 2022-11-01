@@ -21,7 +21,15 @@ Military::Military(){
 }
 
 Military::Military(Military* copy){
-
+	for (int i=0; i<copy->getBatallions()->size(); i++) 
+        this->insertBatalions(copy->getBatallions()->at(i));
+    for (int i=0; i<copy->getTanks()->size(); i++) 
+        this->insertTanks(copy->getTanks()->at(i));
+    for (int i=0; i<copy->getShips()->size(); i++) 
+        this->insertShips(copy->getShips()->at(i));
+    for (int i=0; i<copy->getPlanes()->size(); i++) 
+        this->insertPlanes(copy->getPlanes()->at(i));
+    this->numTroops=copy->getNumTroops();
 }
 
 Military::~Military(){
@@ -47,6 +55,13 @@ void Military::insertPlanes(Plane* plane){
 	}
 }	
 
+void Military::insertBatalions(Battalion* batt){	
+	if(batt!=NULL){
+		this->battalions->insert(this->battalions->begin(),batt);
+	}else{
+		throw "NULL plane error";
+	}
+}
 	
 void Military::insertTanks(Tank* _tanks){
 	if(_tanks!=NULL){

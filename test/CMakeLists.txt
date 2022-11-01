@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.10)
 project (Project_JJJJM)
 
 find_package(GTest REQUIRED)
@@ -11,6 +11,6 @@ file(GLOB test
 )
 
 list(FILTER test EXCLUDE REGEX ".*main\\.cpp$")
-add_executable(test ${test})
 target_link_libraries(test ${GTEST_LIBRARIES} pthread)
+add_executable(test ${test})
 set(CMAKE_BUILD_TYPE Debug)

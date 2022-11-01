@@ -56,6 +56,7 @@ class Military
 		 *  
 		 */
 		
+
 		void clearShips();
 		/**
 		 * 
@@ -161,6 +162,11 @@ class Military
 		 * 
 		 */
 		 int getNumTroops(); 
+		 /**
+		 * 
+		 *  
+		 */
+		void insertBatalions(Battalion* );
 	private: 
 		std::vector<Battalion*>* battalions;
 		std::vector<Ship*>* ships;

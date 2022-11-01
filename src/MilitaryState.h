@@ -38,7 +38,7 @@ class MilitaryState
   /**
    * @brief setter for the numTroops attribute
   */
-  void setNumTroops(int numTroops);
+  void setNumTroops(int);
 
   /**
    * @brief getter for the numTanks attribute
@@ -50,7 +50,7 @@ class MilitaryState
    * @brief setter for the numTanks attribute
    * @param numTanks the new number of tanks
   */
-  void setNumTanks(int numTanks);
+  void setNumTanks(int);
 
   /**
    * @brief getter for the number of planes of a country's military
@@ -62,7 +62,7 @@ class MilitaryState
    * @brief setter for the numPlanes attribute
    * @param numPlanes the new number of planes
   */
-  void setNumPlanes(int numPlanes);
+  void setNumPlanes(int);
 
   /**
    * @brief getter for the number of ships of a country's military
@@ -74,15 +74,25 @@ class MilitaryState
    * @brief setter for the numShips attribute
    * @param numShips the new number of ships
   */
-  void setNumShips(int numShips);
+  void setNumShips(int);
   /**
    * 
    * 
    * 
    */
    Military* getState(); 
-    void setNumBatalion(int b);
-    int getNumBattalions();		
+
+   /**
+    * 
+    * 
+    */ 
+    void setNumBatalion(int);
+    /**
+     * 
+     * 
+     * 
+     */
+      int getNumBattalions();		
 private:
 	Military* State;
 	int numTroops;
