@@ -65,7 +65,7 @@ void Country::detach()
 
 void Country::incrementTurnCount()
 {
-  turnCount += 1;
+  turnCount = turnCount + 1;
 }
 
 ///////////////////////////////////////////////////////////
