@@ -231,15 +231,17 @@ public:
    * @brief compares the various aspects of two countries' militaries
    * @param a the country implementing a strategy against b
    * @param b the country being attacked by a
+   * @param aspectScores pointer to an array that holds this countries scores across each state aspect
   */
-  std::vector<double> compareMilitary(Country* a, Country* b, std::vector<double>* aspectScores);
+  void compareMilitary(Country* a, Country* b, std::vector<double>* aspectScores);
 
   /**
    * @brief compares the various aspects of two countries' internal states
    * @param a the country implementing a strategy against b
    * @param b the country being attacked by a
+   * @param aspectScores pointer to an array that holds this countries scores across each state aspect
   */
-  std::vector<double> compareDomestic(Country* a, Country* b, std::vector<double>* aspectScores);
+  void compareDomestic(Country* a, Country* b, std::vector<double>* aspectScores);
 
   /**
    * @brief increments turnCount by 1 indicating the stage of war
