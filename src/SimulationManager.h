@@ -15,6 +15,7 @@ class Superpower;
 class Backup;
 class SimulationManager;
 class WarStage;
+class Country;
 
 class SimulationManager
 {
@@ -36,6 +37,14 @@ private:
 	bool designMode, isRunning;
 	void setSuperpowers();
 	void setDesignMode();
+	void setUpUK(Country *_uk);
+	void setUpFrance(Country *_france);
+	void setUpBalkans(Country *_balkans);
+	void setUpSpainPortugal(Country *_spainPortugal);
+	void setUpEastEurope(Country *_eastEurope);
+	void setUpScandanavia(Country *_scandanavia);
+	void setUpGermany(Country *_germany);
+	void setUpItaly(Country *_italy);
 };
 
 #endif
