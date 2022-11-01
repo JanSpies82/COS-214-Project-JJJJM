@@ -1,4 +1,4 @@
-
+///@author Janco Spies
 #ifndef __Superpower_h__
 #define __Superpower_h__
 
@@ -6,6 +6,7 @@
 #include <vector>
 
 class Country;
+class SuperpowerState;
 
 class Superpower
 {
@@ -62,6 +63,14 @@ public:
    * @param country : Country* - the country to remove
    */
   void removeCountry(Country *_country);
+
+  /**
+   * @brief Get the state of the superpower
+   *
+   * @return SuperpowerState* - pointer to the state of the superpower
+   */
+  SuperpowerState *getState();
+
 
 private:
   std::vector<Country *> *countries;
