@@ -1,10 +1,17 @@
+/// @author Julian Pienaar
+
+#include <iostream>
 #include <exception>
+#include "LeftNeighbour.h"
+
 using namespace std;
 
-#include "LeftNeighbour.h"
-// #include "Neighbour.h"
+LeftNeighbour::LeftNeighbour(Location* _neighbour) : Neighbour(_neighbour){}
 
-// void LeftNeighbour::operation() {
-// 	throw "Not yet implemented";
-// }
+Location* LeftNeighbour::getLeft(){
+    return neighbour;
+}
 
+bool LeftNeighbour::hasLeft(){
+    return true;
+}

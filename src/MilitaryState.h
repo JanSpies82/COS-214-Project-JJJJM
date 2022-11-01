@@ -1,10 +1,10 @@
+///@author Jake Mahloko
+
 #include <exception>
-
-#include <ctime>
-
 #ifndef __MilitaryState_h__
 #define __MilitaryState_h__
 
+#include <ctime>
 #include <vector>
 
 class Military;
@@ -81,7 +81,7 @@ class MilitaryState
    * 
    */
    Military* getState(); 
-    void setNumBatalions(int);
+    void setNumBatalion(int b);
     int getNumBattalions();		
 private:
 	Military* State;
@@ -89,10 +89,9 @@ private:
     int numTanks;
     int numPlanes;
     int numShips;
-    int numBatalions;
+    int numBattalions;
 	std::time_t timestamp;
 
-	
 };
 
 #endif

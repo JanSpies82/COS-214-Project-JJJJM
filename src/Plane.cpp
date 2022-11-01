@@ -71,10 +71,10 @@ void Plane::setNumTankDetroys(int tDamage){
 void Plane::setNumBattalionDestroys(int bDamage){
 	 numBattalionDestroys=bDamage;
 }
-void destroyEnemy(Country * enemy){
+void Plane::destroyEnemy(Country * enemy){
 	cout<<enemy->getName()<<" country has been defeated"<<endl;
 	delete enemy;
 }
-void findEnemy(){
-
+void Plane::findEnemy(){
+	cout<<"to be implemented"<<endl;
 }

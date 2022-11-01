@@ -5,5 +5,13 @@ using namespace std;
 #include "Military.h"
 
  
+ VehicleFactory::VehicleFactory(){
+
+ }
+
+ VehicleFactory::~VehicleFactory(){
+
+ }
+
  
 

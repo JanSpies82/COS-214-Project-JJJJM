@@ -1,70 +1,62 @@
-#include <exception>
-using namespace std;
-
 #ifndef __LocationIterator_h__
 #define __LocationIterator_h__
 
+#include <exception>
 #include "Iterator.h"
 
-class Territory;
 class Location;
-class Iterator;
-class LocationIterator;
 
-class LocationIterator: public Iterator
+class LocationIterator : public Iterator
 {
+
 	public:
-		Location* current;
-		
 		/**
-		 * @brief Sets current to the next location in the sequential iteration of the map
+		 * @brief Construct a new Location Iterator object.
+		 *
+		 * @param _location : Location* - pointer to the location that is set as the current location.
+		 */
+		LocationIterator(Location* _location);
+
+		/**
+		 * @brief Destroy the Location Iterator object
+		 *
+		 */
+		~LocationIterator();
+
+		/**
+		 * @brief Sets current to the next location in the sequential iteration of the map.
 		 * 
+		 * Exceptions : out_of_range if there is no next location.
+		 *
 		 */
 		void next();
 
 		/**
-		 * @brief Sets current to the top left location of the map
-		 * 
+		 * @brief Sets current to the top left location of the map.
+		 *
 		 */
-		void topLeft();	
+		void first();
 
 		/**
-		 * @brief Shifts current pointer to it's right neighbour
-		 * 
+		 * @brief Returns true if sequential iteration is complete and false otherwise.
+		 *
+		 * @return boolean
 		 */
-		void right();	
+		bool isDone();
 
 		/**
-		 * @brief Shifts current pointer to it's left neighbour
-		 * 
-		 */	
-		void left();
-
-		/**
-		 * @brief Shifts current pointer to it's bottom neighbour
-		 * 
-		 */		
-		void down();
-
-		/**
-		 * @brief Shifts current pointer to it's top neighbour
-		 * 
-		 */		
-		void up();	
-
-		/**
-		 * @brief Returns true if sequential iteration is complete and false otherwise
-		 * 
-		 * @return boolean 
+		 * @brief Returns the pointer to the current location.
+		 *
+		 * @return Location*
 		 */
-		bool isDone();	
-			
-		/**
-		 * @brief Returns the pointer to the current location
-		 * 
-		 * @return Location* 
-		 */
-		Location* getCurrent();
+		Location *getCurrent();
+
+	protected:
+		Location *current;
+		Location* nextLocation;
+		bool hasNext();
+		Location* nextRow();
+
 };
 
 #endif

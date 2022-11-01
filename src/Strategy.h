@@ -15,21 +15,49 @@ class Country;
 
 class Strategy
 {
-    public:
-    /**
-     * @brief Constructor: initialises Country variable
-     *
-     * @param country :Country* - The country that is to be linked to this strategy
-     */
+public:
+  /**
+   * @brief Constructor: initialises Country variable
+   *
+   */
+  Strategy(); //Let strategy be reusable by not holding a country object
 
-    Strategy(Country *);
+  /**
+   * @brief virtual function representing the implementation of a strategy.
+   * 
+   * @param strengthRatings double array holding the strength values of the 2 countries
+   * @param countryA the country that is making the move (calling country)
+   * @param countryB the country being attacked by calling country
+   */
+  virtual void takeTurn(double* strengthRatings, Country* countryA, Country* countryB);
 
-    /**
-     * @brief virtual function: Compares strength score to other countries and changes the strategy within a country accordingly
-     *
-     * @param _country:Country* Country that must be compared to everyone else
-     */
-    virtual void algorithm(Country * _country) = 0;
+protected:
+  /**
+   * @brief virtual function representing the implementation of a turn when Country A is stronger than Country B
+   * 
+   * @param countryA the country that is making the move (calling country)
+   * @param countryB the country being attacked by calling country
+   */
+  virtual void offensiveMove(Country* countryA, Country* countryB) = 0;
+
+  /**
+   * @brief virtual function representing the implementation of a turn when Country A has equal strength with Country B
+   * 
+   * @param countryA the country that is making the move (calling country)
+   * @param countryB the country being attacked by calling country
+   */
+  virtual void neutralMove(Country* countryA, Country* countryB) = 0;
+
+  /**
+   * @brief virtual function representing the implementation of a turn when Country A is weaker than Country B
+   * 
+   * @param countryA the country that is making the move (calling country)
+   * @param countryB the country being attacked by calling country
+   */
+  virtual void defensiveMove(Country* countryA, Country* countryB) = 0;
+
+
+
 };
 
 #endif

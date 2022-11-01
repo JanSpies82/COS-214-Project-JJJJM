@@ -166,10 +166,10 @@ Military* Military::getMilitary(){
 	return this;
 }
 
-void Military::setNumTroops(int t){
-	numTroops=t;
-}
+ void Military::setNumTroops(int t){
+ 	numTroops=t;
+ }
 
-int Military::getNumTroops(){
-	return numTroops;
-}
+ int Military::getNumTroops(){
+ 	return numTroops;
+ }

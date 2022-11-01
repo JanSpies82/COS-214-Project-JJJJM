@@ -16,3 +16,7 @@ CMakeCache.txt
 CMakeFiles
 Makefile
 main
+valg.txt
+.vscode
+test
+!test/

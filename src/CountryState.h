@@ -15,9 +15,20 @@ public:
     * @param country country to create state for
     */
   CountryState(Country* country);
+  CountryState(const CountryState& cs);
+  CountryState* clone();
 
 private: 
+  friend class Country;
   std::time_t timestamp;
+  int numCitizens;
+  double politicalStability;
+  double domesticMorale;
+  double selfReliance;
+  double borderStrength;
+  double capitalSafety;
+  double warSentiment;
+  double tradeRouteSafety;
 };
 
 #endif

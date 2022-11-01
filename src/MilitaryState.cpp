@@ -35,9 +35,9 @@ Military* MilitaryState:: getState(){
 
  void MilitaryState::setNumBatalion(int b){
     numBattalions=b;
- }
- 
-int MilitaryState::getNumBattalions(){
-    return numBatalions;
 }
+int MilitaryState::getNumBattalions(){
+    return numBattalions;
+}
+
 
