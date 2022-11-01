@@ -6,6 +6,7 @@ using namespace std;
 #include "SimulationState.h"
 #include "SimulationManager.h"
 #include "MapState.h"
+#include "WarStage.h"
 #include "SuperpowerState.h"
 // #include "CountryState.h"
 // #include "MilitaryState.h"
@@ -15,6 +16,7 @@ SimulationState::SimulationState(SimulationManager *_simulationManager)
     this->simulationManager = _simulationManager;
     this->timestamp = time(0);
     mapState = NULL;
+    warStage = NULL;
     // countryStates = new vector<CountryState *>();
     // militaryStates = new vector<MilitaryState *>();
     superpowerStates = new vector<SuperpowerState *>();
@@ -24,6 +26,9 @@ SimulationState::~SimulationState()
 {
     if (mapState != NULL)
         delete mapState;
+    
+    if (warStage != NULL)
+        delete warStage;
 
     for (int i = 0; i < superpowerStates->size(); i++)
         delete superpowerStates->at(i);
@@ -43,6 +48,20 @@ void SimulationState::setMapState(MapState *_mapState)
     if (mapState != NULL)
         delete mapState;
     mapState = _mapState;
+}
+
+void SimulationState::setWarStage(WarStage *_warStage)
+{
+    if (warStage != NULL)
+        delete warStage;
+    warStage = _warStage;
+}
+
+WarStage* SimulationState::getWarStage()
+{
+    if (warStage == NULL)
+        __throw_out_of_range("SimulationState does not hold a WarStage");
+    return warStage;
 }
 
 MapState *SimulationState::getMapState()
