@@ -83,8 +83,8 @@ int Country::getTurnCount()
 
 void Country::takeTurn(Country *countryB)
 {
-  // setStrategy();
-  double *strengthRatings;
+  setStrategy();
+  double strengthRatings[2];
   getCountryRating(countryB, strengthRatings);
   strategy->takeTurn(strengthRatings, this, countryB);
 }
@@ -93,23 +93,18 @@ void Country::takeTurn(Country *countryB)
 // setWarStage()
 ///////////////////////////////////////////////////////////
 
-// void Country::setStrategy()
-// {
-//   delete strategy;
-//   strategy = NULL;
+void Country::setStrategy()
+{
+  delete strategy;
+  strategy = NULL;
 
-//   if (getTurnCount() < 5)
-//   {
-//     strategy = new EarlyStrategy();
-//     return;
-//   }
-//   if (getTurnCount() < 15)
-//   {
-//     strategy = new MiddleStrategy();
-//     return;
-//   }
-//   strategy = new LateStrategy();
-// }
+  if (getTurnCount() < 5)
+    strategy = new EarlyStrategy();
+  if (getTurnCount() < 15)
+    strategy = new MiddleStrategy();
+  if (getTurnCount() <= 20)
+    strategy = new LateStrategy();
+}
 
 ///////////////////////////////////////////////////////////
 // getState()
@@ -180,7 +175,7 @@ void Country::setMapState(MapState *_mapState)
 // getCountryRating()
 ///////////////////////////////////////////////////////////
 
-double *Country::getCountryRating(Country *b, double *strengthRatings)
+void Country::getCountryRating(Country *b, double *strengthRatings)
 {
   std::vector<double> strengthScoresA;
   std::vector<double> strengthScoresB;
@@ -192,7 +187,7 @@ double *Country::getCountryRating(Country *b, double *strengthRatings)
 
   compareMilitary(b, this, &aspectScores); // get CountryB's military strength scores
   for (double score : aspectScores)
-    strengthScoresA.push_back(score);
+    strengthScoresB.push_back(score);
 
   compareDomestic(this, b, &aspectScores); // get CountryA's domestic strength scores
   for (double score : aspectScores)
@@ -200,7 +195,7 @@ double *Country::getCountryRating(Country *b, double *strengthRatings)
 
   compareDomestic(b, this, &aspectScores); // get CountryB's domestic strength scores
   for (double score : aspectScores)
-    strengthScoresA.push_back(score);
+    strengthScoresB.push_back(score);
 
   double strengthA = 0.0;  
   for (double score : strengthScoresA)
@@ -214,7 +209,6 @@ double *Country::getCountryRating(Country *b, double *strengthRatings)
 
   strengthRatings[0] = strengthA;
   strengthRatings[1] = strengthB;
-  return strengthRatings;
 }
 
 ///////////////////////////////////////////////////////////
