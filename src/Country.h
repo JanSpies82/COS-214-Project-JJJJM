@@ -76,6 +76,10 @@ public:
   */
   std::string getName();
 
+  /**
+   * @brief getter for this country's military
+   * @return this country's military object
+  */
   Military* getMilitary();
 
   /**
