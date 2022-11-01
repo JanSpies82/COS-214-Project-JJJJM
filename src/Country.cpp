@@ -221,32 +221,28 @@ double *Country::getCountryRating(Country *b, double *strengthRatings)
 // compareMilitary()
 ///////////////////////////////////////////////////////////
 
-std::vector<double> Country::compareMilitary(Country* a, Country* b, std::vector<double>* aspectScores)
+void Country::compareMilitary(Country* a, Country* b, std::vector<double>* aspectScores)
 {
-  std::vector<double> ratingsA;
   MilitaryState* mA = a->getMilitaryState();
   MilitaryState* mB = b->getMilitaryState();
-  ratingsA.push_back(compareAspect(mA->getNumTroops(), mB->getNumTroops()));
-  ratingsA.push_back(compareAspect(mA->getNumTanks(), mB->getNumTanks()));
-  ratingsA.push_back(compareAspect(mA->getNumPlanes(), mB->getNumPlanes()));
-  ratingsA.push_back(compareAspect(mA->getNumShips(), mB->getNumShips()));
-  return ratingsA;
+  (*aspectScores).push_back(compareAspect(mA->getNumTroops(), mB->getNumTroops()));
+  (*aspectScores).push_back(compareAspect(mA->getNumTanks(), mB->getNumTanks()));
+  (*aspectScores).push_back(compareAspect(mA->getNumPlanes(), mB->getNumPlanes()));
+  (*aspectScores).push_back(compareAspect(mA->getNumShips(), mB->getNumShips()));
 }
 
 ///////////////////////////////////////////////////////////
 // compareDomestic(Country)
 ///////////////////////////////////////////////////////////
 
-std::vector<double> Country::compareDomestic(Country* a, Country* b, std::vector<double>* aspectScores)
+void Country::compareDomestic(Country* a, Country* b, std::vector<double>* aspectScores)
 {
-  std::vector<double> ratingsA;
-  ratingsA.push_back(compareAspect(a->getPoliticalStability(), b->getPoliticalStability()));
-  ratingsA.push_back(compareAspect(a->getDomesticMorale(), b->getDomesticMorale()));
-  ratingsA.push_back(compareAspect(a->getBorderStrength(), b->getBorderStrength()));
-  ratingsA.push_back(compareAspect(a->getCapitalSafety(), b->getCapitalSafety()));
-  ratingsA.push_back(compareAspect(a->getWarSentiment(), b->getWarSentiment()));
-  ratingsA.push_back(compareAspect(a->getTradeRouteSafety(), b->getTradeRouteSafety()));
-  return ratingsA;
+  (*aspectScores).push_back(compareAspect(a->getPoliticalStability(), b->getPoliticalStability()));
+  (*aspectScores).push_back(compareAspect(a->getDomesticMorale(), b->getDomesticMorale()));
+  (*aspectScores).push_back(compareAspect(a->getBorderStrength(), b->getBorderStrength()));
+  (*aspectScores).push_back(compareAspect(a->getCapitalSafety(), b->getCapitalSafety()));
+  (*aspectScores).push_back(compareAspect(a->getWarSentiment(), b->getWarSentiment()));
+  (*aspectScores).push_back(compareAspect(a->getTradeRouteSafety(), b->getTradeRouteSafety()));
 }
 
 ///////////////////////////////////////////////////////////
