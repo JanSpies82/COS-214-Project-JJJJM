@@ -1,4 +1,5 @@
 #include <limits.h>
+#include<iostream>
 #include <stdexcept>
 #include "../src/Military.h"
 #include "../src/Battalion.h"
@@ -76,12 +77,14 @@ namespace {
 		Military* military=new Military();
 		try{
 			military->insertPlanes(NULL);
-			FAIL();
+			FAIL()<<"Expected std::invalid_argument";
 		}catch(std::invalid_argument & err){
 			EXPECT_EQ(err.what(),std::string("NULL plane error"));
 		}catch(...){
 			FAIL();
 		}
+
+		delete military;
 	}
 
 }
