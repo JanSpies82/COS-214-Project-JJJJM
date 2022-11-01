@@ -1,38 +1,30 @@
-///@author Jake Mahloko
+/// @author Jake Mahloko
 
-#include <exception>
 #ifndef __MilitaryState_h__
 #define __MilitaryState_h__
-
-#include <ctime>
 #include <vector>
+#include <exception>
 
-class Military;
-//TODO how does this work? If a state object is constructed in the contructor then what does storeState() do? Why is the "state" object being stored a military? Does this object just make a deep copy of a military and store that?
+class Plane;
+class Ship;
+class Tank;
+class Battalion;
+class VehicleFactory;
+
 class MilitaryState
 {
-	public:
-		/**
+public:
+  /**
    * @brief construct a MilitaryState Object
-   * @param Military object
-  **/
-  MilitaryState(Military* m);
-  /**
-   * 
-   * 
-   * 
-   */
-  ~MilitaryState();
-  /**
-   * @brief stores the state of the military
-   * @param Military object
    **/
-  void storeState(Military * m);
+  MilitaryState();
+
+  ~MilitaryState();
 
   /**
    * @brief getter for the numTroops attribute
    * @return the number of troops of the military
-  */
+   */
   int getNumTroops();
 
   /**
@@ -75,22 +67,17 @@ class MilitaryState
    * @param numShips the new number of ships
   */
   void setNumShips(int numShips);
-  /**
-   * 
-   * 
-   * 
-   */
-   Military* getState(); 
-    void setNumBattalions();
-    int getNumBatalions();		
+  
+  Military* getState(); 
+  void setNumBattalions();
+  int getNumBatalions();		
+
 private:
-	Military* State;
-	int numTroops;
-    int numTanks;
-    int numPlanes;
-    int numShips;
-    int numBattalions;
-	std::time_t timestamp;	
+	std::vector<Battalion*>* battalions;
+  std::vector<Ship*>* ships;
+  std::vector<Tank*>* tanks;
+  std::vector<Plane*>* planes;
+  std::vector<VehicleFactory*>* vehicleFactories;
 };
 
 #endif
