@@ -13,24 +13,13 @@ EarlyStrategy::~EarlyStrategy()
   
 }
 
-// void EarlyStrategy::takeTurn(double* strengthRatings, Country* countryA, Country* countryB) 
-// {
-//   double powerBalance = strengthRatings[0] - strengthRatings[1];
-//   if (powerBalance < -0.5) 
-//     negotiate(countryA, countryB);
-//   if (powerBalance < 0.5 && powerBalance > -0.5) 
-//     taxImports(countryA, countryB);
-//   if (powerBalance > 0.5) 
-//     banImports(countryA, countryB);
-// }
-
 void EarlyStrategy::defensiveMove(Country* countryA, Country* countryB) 
 {
   std::cout << "EarlyStrategy::negotiate selected" << std::endl;
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.3
   // CountryB chance of success : 0.7
-  if (randomOutcome <= 0.3) // the negotiation has succeeded in easing tension
+  if (randomOutcome <= 0.3) // CountryA wins
   {
     countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
     countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
@@ -47,7 +36,7 @@ void EarlyStrategy::defensiveMove(Country* countryA, Country* countryB)
     countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.9);
     return;
   }
-  // CountryB feels antagonised by CountryA, reacts with aggression
+  // CountryB wins
   countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
   countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
   countryA->setBorderStrength(countryA->getBorderStrength() * 0.95);
@@ -69,7 +58,7 @@ void EarlyStrategy::neutralMove(Country* countryA, Country* countryB)
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.5
   // CountryB chance of success : 0.5
-  if (randomOutcome <= 0.5) // CountryB learns its lesson, the measure was a success
+  if (randomOutcome <= 0.5) // CountryA wins
   {
     countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
     countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
@@ -86,7 +75,7 @@ void EarlyStrategy::neutralMove(Country* countryA, Country* countryB)
     countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.9);
     return;
   }
-  // CountryB feels a line has been crossed, reacts with aggression
+  // CountryB wins
   countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
   countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
   countryA->setBorderStrength(countryA->getBorderStrength() * 0.95);
@@ -108,7 +97,7 @@ void EarlyStrategy::offensiveMove(Country* countryA, Country* countryB)
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.7
   // CountryB chance of success : 0.3
-  if (randomOutcome <= 0.7) // CountryB learns its lesson, the measure was a success
+  if (randomOutcome <= 0.7) // CountryA wins
   {
     countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
     countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
@@ -125,7 +114,7 @@ void EarlyStrategy::offensiveMove(Country* countryA, Country* countryB)
     countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.9);
     return;
   }
-  // CountryB feels a line has been crossed, reacts with aggression
+  // CountryB wins
   countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
   countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
   countryA->setBorderStrength(countryA->getBorderStrength() * 0.95);
