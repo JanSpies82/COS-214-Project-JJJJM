@@ -228,25 +228,13 @@ public:
    * @param aspectScores pointer to an array that holds this countries scores across each state aspect
   */
   void compareDomestic(Country* a, Country* b, std::vector<double>* aspectScores);
-
-  /**
-   * @brief increments turnCount by 1 indicating the stage of war
-  */
-  void incrementTurnCount();
-
-  /**
-   * @brief setter for this 
-  */
   
 private:
-  Military* military;
-  WarStage* warStage;
-  CountryMediator* mediator;
-
   int turnCount;
   int numCitizens;
   std::string name;
   Strategy* strategy;
+  Military* military;
   double politicalStability;
   double domesticMorale;
   double selfReliance;
@@ -254,6 +242,7 @@ private:
   double capitalSafety;
   double warSentiment;
   double tradeRouteSafety;
+  CountryMediator* mediator;
   CountryState* countryState;
   std::vector<Country*>* enemies;
 };
