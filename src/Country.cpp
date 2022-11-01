@@ -180,39 +180,37 @@ void Country::setMapState(MapState *_mapState)
 // getCountryRating()
 ///////////////////////////////////////////////////////////
 
-/// @todo work with Jake_M to implement military-related functions
-
 double *Country::getCountryRating(Country *b, double *strengthRatings)
 {
   std::vector<double> strengthScoresA;
   std::vector<double> strengthScoresB;
   std::vector<double> aspectScores;
 
-  // aspectScores = compareMilitary(this, b);
+  compareMilitary(this, b, &aspectScores); // get CountryA's military strength scores
   for (double score : aspectScores)
     strengthScoresA.push_back(score);
 
-  // aspectScores = compareMilitary(b, this);
+  compareMilitary(b, this, &aspectScores); // get CountryB's military strength scores
   for (double score : aspectScores)
     strengthScoresA.push_back(score);
 
-  // aspectScores = compareDomestic(this, b);
+  compareDomestic(this, b, &aspectScores); // get CountryA's domestic strength scores
   for (double score : aspectScores)
     strengthScoresA.push_back(score);
 
-  // aspectScores = compareDomestic(b, this);
+  compareDomestic(b, this, &aspectScores); // get CountryB's domestic strength scores
   for (double score : aspectScores)
     strengthScoresA.push_back(score);
 
-  double strengthA = 0.0;
+  double strengthA = 0.0;  
   for (double score : strengthScoresA)
     strengthA += score;
-  strengthA /= strengthScoresA.size();
+  strengthA /= strengthScoresA.size(); // CountryA's overall strength
 
-  double strengthB = 0.0;
+  double strengthB = 0.0; 
   for (double score : strengthScoresB)
     strengthB += score;
-  strengthB /= strengthScoresB.size();
+  strengthB /= strengthScoresB.size(); // CountryB's overall strength
 
   strengthRatings[0] = strengthA;
   strengthRatings[1] = strengthB;
@@ -223,33 +221,33 @@ double *Country::getCountryRating(Country *b, double *strengthRatings)
 // compareMilitary()
 ///////////////////////////////////////////////////////////
 
-// std::vector<double> Country::compareMilitary(Country* a, Country* b)
-// {
-//   std::vector<double> ratingsA;
-//   MilitaryState* mA = a->getMilitaryState();
-//   MilitaryState* mB = b->getMilitaryState();
-//   ratingsA.push_back(compareAspect(mA->getNumTroops(), mB->getNumTroops()));
-//   ratingsA.push_back(compareAspect(mA->getNumTanks(), mB->getNumTanks()));
-//   ratingsA.push_back(compareAspect(mA->getNumPlanes(), mB->getNumPlanes()));
-//   ratingsA.push_back(compareAspect(mA->getNumShips(), mB->getNumShips()));
-//   return ratingsA;
-// }
+std::vector<double> Country::compareMilitary(Country* a, Country* b, std::vector<double>* aspectScores)
+{
+  std::vector<double> ratingsA;
+  MilitaryState* mA = a->getMilitaryState();
+  MilitaryState* mB = b->getMilitaryState();
+  ratingsA.push_back(compareAspect(mA->getNumTroops(), mB->getNumTroops()));
+  ratingsA.push_back(compareAspect(mA->getNumTanks(), mB->getNumTanks()));
+  ratingsA.push_back(compareAspect(mA->getNumPlanes(), mB->getNumPlanes()));
+  ratingsA.push_back(compareAspect(mA->getNumShips(), mB->getNumShips()));
+  return ratingsA;
+}
 
 ///////////////////////////////////////////////////////////
 // compareDomestic(Country)
 ///////////////////////////////////////////////////////////
 
-// std::vector<double> Country::compareDomestic(Country* a, Country* b)
-// {
-//   std::vector<double> ratingsA;
-//   ratingsA.push_back(compareAspect(a->getPoliticalStability(), b->getPoliticalStability()));
-//   ratingsA.push_back(compareAspect(a->getDomesticMorale(), b->getDomesticMorale()));
-//   ratingsA.push_back(compareAspect(a->getBorderStrength(), b->getBorderStrength()));
-//   ratingsA.push_back(compareAspect(a->getCapitalSafety(), b->getCapitalSafety()));
-//   ratingsA.push_back(compareAspect(a->getWarSentiment(), b->getWarSentiment()));
-//   ratingsA.push_back(compareAspect(a->getTradeRouteSafety(), b->getTradeRouteSafety()));
-//   return ratingsA;
-// }
+std::vector<double> Country::compareDomestic(Country* a, Country* b, std::vector<double>* aspectScores)
+{
+  std::vector<double> ratingsA;
+  ratingsA.push_back(compareAspect(a->getPoliticalStability(), b->getPoliticalStability()));
+  ratingsA.push_back(compareAspect(a->getDomesticMorale(), b->getDomesticMorale()));
+  ratingsA.push_back(compareAspect(a->getBorderStrength(), b->getBorderStrength()));
+  ratingsA.push_back(compareAspect(a->getCapitalSafety(), b->getCapitalSafety()));
+  ratingsA.push_back(compareAspect(a->getWarSentiment(), b->getWarSentiment()));
+  ratingsA.push_back(compareAspect(a->getTradeRouteSafety(), b->getTradeRouteSafety()));
+  return ratingsA;
+}
 
 ///////////////////////////////////////////////////////////
 // compareAspect(int, int)
