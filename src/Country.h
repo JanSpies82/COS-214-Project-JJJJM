@@ -2,7 +2,7 @@
 #define __Country_h__
 
 #include <vector>
-#include<string>
+#include <string>
 #include <exception>
 
 class WarStage;
@@ -77,7 +77,7 @@ public:
     * @param countryB the country that this country is implementing a strategy against
     * @return the strength rating of this country
     */
-  double* getCountryRating(Country* countryB, double* strengthRatings);
+  void getCountryRating(Country* countryB, double* strengthRatings);
 
   /**
     * @brief compares two state paramters and returns countryA's advantage
