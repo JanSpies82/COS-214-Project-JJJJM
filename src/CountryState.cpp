@@ -1,8 +1,8 @@
 #include "CountryState.h"
 #include "Country.h"
 
-CountryState::CountryState(Country* country){
-  timestamp = std::time(0);
+CountryState::CountryState(Country* country)
+{
   numCitizens = country->getNumCitizens();
   politicalStability = country->getPoliticalStability();
   domesticMorale = country->getDomesticMorale();
@@ -14,7 +14,6 @@ CountryState::CountryState(Country* country){
 
 CountryState::CountryState(const CountryState& cs)
 {
-  timestamp = cs.timestamp;
   numCitizens = cs.numCitizens;
   politicalStability = cs.politicalStability;
   domesticMorale = cs.domesticMorale;
@@ -27,4 +26,9 @@ CountryState::CountryState(const CountryState& cs)
 CountryState* CountryState::clone()
 {
   return new CountryState(*this);
+}
+
+MilitaryState* CountryState::getMilitaryState()
+{
+  return militaryState;
 }
