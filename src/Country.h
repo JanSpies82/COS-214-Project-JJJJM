@@ -31,30 +31,6 @@ public:
   Country(std::string _name);
 
   /**
-    * @brief takes next action in simulation based on current state
-    * @todo rename and implement
-    */
-  void request();
-
-  /**
-    * @brief notify each observer of the new current state
-    * @todo rename and implement
-    */
-  void notify();
-
-  /**
-    * @brief add new observer to vector of observers
-    * @todo rename and implement
-    */
-  void attach();
-  
-  /**
-    * @brief remove observer from vector of observers
-    * @todo rename and implement
-    */
-  void detach();
-
-  /**
     * @brief uses state information to implement next action
     * @param countryB the country that is being attacked
     */
@@ -243,6 +219,8 @@ public:
   Location* getCapital();
 
   void setCapital(Location* _capital);
+
+  void setLocations(std::vector<Location*>* _locations);
   
 private:
   int turnCount;
@@ -261,6 +239,7 @@ private:
   CountryMediator* mediator;
   CountryState* countryState;
   std::vector<Country*>* enemies;
+  std::vector<Location*>* locations;
 };
 
 #endif

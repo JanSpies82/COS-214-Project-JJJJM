@@ -406,3 +406,12 @@ void Country::setCapital(Location* _capital)
 {
   capital = _capital;
 }
+
+///////////////////////////////////////////////////////////
+// setLocations(std::vector<Location*>*)
+///////////////////////////////////////////////////////////
+
+void Country::setLocations(std::vector<Location*>* _locations)
+{
+  locations = _locations;
+}
