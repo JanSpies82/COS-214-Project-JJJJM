@@ -15,6 +15,8 @@ class BattalionObserver: public Observer
 		 * @brief notify observer about the changes in the subject
 		 **/
 		void update();
+		
+		
 	private: 
 		ObserverState state;
 		Battalion subject;

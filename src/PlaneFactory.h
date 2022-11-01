@@ -26,6 +26,7 @@ class PlaneFactory: public VehicleFactory
 		 * @return Vehicle* but this class will send a Plane object
 		 **/
 		 Vehicle* manufactureVehicle();
+		 Vehicle* manufactureVehicle(int,int,int);
 };
 
 #endif

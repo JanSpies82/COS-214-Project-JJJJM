@@ -1,5 +1,5 @@
 #include <exception>
-using namespace std;
+
 
 #ifndef __Ship_h__
 #define __Ship_h__
@@ -18,10 +18,12 @@ class Ship: public Vehicle
 		 * @brief constructs the Ship Object
 		 **/
 		Ship();
+
+		Ship(int,int);
 		/**
 		 * @brief destroys the Ship Object
 		 **/
-		~Ship();
+		virtual ~Ship();
 		/**
 		 * @brief Ship attacks an enemy country 
 		 * @param Country* - passes in country to be attacked

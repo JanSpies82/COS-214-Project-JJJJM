@@ -4,6 +4,7 @@
 
 class Country;
 class Citizen;
+class BattalionObserver;
 
 class Battalion
 {
@@ -12,28 +13,23 @@ class Battalion
 		 * @brief construct a Battalion object
 		 * */
 		Battalion();
-
+		/**
+		 * @brief construct a Battalion object
+		 * @param int value
+		 * */
+		Battalion(int);
 		/**
 		 * @brief destroys a Battallion object
 		 **/
-		~Battalion();
+		virtual ~Battalion();
 
 		/**
 		 * @brief attack method towards the enemy Country
 		 * @param Country*- Country reference object
 		 **/
 		void attack(Country* enemy);
-
-		/**
-		 * @brief converts Citizens into battalions
-		 * @param Citizen object- should be the population
-		 **/
-		void addBattalions(Citizen *_citizen);
-
-		/**
-		 * @brief sets number of deceased battalions in battle
-		 **/
-		void decreaseBattalions(int deceased);
+	
+		
 
 		/**
 		 * @brief sets the number Battalions an attack of a battallion kills.
@@ -46,8 +42,15 @@ class Battalion
 		 * @return int - number of Battalions
 		 **/
 		int getBattalionDestroyed();
+		/**
+		 * 
+		 * 
+		 * */
+		void attach(BattalionObserver obs);
+		void dettach(BattalionObserver obs);
 	private:
 	int numBattalionDestroys;
+	int groupSize;
 		
 };
 

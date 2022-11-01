@@ -18,7 +18,7 @@
 // Country()
 ///////////////////////////////////////////////////////////
 
-Country::Country() 
+Country::Country()
 {
   turnCount += 1;
 }
@@ -29,7 +29,7 @@ Country::Country()
 
 void Country::request()
 {
-	return;
+  return;
 }
 
 ///////////////////////////////////////////////////////////
@@ -38,7 +38,7 @@ void Country::request()
 
 void Country::notify()
 {
-	return;
+  return;
 }
 
 ///////////////////////////////////////////////////////////
@@ -47,7 +47,7 @@ void Country::notify()
 
 void Country::attach()
 {
-	return;
+  return;
 }
 
 ///////////////////////////////////////////////////////////
@@ -56,7 +56,7 @@ void Country::attach()
 
 void Country::detach()
 {
-	return;
+  return;
 }
 
 ///////////////////////////////////////////////////////////
@@ -81,12 +81,12 @@ int Country::getTurnCount()
 // takeTurn()
 ///////////////////////////////////////////////////////////
 
-void Country::takeTurn(Country* countryB)
+void Country::takeTurn(Country *countryB)
 {
   // setStrategy();
-  double* strengthRatings;
+  double *strengthRatings;
   getCountryRating(countryB, strengthRatings);
-	strategy->takeTurn(strengthRatings, this, countryB);
+  strategy->takeTurn(strengthRatings, this, countryB);
 }
 
 ///////////////////////////////////////////////////////////
@@ -97,13 +97,13 @@ void Country::takeTurn(Country* countryB)
 // {
 //   delete strategy;
 //   strategy = NULL;
-  
-//   if (getTurnCount() < 5) 
+
+//   if (getTurnCount() < 5)
 //   {
 //     strategy = new EarlyStrategy();
 //     return;
 //   }
-//   if (getTurnCount() < 15) 
+//   if (getTurnCount() < 15)
 //   {
 //     strategy = new MiddleStrategy();
 //     return;
@@ -115,7 +115,7 @@ void Country::takeTurn(Country* countryB)
 // getState()
 ///////////////////////////////////////////////////////////
 
-CountryState* Country::getState()
+CountryState *Country::getState()
 {
   // generate current state
   // return current state
@@ -144,7 +144,7 @@ void Country::setNumCitizens(int _numCitizens)
 // getMilitaryState()
 ///////////////////////////////////////////////////////////
 
-MilitaryState* Country::getMilitaryState()
+MilitaryState *Country::getMilitaryState()
 {
   return militaryState;
 }
@@ -153,7 +153,7 @@ MilitaryState* Country::getMilitaryState()
 // setMilitaryState()
 ///////////////////////////////////////////////////////////
 
-void Country::setMilitaryState(MilitaryState* _militaryState)
+void Country::setMilitaryState(MilitaryState *_militaryState)
 {
   militaryState = _militaryState;
 }
@@ -162,7 +162,7 @@ void Country::setMilitaryState(MilitaryState* _militaryState)
 // getMapState()
 ///////////////////////////////////////////////////////////
 
-MapState* Country::getMapState()
+MapState *Country::getMapState()
 {
   return mapState;
 }
@@ -171,7 +171,7 @@ MapState* Country::getMapState()
 // setMapState()
 ///////////////////////////////////////////////////////////
 
-void Country::setMapState(MapState* _mapState)
+void Country::setMapState(MapState *_mapState)
 {
   mapState = _mapState;
 }
@@ -182,7 +182,7 @@ void Country::setMapState(MapState* _mapState)
 
 /// @todo work with Jake_M to implement military-related functions
 
-double* Country::getCountryRating(Country* b, double* strengthRatings)
+double *Country::getCountryRating(Country *b, double *strengthRatings)
 {
   std::vector<double> strengthScoresA;
   std::vector<double> strengthScoresB;
@@ -257,7 +257,7 @@ double* Country::getCountryRating(Country* b, double* strengthRatings)
 
 double Country::compareAspect(int countryA, int countryB)
 {
-  return countryA/countryB;
+  return countryA / countryB;
 }
 
 ///////////////////////////////////////////////////////////
@@ -266,7 +266,7 @@ double Country::compareAspect(int countryA, int countryB)
 
 double Country::compareAspect(double countryA, double countryB)
 {
-  return countryA/countryB;
+  return countryA / countryB;
 }
 
 ///////////////////////////////////////////////////////////
@@ -342,7 +342,7 @@ void Country::setSelfReliance(double _selfReliance)
 // getBorderStrength()
 ///////////////////////////////////////////////////////////
 
-double Country::getBorderStrength() 
+double Country::getBorderStrength()
 {
   return borderStrength;
 }
@@ -417,7 +417,7 @@ double Country::getTradeRouteSafety()
 }
 
 ///////////////////////////////////////////////////////////
-// setTradeRouteSafety()  
+// setTradeRouteSafety()
 ///////////////////////////////////////////////////////////
 
 void Country::setTradeRouteSafety(double _tradeRouteSafety)
@@ -434,7 +434,7 @@ void Country::setTradeRouteSafety(double _tradeRouteSafety)
 // getCountryState()
 ///////////////////////////////////////////////////////////
 
-CountryState* Country::getCountryState()
+CountryState *Country::getCountryState()
 {
   return countryState;
 }
@@ -443,7 +443,15 @@ CountryState* Country::getCountryState()
 // setCountryState()
 ///////////////////////////////////////////////////////////
 
-void Country::setCountryState(CountryState* _countryState)
+void Country::setCountryState(CountryState *_countryState)
 {
   countryState = _countryState;
+}
+
+// TODO implement these methods
+std::string Country::getName(){};
+
+Military *Country::getMilitary()
+{
+  return NULL;
 }

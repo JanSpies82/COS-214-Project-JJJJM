@@ -1,5 +1,5 @@
 #include <exception>
-using namespace std;
+
 
 #ifndef __ShipFactory_h__
 #define __ShipFactory_h__
@@ -26,6 +26,7 @@ class ShipFactory: public VehicleFactory
 		 * @return Vehicle* but this class will send a Ship object 
 		 **/
 		 Vehicle* manufactureVehicle();
+		 Vehicle* manufactureVehicle(int,int);
 };
 
 #endif

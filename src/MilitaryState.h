@@ -1,23 +1,28 @@
+///@author Jake Mahloko
+
 #include <exception>
-
-#include <ctime>
-
 #ifndef __MilitaryState_h__
 #define __MilitaryState_h__
 
+#include <ctime>
 #include <vector>
 
 class Military;
 //TODO how does this work? If a state object is constructed in the contructor then what does storeState() do? Why is the "state" object being stored a military? Does this object just make a deep copy of a military and store that?
 class MilitaryState
 {
-public:
-  /**
+	public:
+		/**
    * @brief construct a MilitaryState Object
    * @param Military object
   **/
   MilitaryState(Military* m);
-
+  /**
+   * 
+   * 
+   * 
+   */
+  ~MilitaryState();
   /**
    * @brief stores the state of the military
    * @param Military object
@@ -33,7 +38,7 @@ public:
   /**
    * @brief setter for the numTroops attribute
   */
-  void setNumTroops(int numTroops);
+  void setNumTroops(int);
 
   /**
    * @brief getter for the numTanks attribute
@@ -45,7 +50,7 @@ public:
    * @brief setter for the numTanks attribute
    * @param numTanks the new number of tanks
   */
-  void setNumTanks(int numTanks);
+  void setNumTanks(int);
 
   /**
    * @brief getter for the number of planes of a country's military
@@ -57,7 +62,7 @@ public:
    * @brief setter for the numPlanes attribute
    * @param numPlanes the new number of planes
   */
-  void setNumPlanes(int numPlanes);
+  void setNumPlanes(int);
 
   /**
    * @brief getter for the number of ships of a country's military
@@ -69,15 +74,34 @@ public:
    * @brief setter for the numShips attribute
    * @param numShips the new number of ships
   */
-  void setNumShips(int numShips);
-		
+  void setNumShips(int);
+  /**
+   * 
+   * 
+   * 
+   */
+   Military* getState(); 
+
+   /**
+    * 
+    * 
+    */ 
+    void setNumBatalion(int);
+    /**
+     * 
+     * 
+     * 
+     */
+      int getNumBattalions();		
 private:
-		int numTroops;
+	Military* State;
+	int numTroops;
     int numTanks;
     int numPlanes;
     int numShips;
-		std::time_t timestamp;
-	
+    int numBattalions;
+	std::time_t timestamp;
+
 };
 
 #endif

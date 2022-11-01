@@ -18,7 +18,7 @@ using namespace std;
 		/**
 		 * @brief destroy a VehicleFactiry object
 		 **/
-		~VehicleFactory();
+		virtual ~VehicleFactory();
 		/**
 		 * @brief pure virtual -children classes creates Vehicles referenced objects
 		 * @return Vehicle* -newly created vehicle
