@@ -172,7 +172,7 @@ Map::Map(Map* _oldMap){
 
     for (int j = 0; j < 24; j++)
     {
-        arr1[j] = ((Territory*)_oldMap->getLocation(j,0))->clone();
+        arr1[j] = _oldMap->getLocation(j,0)->clone();
         arr2[j] = arr1[j];
     }
 
