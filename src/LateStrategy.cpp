@@ -3,19 +3,9 @@
 
 #include <iostream>
 
-// void LateStrategy::takeTurn(double* strengthRatings, Country* countryA, Country* countryB) 
-// {
-//   double powerBalance = strengthRatings[0] - strengthRatings[1];
-//   if (powerBalance < -0.5) 
-//     surrende(countryA, countryB);
-//   if (powerBalance < 0.5 && powerBalance > -0.5) 
-//     launchAttacks(countryA, countryB);
-//   if (powerBalance > 0.5) 
-//     occupyCapital(countryA, countryB);
-// }
-
 void LateStrategy::defensiveMove(Country* countryA, Country* countryB) 
 {
+  // countryA surrenders and loses war
   countryA->setPoliticalStability(0);
   countryA->setDomesticMorale(0);
   countryA->setBorderStrength(0);
@@ -30,7 +20,7 @@ void LateStrategy::neutralMove(Country* countryA, Country* countryB)
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.5
   // CountryB chance of success : 0.5
-  if (randomOutcome <= 0.5) // CountryA successfully attacked CountryB
+  if (randomOutcome <= 0.5) // CountryA wins turn
   {
     countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.6);
     countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.6);
@@ -47,7 +37,7 @@ void LateStrategy::neutralMove(Country* countryA, Country* countryB)
     countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.15);
     return;
   }
-  // CountryB neutralised countryA
+  // CountryB wins turn
   countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.1);
   countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.1);
   countryA->setBorderStrength(countryA->getBorderStrength() * 0.15);
@@ -69,7 +59,7 @@ void LateStrategy::offensiveMove(Country* countryA, Country* countryB)
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.7
   // CountryB chance of success : 0.3
-  if (randomOutcome <= 0.7) // CountryA successfully invaded CountryB's capital and wins
+  if (randomOutcome <= 0.7) // CountryA wins turn
   {
     countryB->setPoliticalStability(0);
     countryB->setDomesticMorale(0);
@@ -79,7 +69,7 @@ void LateStrategy::offensiveMove(Country* countryA, Country* countryB)
     countryB->setTradeRouteSafety(0);
     return;
   }
-  // CountryB successfully defended its capital city
+  // CountryB wins turn
   countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.4);
   countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.4);
   countryA->setBorderStrength(countryA->getBorderStrength() * 0.4);

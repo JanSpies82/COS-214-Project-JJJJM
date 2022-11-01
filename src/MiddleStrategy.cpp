@@ -3,24 +3,13 @@
 
 #include <iostream>
 
-// void MiddleStrategy::takeTurn(double* strengthRatings, Country* countryA, Country* countryB) 
-// {
-//   double powerBalance = strengthRatings[0] - strengthRatings[1];
-//   if (powerBalance < -0.5) 
-//     defendBorders(countryA, countryB);
-//   if (powerBalance < 0.5 && powerBalance > -0.5) 
-//     airstrikeCapital(countryA, countryB);
-//   if (powerBalance > 0.5) 
-//     launchInvasion(countryA, countryB);
-// }
-
 void MiddleStrategy::defensiveMove(Country* countryA, Country* countryB) 
 {
   std::cout << "MiddleStrategy::defendBorders selected" << std::endl;
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.3
   // CountryB chance of success : 0.7
-  if (randomOutcome <= 0.3) // CountryA successfully defended its border/s
+  if (randomOutcome <= 0.3) // CountryA wins turn
   {
     countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
     countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
@@ -37,7 +26,7 @@ void MiddleStrategy::defensiveMove(Country* countryA, Country* countryB)
     countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.65);
     return;
   }
-  // CountryB attacked CountryA's border/s and won
+  // CountryB wins turn
   countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
   countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
   countryA->setBorderStrength(countryA->getBorderStrength() * 0.95);
@@ -59,7 +48,7 @@ void MiddleStrategy::neutralMove(Country* countryA, Country* countryB)
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.5
   // CountryB chance of success : 0.5
-  if (randomOutcome <= 0.5) // CountryA successfully attacked CountryB's capital
+  if (randomOutcome <= 0.5) // CountryA wins turn
   {
     countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
     countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
@@ -76,7 +65,7 @@ void MiddleStrategy::neutralMove(Country* countryA, Country* countryB)
     countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.65);
     return;
   }
-  // CountryB neutralised countryA's airforce
+  // CountryB wins turn
   countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
   countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
   countryA->setBorderStrength(countryA->getBorderStrength() * 0.95);
@@ -91,7 +80,7 @@ void MiddleStrategy::offensiveMove(Country* countryA, Country* countryB)
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.7
   // CountryB chance of success : 0.3
-  if (randomOutcome <= 0.7) // CountryA successfully invaded CountryB
+  if (randomOutcome <= 0.7) // CountryA wins turn
   {
     countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
     countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
@@ -108,7 +97,7 @@ void MiddleStrategy::offensiveMove(Country* countryA, Country* countryB)
     countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.65);
     return;
   }
-  // CountryB successfully defended its territory
+  // CountryB wins turn
   countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
   countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
   countryA->setBorderStrength(countryA->getBorderStrength() * 0.95);

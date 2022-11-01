@@ -19,7 +19,7 @@ void EarlyStrategy::defensiveMove(Country* countryA, Country* countryB)
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.3
   // CountryB chance of success : 0.7
-  if (randomOutcome <= 0.3) // CountryA wins
+  if (randomOutcome <= 0.3) // CountryA wins turn
   {
     countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
     countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
@@ -36,7 +36,7 @@ void EarlyStrategy::defensiveMove(Country* countryA, Country* countryB)
     countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.9);
     return;
   }
-  // CountryB wins
+  // CountryB wins turn
   countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
   countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
   countryA->setBorderStrength(countryA->getBorderStrength() * 0.95);
@@ -58,7 +58,7 @@ void EarlyStrategy::neutralMove(Country* countryA, Country* countryB)
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.5
   // CountryB chance of success : 0.5
-  if (randomOutcome <= 0.5) // CountryA wins
+  if (randomOutcome <= 0.5) // CountryA wins turn
   {
     countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
     countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
@@ -75,7 +75,7 @@ void EarlyStrategy::neutralMove(Country* countryA, Country* countryB)
     countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.9);
     return;
   }
-  // CountryB wins
+  // CountryB wins turn
   countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
   countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
   countryA->setBorderStrength(countryA->getBorderStrength() * 0.95);
@@ -97,7 +97,7 @@ void EarlyStrategy::offensiveMove(Country* countryA, Country* countryB)
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.7
   // CountryB chance of success : 0.3
-  if (randomOutcome <= 0.7) // CountryA wins
+  if (randomOutcome <= 0.7) // CountryA wins turn
   {
     countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
     countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
@@ -114,7 +114,7 @@ void EarlyStrategy::offensiveMove(Country* countryA, Country* countryB)
     countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.9);
     return;
   }
-  // CountryB wins
+  // CountryB wins turn
   countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
   countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
   countryA->setBorderStrength(countryA->getBorderStrength() * 0.95);
