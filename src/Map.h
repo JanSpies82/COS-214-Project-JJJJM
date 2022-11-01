@@ -4,9 +4,8 @@
 #include "Territory.h"
 
 class Location;
-class SimulationManager;
 class Territory;
-class Map;
+class MapState;
 
 class Map
 {
@@ -62,6 +61,13 @@ class Map
 		 * 
 		 */
 		void printMap();
+
+		/**
+		 * @brief Get the State object of the Map.
+		 * 
+		 * @return MapState* 
+		 */
+		MapState* getState();
 
 	private:
 		void printLocation(char _col);

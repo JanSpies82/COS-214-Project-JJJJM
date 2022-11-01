@@ -15,6 +15,7 @@ using namespace std;
 #include "BottomNeighbour.h"
 #include "LeftNeighbour.h"
 #include "LocationIterator.h"
+#include "MapState.h"
 
 
 Map::Map(){
@@ -250,4 +251,8 @@ void Map::printLocation(char _col){
             break;
         }
         std::cout<<x;
+}
+
+MapState* Map::getState(){
+    return new MapState(this);
 }
