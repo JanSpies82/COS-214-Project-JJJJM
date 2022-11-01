@@ -15,6 +15,7 @@ class Strategy;
 class Country;
 class MapState;
 class MilitaryState;
+class Location;
 
 class Country
 {
@@ -27,7 +28,7 @@ public:
   /**
    * @brief parameterised constructor
   */
-  Country(CountryState* cs, MilitaryState* ms);
+  Country(std::string _name);
 
   /**
     * @brief takes next action in simulation based on current state
@@ -228,11 +229,26 @@ public:
    * @param aspectScores pointer to an array that holds this countries scores across each state aspect
   */
   void compareDomestic(Country* a, Country* b, std::vector<double>* aspectScores);
+
+  /**
+   * @brief getter for turnCount
+   */
+  int getTurnCount();
+
+  /**
+   * @brief increment function for turnCount attribute
+  */
+  void incrementTurnCount();
+
+  Location* getCapital();
+
+  void setCapital(Location* _capital);
   
 private:
   int turnCount;
   int numCitizens;
   std::string name;
+  Location* capital;
   Strategy* strategy;
   Military* military;
   double politicalStability;
