@@ -69,6 +69,8 @@ protected:
 
 	/**
 	 * @brief Take a turn in the simulation by having each country take a turn
+	 * 
+	 * Increments the turn count and facilitates the switching of war stages. Also saves the state of the system before the turn is taken
 	 *
 	 */
 	void takeTurn();
@@ -83,6 +85,7 @@ protected:
 	/**
 	 * @brief Display the menu of options available to the user and perform that action
 	 * 
+	 * In design mode will allow the user to change the state of the simulation
 	 */
 	void processMenu();
 
@@ -98,7 +101,7 @@ private:
 	std::vector<Superpower *> *superpowers;
 	Backup *backup;
 	bool designMode, isRunning;
-	int turnCount;
+	int turnCount, maxTurnCount;
 	void setSuperpowers();
 	void setDesignMode();
 	void setUpUK(Country *_uk);
