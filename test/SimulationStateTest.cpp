@@ -9,30 +9,30 @@
 // #include "../src/Military.h"
 // #include "gtest/gtest.h"
 
-// // class IteratorTest : public testing::Test
-// // {
-// // public:
-// //     virtual void SetUp() override
-// //     {
-// //         map = new Map();
-// //         // country = new Country();
-// //         // military = new Military();
-// //         mapState = new MapState(map);
-// //     }
-// //     virtual void TearDown() override
-// //     {
-// //         delete map;
-// //         // delete country;
-// //         // delete military;
-// //     }
+// class IteratorTest : public testing::Test
+// {
+// public:
+//     virtual void SetUp() override
+//     {
+//         map = new Map();
+//         // country = new Country();
+//         // military = new Military();
+//         mapState = new MapState(map);
+//     }
+//     virtual void TearDown() override
+//     {
+//         delete map;
+//         // delete country;
+//         // delete military;
+//     }
 
-// //     Map* map;
-// //     Country* country;
-// //     Military* military;
-// //     MapState* mapState;
-// //     CountryState* countryState;
-// //     MilitaryState* militaryState;
-// // };
+//     Map* map;
+//     Country* country;
+//     Military* military;
+//     MapState* mapState;
+//     CountryState* countryState;
+//     MilitaryState* militaryState;
+// };
 
 // namespace
 // {

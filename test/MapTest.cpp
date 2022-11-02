@@ -17,7 +17,7 @@ namespace
     {
         Map *m = new Map();
         Map *t = new Map(m);
-        EXPECT_EQ(m->getLocation(0, 0)->getColour(), t->getLocation(0, 0)->getColour());
+        EXPECT_EQ(m->getLocation(0, 0)->getColor(), t->getLocation(0, 0)->getColor());
         delete m;
         delete t;
     }

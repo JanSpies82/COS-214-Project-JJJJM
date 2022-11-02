@@ -8,4 +8,4 @@ file(GLOB src
 )
 
 add_executable(main ${src})
-# set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_BUILD_TYPE Debug)

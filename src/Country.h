@@ -270,6 +270,20 @@ public:
    * @brief setter for this country's locations, performs a shallow copy of the passed in locations vector
   */
   void setLocations(std::vector<Location*>* _locations);
+
+/**
+ * @brief setter for this country's color 
+ * 
+ * @param _color : std::string - The color this country should be printed as on the map
+ */
+  void setColor(std::string _color);
+
+  /**
+   * @brief getter for this country's color
+   * 
+   * @return returns this country's color
+  */
+  std::string getColor();
   
 private:
   int numCitizens;
@@ -288,6 +302,7 @@ private:
   CountryState* countryState;
   std::vector<Country*>* enemies;
   std::vector<Location*>* locations;
+  std::string color;
 };
 
 #endif

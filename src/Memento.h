@@ -18,6 +18,13 @@ public:
 	Memento();
 
 	/**
+	 * @brief Construct a new Memento object and save the passed in state
+	 *
+	 * @param _state : SimulationState* - The state to save
+	 */
+	Memento(SimulationState* _simulationState);
+
+	/**
 	 * @brief Destroy the Memento object and delete its stored SimulationState
 	 *
 	 */

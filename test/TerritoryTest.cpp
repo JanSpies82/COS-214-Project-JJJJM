@@ -12,8 +12,8 @@ namespace {
 
     TEST(TerritoryTest, RightTest){
 
-        Location* middle=new Territory(1,1,0);
-        Location* right=new Territory(2,1,0);
+        Location* middle=new Territory(1,1);
+        Location* right=new Territory(2,1);
         
         middle->add(new RightNeighbour(right));
 
@@ -25,9 +25,9 @@ namespace {
     }
 
     TEST(TerritoryTest, BottomTest){
-        Location* middle=new Territory(1,1,0);
+        Location* middle=new Territory(1,1);
 
-        Location* bottom=new Territory(1,2,0);
+        Location* bottom=new Territory(1,2);
 
         middle->add(new BottomNeighbour(bottom));
 
@@ -38,9 +38,9 @@ namespace {
     }
 
     TEST(TerritoryTest, LeftTest){
-        Location* middle=new Territory(1,1,0);
+        Location* middle=new Territory(1,1);
 
-        Location* left=new Territory(0,1,0);
+        Location* left=new Territory(0,1);
 
         middle->add(new LeftNeighbour(left));
 
@@ -52,9 +52,9 @@ namespace {
     }
 
     TEST(TerritoryTest, TopTest){
-        Location* middle=new Territory(1,1,0);
+        Location* middle=new Territory(1,1);
 
-        Location* top=new Territory(1,0,0);
+        Location* top=new Territory(1,0);
 
         
 
@@ -71,12 +71,12 @@ namespace {
 
     TEST(TerritoryTest, TestAll){
         
-        Location* middle=new Territory(1,1,0);
-        Location* right=new Territory(2,1,0);
-        Location* left=new Territory(0,1,0);
-        Location* top=new Territory(1,0,0);
-        Location* bottom=new Territory(1,2,0);
-        Location* rightRight=new Territory(3,1,0);
+        Location* middle=new Territory(1,1);
+        Location* right=new Territory(2,1);
+        Location* left=new Territory(0,1);
+        Location* top=new Territory(1,0);
+        Location* bottom=new Territory(1,2);
+        Location* rightRight=new Territory(3,1);
 
         
         middle->add(new RightNeighbour(right));
@@ -105,15 +105,15 @@ namespace {
     }
 
     TEST(TerritoryTest, ExtensiveTest){
-        Location* t00=new Territory(0,0,0);
-        Location* t10=new Territory(1,0,0);
-        Location* t20=new Territory(2,0,0);
-        Location* t01=new Territory(0,1,0);
-        Location* t11=new Territory(1,1,0);
-        Location* t21=new Territory(2,1,0);
-        Location* t02=new Territory(0,2,0);
-        Location* t12=new Territory(1,2,0);
-        Location* t22=new Territory(2,2,0);
+        Location* t00=new Territory(0,0);
+        Location* t10=new Territory(1,0);
+        Location* t20=new Territory(2,0);
+        Location* t01=new Territory(0,1);
+        Location* t11=new Territory(1,1);
+        Location* t21=new Territory(2,1);
+        Location* t02=new Territory(0,2);
+        Location* t12=new Territory(1,2);
+        Location* t22=new Territory(2,2);
 
         t00->add(new RightNeighbour(t10));
         t10->add(new RightNeighbour(t20));

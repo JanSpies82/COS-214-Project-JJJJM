@@ -6,7 +6,7 @@
 namespace {
   TEST(CountryTest, Constructor)
   {
-    Country* testCountry = new Country();
+    Country* testCountry = new Country("");
     delete testCountry;
   }
 
