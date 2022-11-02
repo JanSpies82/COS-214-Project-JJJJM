@@ -20,22 +20,6 @@ using namespace std;
 		 * @brief destroys a Vechile object
 		 **/
 		virtual ~Vehicle();
-		/**
-		 * @brief pure virtual -children class has to implement function
-		 * used to attack other countries.
-		 * @param Country*-enemy Country reference object 
-		 **/
-		virtual void attack(Country* enemy)=0;//is it the same thing as destroy?
-		/**
-		 * @brief finds our enemy geologically
-		 **/
-		virtual void findEnemy() = 0;
-		/**
-		 * @brief pure virtual -children class has to implement function used to 
-		 * eliminate Country
-		 * @param Country*-enemy Country reference object 
-		 **/
-		virtual void destroyEnemy(Country* enemy) = 0;
 
 };
 
