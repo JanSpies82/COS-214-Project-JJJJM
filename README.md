@@ -7,4 +7,5 @@ First you will need to download the git repository into a local folder on your d
 src folder location. Then run the same command while in the test folder location. If you wish to run the unit tests then run the command make while in the test folder
 followed by the command ./test. If you wish to run the actual program then run the command make in the src folder followed by ./main. At this point you will be
 prompted for console input to start the simulation.
-Code: 
+Code-src: https://github.com/DeadpanSplash82/COS-214-Project-JJJJM/tree/main/src
+Code-test: 
