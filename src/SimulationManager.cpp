@@ -261,11 +261,12 @@ void SimulationManager::setUpUK(Country *_uk)
     delete vFactories;
 }
 
-void SimulationManager::setUpFrance(Country* _france){
-vector<Location *> *locations = new vector<Location *>();
+void SimulationManager::setUpFrance(Country *_france)
+{
+    vector<Location *> *locations = new vector<Location *>();
     for (int i = 0; i < 27; i++)
         for (int j = 0; j < 25; j++)
-            if (mapVal[i][j] == '3')
+            if (mapVal[i][j] == '4')
             {
                 locations->push_back(map->getLocation(j, i));
                 map->getLocation(j, i)->setOwnedBy(_france);
@@ -312,6 +313,69 @@ vector<Location *> *locations = new vector<Location *>();
         delete vFactories->at(i);
     delete vFactories;
 }
+
+void SimulationManager::setUpBalkans(Country *_balkans)
+{
+    vector<Location *> *locations = new vector<Location *>();
+    for (int i = 0; i < 27; i++)
+        for (int j = 0; j < 25; j++)
+            if (mapVal[i][j] == '5')
+            {
+                locations->push_back(map->getLocation(j, i));
+                map->getLocation(j, i)->setOwnedBy(_balkans);
+                if (map->getLocation(j, i)->getIsCapital())
+                    _balkans->setCapital(map->getLocation(j, i));
+            }
+    _balkans->setLocations(locations);
+
+    _balkans->setBorderStrength(0.45);
+    _balkans->setCapitalSafety(0.4);
+    _balkans->setDomesticMorale(0.6);
+    _balkans->setPoliticalStability(0.3);
+    _balkans->setSelfReliance(0.6);
+    _balkans->setWarSentiment(0.4);
+    _balkans->setTradeRouteSafety(0.3);
+    _balkans->setNumCitizens(17000000); // Educated guess
+
+    vector<VehicleFactory *> *vFactories = new vector<VehicleFactory *>();
+    vFactories->push_back(new TankFactory());
+    vFactories->push_back(new ShipFactory());
+    vFactories->push_back(new PlaneFactory());
+
+    vector<Battalion *> *battalions = new vector<Battalion *>();
+    for (int i = 0; i < 1; i++)
+        battalions->push_back(new Battalion(1));
+    _balkans->getState()->getMilitaryState()->setBattalions(battalions);
+
+    vector<Tank *> *tanks = new vector<Tank *>();
+    for (int i = 0; i < 2; i++)
+        tanks->push_back(((Tank *)(vFactories->at(0)->manufactureVehicle())));
+    _balkans->getState()->getMilitaryState()->setTanks(tanks);
+
+    vector<Ship *> *ships = new vector<Ship *>();
+    for (int i = 0; i < 2; i++)
+        ships->push_back(((Ship *)vFactories->at(1)->manufactureVehicle()));
+    _balkans->getState()->getMilitaryState()->setShips(ships);
+
+    vector<Plane *> *planes = new vector<Plane *>();
+    for (int i = 0; i < 2; i++)
+        planes->push_back(((Plane *)vFactories->at(2)->manufactureVehicle()));
+    _balkans->getState()->getMilitaryState()->setPlanes(planes);
+
+    for (int i = 0; i < vFactories->size(); i++)
+        delete vFactories->at(i);
+    delete vFactories;
+}
+
+void SimulationManager::setUpSpainPortugal(Country* _spainPortugal){}
+
+void SimulationManager::setUpSovietUnion(Country* _sovietUnion){}
+
+void SimulationManager::setUpScandanavia(Country* _scandanavia){}
+
+void SimulationManager::setUpGermany(Country* _germany){}
+
+void SimulationManager::setUpItaly(Country* _italy){}
 
 void SimulationManager::takeTurn()
 {
