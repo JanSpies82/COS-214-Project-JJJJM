@@ -9,4 +9,13 @@ namespace {
     Country* testCountry = new Country();
     delete testCountry;
   }
+
+  TEST(CountryTest, GettersAndSetters)
+  {
+    Country* countryA = new Country();
+    Country* countryB = new Country();
+
+    delete countryB;
+    delete countryA;
+  }
 }
