@@ -2,7 +2,7 @@
 #define __Country_h__
 
 #include <vector>
-#include<string>
+#include <string>
 #include <exception>
 
 class WarStage;
@@ -15,6 +15,7 @@ class Strategy;
 class Country;
 class MapState;
 class MilitaryState;
+class Location;
 
 class Country
 {
@@ -25,28 +26,14 @@ public:
   Country();
 
   /**
-    * @brief takes next action in simulation based on current state
-    * @todo rename and implement
-    */
-  void request();
+   * @brief destructor
+  */
+  ~Country();
 
   /**
-    * @brief notify each observer of the new current state
-    * @todo rename and implement
-    */
-  void notify();
-
-  /**
-    * @brief add new observer to vector of observers
-    * @todo rename and implement
-    */
-  void attach();
-  
-  /**
-    * @brief remove observer from vector of observers
-    * @todo rename and implement
-    */
-  void detach();
+   * @brief parameterised constructor
+  */
+  Country(std::string _name);
 
   /**
     * @brief uses state information to implement next action
@@ -66,18 +53,23 @@ public:
     */
   CountryState* getState();
 
-  //TODO add documentation/refinement
+  /**
+   * @brief returns the country's name
+  */
   std::string getName();
 
+  /**
+   * @brief getter for this country's military
+   * @return this country's military object
+  */
   Military* getMilitary();
-
 
   /**
     * @brief generates a countries strength rating based on various state comparisons with enemy
     * @param countryB the country that this country is implementing a strategy against
     * @return the strength rating of this country
     */
-  double* getCountryRating(Country* countryB, double* strengthRatings);
+  void getCountryRating(Country* countryB, double* strengthRatings);
 
   /**
     * @brief compares two state paramters and returns countryA's advantage
@@ -192,30 +184,6 @@ public:
   void setTradeRouteSafety(double _tradeRouteSafety);
 
   /**
-   * @brief getter for this country's military state
-   * @return returns this country's militaryState object
-  */
-  MilitaryState* getMilitaryState();
-
-  /**
-   * @brief setter for this country's military state
-   * @param _militaryState new military state
-  */
-  void setMilitaryState(MilitaryState* _militaryState);
-
-  /**
-   * @brief getter for this country's map state
-   * @return returns this country's mapState object
-  */
-  MapState* getMapState();
-
-  /**
-   * @brief setter for this country's map state
-   * @param _mapState new map state
-  */
-  void setMapState(MapState* _mapState);
-
-  /**
    * @brief getter for this country's strategy
    * @return returns this country's strategy object
   */
@@ -231,39 +199,43 @@ public:
    * @brief compares the various aspects of two countries' militaries
    * @param a the country implementing a strategy against b
    * @param b the country being attacked by a
+   * @param aspectScores pointer to an array that holds this countries scores across each state aspect
   */
-  std::vector<double> compareMilitary(Country* a, Country* b);
+  void compareMilitary(Country* a, Country* b, std::vector<double>* aspectScores);
 
   /**
    * @brief compares the various aspects of two countries' internal states
    * @param a the country implementing a strategy against b
    * @param b the country being attacked by a
+   * @param aspectScores pointer to an array that holds this countries scores across each state aspect
   */
-  std::vector<double> compareDomestic(Country* a, Country* b);
+  void compareDomestic(Country* a, Country* b, std::vector<double>* aspectScores);
 
   /**
-   * @brief increments turnCount by 1 indicating the stage of war
+   * @brief getter for this country's capital
+   * 
+   * @return returns this country's capital location object
   */
-  void incrementTurnCount();
+  Location* getCapital();
 
   /**
-   * @brief getter for turnCount
-   * @return returns the current turnCount
+   * @brief setter for this country's capital
+   * 
+   * @param _capital new capital location object
   */
-  int getTurnCount();
+  void setCapital(Location* _capital);
 
+  /**
+   * @brief setter for this country's locations, performs a shallow copy of the passed in locations vector
+  */
+  void setLocations(std::vector<Location*>* _locations);
   
 private:
-  int turnCount;
   int numCitizens;
-  MapState* mapState;
-  Military* military;
-  WarStage* warStage;
+  std::string name;
+  Location* capital;
   Strategy* strategy;
-  CountryState* countryState;
-  MilitaryState* militaryState;
-  Superpower* superpower;
-  CountryMediator* mediator;
+  Military* military;
   double politicalStability;
   double domesticMorale;
   double selfReliance;
@@ -271,7 +243,10 @@ private:
   double capitalSafety;
   double warSentiment;
   double tradeRouteSafety;
+  CountryMediator* mediator;
+  CountryState* countryState;
   std::vector<Country*>* enemies;
+  std::vector<Location*>* locations;
 };
 
 #endif

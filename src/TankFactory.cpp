@@ -1,23 +1,23 @@
-#include <exception>
-using namespace std;
+// #include <exception>
+// using namespace std;
 
-#include"Tank.h"
-#include "TankFactory.h"
-#include "VehicleFactory.h"
+// #include"Tank.h"
+// #include "TankFactory.h"
+// #include "VehicleFactory.h"
 
-		TankFactory::TankFactory(){
+// 		TankFactory::TankFactory(){
 			
-		}
+// 		}
 		
-		TankFactory::~TankFactory(){
+// 		TankFactory::~TankFactory(){
 
-		}
-		Vehicle* TankFactory::manufactureVehicle(int damageBatallion,int damageToTank){
+// 		}
+// 		Vehicle* TankFactory::manufactureVehicle(int damageBatallion,int damageToTank){
 			
-			return new Tank(damageBatallion,damageToTank);
-		}
+// 			return new Tank(damageBatallion,damageToTank);
+// 		}
 
-		Vehicle* TankFactory::manufactureVehicle(){
-			return new Tank();
-		}
+// 		Vehicle* TankFactory::manufactureVehicle(){
+// 			return new Tank();
+// 		}
 

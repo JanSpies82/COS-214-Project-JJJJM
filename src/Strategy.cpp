@@ -7,10 +7,6 @@ Strategy::Strategy()
 {
 }
 
-// void Strategy::takeTurn(double* strengthRatings, Country* countryA, Country* countryB)
-// {
-// }
-
 void Strategy::takeTurn(double* strengthRatings, Country* countryA, Country* countryB)
 {
   double cmp = strengthRatings[0] - strengthRatings[1];

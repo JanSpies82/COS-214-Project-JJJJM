@@ -1,8 +1,8 @@
-#include <exception>
-using namespace std;
+// #include <exception>
+// using namespace std;
 
-#include "VehicleFactory.h"
-#include "Military.h"
+// #include "VehicleFactory.h"
+// #include "Military.h"
 
  
  VehicleFactory::VehicleFactory(){
