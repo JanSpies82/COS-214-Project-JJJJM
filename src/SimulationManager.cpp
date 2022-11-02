@@ -473,7 +473,57 @@ void SimulationManager::setUpSovietUnion(Country *_sovietUnion)
     delete vFactories;
 }
 
-void SimulationManager::setUpScandanavia(Country *_scandanavia) {}
+void SimulationManager::setUpScandanavia(Country *_scandanavia) {
+    vector<Location *> *locations = new vector<Location *>();
+    for (int i = 0; i < 27; i++)
+        for (int j = 0; j < 25; j++)
+            if (mapVal[i][j] == '9')
+            {
+                locations->push_back(map->getLocation(j, i));
+                map->getLocation(j, i)->setOwnedBy(_scandanavia);
+                if (map->getLocation(j, i)->getIsCapital())
+                    _scandanavia->setCapital(map->getLocation(j, i));
+            }
+    _scandanavia->setLocations(locations);
+
+    _scandanavia->setBorderStrength(0.75);
+    _scandanavia->setCapitalSafety(0.9);
+    _scandanavia->setDomesticMorale(0.6);
+    _scandanavia->setPoliticalStability(0.7);
+    _scandanavia->setSelfReliance(0.7);
+    _scandanavia->setWarSentiment(0.5);
+    _scandanavia->setTradeRouteSafety(0.5);
+    _scandanavia->setNumCitizens(16945200);
+
+    vector<VehicleFactory *> *vFactories = new vector<VehicleFactory *>();
+    vFactories->push_back(new TankFactory());
+    vFactories->push_back(new ShipFactory());
+    vFactories->push_back(new PlaneFactory());
+
+    vector<Battalion *> *battalions = new vector<Battalion *>();
+    for (int i = 0; i < 1; i++)
+        battalions->push_back(new Battalion(1));
+    _scandanavia->getState()->getMilitaryState()->setBattalions(battalions);
+
+    vector<Tank *> *tanks = new vector<Tank *>();
+    for (int i = 0; i < 2; i++)
+        tanks->push_back(((Tank *)(vFactories->at(0)->manufactureVehicle())));
+    _scandanavia->getState()->getMilitaryState()->setTanks(tanks);
+
+    vector<Ship *> *ships = new vector<Ship *>();
+    for (int i = 0; i < 3; i++)
+        ships->push_back(((Ship *)vFactories->at(1)->manufactureVehicle()));
+    _scandanavia->getState()->getMilitaryState()->setShips(ships);
+
+    vector<Plane *> *planes = new vector<Plane *>();
+    for (int i = 0; i < 2; i++)
+        planes->push_back(((Plane *)vFactories->at(2)->manufactureVehicle()));
+    _scandanavia->getState()->getMilitaryState()->setPlanes(planes);
+
+    for (int i = 0; i < vFactories->size(); i++)
+        delete vFactories->at(i);
+    delete vFactories;
+}
 
 void SimulationManager::setUpGermany(Country *_germany) {}
 
