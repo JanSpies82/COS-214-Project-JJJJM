@@ -294,6 +294,12 @@ public:
    * @brief getter for this country's mediator
   */
   CountryMediator* getMediator();
+
+  /**
+   * @brief setter for this country's mediator
+   */
+  void setMediator(CountryMediator* _mediator);
+ 
   
 private:
   Strategy* strategy;

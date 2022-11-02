@@ -446,3 +446,14 @@ CountryMediator* Country::getMediator()
 {
   return mediator;
 }
+
+///////////////////////////////////////////////////////////
+// setMediator()
+///////////////////////////////////////////////////////////
+
+void Country::setMediator(CountryMediator* _mediator)
+{
+  if (mediator != NULL)
+    delete mediator;
+  mediator = _mediator;
+}
