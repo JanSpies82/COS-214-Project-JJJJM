@@ -1,23 +1,76 @@
 #include "Military.h"
 #include "MilitaryState.h"
+#include "Ship.h"
+#include "Plane.h"
+#include "Tank.h"
+#include "Battalion.h"
+#include "VehicleFactory.h"
 
 ///////////////////////////////////////////////////////////
 // MilitaryState()
 ///////////////////////////////////////////////////////////
 
-MilitaryState::MilitaryState(){}
+MilitaryState::MilitaryState()
+{
+  ships = NULL;
+  planes = NULL;
+  tanks = NULL;
+  battalions = NULL;
+  vehicleFactories = NULL;
+}
 
 ///////////////////////////////////////////////////////////
 // ~MilitaryState()
 ///////////////////////////////////////////////////////////
 
-MilitaryState::~MilitaryState(){}
+MilitaryState::~MilitaryState()
+{
+  if (ships != NULL)
+  {
+    for (int i = 0; i < ships->size(); i++)
+      delete ships->at(i);
+    
+    delete ships;
+  }
+
+  if (planes != NULL)
+  {
+    for (int i = 0; i < planes->size(); i++)
+      delete planes->at(i);
+  
+    delete planes;
+  }
+
+  if (tanks != NULL)
+  {
+    for (int i = 0; i < tanks->size(); i++)
+      delete tanks->at(i);
+    
+    delete tanks;
+  }
+
+  if (battalions != NULL)
+  {
+    for (int i = 0; i < battalions->size(); i++)
+      delete battalions->at(i);
+    
+    delete battalions;
+  }
+
+  if (vehicleFactories != NULL)
+  {
+    for (int i = 0; i < vehicleFactories->size(); i++)
+      delete vehicleFactories->at(i);
+    
+    delete vehicleFactories;
+  }
+}
 
 ///////////////////////////////////////////////////////////
 // setShips()
 ///////////////////////////////////////////////////////////
 
-void MilitaryState::setShips(std::vector<Ship*>* _ships)
+void MilitaryState::setShips(std::vector<Ship *> *_ships)
 {
   ships = _ships;
 }
@@ -26,7 +79,7 @@ void MilitaryState::setShips(std::vector<Ship*>* _ships)
 // setPlanes()
 ///////////////////////////////////////////////////////////
 
-void MilitaryState::setPlanes(std::vector<Plane*>* _planes)
+void MilitaryState::setPlanes(std::vector<Plane *> *_planes)
 {
   planes = _planes;
 }
@@ -35,7 +88,7 @@ void MilitaryState::setPlanes(std::vector<Plane*>* _planes)
 // setTanks()
 ///////////////////////////////////////////////////////////
 
-void MilitaryState::setTanks(std::vector<Tank*>* _tanks)
+void MilitaryState::setTanks(std::vector<Tank *> *_tanks)
 {
   tanks = _tanks;
 }
@@ -44,7 +97,7 @@ void MilitaryState::setTanks(std::vector<Tank*>* _tanks)
 // setBattalions()
 ///////////////////////////////////////////////////////////
 
-void MilitaryState::setBattalions(std::vector<Battalion*>* _battalions)
+void MilitaryState::setBattalions(std::vector<Battalion *> *_battalions)
 {
   battalions = _battalions;
 }
@@ -53,7 +106,7 @@ void MilitaryState::setBattalions(std::vector<Battalion*>* _battalions)
 // setVehicleFactories()
 ///////////////////////////////////////////////////////////
 
-void MilitaryState::setVehicleFactories(std::vector<VehicleFactory*>* _vehicleFactories)
+void MilitaryState::setVehicleFactories(std::vector<VehicleFactory *> *_vehicleFactories)
 {
   vehicleFactories = _vehicleFactories;
 }
@@ -191,4 +244,18 @@ void MilitaryState::updateNumBattalions(int _numBattalions, bool isAddition)
     throw std::runtime_error("new numBattalions cannot be less than 0");
   else
     battalions->resize(battalions->size() - _numBattalions);
+}
+
+///////////////////////////////////////////////////////////
+// clone()
+///////////////////////////////////////////////////////////
+MilitaryState *MilitaryState::clone()
+{
+  MilitaryState *ms = new MilitaryState();
+  ms->setShips(ships);
+  ms->setPlanes(planes);
+  ms->setTanks(tanks);
+  ms->setBattalions(battalions);
+  ms->setVehicleFactories(vehicleFactories);
+  return ms;
 }

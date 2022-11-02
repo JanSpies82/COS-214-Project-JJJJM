@@ -3,25 +3,25 @@
 // #include "Military.h"
 // #include "Battalion.h"
 // #include<vector>
-// #include "Tank.h"
+#include "Tank.h"
 // #include "Vehicle.h"
 // #include "Country.h"
-// using namespace std;
+using namespace std;
 
-// Tank::Tank(){
+Tank::Tank(){
 // 	numBattalionDestroys=5;
 // 	numTankDestroys=2;
-// }
+}
 		
 // Tank::Tank(int damageToBatallion,int damageToTanks){
 // 	numBattalionDestroys=damageToBatallion;
 // 	numTankDestroys=damageToTanks;
 // }
-// Tank::~Tank(){
+Tank::~Tank(){
 	
-// }
+}
 		
-// void Tank::attack(Country* enemy){
+void Tank::attack(Country* enemy){}
 // 	if(enemy!=NULL){
 // 		vector<Battalion*> *fighters1=enemy->getMilitary()->getBatallions();
 // 		if(fighters1->size()>numBattalionDestroys){
@@ -42,10 +42,10 @@
 // 	}
 // }
 		
-// void Tank::findEnemy(){
-// }
+void Tank::findEnemy(){
+}
 		
-// void Tank::destroyEnemy(Country* enemy){
+void Tank::destroyEnemy(Country* enemy){}
 // 	cout<<enemy->getName()<<" country has been defeated"<<endl;
 // 	delete enemy;
 // }

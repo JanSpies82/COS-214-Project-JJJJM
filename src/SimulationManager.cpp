@@ -8,6 +8,12 @@
 #include "Backup.h"
 #include "WarStage.h"
 #include "Country.h"
+#include "CountryState.h"
+#include "MilitaryState.h"
+#include "Battalion.h"
+#include "Ship.h"
+#include "Plane.h"
+#include "Tank.h"
 #include <string>
 #include <iostream>
 #include <limits>
@@ -57,6 +63,7 @@ SimulationManager::SimulationManager()
     map = NULL;
     superpowers = NULL;
     backup = NULL;
+    warStage = NULL;
     designMode = false;
     isRunning = false;
 }
@@ -88,10 +95,13 @@ void SimulationManager::runSimulation()
 
         cout << "Would you like to run the simulation again? (y/n)" << endl;
         string input = "";
-        cout << "Choice: " << YELLOW;
-        cin >> input;
-        cout << RESET;
-        runAgain = (input == "y" || input == "Y");
+        do
+        {
+            cout << "Choice: " << YELLOW;
+            cin >> input;
+            cout << RESET;
+        } while (input != "y" && input != "n");
+        runAgain = (input == "y");
     }
 }
 
@@ -166,15 +176,15 @@ void SimulationManager::setSuperpowers()
     superpowers->push_back(new Superpower("Axis Powers"));
     superpowers->push_back(new Superpower("Allies"));
 
-    Country *uk = new Country(/*"United Kingdom"*/);
-    Country *france = new Country(/*"France"*/);
-    Country *balkans = new Country(/*"Balkans"*/);
-    Country *spainPortugal = new Country(/*"Spain/Portugal"*/);
-    Country *sovietUnion = new Country(/*"Soviet Union"*/);
-    Country *scandanavia = new Country(/*"Scandanavia"*/);
+    Country *uk = new Country("United Kingdom");
+    Country *france = new Country("France");
+    Country *balkans = new Country("Balkans");
+    Country *spainPortugal = new Country("Spain/Portugal");
+    Country *sovietUnion = new Country("Soviet Union");
+    Country *scandanavia = new Country("Scandanavia");
 
-    Country *germany = new Country(/*"Germany"*/);
-    Country *italy = new Country(/*"Italy"*/);
+    Country *germany = new Country("Germany");
+    Country *italy = new Country("Italy");
 
     setUpUK(uk);
 
@@ -200,10 +210,10 @@ void SimulationManager::setUpUK(Country *_uk)
                 map->getLocation(j, i)->setOwnedBy(_uk);
                 if (map->getLocation(j, i)->getIsCapital())
                 {
-                    // _uk->setCapital(map->getLocation(j, i));
+                    _uk->setCapital(map->getLocation(j, i));
                 }
             }
-    // _uk->setLocations(ukLocations);
+    _uk->setLocations(ukLocations);
 
     _uk->setBorderStrength(0.75);
     _uk->setCapitalSafety(0.65);
@@ -215,7 +225,22 @@ void SimulationManager::setUpUK(Country *_uk)
     _uk->setNumCitizens(10000000);
     // How to set military?
 
-    delete ukLocations; // TODO Remove later
+    vector<Battalion*>* battalions = new vector<Battalion*>();
+    battalions->push_back(new Battalion(100));
+    _uk->getState()->getMilitaryState()->setBattalions(battalions);
+
+    vector<Ship*>* ships = new vector<Ship*>();
+    ships->push_back(new Ship());
+    _uk->getState()->getMilitaryState()->setShips(ships);
+
+     vector<Plane*>* planes = new vector<Plane*>();
+    planes->push_back(new Plane());
+    _uk->getState()->getMilitaryState()->setPlanes(planes);
+
+    vector<Tank*>* tanks = new vector<Tank*>();
+    tanks->push_back(new Tank());
+    _uk->getState()->getMilitaryState()->setTanks(tanks);
+    
 }
 
 void SimulationManager::takeTurn()
@@ -333,8 +358,10 @@ void SimulationManager::processMenu()
     }
 }
 
-void SimulationManager::finalMessage(){
-    cout <<endl<< "Simulation ended after " << turnCount << " turns." << endl;
+void SimulationManager::finalMessage()
+{
+    cout << endl
+         << "Simulation ended after " << turnCount << " turns." << endl;
     if (superpowers->at(0)->getCountryCount() > 0 && superpowers->at(1)->getCountryCount() > 0)
         cout << "The simulation ended in a stalemate." << endl;
     else if (superpowers->at(0)->getCountryCount() > 0)

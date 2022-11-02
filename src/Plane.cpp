@@ -1,20 +1,20 @@
 // #include <exception>
 // #include<iostream>
-// using namespace std;
+using namespace std;
 // #include<vector>
 // #include"Military.h"
 // #include"Battalion.h"
-// #include "Plane.h"
+#include "Plane.h"
 // #include"Tank.h"
 // #include "Vehicle.h"
 // #include"Country.h"
 
 
-// Plane::Plane(){
+Plane::Plane(){
 // 	numPlanesDestroys=2;
 // 	numTankDestroys=1;
 // 	numBattalionDestroys=4;
-// }
+}
 
 // Plane::Plane(int pDamage,int tDamage,int bDamage){
 // 	numPlanesDestroys=pDamage;
@@ -22,10 +22,10 @@
 // 	numBattalionDestroys=bDamage;
 // }
 
-// Plane::~Plane(){
+Plane::~Plane(){
 
-// }
-// void Plane::attack(Country* enemy){
+}
+void Plane::attack(Country* enemy){}
 // 	if(enemy!=NULL){
 // 		vector<Battalion*> *fighters1=enemy->getMilitary()->getBatallions();
 // 		if(fighters1->size()>numBattalionDestroys){
@@ -71,10 +71,10 @@
 // void Plane::setNumBattalionDestroys(int bDamage){
 // 	 numBattalionDestroys=bDamage;
 // }
-// void destroyEnemy(Country * enemy){
+void Plane::destroyEnemy(Country * enemy){}
 // 	cout<<enemy->getName()<<" country has been defeated"<<endl;
 // 	delete enemy;
 // }
-// void findEnemy(){
+void Plane::findEnemy(){
 
-// }
+}
