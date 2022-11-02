@@ -1,5 +1,4 @@
-#include <exception>
-using namespace std;
+///@author Mekhail Muller
 
 #ifndef __MiddleStage_h__
 #define __MiddleStage_h__
@@ -12,12 +11,30 @@ class MiddleStage;
 class MiddleStage: public WarStage
 {
 
-	public: void handle();
+	public:    
+        /**
+         * @brief returns warstage via int = 1
+        */
+        int getWarStage();
 
-    WarStage* nextStage();
-    /**
-     * @brief initialises a LateStage object and returns it
-     */
+        /**
+         * @brief Construct a new Middle Stage object
+         * 
+         */
+        MiddleStage();
+
+        /**
+         * @brief Destroy the Middle Stage object
+         * 
+         */
+        ~MiddleStage();
+
+        /**
+         * @brief Return a deep copy of the Middle Stage object
+         * 
+         * @return MiddleStage* 
+         */
+        MiddleStage* clone();
 };
 
 #endif
