@@ -1,21 +1,53 @@
 #include <limits.h>
 #include <stdexcept>
 #include "../src/Country.h"
+#include "../src/CountryState.h"
+#include "../src/MilitaryState.h"
 #include "gtest/gtest.h"
 
 namespace {
   TEST(CountryTest, Constructor)
   {
-    Country* testCountry = new Country("");
+    Country* testCountry = new Country("testCountry");
     delete testCountry;
   }
 
   TEST(CountryTest, GettersAndSetters)
   {
-    Country* countryA = new Country("");
-    Country* countryB = new Country("");
-
-    delete countryB;
+    Country* countryA = new Country("countryA");
+    countryA->setBorderStrength(0.9);
+    countryA->setNumCitizens(1000);
+    countryA->setPoliticalStability(0.9);
+    countryA->setSelfReliance(0.9);
+    countryA->setCapitalSafety(0.9);
+    EXPECT_EQ(countryA->getName(), "countryA");
+    EXPECT_EQ(countryA->getBorderStrength(), 0.9);
+    EXPECT_EQ(countryA->getNumCitizens(), 1000);
+    EXPECT_EQ(countryA->getPoliticalStability(), 0.9);
+    EXPECT_EQ(countryA->getSelfReliance(), 0.9);
+    EXPECT_EQ(countryA->getCapitalSafety(), 0.9);
     delete countryA;
+  }
+
+  TEST(CountryTest, GetAndSetCountryState)
+  {
+    Country* countryA = new Country("countryA");
+    countryA->setBorderStrength(0.9);
+    countryA->setNumCitizens(1000);
+    countryA->setPoliticalStability(0.9);
+    countryA->setSelfReliance(0.9);
+    countryA->setCapitalSafety(0.9);
+
+    Country* countryB = new Country("countryB");
+    countryB->setCountryState(new CountryState(countryA));
+    // EXPECT_EQ(countryB->getName(), "countryA");
+    // EXPECT_EQ(countryB->getBorderStrength(), 0.9);
+    // EXPECT_EQ(countryB->getNumCitizens(), 1000);
+    // EXPECT_EQ(countryB->getPoliticalStability(), 0.9);
+    // EXPECT_EQ(countryB->getSelfReliance(), 0.9);
+    // EXPECT_EQ(countryB->getCapitalSafety(), 0.9);
+
+    delete countryA;
+    delete countryB;
   }
 }
