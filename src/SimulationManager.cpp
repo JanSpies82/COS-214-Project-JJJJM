@@ -14,6 +14,9 @@
 #include "Ship.h"
 #include "Plane.h"
 #include "Tank.h"
+#include "TankFactory.h"
+#include "PlaneFactory.h"
+#include "ShipFactory.h"
 #include <string>
 #include <iostream>
 #include <limits>
@@ -225,22 +228,34 @@ void SimulationManager::setUpUK(Country *_uk)
     _uk->setNumCitizens(10000000);
     // How to set military?
 
-    vector<Battalion*>* battalions = new vector<Battalion*>();
-    battalions->push_back(new Battalion(100));
+    vector<VehicleFactory *> *vFactories = new vector<VehicleFactory *>();
+    vFactories->push_back(new TankFactory());
+    vFactories->push_back(new ShipFactory());
+    vFactories->push_back(new PlaneFactory());
+
+    vector<Battalion *> *battalions = new vector<Battalion *>();
+    for (int i = 0; i < 2; i++)
+        battalions->push_back(new Battalion(1));
     _uk->getState()->getMilitaryState()->setBattalions(battalions);
 
-    vector<Ship*>* ships = new vector<Ship*>();
-    ships->push_back(new Ship());
+    vector<Tank *> *tanks = new vector<Tank *>();
+    for (int i = 0; i < 5; i++)
+        tanks->push_back(((Tank *)(vFactories->at(0)->manufactureVehicle())));
+    _uk->getState()->getMilitaryState()->setTanks(tanks);
+
+    vector<Ship *> *ships = new vector<Ship *>();
+    for (int i = 0; i < 15; i++)
+        ships->push_back(((Ship *)vFactories->at(1)->manufactureVehicle()));
     _uk->getState()->getMilitaryState()->setShips(ships);
 
-     vector<Plane*>* planes = new vector<Plane*>();
-    planes->push_back(new Plane());
+    vector<Plane *> *planes = new vector<Plane *>();
+    for (int i = 0; i < 20; i++)
+        planes->push_back(((Plane *)vFactories->at(2)->manufactureVehicle()));
     _uk->getState()->getMilitaryState()->setPlanes(planes);
 
-    vector<Tank*>* tanks = new vector<Tank*>();
-    tanks->push_back(new Tank());
-    _uk->getState()->getMilitaryState()->setTanks(tanks);
-    
+    for (int i = 0; i < vFactories->size(); i++)
+        delete vFactories->at(i);
+    delete vFactories;
 }
 
 void SimulationManager::takeTurn()
