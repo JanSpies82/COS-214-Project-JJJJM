@@ -17,27 +17,20 @@
 Stage* Stage::onlyInstance = 0;
 WarStage* Stage::currentStage = 0;
 
-WarStage* Stage::getInstance() {
-	if(onlyInstance == 0){
-		onlyInstance = new Stage();
-	}
-	if(currentStage == 0){
-		currentStage = new EarlyStage();
-	}
-	return currentStage;
-}
-
-Stage::Stage(){
-	simulationLength = 0;
-	currentRound = 0;
-}
-
-void Stage::setSimulationLength(int length){
-	simulationLength = length;
-}
 
 int Stage::getCurrentRound(){
 	return currentRound;
+}
+
+Stage* Stage::getInstance() {
+	if(onlyInstance == 0){
+		onlyInstance = new Stage();
+	}
+	return onlyInstance;
+}
+
+int Stage::getWarStage(){
+    return currentStage->getWarStage();
 }
 
 void Stage::incrementRound(){
@@ -57,3 +50,18 @@ void Stage::incrementRound(){
 	}
 	
 }
+
+void Stage::setSimulationLength(int length){
+	simulationLength = length;
+}
+
+Stage::Stage(){
+	simulationLength = 0;
+	currentRound = 0;
+    currentStage = new EarlyStage();
+}
+
+
+
+
+

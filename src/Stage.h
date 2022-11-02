@@ -13,10 +13,11 @@ class WarStage;
 class Stage
 {
 	public:
+
         /**
-         * @brief initialises our singleton object and returns it
+         * @brief Moves current warstage to next warstage
         */
-        static WarStage* getInstance();
+        void changeStage();
 
         /**
          * @brief Creates a copy of the singleton class and returns for storage purposes
@@ -24,14 +25,19 @@ class Stage
         Stage* clone();
 
         /**
+         * @brief returns the current round we are on
+        */
+        int getCurrentRound();
+
+        /**
+         * @brief initialises our singleton object and returns it
+        */
+        static Stage* getInstance();
+
+        /**
          * @brief handle() function: Calculates if currentRound is within its current warstage, and returns warstage int
         */
         int getWarStage();
-
-        /**
-         * @brief Moves current warstage to next warstage
-        */
-        void changeStage();
 
         /**
          * @brief increments round/turn to go to the next round
@@ -45,10 +51,7 @@ class Stage
         */
         void setSimulationLength(int length);
 
-        /**
-         * @brief returns the current round we are on
-        */
-        int getCurrentRound();
+        
     
     protected:
         Stage();
