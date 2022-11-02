@@ -2,15 +2,15 @@
 #include <string>
 using namespace std;
 
-#ifndef __Stage_h__
-#define __Stage_h__
+#ifndef __StageContext_h__
+#define __StageContext_h__
 
 // #include "Country.h"
 
 class Country;
 class WarStage;
 
-class Stage
+class StageContext
 {
 	public:
 
@@ -22,7 +22,7 @@ class Stage
         /**
          * @brief Creates a copy of the singleton class and returns for storage purposes
         */
-        Stage* clone();
+        StageContext* clone();
 
         /**
          * @brief returns the current round we are on
@@ -32,7 +32,7 @@ class Stage
         /**
          * @brief initialises our singleton object and returns it
         */
-        static Stage* getInstance();
+        static StageContext* getInstance();
 
         /**
          * @brief handle() function: Calculates if currentRound is within its current warstage, and returns warstage int
@@ -51,15 +51,15 @@ class Stage
         */
         void setSimulationLength(int length);
 
-        ~Stage();
+        ~StageContext();
         
     
     protected:
-        Stage();
-        Stage(int simulationLength);
+        StageContext();
+        StageContext(int simulationLength);
         int simulationLength;
         int currentRound; 
-        static Stage* onlyInstance;
+        static StageContext* onlyInstance;
         static WarStage* currentStage;
 };
 

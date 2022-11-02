@@ -1,6 +1,6 @@
 #include <exception>
 
-#include "Stage.h"
+#include "StageContext.h"
 #include "WarStage.h"
 #include "EarlyStage.h"
 #include "MiddleStage.h"
@@ -14,11 +14,11 @@
 // 	throw "Not yet implemented";
 // }
 
-Stage* Stage::onlyInstance = 0;
-WarStage* Stage::currentStage = 0;
+StageContext* StageContext::onlyInstance = 0;
+WarStage* StageContext::currentStage = 0;
 
-Stage* Stage::clone(){
-    Stage* clone = new Stage();
+StageContext* StageContext::clone(){
+    StageContext* clone = new StageContext();
     clone->simulationLength = simulationLength;
     clone->currentRound = currentRound;
     clone->currentStage = currentStage;
@@ -26,22 +26,22 @@ Stage* Stage::clone(){
     return clone;
 }
 
-int Stage::getCurrentRound(){
+int StageContext::getCurrentRound(){
 	return currentRound;
 }
 
-Stage* Stage::getInstance() {
+StageContext* StageContext::getInstance() {
 	if(onlyInstance == 0){
-		onlyInstance = new Stage();
+		onlyInstance = new StageContext();
 	}
 	return onlyInstance;
 }
 
-int Stage::getWarStage(){
+int StageContext::getWarStage(){
     return currentStage->getWarStage();
 }
 
-void Stage::incrementRound(){
+void StageContext::incrementRound(){
 	int earlyStage = simulationLength * 0.3;
 	int midStage = simulationLength * 0.9;
 	currentRound++;
@@ -59,17 +59,17 @@ void Stage::incrementRound(){
 	
 }
 
-void Stage::setSimulationLength(int length){
+void StageContext::setSimulationLength(int length){
 	simulationLength = length;
 }
 
-Stage::Stage(){
+StageContext::StageContext(){
 	simulationLength = 0;
 	currentRound = 0;
     currentStage = new EarlyStage();
 }
 
-Stage::~Stage(){
+StageContext::~StageContext(){
     delete currentStage;
     delete onlyInstance;
 }
