@@ -90,7 +90,19 @@ protected:
 	void processMenu();
 
 	/**
-	 * @brief Display the last message of the simulation providing a summary of the simulation as a whole
+	 * @brief Display a detailed summary of a country within the simulation
+	 * 
+	 */
+	void viewCountrySummary();
+
+	/**
+	 * @brief Change the state of the simulation in design mode
+	 * 
+	 */
+	void designModeAction();
+
+	/**
+	 * @brief Display the last message of the simulation providing a summary of the simulation as a whole after completion
 	 * 
 	 */
 	void finalMessage();
