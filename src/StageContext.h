@@ -1,66 +1,90 @@
-#include <exception>
-#include <string>
-using namespace std;
+///@author Mekhail Muller
 
 #ifndef __StageContext_h__
 #define __StageContext_h__
 
-// #include "Country.h"
+#include <string>
 
 class Country;
 class WarStage;
+class StageContextState;
 
 class StageContext
 {
-	public:
+public:
+    /**
+     * @brief Creates a copy of the singleton class and returns for storage purposes
+     */
+    StageContextState *getState();
 
-        /**
-         * @brief Moves current warstage to next warstage
-        */
-        void changeStage();
+    /**
+     * @brief returns the current round we are on
+     */
+    int getCurrentRound();
 
-        /**
-         * @brief Creates a copy of the singleton class and returns for storage purposes
-        */
-        StageContext* clone();
+    /**
+     * @brief initialises our singleton object and returns it
+     */
+    static StageContext *getInstance();
 
-        /**
-         * @brief returns the current round we are on
-        */
-        int getCurrentRound();
+    /**
+     * @brief handle() function: Calculates if currentRound is within its current warstage, and returns warstage int
+     */
+    int getWarStage();
 
-        /**
-         * @brief initialises our singleton object and returns it
-        */
-        static StageContext* getInstance();
+    /**
+     * @brief increments round/turn to go to the next round
+     */
+    void incrementRound();
 
-        /**
-         * @brief handle() function: Calculates if currentRound is within its current warstage, and returns warstage int
-        */
-        int getWarStage();
+    /**
+     * @brief sets the simulationLength: how many turns/rounds do we want to run the simulation for
+     *
+     * @param length, the length wanted for the simulation
+     */
+    void setSimulationLength(int _length);
 
-        /**
-         * @brief increments round/turn to go to the next round
-        */
-        void incrementRound();
+    /**
+     * @brief Destroy the Stage Context object
+     *
+     */
+    ~StageContext();
 
-        /**
-         * @brief sets the simulationLength: how many turns/rounds do we want to run the simulation for
-         * 
-         * @param length, the length wanted for the simulation
-        */
-        void setSimulationLength(int length);
+    /**
+     * @brief Set the Current Round object
+     *
+     * @param _round : int - the round we want to set the current round to
+     */
+    void setCurrentRound(int _round);
 
-        ~StageContext();
-        
-    
-    protected:
-        StageContext();
-        StageContext(int simulationLength);
-        int simulationLength;
-        int currentRound; 
-        static StageContext* onlyInstance;
-        static WarStage* currentStage;
+    /**
+     * @brief Set the Current Stage object
+     *
+     * @param _stage : WarStage* - the stage we want to set the current stage to
+     */
+    void setCurrentStage(WarStage *_stage);
+
+    /**
+     * @brief Set the StageContext equal to the StageContextState
+     *
+     * @param _state : StageContextState* - the state we want to set the StageContext to
+     */
+    void setState(StageContextState *_state);
+
+    /**
+     * @brief Get the Simulation Length
+     *
+     * @return int
+     */
+    int getSimulationLength();
+
+protected:
+    StageContext();
+    StageContext(int _simulationLength);
+    int simulationLength;
+    int currentRound;
+    static StageContext *onlyInstance;
+    WarStage *currentStage;
 };
 
 #endif

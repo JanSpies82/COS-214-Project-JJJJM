@@ -1,29 +1,19 @@
-#include <exception>
+///@author Mekhail Muller
 
 #include "StageContext.h"
 #include "WarStage.h"
 #include "EarlyStage.h"
 #include "MiddleStage.h"
 #include "LateStage.h"
+#include "StageContextState.h"
+#include <cmath>
 
-// void WarStage::handle() {
-// 	throw "Not yet implemented";
-// }
+StageContext* StageContext::onlyInstance = NULL;
 
-// void WarStage::handle() {
-// 	throw "Not yet implemented";
-// }
-
-StageContext* StageContext::onlyInstance = 0;
-WarStage* StageContext::currentStage = 0;
-
-StageContext* StageContext::clone(){
-    StageContext* clone = new StageContext();
-    clone->simulationLength = simulationLength;
-    clone->currentRound = currentRound;
-    clone->currentStage = currentStage;
-    clone->onlyInstance = clone;
-    return clone;
+StageContext::StageContext(){
+	simulationLength = 0;
+	currentRound = 0;
+    currentStage = new EarlyStage();
 }
 
 int StageContext::getCurrentRound(){
@@ -31,7 +21,7 @@ int StageContext::getCurrentRound(){
 }
 
 StageContext* StageContext::getInstance() {
-	if(onlyInstance == 0){
+	if(onlyInstance == NULL){
 		onlyInstance = new StageContext();
 	}
 	return onlyInstance;
@@ -42,8 +32,8 @@ int StageContext::getWarStage(){
 }
 
 void StageContext::incrementRound(){
-	int earlyStage = simulationLength * 0.3;
-	int midStage = simulationLength * 0.9;
+	int earlyStage = floor(simulationLength * 0.3);
+	int midStage = floor(simulationLength * 0.9);
 	currentRound++;
 
 	if(currentRound == earlyStage){
@@ -59,22 +49,42 @@ void StageContext::incrementRound(){
 	
 }
 
-void StageContext::setSimulationLength(int length){
-	simulationLength = length;
+void StageContext::setSimulationLength(int _length){
+	simulationLength = _length;
 }
 
-StageContext::StageContext(){
-	simulationLength = 0;
-	currentRound = 0;
-    currentStage = new EarlyStage();
-}
 
 StageContext::~StageContext(){
     delete currentStage;
-    delete onlyInstance;
+	onlyInstance = NULL;
 }
 
+int StageContext::getSimulationLength(){
+	return simulationLength;
+}
 
+void StageContext::setCurrentRound(int _round){
+	currentRound = _round;
+}
+
+void StageContext::setCurrentStage(WarStage *_stage){
+	currentStage = _stage;
+}
+
+StageContextState* StageContext::getState(){
+    StageContextState* state = new StageContextState();
+    state->setSimulationLength(simulationLength);
+	state->setCurrentRound(currentRound);
+	state->setCurrentStage(currentStage->clone());
+    return state;
+}
+
+void StageContext::setState(StageContextState *_state){
+	simulationLength = _state->getSimulationLength();
+	currentRound = _state->getCurrentRound();
+	delete currentStage;
+	currentStage = _state->getCurrentStage();
+}
 
 
 
