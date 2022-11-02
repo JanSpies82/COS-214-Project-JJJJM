@@ -41,8 +41,9 @@ Country::~Country()
 
 Country::Country(std::string _name)
 {
+  countryState = new CountryState();
   countryState->name = _name;
-  countryState = NULL;
+  // countryState = NULL;  // @janco what did you have in mind when setting this to NULL? Setting it from outside?
   countryState->locations = NULL;
 }
 
