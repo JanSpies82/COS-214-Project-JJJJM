@@ -77,7 +77,6 @@ void SimulationManager::runSimulation()
         resetSimulation();
         while (isSimulationRunning())
         {
-            turnCount++;
             takeTurn();
             viewSummary();
         }
@@ -106,7 +105,7 @@ void SimulationManager::resetSimulation()
         delete backup;
     if (warStage != NULL)
         delete warStage;
-    
+
     map = new Map();
     superpowers = new std::vector<Superpower *>();
     backup = new Backup();
@@ -116,6 +115,21 @@ void SimulationManager::resetSimulation()
     setDesignMode();
     turnCount = 0;
     isRunning = true;
+
+    cout << "What would you like the maximum turn count to be? (4-100)" << endl;
+    maxTurnCount = -1;
+    do
+    {
+        cout << "Number: " << YELLOW;
+        cin >> maxTurnCount;
+        cout << RESET;
+        if (!cin.good())
+        {
+            maxTurnCount = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (maxTurnCount < 4 || maxTurnCount > 100);
 }
 
 void SimulationManager::setDesignMode()
@@ -140,8 +154,8 @@ void SimulationManager::saveState()
 
 void SimulationManager::setSuperpowers()
 {
-    superpowers->push_back(new Superpower("Allies"));
     superpowers->push_back(new Superpower("Axis Powers"));
+    superpowers->push_back(new Superpower("Allies"));
 
     Country *uk = new Country(/*"United Kingdom"*/);
     Country *france = new Country(/*"France"*/);
@@ -155,15 +169,15 @@ void SimulationManager::setSuperpowers()
 
     setUpUK(uk);
 
-    superpowers->at(0)->addCountry(uk);
-    superpowers->at(0)->addCountry(france);
-    superpowers->at(0)->addCountry(balkans);
-    superpowers->at(0)->addCountry(spainPortugal);
-    superpowers->at(0)->addCountry(sovietUnion);
-    superpowers->at(0)->addCountry(scandanavia);
+    superpowers->at(0)->addCountry(germany);
+    superpowers->at(0)->addCountry(italy);
 
-    superpowers->at(1)->addCountry(germany);
-    superpowers->at(1)->addCountry(italy);
+    superpowers->at(1)->addCountry(uk);
+    superpowers->at(1)->addCountry(france);
+    superpowers->at(1)->addCountry(balkans);
+    superpowers->at(1)->addCountry(spainPortugal);
+    superpowers->at(1)->addCountry(sovietUnion);
+    superpowers->at(1)->addCountry(scandanavia);
 }
 
 void SimulationManager::setUpUK(Country *_uk)
@@ -195,7 +209,30 @@ void SimulationManager::setUpUK(Country *_uk)
     delete ukLocations; // TODO Remove later
 }
 
-void SimulationManager::takeTurn(){};
+void SimulationManager::takeTurn()
+{
+    saveState();
+
+    turnCount++;
+    if (turnCount <= (maxTurnCount * 0.3))
+    {
+        // Move to Early Stage
+    }
+    else if (turnCount <= (maxTurnCount * 0.6))
+    {
+        // Move to Middle Stage
+    }
+    else
+    {
+        // Move to Late Stage
+    }
+
+    for (int i = 0; i < superpowers->at(0)->getCountryCount(); i++)
+        superpowers->at(0)->getCountry(i)->takeTurn(NULL); // TODO check whether input parameter should be removed
+
+    for (int i = 0; i < superpowers->at(1)->getCountryCount(); i++)
+        superpowers->at(1)->getCountry(i)->takeTurn(NULL); // TODO check whether input parameter should be removed
+};
 
 void SimulationManager::viewSummary(){};
 
