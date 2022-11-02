@@ -289,6 +289,11 @@ public:
    * @return returns this country's color
   */
   std::string getColor();
+
+  /**
+   * @brief getter for this country's mediator
+  */
+  CountryMediator* getMediator();
   
 private:
   Strategy* strategy;
