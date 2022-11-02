@@ -4,7 +4,11 @@
 
 // #include "Country.h"
 #include <ctime>
+#include <string>
+#include <vector>
+
 class Country;
+class Location;
 
 class MilitaryState;
 
@@ -16,6 +20,7 @@ public:
     * 
     * @param country country to create state for
     */
+  CountryState();
   CountryState(Country* country);
   CountryState(const CountryState& cs);
   ~CountryState();
