@@ -2,6 +2,18 @@
 #include "MilitaryState.h"
 #include "Country.h"
 
+CountryState::CountryState()
+{
+  numCitizens = 0;
+  politicalStability = 0;
+  domesticMorale = 0;
+  borderStrength = 0;
+  capitalSafety = 0;
+  warSentiment = 0;
+  tradeRouteSafety = 0;
+  militaryState = new MilitaryState();
+}
+
 CountryState::CountryState(Country* country)
 {
   numCitizens = country->getNumCitizens();
