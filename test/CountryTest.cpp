@@ -9,5 +9,7 @@ namespace {
   {
     Country* testCountry = new Country();
     EXPECT_EQ(testCountry->getTurnCount(), 1);
+    delete testCountry;
+    testCountry = NULL;
   }
 }
