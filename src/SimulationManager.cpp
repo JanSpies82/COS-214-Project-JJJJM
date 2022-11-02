@@ -81,6 +81,8 @@ void SimulationManager::runSimulation()
         {
             takeTurn();
             viewSummary();
+            if (isRunning)
+                processMenu();
         }
         finalMessage();
 
@@ -244,18 +246,16 @@ void SimulationManager::takeTurn()
 
 void SimulationManager::viewSummary()
 {
-    cout << "Results of turn " << turnCount << endl;
+    cout << "Results after turn " << turnCount << endl;
     map->printMap();
 
     for (int i = 0; i < superpowers->size(); i++)
         superpowers->at(i)->printSummary();
 
-    isRunning = (superpowers->at(0)->getCountryCount() > 0 && superpowers->at(1)->getCountryCount() > 0);
+    isRunning = ((superpowers->at(0)->getCountryCount() > 0 && superpowers->at(1)->getCountryCount() > 0) && turnCount <= maxTurnCount);
     // cout << "Press enter to continue..." << endl;
     // cin.ignore();
     // cin.get();
-    if (isRunning)
-        processMenu();
 };
 
 void SimulationManager::processMenu()
@@ -308,6 +308,12 @@ void SimulationManager::processMenu()
             break;
         case 4:
             map->printMap();
+            cout << "Press enter to continue..." << endl;
+            cin.ignore();
+            cin.get();
+            break;
+        case 5:
+            viewSummary();
             cout << "Press enter to continue..." << endl;
             cin.ignore();
             cin.get();
