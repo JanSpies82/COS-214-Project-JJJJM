@@ -3,6 +3,10 @@
 
 #include <iostream>
 
+LateStrategy::LateStrategy(){}
+
+LateStrategy::~LateStrategy(){}
+
 void LateStrategy::defensiveMove(Country* countryA, Country* countryB) 
 {
   // countryA surrenders and loses war

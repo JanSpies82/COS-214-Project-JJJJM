@@ -3,6 +3,10 @@
 
 #include <iostream>
 
+MiddleStrategy::MiddleStrategy(){}
+
+MiddleStrategy::~MiddleStrategy(){}
+
 void MiddleStrategy::defensiveMove(Country* countryA, Country* countryB) 
 {
   std::cout << "MiddleStrategy::defendBorders selected" << std::endl;
