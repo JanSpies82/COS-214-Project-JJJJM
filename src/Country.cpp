@@ -368,7 +368,10 @@ CountryState *Country::getCountryState()
 
 void Country::setCountryState(CountryState *_countryState)
 {
+  if (countryState != NULL)
+    delete countryState;
   countryState = _countryState;
+  // countryState -> militaryState -> tanks == NULL here
 }
 
 ///////////////////////////////////////////////////////////
