@@ -81,7 +81,7 @@ void SimulationManager::runSimulation()
         {
             takeTurn();
             viewSummary();
-            if (isRunning)
+            if (isSimulationRunning())
                 processMenu();
         }
         finalMessage();
@@ -333,7 +333,15 @@ void SimulationManager::processMenu()
     }
 }
 
-void SimulationManager::finalMessage(){};
+void SimulationManager::finalMessage(){
+    cout <<endl<< "Simulation ended after " << turnCount << " turns." << endl;
+    if (superpowers->at(0)->getCountryCount() > 0 && superpowers->at(1)->getCountryCount() > 0)
+        cout << "The simulation ended in a stalemate." << endl;
+    else if (superpowers->at(0)->getCountryCount() > 0)
+        cout << "The simulation ended with the " << superpowers->at(0)->getName() << " winning." << endl;
+    else
+        cout << "The simulation ended with the " << superpowers->at(1)->getName() << " winning." << endl;
+};
 
 void SimulationManager::viewCountrySummary(){};
 
