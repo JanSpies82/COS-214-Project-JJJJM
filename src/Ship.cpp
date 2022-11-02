@@ -1,28 +1,28 @@
 // #include <exception>
 // #include<iostream>
 // #include<vector>
-// #include "Ship.h"
+#include "Ship.h"
 // #include "Battalion.h"
 // #include "Vehicle.h"
 // #include "Military.h"
 // #include"Country.h"
-// using namespace std;
+using namespace std;
 
-// 	Ship::Ship(){ 
+	Ship::Ship(){ 
 // 		numBattalionDestroys=2;
 // 		numShipDestroys=1;
-// 	}
+	}
 	
 // 	Ship::Ship(int bDamage,int sDamage){
 // 		numBattalionDestroys=bDamage;
 // 		numShipDestroys=sDamage; 
 // 	}
 
-// 	Ship::~Ship(){
+	Ship::~Ship(){
 		
-// 	}
+	}
 	
-// 	void Ship::attack(Country* enemy){
+	void Ship::attack(Country* enemy){}
 // 		if(enemy!=NULL){
 // 				vector<Ship*> *fighters1=enemy->getMilitary()->getShips();
 // 				if(fighters1->size()>numShipDestroys){
@@ -42,11 +42,11 @@
 // 			}
 // 	}
 	
-// 	void Ship::findEnemy(){
+	void Ship::findEnemy(){
 
-// 	}
+	}
 	
-// 	void Ship::destroyEnemy(Country* enemy){
+	void Ship::destroyEnemy(Country* enemy){}
 // 		cout<<enemy->getName()<<" country has been defeated"<<endl;
 // 		delete enemy;
 // 	}

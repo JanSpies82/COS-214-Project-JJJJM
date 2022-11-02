@@ -18,6 +18,7 @@ public:
     */
   CountryState(Country* country);
   CountryState(const CountryState& cs);
+  ~CountryState();
   CountryState* clone();
   MilitaryState* getMilitaryState();
 

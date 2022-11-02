@@ -2,6 +2,7 @@
 #include "Superpower.h"
 #include "Country.h"
 #include "SuperpowerState.h"
+#include "CountryState.h"
 #include <stdexcept>
 #include <iostream>
 
@@ -58,7 +59,7 @@ void Superpower::removeCountry(Country *_country){
 SuperpowerState *Superpower::getState(){
     SuperpowerState *state = new SuperpowerState(name);
     for (int i = 0; i < countries->size(); i++){
-        state->addCountryState(countries->at(i)->getState());
+        state->addCountryState(countries->at(i)->getState()->clone());
     }
     return state;
 }
