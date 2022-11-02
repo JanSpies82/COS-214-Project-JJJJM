@@ -92,16 +92,12 @@ namespace {
 	TEST(MilitaryStateTest,setNumTank){
 		Military* military=new Military();
 		MilitaryState* generalOfficer=new MilitaryState(military);
-		std::cout<<"Phase 1"<<std::endl;
 		generalOfficer->setNumTanks(3);
 		EXPECT_EQ(generalOfficer->getNumTanks(),3);
-		std::cout<<"Phase 2"<<std::endl;
 		generalOfficer->setNumTanks(0);
 		EXPECT_EQ(generalOfficer->getNumTanks(),0);
-		std::cout<<"Phase 3"<<std::endl;
 		generalOfficer->setNumTanks(2);
 		EXPECT_EQ(generalOfficer->getNumTanks(),2);
-		std::cout<<"Phase 4"<<std::endl;
 		delete generalOfficer;
 		delete military;
 	}
