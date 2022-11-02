@@ -15,7 +15,7 @@ using namespace std;
 		}
 		
 		Battalion::~Battalion(){
-			cout<<"Battalion executed \n";
+			// cout<<"Battalion executed \n";
 		}
 
 		

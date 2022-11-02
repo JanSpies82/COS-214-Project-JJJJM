@@ -11,6 +11,7 @@
 #include "MiddleStrategy.h"
 #include "LateStrategy.h"
 #include "Strategy.h"
+#include "Location.h"
 
 #include <stdexcept>
 
@@ -18,9 +19,9 @@
 // Country()
 ///////////////////////////////////////////////////////////
 
-Country::Country()
-{
-}
+// Country::Country()
+// {
+// }
 
 ///////////////////////////////////////////////////////////
 // ~Country()
@@ -28,6 +29,10 @@ Country::Country()
 
 Country::~Country()
 {
+  if (locations != NULL)
+    delete locations;
+  if (countryState != NULL)
+    delete countryState;
 }
 
 ///////////////////////////////////////////////////////////
@@ -37,6 +42,8 @@ Country::~Country()
 Country::Country(std::string _name)
 {
   name = _name;
+  countryState = NULL;
+  locations = NULL;
 }
 
 ///////////////////////////////////////////////////////////
@@ -46,9 +53,9 @@ Country::Country(std::string _name)
 void Country::takeTurn(Country *countryB)
 {
   // setStrategy();
-  double strengthRatings[2];
-  getCountryRating(countryB, strengthRatings);
-  strategy->takeTurn(strengthRatings, this, countryB);
+  // double strengthRatings[2];
+  // getCountryRating(countryB, strengthRatings);
+  // strategy->takeTurn(strengthRatings, this, countryB);
 }
 
 ///////////////////////////////////////////////////////////
@@ -74,6 +81,9 @@ void Country::takeTurn(Country *countryB)
 
 CountryState *Country::getState()
 {
+  if (countryState != NULL)
+    delete countryState;
+  countryState = new CountryState(this);
   return countryState;
 }
 
@@ -121,12 +131,12 @@ void Country::getCountryRating(Country *b, double *strengthRatings)
   for (double score : aspectScores)
     strengthScoresB.push_back(score);
 
-  double strengthA = 0.0;  
+  double strengthA = 0.0;
   for (double score : strengthScoresA)
     strengthA += score;
   strengthA /= strengthScoresA.size(); // CountryA's overall strength
 
-  double strengthB = 0.0; 
+  double strengthB = 0.0;
   for (double score : strengthScoresB)
     strengthB += score;
   strengthB /= strengthScoresB.size(); // CountryB's overall strength
@@ -139,10 +149,10 @@ void Country::getCountryRating(Country *b, double *strengthRatings)
 // compareMilitary()
 ///////////////////////////////////////////////////////////
 
-void Country::compareMilitary(Country* a, Country* b, std::vector<double>* aspectScores)
+void Country::compareMilitary(Country *a, Country *b, std::vector<double> *aspectScores)
 {
-  MilitaryState* mA = a->countryState->getMilitaryState();
-  MilitaryState* mB = b->countryState->getMilitaryState();
+  MilitaryState *mA = a->countryState->getMilitaryState();
+  MilitaryState *mB = b->countryState->getMilitaryState();
   (*aspectScores).push_back(compareAspect(mA->getNumTroops(), mB->getNumTroops()));
   (*aspectScores).push_back(compareAspect(mA->getNumTanks(), mB->getNumTanks()));
   (*aspectScores).push_back(compareAspect(mA->getNumPlanes(), mB->getNumPlanes()));
@@ -153,7 +163,7 @@ void Country::compareMilitary(Country* a, Country* b, std::vector<double>* aspec
 // compareDomestic(Country)
 ///////////////////////////////////////////////////////////
 
-void Country::compareDomestic(Country* a, Country* b, std::vector<double>* aspectScores)
+void Country::compareDomestic(Country *a, Country *b, std::vector<double> *aspectScores)
 {
   (*aspectScores).push_back(compareAspect(a->getPoliticalStability(), b->getPoliticalStability()));
   (*aspectScores).push_back(compareAspect(a->getDomesticMorale(), b->getDomesticMorale()));
@@ -382,7 +392,7 @@ Military *Country::getMilitary()
 // getCapital()
 ///////////////////////////////////////////////////////////
 
-Location* Country::getCapital()
+Location *Country::getCapital()
 {
   return capital;
 }
@@ -391,7 +401,7 @@ Location* Country::getCapital()
 // setCapital(Location*)
 ///////////////////////////////////////////////////////////
 
-void Country::setCapital(Location* _capital)
+void Country::setCapital(Location *_capital)
 {
   capital = _capital;
 }
@@ -400,7 +410,30 @@ void Country::setCapital(Location* _capital)
 // setLocations(std::vector<Location*>*)
 ///////////////////////////////////////////////////////////
 
-void Country::setLocations(std::vector<Location*>* _locations)
+void Country::setLocations(std::vector<Location *> *_locations)
 {
   locations = _locations;
+  for (int i = 0; i < locations->size(); i++)
+    if (!locations->at(i)->getIsCapital())
+      locations->at(i)->setColor(color);//Set location to be the same color as country
+    else
+      locations->at(i)->setColor("\x1B[40m"); // Set capital color to black
+}
+
+///////////////////////////////////////////////////////////
+// setColor(std::string _color)
+///////////////////////////////////////////////////////////
+
+void Country::setColor(std::string _color)
+{
+  color = _color;
+}
+
+///////////////////////////////////////////////////////////
+// getColor()
+///////////////////////////////////////////////////////////
+
+std::string Country::getColor()
+{
+  return color;
 }
