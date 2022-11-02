@@ -59,7 +59,7 @@ public:
    * @brief Remove the passed in country from the superpower
    *
    * Exceptions : std::out_of_range if the country is not owned by the superpower
-   * 
+   *
    * @param country : Country* - the country to remove
    */
   void removeCountry(Country *_country);
@@ -71,6 +71,11 @@ public:
    */
   SuperpowerState *getState();
 
+  /**
+   * @brief Prints a summary of the superpower and all its countries
+   *
+   */
+  void printSummary();
 
 private:
   std::vector<Country *> *countries;

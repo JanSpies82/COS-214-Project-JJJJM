@@ -3,6 +3,15 @@
 #include "Country.h"
 #include "SuperpowerState.h"
 #include <stdexcept>
+#include <iostream>
+
+const std::string RED = "\x1B[31m";
+const std::string GREEN = "\x1B[32m";
+const std::string YELLOW = "\x1B[33m";
+const std::string BLUE = "\x1B[34m";
+const std::string CYAN = "\x1B[36m";
+const std::string RESET = "\x1B[0m";
+
 using namespace std;
 
 Superpower::Superpower(string _name){
@@ -52,4 +61,12 @@ SuperpowerState *Superpower::getState(){
         state->addCountryState(countries->at(i)->getState());
     }
     return state;
+}
+
+void Superpower::printSummary(){
+    cout << CYAN << "Superpower: " << name << RESET << endl;
+    cout << "Countries: " << countries->size() << endl;
+    for (int i = 0; i < countries->size(); i++){
+        // countries->at(i)->printSummary();
+    }
 }
