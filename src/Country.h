@@ -309,6 +309,7 @@ private:
   std::vector<Location*>* locations;
   std::string color;
   Location* capital;
+  std::string name;
 };
 
 #endif
