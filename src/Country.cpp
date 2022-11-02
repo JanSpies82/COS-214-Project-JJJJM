@@ -46,9 +46,9 @@ Country::Country(std::string _name)
 void Country::takeTurn(Country *countryB)
 {
   // setStrategy();
-  double strengthRatings[2];
-  getCountryRating(countryB, strengthRatings);
-  strategy->takeTurn(strengthRatings, this, countryB);
+  // double strengthRatings[2];
+  // getCountryRating(countryB, strengthRatings);
+  // strategy->takeTurn(strengthRatings, this, countryB);
 }
 
 ///////////////////////////////////////////////////////////
