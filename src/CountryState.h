@@ -24,6 +24,7 @@ public:
 
 private: 
   friend class Country;
+  std::string name;
   int numCitizens;
   double domesticMorale;
   double selfReliance;
@@ -33,7 +34,10 @@ private:
   double tradeRouteSafety;
   double politicalStability;
   MilitaryState* militaryState;
+  Location* capital;
+  std::string color;
   std::vector<Country*>* enemies;
+  std::vector<Location*>* locations;
 };
 
 #endif
