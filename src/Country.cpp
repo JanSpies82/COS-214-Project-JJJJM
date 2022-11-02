@@ -20,7 +20,14 @@
 
 Country::Country()
 {
-  turnCount += 1;
+}
+
+///////////////////////////////////////////////////////////
+// ~Country()
+///////////////////////////////////////////////////////////
+
+Country::~Country()
+{
 }
 
 ///////////////////////////////////////////////////////////
@@ -33,30 +40,12 @@ Country::Country(std::string _name)
 }
 
 ///////////////////////////////////////////////////////////
-// incrementTurnCount()
-///////////////////////////////////////////////////////////
-
-void Country::incrementTurnCount()
-{
-  turnCount = turnCount + 1;
-}
-
-///////////////////////////////////////////////////////////
-// getTurnCount()
-///////////////////////////////////////////////////////////
-
-int Country::getTurnCount()
-{
-  return turnCount;
-}
-
-///////////////////////////////////////////////////////////
 // takeTurn()
 ///////////////////////////////////////////////////////////
 
 void Country::takeTurn(Country *countryB)
 {
-  setStrategy();
+  // setStrategy();
   double strengthRatings[2];
   getCountryRating(countryB, strengthRatings);
   strategy->takeTurn(strengthRatings, this, countryB);
@@ -66,18 +55,18 @@ void Country::takeTurn(Country *countryB)
 // setWarStage()
 ///////////////////////////////////////////////////////////
 
-void Country::setStrategy()
-{
-  delete strategy;
-  strategy = NULL;
+// void Country::setStrategy()
+// {
+//   delete strategy;
+//   strategy = NULL;
 
-  if (getTurnCount() < 5)
-    strategy = new EarlyStrategy();
-  if (getTurnCount() < 15)
-    strategy = new MiddleStrategy();
-  if (getTurnCount() <= 20)
-    strategy = new LateStrategy();
-}
+//   if (getTurnCount() < 5)
+//     strategy = new EarlyStrategy();
+//   if (getTurnCount() < 15)
+//     strategy = new MiddleStrategy();
+//   if (getTurnCount() <= 20)
+//     strategy = new LateStrategy();
+// }
 
 ///////////////////////////////////////////////////////////
 // getState()
