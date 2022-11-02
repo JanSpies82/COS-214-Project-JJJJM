@@ -29,8 +29,8 @@
 
 Country::~Country()
 {
-  if (locations != NULL)
-    delete locations;
+  if (countryState->locations != NULL)
+    delete countryState->locations;
   if (countryState != NULL)
     delete countryState;
 }
@@ -41,9 +41,9 @@ Country::~Country()
 
 Country::Country(std::string _name)
 {
-  name = _name;
+  countryState->name = _name;
   countryState = NULL;
-  locations = NULL;
+  countryState->locations = NULL;
 }
 
 ///////////////////////////////////////////////////////////
@@ -93,7 +93,7 @@ CountryState *Country::getState()
 
 int Country::getNumCitizens()
 {
-  return numCitizens;
+  return countryState->numCitizens;
 }
 
 ///////////////////////////////////////////////////////////
@@ -102,7 +102,7 @@ int Country::getNumCitizens()
 
 void Country::setNumCitizens(int _numCitizens)
 {
-  numCitizens = _numCitizens;
+  countryState->numCitizens = _numCitizens;
 }
 
 ///////////////////////////////////////////////////////////
@@ -151,8 +151,8 @@ void Country::getCountryRating(Country *b, double *strengthRatings)
 
 void Country::compareMilitary(Country *a, Country *b, std::vector<double> *aspectScores)
 {
-  MilitaryState *mA = a->countryState->getMilitaryState();
-  MilitaryState *mB = b->countryState->getMilitaryState();
+  MilitaryState *mA = a->countryState->militaryState;
+  MilitaryState *mB = b->countryState->militaryState;
   (*aspectScores).push_back(compareAspect(mA->getNumTroops(), mB->getNumTroops()));
   (*aspectScores).push_back(compareAspect(mA->getNumTanks(), mB->getNumTanks()));
   (*aspectScores).push_back(compareAspect(mA->getNumPlanes(), mB->getNumPlanes()));
@@ -197,7 +197,7 @@ double Country::compareAspect(double countryA, double countryB)
 
 double Country::getPoliticalStability()
 {
-  return politicalStability;
+  return countryState->politicalStability;
 }
 
 ///////////////////////////////////////////////////////////
@@ -211,7 +211,7 @@ void Country::setPoliticalStability(double _politicalStability)
     throw std::invalid_argument("_politicalStability must be greater than 0");
     return;
   }
-  politicalStability = _politicalStability;
+  countryState->politicalStability = _politicalStability;
 }
 
 ///////////////////////////////////////////////////////////
@@ -220,7 +220,7 @@ void Country::setPoliticalStability(double _politicalStability)
 
 double Country::getDomesticMorale()
 {
-  return domesticMorale;
+  return countryState->domesticMorale;
 }
 
 ///////////////////////////////////////////////////////////
@@ -234,7 +234,7 @@ void Country::setDomesticMorale(double _domesticMorale)
     throw std::invalid_argument("_domesticMorale must be greater than 0");
     return;
   }
-  domesticMorale = _domesticMorale;
+  countryState->domesticMorale = _domesticMorale;
 }
 
 ///////////////////////////////////////////////////////////
@@ -243,7 +243,7 @@ void Country::setDomesticMorale(double _domesticMorale)
 
 double Country::getSelfReliance()
 {
-  return selfReliance;
+  return countryState->selfReliance;
 }
 
 ///////////////////////////////////////////////////////////
@@ -257,7 +257,7 @@ void Country::setSelfReliance(double _selfReliance)
     throw std::invalid_argument("_selfReliance must be greater than 0");
     return;
   }
-  selfReliance = _selfReliance;
+  countryState->selfReliance = _selfReliance;
 }
 
 ///////////////////////////////////////////////////////////
@@ -266,7 +266,7 @@ void Country::setSelfReliance(double _selfReliance)
 
 double Country::getBorderStrength()
 {
-  return borderStrength;
+  return countryState->borderStrength;
 }
 
 ///////////////////////////////////////////////////////////
@@ -280,7 +280,7 @@ void Country::setBorderStrength(double _borderStrength)
     throw std::invalid_argument("_borderStrength must be greater than 0");
     return;
   }
-  borderStrength = _borderStrength;
+  countryState->borderStrength = _borderStrength;
 }
 
 ///////////////////////////////////////////////////////////
@@ -289,7 +289,7 @@ void Country::setBorderStrength(double _borderStrength)
 
 double Country::getCapitalSafety()
 {
-  return capitalSafety;
+  return countryState->capitalSafety;
 }
 
 ///////////////////////////////////////////////////////////
@@ -303,7 +303,7 @@ void Country::setCapitalSafety(double _capitalSafety)
     throw std::invalid_argument("_capitalSafety must be greater than 0");
     return;
   }
-  capitalSafety = _capitalSafety;
+  countryState->capitalSafety = _capitalSafety;
 }
 
 ///////////////////////////////////////////////////////////
@@ -312,7 +312,7 @@ void Country::setCapitalSafety(double _capitalSafety)
 
 double Country::getWarSentiment()
 {
-  return warSentiment;
+  return countryState->warSentiment;
 }
 
 ///////////////////////////////////////////////////////////
@@ -326,7 +326,7 @@ void Country::setWarSentiment(double _warSentiment)
     throw std::invalid_argument("_warSentiment must be greater than 0");
     return;
   }
-  warSentiment = _warSentiment;
+  countryState->warSentiment = _warSentiment;
 }
 
 ///////////////////////////////////////////////////////////
@@ -335,7 +335,7 @@ void Country::setWarSentiment(double _warSentiment)
 
 double Country::getTradeRouteSafety()
 {
-  return tradeRouteSafety;
+  return countryState->tradeRouteSafety;
 }
 
 ///////////////////////////////////////////////////////////
@@ -349,7 +349,7 @@ void Country::setTradeRouteSafety(double _tradeRouteSafety)
     throw std::invalid_argument("_tradeRouteSafety must be greater than 0");
     return;
   }
-  tradeRouteSafety = _tradeRouteSafety;
+  countryState->tradeRouteSafety = _tradeRouteSafety;
 }
 
 ///////////////////////////////////////////////////////////
@@ -376,7 +376,7 @@ void Country::setCountryState(CountryState *_countryState)
 
 std::string Country::getName()
 {
-  return name;
+  return countryState->name;
 }
 
 ///////////////////////////////////////////////////////////
@@ -385,7 +385,7 @@ std::string Country::getName()
 
 void Country::setName(std::string _name)
 {
-  name = _name;
+  countryState->name = _name;
 }
 
 ///////////////////////////////////////////////////////////
@@ -403,7 +403,7 @@ Military *Country::getMilitary()
 
 Location *Country::getCapital()
 {
-  return capital;
+  return countryState->capital;
 }
 
 ///////////////////////////////////////////////////////////
@@ -412,7 +412,7 @@ Location *Country::getCapital()
 
 void Country::setCapital(Location *_capital)
 {
-  capital = _capital;
+  countryState->capital = _capital;
 }
 
 ///////////////////////////////////////////////////////////
@@ -421,12 +421,12 @@ void Country::setCapital(Location *_capital)
 
 void Country::setLocations(std::vector<Location *> *_locations)
 {
-  locations = _locations;
-  for (int i = 0; i < locations->size(); i++)
-    if (!locations->at(i)->getIsCapital())
-      locations->at(i)->setColor(color);//Set location to be the same color as country
+  countryState->locations = _locations;
+  for (int i = 0; i < countryState->locations->size(); i++)
+    if (!countryState->locations->at(i)->getIsCapital())
+      countryState->locations->at(i)->setColor(color);//Set location to be the same color as country
     else
-      locations->at(i)->setColor("\x1B[40m"); // Set capital color to black
+      countryState->locations->at(i)->setColor("\x1B[40m"); // Set capital color to black
 }
 
 ///////////////////////////////////////////////////////////
@@ -435,7 +435,7 @@ void Country::setLocations(std::vector<Location *> *_locations)
 
 void Country::setColor(std::string _color)
 {
-  color = _color;
+  countryState->color = _color;
 }
 
 ///////////////////////////////////////////////////////////
@@ -444,7 +444,7 @@ void Country::setColor(std::string _color)
 
 std::string Country::getColor()
 {
-  return color;
+  return countryState->color;
 }
 
 ///////////////////////////////////////////////////////////
