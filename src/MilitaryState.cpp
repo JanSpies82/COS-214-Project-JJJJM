@@ -5,7 +5,15 @@
 // MilitaryState()
 ///////////////////////////////////////////////////////////
 
-MilitaryState::MilitaryState(){}
+MilitaryState::MilitaryState()
+{
+  numTroops = 0;
+  ships = NULL;
+  tanks = NULL;
+  planes = NULL;
+  battalions = NULL;
+  vehicleFactories = NULL;
+}
 
 ///////////////////////////////////////////////////////////
 // ~MilitaryState()
