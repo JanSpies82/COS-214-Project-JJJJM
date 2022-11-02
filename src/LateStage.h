@@ -12,12 +12,13 @@ class LateStage;
 class LateStage: public WarStage
 {
 
-	public: void handle();
-
-    WarStage* nextStage();
-    /**
-     * @brief returns NULL
-     */
+	public:    
+        /**
+         * @brief handle() function: Calculates if currentRound is within its current warstage, and returns warstage int
+        */
+        int getWarStage();
+        LateStage();
+        ~LateStage();
 };
 
 #endif

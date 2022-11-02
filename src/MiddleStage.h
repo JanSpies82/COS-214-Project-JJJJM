@@ -12,12 +12,13 @@ class MiddleStage;
 class MiddleStage: public WarStage
 {
 
-	public: void handle();
-
-    WarStage* nextStage();
-    /**
-     * @brief initialises a LateStage object and returns it
-     */
+	public:    
+        /**
+         * @brief handle() function: Calculates if currentRound is within its current warstage, and returns warstage int
+        */
+        int getWarStage();
+        MiddleStage();
+        ~MiddleStage();
 };
 
 #endif

@@ -4,10 +4,6 @@ using namespace std;
 #include "LateStage.h"
 #include "WarStage.h"
 
-void LateStage::handle() {
-	throw "Not yet implemented";
+int LateStage::getWarStage(){
+	return 0;
 }
-
-WarStage* LateStage::nextStage(){
-	return NULL;
-};
