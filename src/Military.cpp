@@ -28,10 +28,10 @@ void attack(Country* country)
 {
 }
 
- void Military::setNumTroops(int t){
- 	numTroops=t;
- }
+//  void Military::setNumTroops(int t){
+//  	numTroops=t;
+//  }
 
- int Military::getNumTroops(){
- 	return numTroops;
- }
+//  int Military::getNumTroops(){
+//  	return numTroops;
+//  }
