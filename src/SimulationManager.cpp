@@ -59,6 +59,27 @@ SimulationManager::~SimulationManager()
     delete backup;
 }
 
+void SimulationManager::runSimulation()
+{
+    resetSimulation();
+    while (isSimulationRunning())
+    {
+        turnCount++;
+        takeTurn();
+        viewSummary();
+    }
+    finalMessage();
+}
+
+void SimulationManager::resetSimulation()
+{
+    setSuperpowers();
+    setDesignMode();
+    turnCount = 0;
+}
+
+void SimulationManager::setDesignMode(){};
+
 void SimulationManager::saveState()
 {
     SimulationState *state = new SimulationState(this);
@@ -122,4 +143,17 @@ void SimulationManager::setUpUK(Country *_uk)
     _uk->setTradeRouteSafety(0.2);
     _uk->setNumCitizens(10000000);
     // How to set military?
+
+    delete ukLocations;//TODO Remove later
+}
+
+void SimulationManager::takeTurn(){};
+
+void SimulationManager::viewSummary(){};
+
+void SimulationManager::finalMessage(){};
+
+bool SimulationManager::isSimulationRunning()
+{
+    return isRunning;
 }
