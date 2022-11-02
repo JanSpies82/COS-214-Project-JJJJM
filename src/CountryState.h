@@ -36,7 +36,6 @@ private:
   double politicalStability;
   MilitaryState* militaryState;
   std::vector<Country*>* enemies;
-  std::vector<Location*>* locations;
 };
 
 #endif
