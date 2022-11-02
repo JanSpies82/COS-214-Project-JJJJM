@@ -17,6 +17,14 @@
 Stage* Stage::onlyInstance = 0;
 WarStage* Stage::currentStage = 0;
 
+Stage* Stage::clone(){
+    Stage* clone = new Stage();
+    clone->simulationLength = simulationLength;
+    clone->currentRound = currentRound;
+    clone->currentStage = currentStage;
+    clone->onlyInstance = clone;
+    return clone;
+}
 
 int Stage::getCurrentRound(){
 	return currentRound;

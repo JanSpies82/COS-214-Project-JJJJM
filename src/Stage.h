@@ -50,6 +50,7 @@ class Stage
          * @param length, the length wanted for the simulation
         */
         void setSimulationLength(int length);
+
         ~Stage();
         
     
