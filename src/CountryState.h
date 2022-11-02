@@ -4,7 +4,13 @@
 
 // #include "Country.h"
 #include <ctime>
+#include <string>
+#include <vector>
+
 class Country;
+class Location;
+
+class MilitaryState;
 
 class CountryState
 {
@@ -14,21 +20,29 @@ public:
     * 
     * @param country country to create state for
     */
+  CountryState();
   CountryState(Country* country);
   CountryState(const CountryState& cs);
+  ~CountryState();
   CountryState* clone();
+  MilitaryState* getMilitaryState();
 
 private: 
   friend class Country;
-  std::time_t timestamp;
+  std::string name;
   int numCitizens;
-  double politicalStability;
   double domesticMorale;
   double selfReliance;
   double borderStrength;
   double capitalSafety;
   double warSentiment;
   double tradeRouteSafety;
+  double politicalStability;
+  MilitaryState* militaryState;
+  Location* capital;
+  std::string color;
+  std::vector<Country*>* enemies;
+  std::vector<Location*>* locations;
 };
 
 #endif

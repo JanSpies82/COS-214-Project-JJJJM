@@ -6,30 +6,41 @@ using namespace std;
 #include "SimulationState.h"
 #include "SimulationManager.h"
 #include "MapState.h"
-#include "CountryState.h"
-#include "MilitaryState.h"
+#include "WarStage.h"
+#include "SuperpowerState.h"
+// #include "CountryState.h"
+// #include "MilitaryState.h"
 
 SimulationState::SimulationState(SimulationManager *_simulationManager)
 {
     this->simulationManager = _simulationManager;
     this->timestamp = time(0);
     mapState = NULL;
-    countryStates = new vector<CountryState *>();
-    militaryStates = new vector<MilitaryState *>();
+    warStage = NULL;
+    // countryStates = new vector<CountryState *>();
+    // militaryStates = new vector<MilitaryState *>();
+    superpowerStates = new vector<SuperpowerState *>();
 }
 
 SimulationState::~SimulationState()
 {
     if (mapState != NULL)
         delete mapState;
+    
+    if (warStage != NULL)
+        delete warStage;
 
-    for (int i = 0; i < countryStates->size(); i++)
-        delete countryStates->at(i);
-    delete countryStates;
+    for (int i = 0; i < superpowerStates->size(); i++)
+        delete superpowerStates->at(i);
+    delete superpowerStates;
 
-    for (int i = 0; i < militaryStates->size(); i++)
-        delete militaryStates->at(i);
-    delete militaryStates;
+    // for (int i = 0; i < countryStates->size(); i++)
+    //     delete countryStates->at(i);
+    // delete countryStates;
+
+    // for (int i = 0; i < militaryStates->size(); i++)
+    //     delete militaryStates->at(i);
+    // delete militaryStates;
 };
 
 void SimulationState::setMapState(MapState *_mapState)
@@ -39,6 +50,20 @@ void SimulationState::setMapState(MapState *_mapState)
     mapState = _mapState;
 }
 
+void SimulationState::setWarStage(WarStage *_warStage)
+{
+    if (warStage != NULL)
+        delete warStage;
+    warStage = _warStage;
+}
+
+WarStage* SimulationState::getWarStage()
+{
+    if (warStage == NULL)
+        __throw_out_of_range("SimulationState does not hold a WarStage");
+    return warStage;
+}
+
 MapState *SimulationState::getMapState()
 {
     if (mapState == NULL)
@@ -46,39 +71,56 @@ MapState *SimulationState::getMapState()
     return mapState;
 }
 
-void SimulationState::addCountryState(CountryState *_countryState)
+void SimulationState::addSuperpowerState(SuperpowerState *_superpowerState)
 {
-    countryStates->push_back(_countryState);
+    superpowerStates->push_back(_superpowerState);
 }
 
-CountryState *SimulationState::getCountryState(int index)
+SuperpowerState *SimulationState::getSuperpowerState(int _index)
 {
-    if (index < 0 || index >= countryStates->size())
-        __throw_out_of_range("CountryState index out of range");
-    return countryStates->at(index);
+    if (_index < 0 || _index >= superpowerStates->size())
+        __throw_out_of_range("Index out of range");
+    return superpowerStates->at(_index);
 }
 
-void SimulationState::addMilitaryState(MilitaryState *_militaryState)
+int SimulationState::getSuperpowerStateCount()
 {
-    militaryStates->push_back(_militaryState);
+    return superpowerStates->size();
 }
 
-MilitaryState *SimulationState::getMilitaryState(int index)
-{
-    if (index < 0 || index >= militaryStates->size())
-        __throw_out_of_range("MilitaryState index out of range");
-    return militaryStates->at(index);
-}
+// void SimulationState::addCountryState(CountryState *_countryState)
+// {
+//     countryStates->push_back(_countryState);
+// }
 
-int SimulationState::getCountryStateCount()
-{
-    return countryStates->size();
-}
+// CountryState *SimulationState::getCountryState(int index)
+// {
+//     if (index < 0 || index >= countryStates->size())
+//         __throw_out_of_range("CountryState index out of range");
+//     return countryStates->at(index);
+// }
 
-int SimulationState::getMilitaryStateCount()
-{
-    return militaryStates->size();
-}
+// void SimulationState::addMilitaryState(MilitaryState *_militaryState)
+// {
+//     militaryStates->push_back(_militaryState);
+// }
+
+// MilitaryState *SimulationState::getMilitaryState(int index)
+// {
+//     if (index < 0 || index >= militaryStates->size())
+//         __throw_out_of_range("MilitaryState index out of range");
+//     return militaryStates->at(index);
+// }
+
+// int SimulationState::getCountryStateCount()
+// {
+//     return countryStates->size();
+// }
+
+// int SimulationState::getMilitaryStateCount()
+// {
+//     return militaryStates->size();
+// }
 
 time_t SimulationState::getTimestamp()
 {

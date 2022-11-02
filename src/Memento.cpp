@@ -10,6 +10,11 @@ Memento::Memento()
 	state = NULL;
 }
 
+Memento::Memento(SimulationState *_simulationState)
+{
+	this->state = _simulationState;
+}
+
 Memento::~Memento()
 {
 	delete state;
@@ -24,5 +29,7 @@ SimulationState *Memento::getState()
 
 void Memento::setState(SimulationState *_simulationState)
 {
+	if (state != NULL)
+		delete state;
 	this->state = _simulationState;
 }

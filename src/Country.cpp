@@ -11,6 +11,7 @@
 #include "MiddleStrategy.h"
 #include "LateStrategy.h"
 #include "Strategy.h"
+#include "Location.h"
 
 #include <stdexcept>
 
@@ -18,75 +19,44 @@
 // Country()
 ///////////////////////////////////////////////////////////
 
-Country::Country() 
+// Country::Country()
+// {
+// }
+
+///////////////////////////////////////////////////////////
+// ~Country()
+///////////////////////////////////////////////////////////
+
+Country::~Country()
 {
-  turnCount += 1;
+  if (countryState->locations != NULL)
+    delete countryState->locations;
+  if (countryState != NULL)
+    delete countryState;
 }
 
 ///////////////////////////////////////////////////////////
-// request()
+// Country(CountryState* cs, MilitaryState* ms)
 ///////////////////////////////////////////////////////////
 
-void Country::request()
+Country::Country(std::string _name)
 {
-	return;
-}
-
-///////////////////////////////////////////////////////////
-// notify()
-///////////////////////////////////////////////////////////
-
-void Country::notify()
-{
-	return;
-}
-
-///////////////////////////////////////////////////////////
-// attach()
-///////////////////////////////////////////////////////////
-
-void Country::attach()
-{
-	return;
-}
-
-///////////////////////////////////////////////////////////
-// detach()
-///////////////////////////////////////////////////////////
-
-void Country::detach()
-{
-	return;
-}
-
-///////////////////////////////////////////////////////////
-// incrementTurnCount()
-///////////////////////////////////////////////////////////
-
-void Country::incrementTurnCount()
-{
-  turnCount += 1;
-}
-
-///////////////////////////////////////////////////////////
-// getTurnCount()
-///////////////////////////////////////////////////////////
-
-int Country::getTurnCount()
-{
-  return turnCount;
+  countryState = new CountryState();
+  countryState->name = _name;
+  // countryState = NULL;  // @janco what did you have in mind when setting this to NULL? Setting it from outside?
+  countryState->locations = NULL;
 }
 
 ///////////////////////////////////////////////////////////
 // takeTurn()
 ///////////////////////////////////////////////////////////
 
-void Country::takeTurn(Country* countryB)
+void Country::takeTurn(Country *countryB)
 {
   // setStrategy();
-  double* strengthRatings;
-  getCountryRating(countryB, strengthRatings);
-	strategy->takeTurn(strengthRatings, this, countryB);
+  // double strengthRatings[2];
+  // getCountryRating(countryB, strengthRatings);
+  // strategy->takeTurn(strengthRatings, this, countryB);
 }
 
 ///////////////////////////////////////////////////////////
@@ -97,29 +67,25 @@ void Country::takeTurn(Country* countryB)
 // {
 //   delete strategy;
 //   strategy = NULL;
-  
-//   if (getTurnCount() < 5) 
-//   {
+
+//   if (getTurnCount() < 5)
 //     strategy = new EarlyStrategy();
-//     return;
-//   }
-//   if (getTurnCount() < 15) 
-//   {
+//   if (getTurnCount() < 15)
 //     strategy = new MiddleStrategy();
-//     return;
-//   }
-//   strategy = new LateStrategy();
+//   if (getTurnCount() <= 20)
+//     strategy = new LateStrategy();
 // }
 
 ///////////////////////////////////////////////////////////
 // getState()
 ///////////////////////////////////////////////////////////
 
-CountryState* Country::getState()
+CountryState *Country::getState()
 {
-  // generate current state
-  // return current state
-  return NULL;
+  if (countryState != NULL)
+    delete countryState;
+  countryState = new CountryState(this);
+  return countryState;
 }
 
 ///////////////////////////////////////////////////////////
@@ -128,7 +94,7 @@ CountryState* Country::getState()
 
 int Country::getNumCitizens()
 {
-  return numCitizens;
+  return countryState->numCitizens;
 }
 
 ///////////////////////////////////////////////////////////
@@ -137,119 +103,76 @@ int Country::getNumCitizens()
 
 void Country::setNumCitizens(int _numCitizens)
 {
-  numCitizens = _numCitizens;
-}
-
-///////////////////////////////////////////////////////////
-// getMilitaryState()
-///////////////////////////////////////////////////////////
-
-MilitaryState* Country::getMilitaryState()
-{
-  return militaryState;
-}
-
-///////////////////////////////////////////////////////////
-// setMilitaryState()
-///////////////////////////////////////////////////////////
-
-void Country::setMilitaryState(MilitaryState* _militaryState)
-{
-  militaryState = _militaryState;
-}
-
-///////////////////////////////////////////////////////////
-// getMapState()
-///////////////////////////////////////////////////////////
-
-MapState* Country::getMapState()
-{
-  return mapState;
-}
-
-///////////////////////////////////////////////////////////
-// setMapState()
-///////////////////////////////////////////////////////////
-
-void Country::setMapState(MapState* _mapState)
-{
-  mapState = _mapState;
+  countryState->numCitizens = _numCitizens;
 }
 
 ///////////////////////////////////////////////////////////
 // getCountryRating()
 ///////////////////////////////////////////////////////////
 
-/// @todo work with Jake_M to implement military-related functions
-
-double* Country::getCountryRating(Country* b, double* strengthRatings)
+void Country::getCountryRating(Country *b, double *strengthRatings)
 {
   std::vector<double> strengthScoresA;
   std::vector<double> strengthScoresB;
   std::vector<double> aspectScores;
 
-  // aspectScores = compareMilitary(this, b);
+  compareMilitary(this, b, &aspectScores); // get CountryA's military strength scores
   for (double score : aspectScores)
     strengthScoresA.push_back(score);
 
-  // aspectScores = compareMilitary(b, this);
+  compareMilitary(b, this, &aspectScores); // get CountryB's military strength scores
+  for (double score : aspectScores)
+    strengthScoresB.push_back(score);
+
+  compareDomestic(this, b, &aspectScores); // get CountryA's domestic strength scores
   for (double score : aspectScores)
     strengthScoresA.push_back(score);
 
-  // aspectScores = compareDomestic(this, b);
+  compareDomestic(b, this, &aspectScores); // get CountryB's domestic strength scores
   for (double score : aspectScores)
-    strengthScoresA.push_back(score);
-
-  // aspectScores = compareDomestic(b, this);
-  for (double score : aspectScores)
-    strengthScoresA.push_back(score);
+    strengthScoresB.push_back(score);
 
   double strengthA = 0.0;
   for (double score : strengthScoresA)
     strengthA += score;
-  strengthA /= strengthScoresA.size();
+  strengthA /= strengthScoresA.size(); // CountryA's overall strength
 
   double strengthB = 0.0;
   for (double score : strengthScoresB)
     strengthB += score;
-  strengthB /= strengthScoresB.size();
+  strengthB /= strengthScoresB.size(); // CountryB's overall strength
 
   strengthRatings[0] = strengthA;
   strengthRatings[1] = strengthB;
-  return strengthRatings;
 }
 
 ///////////////////////////////////////////////////////////
 // compareMilitary()
 ///////////////////////////////////////////////////////////
 
-// std::vector<double> Country::compareMilitary(Country* a, Country* b)
-// {
-//   std::vector<double> ratingsA;
-//   MilitaryState* mA = a->getMilitaryState();
-//   MilitaryState* mB = b->getMilitaryState();
-//   ratingsA.push_back(compareAspect(mA->getNumTroops(), mB->getNumTroops()));
-//   ratingsA.push_back(compareAspect(mA->getNumTanks(), mB->getNumTanks()));
-//   ratingsA.push_back(compareAspect(mA->getNumPlanes(), mB->getNumPlanes()));
-//   ratingsA.push_back(compareAspect(mA->getNumShips(), mB->getNumShips()));
-//   return ratingsA;
-// }
+void Country::compareMilitary(Country *a, Country *b, std::vector<double> *aspectScores)
+{
+  MilitaryState *mA = a->countryState->militaryState;
+  MilitaryState *mB = b->countryState->militaryState;
+  (*aspectScores).push_back(compareAspect(mA->getNumTroops(), mB->getNumTroops()));
+  (*aspectScores).push_back(compareAspect(mA->getNumTanks(), mB->getNumTanks()));
+  (*aspectScores).push_back(compareAspect(mA->getNumPlanes(), mB->getNumPlanes()));
+  (*aspectScores).push_back(compareAspect(mA->getNumShips(), mB->getNumShips()));
+}
 
 ///////////////////////////////////////////////////////////
 // compareDomestic(Country)
 ///////////////////////////////////////////////////////////
 
-// std::vector<double> Country::compareDomestic(Country* a, Country* b)
-// {
-//   std::vector<double> ratingsA;
-//   ratingsA.push_back(compareAspect(a->getPoliticalStability(), b->getPoliticalStability()));
-//   ratingsA.push_back(compareAspect(a->getDomesticMorale(), b->getDomesticMorale()));
-//   ratingsA.push_back(compareAspect(a->getBorderStrength(), b->getBorderStrength()));
-//   ratingsA.push_back(compareAspect(a->getCapitalSafety(), b->getCapitalSafety()));
-//   ratingsA.push_back(compareAspect(a->getWarSentiment(), b->getWarSentiment()));
-//   ratingsA.push_back(compareAspect(a->getTradeRouteSafety(), b->getTradeRouteSafety()));
-//   return ratingsA;
-// }
+void Country::compareDomestic(Country *a, Country *b, std::vector<double> *aspectScores)
+{
+  (*aspectScores).push_back(compareAspect(a->getPoliticalStability(), b->getPoliticalStability()));
+  (*aspectScores).push_back(compareAspect(a->getDomesticMorale(), b->getDomesticMorale()));
+  (*aspectScores).push_back(compareAspect(a->getBorderStrength(), b->getBorderStrength()));
+  (*aspectScores).push_back(compareAspect(a->getCapitalSafety(), b->getCapitalSafety()));
+  (*aspectScores).push_back(compareAspect(a->getWarSentiment(), b->getWarSentiment()));
+  (*aspectScores).push_back(compareAspect(a->getTradeRouteSafety(), b->getTradeRouteSafety()));
+}
 
 ///////////////////////////////////////////////////////////
 // compareAspect(int, int)
@@ -257,7 +180,7 @@ double* Country::getCountryRating(Country* b, double* strengthRatings)
 
 double Country::compareAspect(int countryA, int countryB)
 {
-  return countryA/countryB;
+  return countryA / countryB;
 }
 
 ///////////////////////////////////////////////////////////
@@ -266,7 +189,7 @@ double Country::compareAspect(int countryA, int countryB)
 
 double Country::compareAspect(double countryA, double countryB)
 {
-  return countryA/countryB;
+  return countryA / countryB;
 }
 
 ///////////////////////////////////////////////////////////
@@ -275,7 +198,7 @@ double Country::compareAspect(double countryA, double countryB)
 
 double Country::getPoliticalStability()
 {
-  return politicalStability;
+  return countryState->politicalStability;
 }
 
 ///////////////////////////////////////////////////////////
@@ -289,7 +212,7 @@ void Country::setPoliticalStability(double _politicalStability)
     throw std::invalid_argument("_politicalStability must be greater than 0");
     return;
   }
-  politicalStability = _politicalStability;
+  countryState->politicalStability = _politicalStability;
 }
 
 ///////////////////////////////////////////////////////////
@@ -298,7 +221,7 @@ void Country::setPoliticalStability(double _politicalStability)
 
 double Country::getDomesticMorale()
 {
-  return domesticMorale;
+  return countryState->domesticMorale;
 }
 
 ///////////////////////////////////////////////////////////
@@ -312,7 +235,7 @@ void Country::setDomesticMorale(double _domesticMorale)
     throw std::invalid_argument("_domesticMorale must be greater than 0");
     return;
   }
-  domesticMorale = _domesticMorale;
+  countryState->domesticMorale = _domesticMorale;
 }
 
 ///////////////////////////////////////////////////////////
@@ -321,7 +244,7 @@ void Country::setDomesticMorale(double _domesticMorale)
 
 double Country::getSelfReliance()
 {
-  return selfReliance;
+  return countryState->selfReliance;
 }
 
 ///////////////////////////////////////////////////////////
@@ -335,16 +258,16 @@ void Country::setSelfReliance(double _selfReliance)
     throw std::invalid_argument("_selfReliance must be greater than 0");
     return;
   }
-  selfReliance = _selfReliance;
+  countryState->selfReliance = _selfReliance;
 }
 
 ///////////////////////////////////////////////////////////
 // getBorderStrength()
 ///////////////////////////////////////////////////////////
 
-double Country::getBorderStrength() 
+double Country::getBorderStrength()
 {
-  return borderStrength;
+  return countryState->borderStrength;
 }
 
 ///////////////////////////////////////////////////////////
@@ -358,7 +281,7 @@ void Country::setBorderStrength(double _borderStrength)
     throw std::invalid_argument("_borderStrength must be greater than 0");
     return;
   }
-  borderStrength = _borderStrength;
+  countryState->borderStrength = _borderStrength;
 }
 
 ///////////////////////////////////////////////////////////
@@ -367,7 +290,7 @@ void Country::setBorderStrength(double _borderStrength)
 
 double Country::getCapitalSafety()
 {
-  return capitalSafety;
+  return countryState->capitalSafety;
 }
 
 ///////////////////////////////////////////////////////////
@@ -381,7 +304,7 @@ void Country::setCapitalSafety(double _capitalSafety)
     throw std::invalid_argument("_capitalSafety must be greater than 0");
     return;
   }
-  capitalSafety = _capitalSafety;
+  countryState->capitalSafety = _capitalSafety;
 }
 
 ///////////////////////////////////////////////////////////
@@ -390,7 +313,7 @@ void Country::setCapitalSafety(double _capitalSafety)
 
 double Country::getWarSentiment()
 {
-  return warSentiment;
+  return countryState->warSentiment;
 }
 
 ///////////////////////////////////////////////////////////
@@ -404,7 +327,7 @@ void Country::setWarSentiment(double _warSentiment)
     throw std::invalid_argument("_warSentiment must be greater than 0");
     return;
   }
-  warSentiment = _warSentiment;
+  countryState->warSentiment = _warSentiment;
 }
 
 ///////////////////////////////////////////////////////////
@@ -413,11 +336,11 @@ void Country::setWarSentiment(double _warSentiment)
 
 double Country::getTradeRouteSafety()
 {
-  return tradeRouteSafety;
+  return countryState->tradeRouteSafety;
 }
 
 ///////////////////////////////////////////////////////////
-// setTradeRouteSafety()  
+// setTradeRouteSafety()
 ///////////////////////////////////////////////////////////
 
 void Country::setTradeRouteSafety(double _tradeRouteSafety)
@@ -427,14 +350,14 @@ void Country::setTradeRouteSafety(double _tradeRouteSafety)
     throw std::invalid_argument("_tradeRouteSafety must be greater than 0");
     return;
   }
-  tradeRouteSafety = _tradeRouteSafety;
+  countryState->tradeRouteSafety = _tradeRouteSafety;
 }
 
 ///////////////////////////////////////////////////////////
 // getCountryState()
 ///////////////////////////////////////////////////////////
 
-CountryState* Country::getCountryState()
+CountryState *Country::getCountryState()
 {
   return countryState;
 }
@@ -443,7 +366,104 @@ CountryState* Country::getCountryState()
 // setCountryState()
 ///////////////////////////////////////////////////////////
 
-void Country::setCountryState(CountryState* _countryState)
+void Country::setCountryState(CountryState *_countryState)
 {
   countryState = _countryState;
+}
+
+///////////////////////////////////////////////////////////
+// getName()
+///////////////////////////////////////////////////////////
+
+std::string Country::getName()
+{
+  return countryState->name;
+}
+
+///////////////////////////////////////////////////////////
+// setName()
+///////////////////////////////////////////////////////////
+
+void Country::setName(std::string _name)
+{
+  countryState->name = _name;
+}
+
+///////////////////////////////////////////////////////////
+// getMilitary()
+///////////////////////////////////////////////////////////
+
+Military *Country::getMilitary()
+{
+  return military;
+}
+
+///////////////////////////////////////////////////////////
+// getCapital()
+///////////////////////////////////////////////////////////
+
+Location *Country::getCapital()
+{
+  return countryState->capital;
+}
+
+///////////////////////////////////////////////////////////
+// setCapital(Location*)
+///////////////////////////////////////////////////////////
+
+void Country::setCapital(Location *_capital)
+{
+  countryState->capital = _capital;
+}
+
+///////////////////////////////////////////////////////////
+// setLocations(std::vector<Location*>*)
+///////////////////////////////////////////////////////////
+
+void Country::setLocations(std::vector<Location *> *_locations)
+{
+  countryState->locations = _locations;
+  for (int i = 0; i < countryState->locations->size(); i++)
+    if (!countryState->locations->at(i)->getIsCapital())
+      countryState->locations->at(i)->setColor(countryState->color);//Set location to be the same color as country
+    else
+      countryState->locations->at(i)->setColor("\x1B[40m"); // Set capital color to black
+}
+
+///////////////////////////////////////////////////////////
+// setColor(std::string _color)
+///////////////////////////////////////////////////////////
+
+void Country::setColor(std::string _color)
+{
+  countryState->color = _color;
+}
+
+///////////////////////////////////////////////////////////
+// getColor()
+///////////////////////////////////////////////////////////
+
+std::string Country::getColor()
+{
+  return countryState->color;
+}
+
+///////////////////////////////////////////////////////////
+// getMediator()
+///////////////////////////////////////////////////////////
+
+CountryMediator* Country::getMediator()
+{
+  return mediator;
+}
+
+///////////////////////////////////////////////////////////
+// setMediator()
+///////////////////////////////////////////////////////////
+
+void Country::setMediator(CountryMediator* _mediator)
+{
+  if (mediator != NULL)
+    delete mediator;
+  mediator = _mediator;
 }

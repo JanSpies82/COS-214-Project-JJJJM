@@ -1,10 +1,22 @@
-#include <exception>
+// #include <exception>
 using namespace std;
-
+#include"Ship.h"
 #include "ShipFactory.h"
-#include "VehicleFactory.h"
+// #include "VehicleFactory.h"
 
-// Vehicle* ShipFactory::factoryMethod() {
-// 	throw "Not yet implemented";
-// }
+		ShipFactory::ShipFactory(){
+
+		}
+
+		ShipFactory::~ShipFactory(){
+
+		}
+
+// 		Vehicle* ShipFactory::manufactureVehicle(int damageBatallion,int damageToShip){
+// 			return new Ship(damageBatallion,damageToShip);
+// 		}
+
+		Vehicle* ShipFactory::manufactureVehicle(){
+			return new Ship();
+		}
 

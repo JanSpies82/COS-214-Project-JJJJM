@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.10)
 project (Project_JJJJM)
 
 find_package(GTest REQUIRED)

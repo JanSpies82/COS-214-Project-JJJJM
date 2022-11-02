@@ -23,7 +23,3 @@ Neighbour::~Neighbour(){
     if(location!=NULL)
         delete location;
 }
-
-char Neighbour::getColour(){
-    return location->getColour();
-}

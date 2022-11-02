@@ -1,14 +1,17 @@
-#include <exception>
-using namespace std;
+// #include <exception>
+// using namespace std;
 
 #include "VehicleFactory.h"
-#include "Military.h"
+// #include "Military.h"
 
-// Vehicle* VehicleFactory::factoryMethod() {
-// 	throw "Not yet implemented";
-// }
+ 
+ VehicleFactory::VehicleFactory(){
 
-// void VehicleFactory::anOperation() {
-// 	throw "Not yet implemented";
-// }
+ }
+
+ VehicleFactory::~VehicleFactory(){
+
+ }
+
+ 
 

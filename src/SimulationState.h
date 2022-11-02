@@ -10,10 +10,11 @@
 #include <ctime>
 
 class SimulationManager;
-class SimulationState;
 class MapState;
-class CountryState;
-class MilitaryState;
+class SuperpowerState;
+class WarStage;
+// class CountryState;
+// class MilitaryState;
 
 class SimulationState
 {
@@ -25,7 +26,7 @@ public:
 	 *
 	 * @param _simulationManager : SimulationManager* - Pointer to the SimulationManager object.
 	 */
-	//TODO decide wether SimulationManager is necessary
+	// TODO decide wether SimulationManager is necessary
 	SimulationState(SimulationManager *_simulationManager);
 
 	/**
@@ -38,28 +39,61 @@ public:
 	 * @brief Set the Map State object stored by the SimulationState
 	 *
 	 * If a MapState is already stored, it is deleted
-	 * 
+	 *
 	 * @param _mapState : MapState* - Pointer to the MapState object.
 	 */
 	void setMapState(MapState *_mapState);
 
 	/**
-	 * @brief Add a CountryState object to the SimulationState
+	 * @brief Set the WarStage object stored by the SimulationState
+	 * 
+	 * If a WarStage is already stored, it is deleted
 	 *
-	 * @param _countryState : CountryState* - Pointer to the CountryState object.
+	 * @param _warStage : WarStage* - Pointer to the WarStage object.
 	 */
-	void addCountryState(CountryState *_countryState);
+	void setWarStage(WarStage *_warStage);
 
 	/**
-	 * @brief Add a MilitaryState object to the SimulationState
+	 * @brief Add a SuperpowerState object to the SimulationState
 	 *
-	 * @param _militaryState : MilitaryState* - Pointer to the MilitaryState object.
+	 * @param _superpowerState : SuperpowerState* - Pointer to the SuperpowerState object.
 	 */
-	void addMilitaryState(MilitaryState *_militaryState);
+	void addSuperpowerState(SuperpowerState *_superpowerState);
+
+	/**
+	 * @brief Get the number of SuperpowerState objects stored by the SimulationState
+	 *
+	 * @return int
+	 */
+	int getSuperpowerStateCount();
+
+	/**
+	 * @brief Get the SuperpowerState object stored by the SimulationState
+	 *
+	 * Exceptions : std::out_of_range if the index is out of range
+	 *
+	 * @param index : int - Index of the SuperpowerState object to return.
+	 * @return SuperpowerState*
+	 */
+	SuperpowerState *getSuperpowerState(int _index);
+
+	// /**
+	//  * @brief Add a CountryState object to the SimulationState
+	//  *
+	//  * @param _countryState : CountryState* - Pointer to the CountryState object.
+	//  */
+	// void addCountryState(CountryState *_countryState);
+
+	// /**
+	//  * @brief Add a MilitaryState object to the SimulationState
+	//  *
+	//  * @param _militaryState : MilitaryState* - Pointer to the MilitaryState object.
+	//  */
+	// void addMilitaryState(MilitaryState *_militaryState);
 
 	/**
 	 * @brief Get the Map State object stored by the SimulationState
-	 * 
+	 *
 	 * Exceptions : std::out_of_range if the SimulationState does not hold a MapState
 	 *
 	 * @return MapState*
@@ -67,38 +101,47 @@ public:
 	MapState *getMapState();
 
 	/**
-	 * @brief Get the Country State object stored by the SimulationState
-	 *
-	 * Exceptions : std::out_of_range if the index is out of range
+	 * @brief Get the War Stage object stored by the SimulationState
 	 * 
-	 * @param index : int - Index of the CountryState object to return.
-	 * @return CountryState*
-	 */
-	CountryState *getCountryState(int index);
-
-	/**
-	 * @brief Get the Military State object stored by the SimulationState
-	 *
-	 * Exceptions : std::out_of_range if the index is out of range
+	 * Exceptions : std::out_of_range if the SimulationState does not hold a WarStage
 	 * 
-	 * @param index : int - Index of the MilitaryState object to return.
-	 * @return MilitaryState*
+	 * @return WarStage* 
 	 */
-	MilitaryState *getMilitaryState(int index);
+	WarStage *getWarStage();
 
-	/**
-	 * @brief Get the number of CountryState objects stored by the SimulationState
-	 *
-	 * @return int
-	 */
-	int getCountryStateCount();
+	// /**
+	//  * @brief Get the Country State object stored by the SimulationState
+	//  *
+	//  * Exceptions : std::out_of_range if the index is out of range
+	//  *
+	//  * @param index : int - Index of the CountryState object to return.
+	//  * @return CountryState*
+	//  */
+	// CountryState *getCountryState(int index);
 
-	/**
-	 * @brief Get the number of MilitaryState objects stored by the SimulationState
-	 *
-	 * @return int
-	 */
-	int getMilitaryStateCount();
+	// /**
+	//  * @brief Get the Military State object stored by the SimulationState
+	//  *
+	//  * Exceptions : std::out_of_range if the index is out of range
+	//  *
+	//  * @param index : int - Index of the MilitaryState object to return.
+	//  * @return MilitaryState*
+	//  */
+	// MilitaryState *getMilitaryState(int index);
+
+	// /**
+	//  * @brief Get the number of CountryState objects stored by the SimulationState
+	//  *
+	//  * @return int
+	//  */
+	// int getCountryStateCount();
+
+	// /**
+	//  * @brief Get the number of MilitaryState objects stored by the SimulationState
+	//  *
+	//  * @return int
+	//  */
+	// int getMilitaryStateCount();
 
 	/**
 	 * @brief Get the Timestamp object stored by the SimulationState
@@ -109,9 +152,11 @@ public:
 
 private:
 	MapState *mapState;
+	WarStage *warStage;
 	SimulationManager *simulationManager;
-	std::vector<CountryState *> *countryStates;
-	std::vector<MilitaryState *> *militaryStates;
+	// std::vector<CountryState *> *countryStates;
+	// std::vector<MilitaryState *> *militaryStates;
+	std::vector<SuperpowerState *> *superpowerStates;
 	std::time_t timestamp;
 };
 
