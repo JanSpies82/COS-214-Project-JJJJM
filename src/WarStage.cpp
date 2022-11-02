@@ -9,3 +9,9 @@
 // void WarStage::handle() {
 // 	throw "Not yet implemented";
 // }
+
+WarStage::WarStage(){
+}
+
+WarStage::~WarStage(){
+}

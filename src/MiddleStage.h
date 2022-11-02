@@ -17,8 +17,25 @@ class MiddleStage: public WarStage
          * @brief returns warstage via int = 1
         */
         int getWarStage();
+
+        /**
+         * @brief Construct a new Middle Stage object
+         * 
+         */
         MiddleStage();
+
+        /**
+         * @brief Destroy the Middle Stage object
+         * 
+         */
         ~MiddleStage();
+
+        /**
+         * @brief Return a deep copy of the Middle Stage object
+         * 
+         * @return MiddleStage* 
+         */
+        MiddleStage* clone();
 };
 
 #endif
