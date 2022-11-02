@@ -8,10 +8,13 @@
 #include "Backup.h"
 #include "WarStage.h"
 #include "Country.h"
+#include <string>
+#include <iostream>
+#include <limits>
 
 using namespace std;
 
-string mapVal[27] = {
+const string mapVal[27] = {
     "000000000000000099000066",
     "000000000000000996666666",
     "000000000000009996666666",
@@ -40,6 +43,13 @@ string mapVal[27] = {
     "002222000000008880005000",
     "000000000000000800000550",
 };
+
+const std::string RED = "\x1B[31m";
+const std::string GREEN = "\x1B[32m";
+const std::string YELLOW = "\x1B[33m";
+const std::string BLUE = "\x1B[34m";
+const std::string CYAN = "\x1B[36m";
+const std::string RESET = "\x1B[0m";
 
 SimulationManager::SimulationManager()
 {
@@ -78,7 +88,15 @@ void SimulationManager::resetSimulation()
     turnCount = 0;
 }
 
-void SimulationManager::setDesignMode(){};
+void SimulationManager::setDesignMode()
+{
+    cout << "Would you like to run the simulation in design mode?(y/n)" << endl;
+    string input = "";
+    cout << "Choice: " << YELLOW;
+    cin >> input;
+    cout << RESET;
+    designMode = (input == "y" || input == "Y");
+};
 
 void SimulationManager::saveState()
 {
@@ -144,7 +162,7 @@ void SimulationManager::setUpUK(Country *_uk)
     _uk->setNumCitizens(10000000);
     // How to set military?
 
-    delete ukLocations;//TODO Remove later
+    delete ukLocations; // TODO Remove later
 }
 
 void SimulationManager::takeTurn(){};
