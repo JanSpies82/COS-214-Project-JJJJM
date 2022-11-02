@@ -9,4 +9,15 @@ namespace {
     Country* testCountry = new Country();
     delete testCountry;
   }
+
+  TEST(CountryTest, ImplementStrategy)
+  {
+    Country* countryA = new Country();
+    Country* countryB = new Country();
+
+
+
+    delete countryB;
+    delete countryA;
+  }
 }
