@@ -13,7 +13,7 @@ class MilitaryState
 {
 	public:
         /**
-         * 
+         * @brief construct a MilitaryState Object
          * 
          */ 
         MilitaryState();
@@ -23,8 +23,7 @@ class MilitaryState
           **/
           MilitaryState(Military* m);
           /**
-           * 
-           * 
+           * @brief destructor a MilitaryState Object
            * 
            */
           ~MilitaryState();
@@ -81,27 +80,25 @@ class MilitaryState
         */
         void setNumShips(int);
         /**
+         * @brief return the state of a certain military object
          * 
-         * 
-         * 
+         * @return Military * 
          */
          Military* getState(); 
     
          /**
+          * @brief changes the number of battalions in the military
           * 
-          * 
+          * @param int
           */ 
-          void setNumBatalion(int);
+          void setNumBattalion(int);
           /**
+           * @brief retrieves the number of battalions in military
            * 
-           * 
-           * 
+           * @return int
            */
           int getNumBattalions();
-         /**
-          * 
-          * 
-          */
+         
             
 private:
 	Military* State;

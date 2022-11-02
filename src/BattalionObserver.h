@@ -15,11 +15,16 @@ class BattalionObserver: public Observer
 		 * @brief notify observer about the changes in the subject
 		 **/
 		void update();
-		
+		/**
+		 *@brief add subject to the observer
+		 * 
+		 * @param Battalion*
+		 */ 
+		void addSubject(Battalion*);
 		
 	private: 
-		ObserverState state;
-		Battalion subject;
+		ObserverState* state;
+		Battalion* subject;
 		ObserverState* observerStates;
 	
 };

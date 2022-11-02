@@ -18,6 +18,11 @@ class Plane : public Vehicle
 		 * @brief constructs the Plane Object
 		 **/
 		Plane();
+		/**
+		 * @brief constructor for Plane
+		 * 
+		 * @param int int int
+		 */ 
 		Plane(int,int,int);
 
 

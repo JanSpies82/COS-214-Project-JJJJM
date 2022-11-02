@@ -20,7 +20,15 @@ using namespace std;
 		 **/
 		virtual ~VehicleFactory();
 		/**
+		 * 
 		 * @brief pure virtual -children classes creates Vehicles referenced objects
+		 * 
+		 * @description Factory method
+		 * 
+		 * every concrete class inherits this method and has to implement it
+		 * 
+		 * this factory method creates new objects of the concrete Vehicles
+		 * 
 		 * @return Vehicle* -newly created vehicle
 		 **/
 		virtual Vehicle* manufactureVehicle() = 0;

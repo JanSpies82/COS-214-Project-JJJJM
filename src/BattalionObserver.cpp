@@ -10,3 +10,7 @@ void BattalionObserver::update() {
 	throw "Not yet implemented";
 }
 
+void BattalionObserver::addSubject(Battalion * sub){
+	subject=sub;
+}
+

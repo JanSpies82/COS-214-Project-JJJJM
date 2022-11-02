@@ -29,8 +29,6 @@ class Battalion
 		 **/
 		void attack(Country* enemy);
 	
-		
-
 		/**
 		 * @brief sets the number Battalions an attack of a battallion kills.
 		 * @param int of the number of Battalions
@@ -43,11 +41,21 @@ class Battalion
 		 **/
 		int getBattalionDestroyed();
 		/**
+		 * @brief function attaches the observer to subject(battalion)
 		 * 
-		 * 
+		 * @param BattalionObserver *
 		 * */
 		void attach(BattalionObserver *obs);
-		void dettach(BattalionObserver *obs);
+		/**
+		 * @brief detach function remove an observer from the vector of observers
+		 * 
+		 *@param BattalionObserver* 
+		 */ 
+		void detach(BattalionObserver *obs);
+		/**
+		 * @brief deletes all the observers in the obs vector
+		 * 
+		 */
 		void clearObservers();
 	private:
 	int numBattalionDestroys;

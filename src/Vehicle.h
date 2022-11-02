@@ -23,6 +23,13 @@ using namespace std;
 		/**
 		 * @brief pure virtual -children class has to implement function
 		 * used to attack other countries.
+		 * 
+		 * @description template method
+		 * 
+		 * The attack method in used as a template method 
+		 * 
+		 * where each vehicle has to possess the functionality
+		 * 
 		 * @param Country*-enemy Country reference object 
 		 **/
 		virtual void attack(Country* enemy)=0;//is it the same thing as destroy?

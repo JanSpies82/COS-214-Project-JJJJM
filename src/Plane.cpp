@@ -27,12 +27,12 @@ Plane::~Plane(){
 }
 void Plane::attack(Country* enemy){
 	if(enemy!=NULL){
-		vector<Battalion*> *fighters1=enemy->getMilitary()->getBatallions();
+		vector<Battalion*> *fighters1=enemy->getMilitary()->getBattalions();
 		if(fighters1->size()>numBattalionDestroys){
 			for (int i = 0; i < numBattalionDestroys; i++)
         		delete fighters1->at(i);
 		}else{
-			enemy->getMilitary()->clearBatalions();
+			enemy->getMilitary()->clearBattalions();
 		}
 			
 		vector<Tank*> * fighters2=enemy->getMilitary()->getTanks();

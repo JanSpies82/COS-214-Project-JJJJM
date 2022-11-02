@@ -99,21 +99,21 @@ Military* MilitaryState:: getState(){
     numTroops=State->getNumTroops();  
  }
 
- void MilitaryState::setNumBatalion(int n){
+ void MilitaryState::setNumBattalion(int n){
     if(n==0){
-        State->clearBatalions();
+        State->clearBattalions();
     }
     else if(n==State->getNumBattalions()){
 
     }else if(n>State->getNumBattalions()){
         int sizeOfinput=n-State->getNumBattalions();
         for(int i =0;i<sizeOfinput;i++){
-            State->insertBatalions(new Battalion());
+            State->insertBattalions(new Battalion());
         }
     }else{
         int sizeOfRemove=State->getNumBattalions()-n;
         for(int i =0;i<sizeOfRemove;i++){
-            delete this->State->getBatallions()->at(i);
+            delete this->State->getBattalions()->at(i);
         }
     }
 

@@ -22,8 +22,8 @@ Military::Military(){
 }
 
 Military::Military(Military* copy){
-	for (int i=0; i<copy->getBatallions()->size(); i++) 
-        this->insertBatalions(copy->getBatallions()->at(i));
+	for (int i=0; i<copy->getBattalions()->size(); i++) 
+        this->insertBattalions(copy->getBattalions()->at(i));
     for (int i=0; i<copy->getTanks()->size(); i++) 
         this->insertTanks(copy->getTanks()->at(i));
     for (int i=0; i<copy->getShips()->size(); i++) 
@@ -41,7 +41,7 @@ Military::~Military(){
 	
 	clearPlanes();
 	
-	clearBatalions();
+	clearBattalions();
 
 	delete battalions;
 	delete tanks;
@@ -59,7 +59,7 @@ void Military::insertPlanes(Plane* plane){
 	}
 }	
 
-void Military::insertBatalions(Battalion* batt){	
+void Military::insertBattalions(Battalion* batt){	
 	if(batt!=NULL){
 		this->battalions->insert(this->battalions->begin(),batt);
 	}else{
@@ -128,7 +128,7 @@ void Military::attack(Country* enemy){
 	}
 }
 
-std::vector<Battalion*>* Military:: getBatallions(){
+std::vector<Battalion*>* Military:: getBattalions(){
 		if(battalions->size()>0)
 			return battalions;
 }
@@ -170,7 +170,7 @@ void Military::clearPlanes()
     planes->clear();
 }
 
-void Military::clearBatalions()
+void Military::clearBattalions()
 {
     for (int i = 0; i < this->battalions->size(); i++)
         delete this->battalions->at(i);

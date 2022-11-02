@@ -12,9 +12,9 @@ using namespace std;
 		TankFactory::~TankFactory(){
 
 		}
-		Vehicle* TankFactory::manufactureVehicle(int damageBatallion,int damageToTank){
+		Vehicle* TankFactory::manufactureVehicle(int damageBattalion,int damageToTank){
 			
-			return new Tank(damageBatallion,damageToTank);
+			return new Tank(damageBattalion,damageToTank);
 		}
 
 		Vehicle* TankFactory::manufactureVehicle(){

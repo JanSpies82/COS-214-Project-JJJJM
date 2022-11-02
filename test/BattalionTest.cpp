@@ -9,7 +9,7 @@ namespace {
   // Test attack()
 	//=============Precondition Testing ===================
 	//Test Precondition passing in NULL 
-TEST(BatalionTest,TestPreconditionNullptr){
+TEST(BattalionTest,TestPreconditionNullptr){
 	Battalion * person=new Battalion();
 	try{
 		person->attack(NULL);

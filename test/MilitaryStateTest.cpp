@@ -67,10 +67,10 @@ namespace {
    		MilitaryState * generalOfficer=new MilitaryState(military);
 		EXPECT_EQ(generalOfficer->getNumBattalions(),0);
 		Battalion* rocker=new Battalion();
-		military->insertBatalions(rocker);
+		military->insertBattalions(rocker);
 		EXPECT_EQ(generalOfficer->getNumBattalions(),1);
 		Battalion* rocker2=new Battalion();
-		military->insertBatalions(rocker2);
+		military->insertBattalions(rocker2);
 		EXPECT_EQ(generalOfficer->getNumBattalions(),2);
 		delete generalOfficer;
 		delete military;
@@ -131,11 +131,11 @@ namespace {
 	TEST(MilitaryStateTest,setNumBattalions){
 		Military* military=new Military();
 		MilitaryState* generalOfficer=new MilitaryState(military);
-		generalOfficer->setNumBatalion(3);
+		generalOfficer->setNumBattalion(3);
 		EXPECT_EQ(generalOfficer->getNumBattalions(),3);
-		generalOfficer->setNumBatalion(0);
+		generalOfficer->setNumBattalion(0);
 		EXPECT_EQ(generalOfficer->getNumBattalions(),0);
-		generalOfficer->setNumBatalion(2);
+		generalOfficer->setNumBattalion(2);
 		EXPECT_EQ(generalOfficer->getNumBattalions(),2);
 		delete generalOfficer;
 		delete military;

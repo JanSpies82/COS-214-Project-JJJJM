@@ -12,8 +12,8 @@ PlaneFactory::~PlaneFactory(){
 
 }
 
-Vehicle* PlaneFactory::manufactureVehicle(int planeDamage,int damageToTank,int damageToBatallion){
-	return new Plane(planeDamage,damageToTank,damageToBatallion);
+Vehicle* PlaneFactory::manufactureVehicle(int planeDamage,int damageToTank,int damageToBattalion){
+	return new Plane(planeDamage,damageToTank,damageToBattalion);
 }
 
 Vehicle* PlaneFactory::manufactureVehicle(){

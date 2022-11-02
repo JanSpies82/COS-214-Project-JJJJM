@@ -13,9 +13,10 @@ class ObserverState;
 
 class ObserverState
 {
-	public: CountryObserver* countryObservers;
-	public: BattalionObserver* battalionObservers;
-	public: VehicleObserver* vehicleObservers;
+	public: 
+		CountryObserver* countryObservers;
+		BattalionObserver* battalionObservers;
+		VehicleObserver* vehicleObservers;
 };
 
 #endif

@@ -23,12 +23,12 @@ using namespace std;
 		
 void Battalion::attack(Country* enemy){
 	if(enemy!=NULL){
-		vector<Battalion*> *fighters1=enemy->getMilitary()->getBatallions();
+		vector<Battalion*> *fighters1=enemy->getMilitary()->getBattalions();
 		if(fighters1->size()>numBattalionDestroys){
 			for (int i = 0; i < numBattalionDestroys; i++)
     	   		delete fighters1->at(i);
 		}else if(fighters1->size()>0){
-			enemy->getMilitary()->clearBatalions();
+			enemy->getMilitary()->clearBattalions();
 		}
 	}else{
 			__throw_invalid_argument("NULLPTR PASSED IN");
@@ -49,7 +49,7 @@ void Battalion::attack(Country* enemy){
 			obs->push_back(o);
 		}
 
-		void Battalion::dettach(BattalionObserver *o){
+		void Battalion::detach(BattalionObserver *o){
 			for(int i=0;i<obs->size();i++){
 				if(o==obs->at(i)){
 					delete obs->at(i);

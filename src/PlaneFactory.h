@@ -26,6 +26,11 @@ class PlaneFactory: public VehicleFactory
 		 * @return Vehicle* but this class will send a Plane object
 		 **/
 		 Vehicle* manufactureVehicle();
+		 /**
+		 * @brief creates Plane object which inherits from Vehicle
+		 * @param parameter to construct no default constructors
+		 * @return Vehicle* but this class will send a Plane object
+		 **/
 		 Vehicle* manufactureVehicle(int,int,int);
 };
 

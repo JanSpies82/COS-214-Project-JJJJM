@@ -29,14 +29,14 @@ using namespace std;
 				for (int i = 0; i < numShipDestroys; i++)
         			delete fighters1->at(i);
 				}else{
-					enemy->getMilitary()->clearBatalions();
+					enemy->getMilitary()->clearBattalions();
 				}
-				vector<Battalion*> *fighters2=enemy->getMilitary()->getBatallions();
+				vector<Battalion*> *fighters2=enemy->getMilitary()->getBattalions();
 				if(fighters2->size()>numBattalionDestroys){
 					for (int i = 0; i < numBattalionDestroys; i++)
         				delete fighters2->at(i);
 				}else{
-					enemy->getMilitary()->clearBatalions();
+					enemy->getMilitary()->clearBattalions();
 				}
 
 			}
