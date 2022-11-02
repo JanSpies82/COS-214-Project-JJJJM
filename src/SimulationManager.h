@@ -20,14 +20,77 @@ class Country;
 class SimulationManager
 {
 public:
+	/**
+	 * @brief Construct a new Simulation Manager object
+	 *
+	 */
 	SimulationManager();
+
+	/**
+	 * @brief Destroy the Simulation Manager object and free all memory
+	 *
+	 */
 	virtual ~SimulationManager();
-	void restoreState();
+
+	/**
+	 * @brief Run the simulation from an initial state to completion
+	 *
+	 */
+	void runSimulation();
+
+protected:
+	/**
+	 * @brief Restore the state of the simulation to the last saved state
+	 *
+	 * @return true if the state was restored
+	 * @return false if the state was not restored
+	 */
+	bool restoreState();
+
+	/**
+	 * @brief Save the current state of the simulation in the backup
+	 *
+	 */
 	void saveState();
+
+	/**
+	 * @brief Setup the simulation to its initial state
+	 *
+	 */
 	void resetSimulation();
+
+	/**
+	 * @brief Check whether the simulation has completed or not
+	 *
+	 * @return true if the simulation has not completed
+	 * @return false if the simulation has completed
+	 */
 	bool isSimulationRunning();
+
+	/**
+	 * @brief Take a turn in the simulation by having each country take a turn
+	 *
+	 */
 	void takeTurn();
-	void startSimulation();
+
+	/**
+	 * @brief Provide the user with a summary of the simulation at this point in time
+	 * 
+	 * Also view the menu of next options available to the user
+	 */
+	void viewSummary();
+
+	/**
+	 * @brief Display the menu of options available to the user and perform that action
+	 * 
+	 */
+	void processMenu();
+
+	/**
+	 * @brief Display the last message of the simulation providing a summary of the simulation as a whole
+	 * 
+	 */
+	void finalMessage();
 
 private:
 	Map *map;
@@ -35,6 +98,7 @@ private:
 	std::vector<Superpower *> *superpowers;
 	Backup *backup;
 	bool designMode, isRunning;
+	int turnCount;
 	void setSuperpowers();
 	void setDesignMode();
 	void setUpUK(Country *_uk);
