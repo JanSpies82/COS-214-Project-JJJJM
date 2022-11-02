@@ -1,5 +1,4 @@
-#include <exception>
-using namespace std;
+///@author Mekhail Muller
 
 #ifndef __MiddleStage_h__
 #define __MiddleStage_h__
