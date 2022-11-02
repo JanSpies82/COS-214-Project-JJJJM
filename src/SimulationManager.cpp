@@ -67,6 +67,7 @@ SimulationManager::~SimulationManager()
         delete superpowers->at(i);
     delete superpowers;
     delete backup;
+    // delete warStage;
 }
 
 void SimulationManager::runSimulation()
@@ -109,7 +110,7 @@ void SimulationManager::resetSimulation()
     map = new Map();
     superpowers = new std::vector<Superpower *>();
     backup = new Backup();
-    // warStage = new WarStage();
+    // warStage = new WarStage(); //Maybe not necessary since takeTurn will already handle this?
 
     setSuperpowers();
     setDesignMode();
@@ -234,7 +235,18 @@ void SimulationManager::takeTurn()
         superpowers->at(1)->getCountry(i)->takeTurn(NULL); // TODO check whether input parameter should be removed
 };
 
-void SimulationManager::viewSummary(){};
+void SimulationManager::viewSummary()
+{
+    cout << "Results of turn " << turnCount << endl;
+    map->printMap();
+
+    for (int i = 0; i < superpowers->size(); i++)
+        superpowers->at(i)->printSummary();
+
+    isRunning = (superpowers->at(0)->getCountryCount() > 0 && superpowers->at(1)->getCountryCount() > 0);
+    if (isRunning)
+        processMenu();
+};
 
 void SimulationManager::finalMessage(){};
 
