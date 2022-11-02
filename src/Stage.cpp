@@ -61,6 +61,11 @@ Stage::Stage(){
     currentStage = new EarlyStage();
 }
 
+Stage::~Stage(){
+    delete currentStage;
+    delete onlyInstance;
+}
+
 
 
 
