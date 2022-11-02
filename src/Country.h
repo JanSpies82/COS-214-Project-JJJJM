@@ -306,6 +306,7 @@ private:
   Military* military;
   CountryMediator* mediator;
   CountryState* countryState;
+  std::vector<Location*>* locations;
   std::string color;
 };
 
