@@ -123,6 +123,13 @@ public:
    */
   void updateNumBattalions(int _numBattalions, bool isAddition);
 
+  /**
+   * @brief Create a deep copy of this object
+   * 
+   * @return MilitaryState* 
+   */
+  MilitaryState* clone();
+
 private:
   int numTroops;
   std::vector<Tank*>* tanks;

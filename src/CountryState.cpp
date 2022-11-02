@@ -1,4 +1,5 @@
 #include "CountryState.h"
+#include "MilitaryState.h"
 #include "Country.h"
 
 CountryState::CountryState(Country* country)
@@ -10,6 +11,8 @@ CountryState::CountryState(Country* country)
   capitalSafety = country->getCapitalSafety();
   warSentiment = country->getWarSentiment();
   tradeRouteSafety = country->getTradeRouteSafety();
+
+  militaryState = new MilitaryState();
 }
 
 CountryState::CountryState(const CountryState& cs)
@@ -21,6 +24,12 @@ CountryState::CountryState(const CountryState& cs)
   capitalSafety = cs.capitalSafety;
   warSentiment = cs.warSentiment;
   tradeRouteSafety = cs.tradeRouteSafety;
+  militaryState = cs.militaryState->clone();
+}
+
+CountryState::~CountryState()
+{
+  delete militaryState;
 }
 
 CountryState* CountryState::clone()

@@ -5,6 +5,7 @@ class Map;
 class Observer;
 class Iterator;
 class Country;
+#include <string>
 
 class Location
 {
@@ -124,14 +125,14 @@ class Location
 		 * 
 		 * @return char 
 		 */
-		char getColour();
+		std::string getColor();
 
 		/**
 		 * @brief Set the Colour attribute.
 		 * 
 		 * @param _colour : char - variable to set colour to.
 		 */
-		void setColour(char _colour);
+		void setColor(/*char _colour*/std::string _color);
 
 		/**
 		 * @brief Return the xCoordinate value.
@@ -178,7 +179,7 @@ class Location
 	protected:
 		Location* location;
 		Country* ownedBy;
-		char colour;
+		std::string color;
 		bool isCapital;
 		bool isLand;
 		int xCoordinate, yCoordinate;

@@ -20,6 +20,7 @@ class WarStage
      /**
       * @brief Returns an object to the next stage of war
       */
+     WarStage* clone();
 };
 
 #endif
