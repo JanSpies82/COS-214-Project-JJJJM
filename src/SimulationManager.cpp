@@ -185,11 +185,17 @@ void SimulationManager::setSuperpowers()
     Country *spainPortugal = new Country("Spain/Portugal");
     Country *sovietUnion = new Country("Soviet Union");
     Country *scandanavia = new Country("Scandanavia");
-
     Country *germany = new Country("Germany");
     Country *italy = new Country("Italy");
 
     setUpUK(uk);
+    setUpFrance(france);
+    setUpBalkans(balkans);
+    setUpSpainPortugal(spainPortugal);
+    setUpSovietUnion(sovietUnion);
+    setUpScandanavia(scandanavia);
+    setUpGermany(germany);
+    setUpItaly(italy);
 
     superpowers->at(0)->addCountry(germany);
     superpowers->at(0)->addCountry(italy);
@@ -204,19 +210,17 @@ void SimulationManager::setSuperpowers()
 
 void SimulationManager::setUpUK(Country *_uk)
 {
-    vector<Location *> *ukLocations = new vector<Location *>();
+    vector<Location *> *locations = new vector<Location *>();
     for (int i = 0; i < 27; i++)
         for (int j = 0; j < 25; j++)
             if (mapVal[i][j] == '3')
             {
-                ukLocations->push_back(map->getLocation(j, i));
+                locations->push_back(map->getLocation(j, i));
                 map->getLocation(j, i)->setOwnedBy(_uk);
                 if (map->getLocation(j, i)->getIsCapital())
-                {
                     _uk->setCapital(map->getLocation(j, i));
-                }
             }
-    _uk->setLocations(ukLocations);
+    _uk->setLocations(locations);
 
     _uk->setBorderStrength(0.75);
     _uk->setCapitalSafety(0.65);
@@ -225,8 +229,7 @@ void SimulationManager::setUpUK(Country *_uk)
     _uk->setSelfReliance(0.3);
     _uk->setWarSentiment(0.1);
     _uk->setTradeRouteSafety(0.2);
-    _uk->setNumCitizens(10000000);
-    // How to set military?
+    _uk->setNumCitizens(545463825);
 
     vector<VehicleFactory *> *vFactories = new vector<VehicleFactory *>();
     vFactories->push_back(new TankFactory());
@@ -252,6 +255,58 @@ void SimulationManager::setUpUK(Country *_uk)
     for (int i = 0; i < 20; i++)
         planes->push_back(((Plane *)vFactories->at(2)->manufactureVehicle()));
     _uk->getState()->getMilitaryState()->setPlanes(planes);
+
+    for (int i = 0; i < vFactories->size(); i++)
+        delete vFactories->at(i);
+    delete vFactories;
+}
+
+void SimulationManager::setUpFrance(Country* _france){
+vector<Location *> *locations = new vector<Location *>();
+    for (int i = 0; i < 27; i++)
+        for (int j = 0; j < 25; j++)
+            if (mapVal[i][j] == '3')
+            {
+                locations->push_back(map->getLocation(j, i));
+                map->getLocation(j, i)->setOwnedBy(_france);
+                if (map->getLocation(j, i)->getIsCapital())
+                    _france->setCapital(map->getLocation(j, i));
+            }
+    _france->setLocations(locations);
+
+    _france->setBorderStrength(0.25);
+    _france->setCapitalSafety(0.4);
+    _france->setDomesticMorale(0.3);
+    _france->setPoliticalStability(0.3);
+    _france->setSelfReliance(0.5);
+    _france->setWarSentiment(0.1);
+    _france->setTradeRouteSafety(0.3);
+    _france->setNumCitizens(111524472);
+
+    vector<VehicleFactory *> *vFactories = new vector<VehicleFactory *>();
+    vFactories->push_back(new TankFactory());
+    vFactories->push_back(new ShipFactory());
+    vFactories->push_back(new PlaneFactory());
+
+    vector<Battalion *> *battalions = new vector<Battalion *>();
+    for (int i = 0; i < 3; i++)
+        battalions->push_back(new Battalion(1));
+    _france->getState()->getMilitaryState()->setBattalions(battalions);
+
+    vector<Tank *> *tanks = new vector<Tank *>();
+    for (int i = 0; i < 8; i++)
+        tanks->push_back(((Tank *)(vFactories->at(0)->manufactureVehicle())));
+    _france->getState()->getMilitaryState()->setTanks(tanks);
+
+    vector<Ship *> *ships = new vector<Ship *>();
+    for (int i = 0; i < 5; i++)
+        ships->push_back(((Ship *)vFactories->at(1)->manufactureVehicle()));
+    _france->getState()->getMilitaryState()->setShips(ships);
+
+    vector<Plane *> *planes = new vector<Plane *>();
+    for (int i = 0; i < 5; i++)
+        planes->push_back(((Plane *)vFactories->at(2)->manufactureVehicle()));
+    _france->getState()->getMilitaryState()->setPlanes(planes);
 
     for (int i = 0; i < vFactories->size(); i++)
         delete vFactories->at(i);
