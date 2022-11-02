@@ -25,7 +25,6 @@ public:
 private: 
   friend class Country;
   int numCitizens;
-  std::string name;
   double domesticMorale;
   double selfReliance;
   double borderStrength;
