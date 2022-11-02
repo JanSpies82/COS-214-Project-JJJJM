@@ -53,9 +53,9 @@ const std::string RESET = "\x1B[0m";
 
 SimulationManager::SimulationManager()
 {
-    map = new Map();
-    superpowers = new vector<Superpower *>();
-    backup = new Backup();
+    map = NULL;
+    superpowers = NULL;
+    backup = NULL;
     designMode = false;
     isRunning = false;
 }
@@ -71,21 +71,51 @@ SimulationManager::~SimulationManager()
 
 void SimulationManager::runSimulation()
 {
-    resetSimulation();
-    while (isSimulationRunning())
+    bool runAgain = true;
+    while (runAgain)
     {
-        turnCount++;
-        takeTurn();
-        viewSummary();
+        resetSimulation();
+        while (isSimulationRunning())
+        {
+            turnCount++;
+            takeTurn();
+            viewSummary();
+        }
+        finalMessage();
+
+        cout << "Would you like to run the simulation again? (y/n)" << endl;
+        string input = "";
+        cout << "Choice: " << YELLOW;
+        cin >> input;
+        cout << RESET;
+        runAgain = (input == "y" || input == "Y");
     }
-    finalMessage();
 }
 
 void SimulationManager::resetSimulation()
 {
+    if (map != NULL)
+        delete map;
+    if (superpowers != NULL)
+    {
+        for (int i = 0; i < superpowers->size(); i++)
+            delete superpowers->at(i);
+        delete superpowers;
+    }
+    if (backup != NULL)
+        delete backup;
+    if (warStage != NULL)
+        delete warStage;
+    
+    map = new Map();
+    superpowers = new std::vector<Superpower *>();
+    backup = new Backup();
+    // warStage = new WarStage();
+
     setSuperpowers();
     setDesignMode();
     turnCount = 0;
+    isRunning = true;
 }
 
 void SimulationManager::setDesignMode()
