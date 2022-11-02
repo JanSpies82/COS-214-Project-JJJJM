@@ -26,6 +26,11 @@ public:
   Country();
 
   /**
+   * @brief destructor
+  */
+  ~Country();
+
+  /**
    * @brief parameterised constructor
   */
   Country(std::string _name);
@@ -207,16 +212,6 @@ public:
   void compareDomestic(Country* a, Country* b, std::vector<double>* aspectScores);
 
   /**
-   * @brief getter for turnCount
-   */
-  int getTurnCount();
-
-  /**
-   * @brief increment function for turnCount attribute
-  */
-  void incrementTurnCount();
-
-  /**
    * @brief getter for this country's capital
    * 
    * @return returns this country's capital location object
@@ -236,7 +231,6 @@ public:
   void setLocations(std::vector<Location*>* _locations);
   
 private:
-  int turnCount;
   int numCitizens;
   std::string name;
   Location* capital;
