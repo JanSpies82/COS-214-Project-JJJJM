@@ -4,7 +4,6 @@
 #include "BattalionTest.cpp"
 #include "BattalionObserverTest.cpp"
 #include "CountryTest.cpp"
-#include "CountryObserverTest.cpp"	
 #include "CountryMediatorTest.cpp"
 #include "CountryStateTest.cpp"
 #include "MementoTest.cpp"
