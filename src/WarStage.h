@@ -14,7 +14,7 @@ class WarStage
 {
 	public:
         /**
-         * @brief handle() function: Calculates if currentRound is within its current warstage, and returns warstage int
+         * @brief Virtual function for returning the warstage
         */
         virtual int getWarStage() = 0;
         WarStage();

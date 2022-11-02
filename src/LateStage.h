@@ -14,8 +14,8 @@ class LateStage: public WarStage
 
 	public:    
         /**
-         * @brief handle() function: Calculates if currentRound is within its current warstage, and returns warstage int
-        */
+         * @brief returns warstage via int = 2
+         */
         int getWarStage();
         LateStage();
         ~LateStage();

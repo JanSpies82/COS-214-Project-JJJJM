@@ -5,5 +5,5 @@ using namespace std;
 #include "WarStage.h"
 
 int LateStage::getWarStage(){
-	return 0;
+	return 2;
 }
