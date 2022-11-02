@@ -62,6 +62,11 @@ public:
   std::string getName();
 
   /**
+   * @brief setter for the the name of this country
+  */
+  void setName(std::string _name);
+
+  /**
    * @brief getter for this country's military
    * 
    * @return this country's military object
@@ -286,22 +291,10 @@ public:
   std::string getColor();
   
 private:
-  int numCitizens;
-  std::string name;
-  Location* capital;
   Strategy* strategy;
   Military* military;
-  double politicalStability;
-  double domesticMorale;
-  double selfReliance;
-  double borderStrength;
-  double capitalSafety;
-  double warSentiment;
-  double tradeRouteSafety;
   CountryMediator* mediator;
   CountryState* countryState;
-  std::vector<Country*>* enemies;
-  std::vector<Location*>* locations;
   std::string color;
 };
 
