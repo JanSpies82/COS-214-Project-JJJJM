@@ -53,6 +53,7 @@ const string mapVal[27] = {
     "002222000000008880005000",
     "000000000000000800000550",
 };
+const string countryColors[10] = {"\x1B[44m", "\x1B[40m", "\x1B[45m", "\x1B[46m", "\x1B[107m", "\x1B[106m", "\x1B[102m", "\x1B[41m", "\x1B[43m", "\x1B[105m"};
 
 const std::string RED = "\x1B[31m";
 const std::string GREEN = "\x1B[32m";
@@ -220,6 +221,7 @@ void SimulationManager::setUpUK(Country *_uk)
                 if (map->getLocation(j, i)->getIsCapital())
                     _uk->setCapital(map->getLocation(j, i));
             }
+    _uk->setColor(countryColors[3]);
     _uk->setLocations(locations);
 
     _uk->setBorderStrength(0.75);
@@ -273,6 +275,7 @@ void SimulationManager::setUpFrance(Country *_france)
                 if (map->getLocation(j, i)->getIsCapital())
                     _france->setCapital(map->getLocation(j, i));
             }
+    _france->setColor(countryColors[4]);
     _france->setLocations(locations);
 
     _france->setBorderStrength(0.25);
@@ -326,6 +329,7 @@ void SimulationManager::setUpBalkans(Country *_balkans)
                 if (map->getLocation(j, i)->getIsCapital())
                     _balkans->setCapital(map->getLocation(j, i));
             }
+    _balkans->setColor(countryColors[5]);
     _balkans->setLocations(locations);
 
     _balkans->setBorderStrength(0.45);
@@ -379,6 +383,7 @@ void SimulationManager::setUpSpainPortugal(Country *_spainPortugal)
                 if (map->getLocation(j, i)->getIsCapital())
                     _spainPortugal->setCapital(map->getLocation(j, i));
             }
+    _spainPortugal->setColor(countryColors[2]);
     _spainPortugal->setLocations(locations);
 
     _spainPortugal->setBorderStrength(0.7);
@@ -432,6 +437,7 @@ void SimulationManager::setUpSovietUnion(Country *_sovietUnion)
                 if (map->getLocation(j, i)->getIsCapital())
                     _sovietUnion->setCapital(map->getLocation(j, i));
             }
+    _sovietUnion->setColor(countryColors[6]);
     _sovietUnion->setLocations(locations);
 
     _sovietUnion->setBorderStrength(0.9);
@@ -485,6 +491,7 @@ void SimulationManager::setUpScandanavia(Country *_scandanavia)
                 if (map->getLocation(j, i)->getIsCapital())
                     _scandanavia->setCapital(map->getLocation(j, i));
             }
+    _scandanavia->setColor(countryColors[9]);
     _scandanavia->setLocations(locations);
 
     _scandanavia->setBorderStrength(0.75);
@@ -538,6 +545,7 @@ void SimulationManager::setUpGermany(Country *_germany)
                 if (map->getLocation(j, i)->getIsCapital())
                     _germany->setCapital(map->getLocation(j, i));
             }
+    _germany->setColor(countryColors[7]);
     _germany->setLocations(locations);
 
     _germany->setBorderStrength(0.6);
@@ -579,7 +587,8 @@ void SimulationManager::setUpGermany(Country *_germany)
     delete vFactories;
 }
 
-void SimulationManager::setUpItaly(Country *_italy) {
+void SimulationManager::setUpItaly(Country *_italy)
+{
     vector<Location *> *locations = new vector<Location *>();
     for (int i = 0; i < 27; i++)
         for (int j = 0; j < 25; j++)
@@ -590,6 +599,7 @@ void SimulationManager::setUpItaly(Country *_italy) {
                 if (map->getLocation(j, i)->getIsCapital())
                     _italy->setCapital(map->getLocation(j, i));
             }
+    _italy->setColor(countryColors[8]);
     _italy->setLocations(locations);
 
     _italy->setBorderStrength(0.5);
@@ -599,7 +609,7 @@ void SimulationManager::setUpItaly(Country *_italy) {
     _italy->setSelfReliance(0.7);
     _italy->setWarSentiment(0.9);
     _italy->setTradeRouteSafety(0.7);
-    _italy->setNumCitizens(73086517); 
+    _italy->setNumCitizens(73086517);
 
     vector<VehicleFactory *> *vFactories = new vector<VehicleFactory *>();
     vFactories->push_back(new TankFactory());
@@ -628,7 +638,7 @@ void SimulationManager::setUpItaly(Country *_italy) {
 
     for (int i = 0; i < vFactories->size(); i++)
         delete vFactories->at(i);
-    delete vFactories;   
+    delete vFactories;
 }
 
 void SimulationManager::takeTurn()

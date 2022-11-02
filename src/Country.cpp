@@ -413,4 +413,27 @@ void Country::setCapital(Location *_capital)
 void Country::setLocations(std::vector<Location *> *_locations)
 {
   locations = _locations;
+  for (int i = 0; i < locations->size(); i++)
+    if (!locations->at(i)->getIsCapital())
+      locations->at(i)->setColor(color);//Set location to be the same color as country
+    else
+      locations->at(i)->setColor("\x1B[40m"); // Set capital color to black
+}
+
+///////////////////////////////////////////////////////////
+// setColor(std::string _color)
+///////////////////////////////////////////////////////////
+
+void Country::setColor(std::string _color)
+{
+  color = _color;
+}
+
+///////////////////////////////////////////////////////////
+// getColor()
+///////////////////////////////////////////////////////////
+
+std::string Country::getColor()
+{
+  return color;
 }

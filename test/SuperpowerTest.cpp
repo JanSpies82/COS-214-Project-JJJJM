@@ -17,10 +17,10 @@ namespace
     TEST(SuperpowerTest, addCountry)
     {
         Superpower *superpower = new Superpower("Superpower");
-        Country *country1 = new Country();
+        Country *country1 = new Country("");
         superpower->addCountry(country1);
         EXPECT_EQ(1, superpower->getCountryCount());
-        Country *country2 = new Country();
+        Country *country2 = new Country("");
         superpower->addCountry(country2);
         EXPECT_EQ(2, superpower->getCountryCount());
         delete superpower;
@@ -29,8 +29,8 @@ namespace
     TEST(SuperpowerTest, getCountryPos)
     {
         Superpower *superpower = new Superpower("Superpower");
-        Country *country1 = new Country();
-        Country *country2 = new Country();
+        Country *country1 = new Country("");
+        Country *country2 = new Country("");
         superpower->addCountry(country1);
         superpower->addCountry(country2);
         EXPECT_EQ(country1, superpower->getCountry(0));
@@ -41,8 +41,8 @@ namespace
     TEST(SuperpowerTest, getCountryNeg)
     {
         Superpower *superpower = new Superpower("Superpower");
-        Country *country1 = new Country();
-        Country *country2 = new Country();
+        Country *country1 = new Country("");
+        Country *country2 = new Country("");
         try
         {
             superpower->getCountry(0);

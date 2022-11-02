@@ -80,16 +80,16 @@ void Location::setOwnedBy(Country* _newOwner){
     ownedBy=_newOwner;
 }
 
-char Location::getColour(){
-    return colour;
+string Location::getColor(){
+    return color;
 }
 
-void Location::setColour(char _colour){
-    colour=_colour;
+void Location::setColor(/*char _colour*/string _color){
+    color=_color;
 }
 
 Location* Location::clone(){
-    Location* tClone=new Territory(this->xCoordinate, this->yCoordinate, this->colour);
+    Location* tClone=new Territory(this->xCoordinate, this->yCoordinate, this->color);
 
     tClone->setOwnedBy(this->getOwnedBy());
     tClone->setIsCapital(this->getIsCapital());

@@ -70,7 +70,7 @@ class Map
 		MapState* getState();
 
 	private:
-		void printLocation(char _col);
+		void printLocation(std::string _col);
 		Location* topLeft;
 
 };

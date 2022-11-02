@@ -7,10 +7,10 @@ using namespace std;
 #include "LocationIterator.h"
 #include "Location.h"
 
-Territory::Territory(int _x, int _y, char _colour){
+Territory::Territory(int _x, int _y, string _color){
     xCoordinate=_x;
     yCoordinate=_y;
-    colour=_colour;
+    color=_color;
     location=NULL;
     isLand=true;
     isCapital=false;
