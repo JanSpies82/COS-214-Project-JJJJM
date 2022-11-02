@@ -12,6 +12,7 @@ public:
 	 * @brief constructs a Vehicle object
 	 **/
 	Vehicle();
+	
 	/**
 	 * @brief destroys a Vehicle object
 	 **/
