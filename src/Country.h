@@ -308,6 +308,7 @@ private:
   CountryState* countryState;
   std::vector<Location*>* locations;
   std::string color;
+  Location* capital;
 };
 
 #endif
