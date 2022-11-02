@@ -4,6 +4,7 @@
 class Map;
 class Observer;
 class Iterator;
+class Country;
 
 class Location
 {
@@ -98,15 +99,89 @@ class Location
 		virtual bool hasTop();
 
 		/**
-		 * @brief Abstract function specifying how to get a locations colour.
+		 * @brief Return a pointer to the country which owns this territory.
+		 * 
+		 * @return Country* 
+		 */
+		Country* getOwnedBy();
+
+		/**
+		 * @brief Set which country owns this territory.
+		 * 
+		 * @param _newOwner : Country* - the pointer to the new owner of the territory.
+		 */
+		void setOwnedBy(Country* _newOwner);
+
+		/**
+		 * @brief Create a copy of this locations attributes except for anything to do with it's neighbour.
+		 * 
+		 * @return Location* 
+		 */
+		Location* clone();
+		
+		/**
+		 * @brief Return the colour attribute.
 		 * 
 		 * @return char 
 		 */
-		virtual char getColour() = 0;
+		char getColour();
+
+		/**
+		 * @brief Set the Colour attribute.
+		 * 
+		 * @param _colour : char - variable to set colour to.
+		 */
+		void setColour(char _colour);
+
+		/**
+		 * @brief Return the xCoordinate value.
+		 * 
+		 * @return int 
+		 */
+		int getX();
+
+		/**
+		 * @brief Return the yCoordinate value.
+		 * 
+		 * @return int 
+		 */
+		int getY();
+
+		/**
+		 * @brief Get the Is Land attribute.
+		 * 
+		 * @return bool 
+		 */
+		bool getIsLand();
+
+		/**
+		 * @brief Set the Is Land attribute.
+		 * 
+		 * @param _isLand : bool - variable to set isLand to.
+		 */
+		void setIsLand(bool _isLand);
+
+		/**
+		 * @brief Get the Is Capital attribute.
+		 * 
+		 * @return bool
+		 */
+		bool getIsCapital();
+
+		/**
+		 * @brief Set the Is Capital attribute.
+		 * 
+		 * @param _isCapital : bool - variable to set isCapital to.
+		 */
+		void setIsCapital(bool _isCapital);
 	
 	protected:
 		Location* location;
-		const int RIGHT=0,LEFT=1,UP=2,DOWN=3;
+		Country* ownedBy;
+		char colour;
+		bool isCapital;
+		bool isLand;
+		int xCoordinate, yCoordinate;
 
 };
 

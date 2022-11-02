@@ -16,13 +16,13 @@ class MapState
 		MapState(Map* _m);
 
 		/**
-		 * @brief Destructor for the MapState class.
+		 * @brief Destructor for the MapState class. Deletes tha map state object held by the class.
 		 * 
 		 */
 		~MapState();
 
 		/**
-		 * @brief Return a clone of the mapState object.
+		 * @brief Return a clone of the mapState object. 
 		 * 
 		 * @return Map* 
 		 */

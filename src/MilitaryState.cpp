@@ -192,4 +192,3 @@ void MilitaryState::updateNumBattalions(int _numBattalions, bool isAddition)
   else
     battalions->resize(battalions->size() - _numBattalions);
 }
-

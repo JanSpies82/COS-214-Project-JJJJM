@@ -19,7 +19,6 @@ public:
   Military(Military*);
   ~Military();
   void attack(Country*);
-
 };
 
 #endif

@@ -1,4 +1,5 @@
 #include <vector>
+#include <iostream>
 using namespace std;
 
 #include "Military.h"
@@ -13,29 +14,24 @@ using namespace std;
 
 Military::Military()
 {
-	
 }
 
 Military::Military(Military* copy)
 {
-
 }
 
 Military::~Military()
 {
-  
 }
 
 void attack(Country* country)
 {
-  
 }
 
-//TODO remove or fix these functions
-// void Military::setNumTroops(int t){
-// 	numTroops=t;
-// }
+ void Military::setNumTroops(int t){
+ 	numTroops=t;
+ }
 
-// int Military::getNumTroops(){
-// 	return numTroops;
-// }
+ int Military::getNumTroops(){
+ 	return numTroops;
+ }

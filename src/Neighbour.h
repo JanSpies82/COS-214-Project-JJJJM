@@ -21,13 +21,6 @@ class Neighbour: public Location
 		virtual ~Neighbour();
 
 		/**
-		 * @brief Call getColour on the location object.
-		 * 
-		 * @return char 
-		 */
-		virtual char getColour();
-
-		/**
 		 * @brief If location is NULL set location to equal _neighbour else call add on location sending _neighbour in as the parameter.
 		 * 
 		 * @param _neighbour : Location* - Pointer to the location to be added.

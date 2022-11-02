@@ -1,4 +1,5 @@
 #include <limits.h>
+#include<iostream>
 #include <stdexcept>
 #include "../src/Military.h"
 #include "../src/Battalion.h"

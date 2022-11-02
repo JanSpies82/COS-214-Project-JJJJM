@@ -5,5 +5,13 @@
 // #include "Military.h"
 
  
+ VehicleFactory::VehicleFactory(){
+
+ }
+
+ VehicleFactory::~VehicleFactory(){
+
+ }
+
  
 

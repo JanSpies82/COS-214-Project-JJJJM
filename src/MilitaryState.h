@@ -96,7 +96,7 @@ public:
    * @param isAddition true if the number of ships is to be added, false if it is to be subtracted
   */
   void updateNumShips(int _numShips, bool isAddition);
-
+  
   /**
    * @brief getter for the number of planes in this military
    * 

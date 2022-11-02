@@ -11,6 +11,7 @@
 using namespace std;
 
 Location::~Location(){}
+
 Location* Location::getRight(){
     if(location!=NULL)
         return location->getRight();
@@ -69,4 +70,54 @@ bool Location::hasBottom(){
 
 Iterator* Location::createIterator(){
     return new LocationIterator(this);
+}
+
+Country* Location::getOwnedBy(){
+    return ownedBy;
+}
+
+void Location::setOwnedBy(Country* _newOwner){
+    ownedBy=_newOwner;
+}
+
+char Location::getColour(){
+    return colour;
+}
+
+void Location::setColour(char _colour){
+    colour=_colour;
+}
+
+Location* Location::clone(){
+    Location* tClone=new Territory(this->xCoordinate, this->yCoordinate, this->colour);
+
+    tClone->setOwnedBy(this->getOwnedBy());
+    tClone->setIsCapital(this->getIsCapital());
+    tClone->setIsLand(this->getIsLand());
+
+    return tClone;
+}
+
+int Location::getX(){
+    return xCoordinate;
+}
+
+int Location::getY(){
+    return yCoordinate;
+}
+
+bool Location::getIsLand(){
+    return isLand;
+}
+
+void Location::setIsLand(bool _isLand){
+    isLand=_isLand;
+}
+
+bool Location::getIsCapital(){
+    return isCapital;
+}
+
+void Location::setIsCapital(bool _isCapital){
+    isCapital=_isCapital;
 }
