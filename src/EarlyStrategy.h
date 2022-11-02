@@ -17,11 +17,6 @@ public:
   */
   ~EarlyStrategy();
 
-  // /**
-  //  * @brief a decision function that determines the exact strategy to be used
-  // */
-  // virtual void takeTurn(double* strengthRatings, Country* countryA, Country* countryB);
-
 protected:
 
   /**

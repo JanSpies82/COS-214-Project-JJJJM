@@ -1,110 +1,194 @@
-#include "MilitaryState.h"
 #include "Military.h"
-#include "Tank.h"
-#include "Ship.h"
-#include "Plane.h"
-#include "Battalion.h"
-MilitaryState::MilitaryState(Military * m){
-	State=m;
+#include "MilitaryState.h"
+
+///////////////////////////////////////////////////////////
+// MilitaryState()
+///////////////////////////////////////////////////////////
+
+MilitaryState::MilitaryState(){}
+
+///////////////////////////////////////////////////////////
+// ~MilitaryState()
+///////////////////////////////////////////////////////////
+
+MilitaryState::~MilitaryState(){}
+
+///////////////////////////////////////////////////////////
+// setShips()
+///////////////////////////////////////////////////////////
+
+void MilitaryState::setShips(std::vector<Ship*>* _ships)
+{
+  ships = _ships;
 }
 
-MilitaryState::~MilitaryState(){
+///////////////////////////////////////////////////////////
+// setPlanes()
+///////////////////////////////////////////////////////////
 
-}
-		
-void MilitaryState::storeState(Military * m){
-	State=m;
-}
-
-Military* MilitaryState:: getState(){
-    return new Military(State);
+void MilitaryState::setPlanes(std::vector<Plane*>* _planes)
+{
+  planes = _planes;
 }
 
- void MilitaryState::setNumShips(int n){
- 	if(n==State->getNumShips()){
+///////////////////////////////////////////////////////////
+// setTanks()
+///////////////////////////////////////////////////////////
 
-    }else if(n>State->getNumShips()){
-        int sizeOfinput=n-State->getNumShips();
-        for(int i =0;i<sizeOfinput;i++){
-            State->insertShips(new Ship());
-        }
-    }else{
-        int sizeOfRemove=State->getNumPlanes()-n;
-        for(int i =0;i<sizeOfRemove;i++){
-            delete this->State->getShips()->at(i);
-        }
-    }
-
-    numShips=State->getNumShips();
- }
- 
- void MilitaryState::setNumPlanes(int n){
- 	if(n==State->getNumPlanes()){
-
-    }else if(n>State->getNumPlanes()){
-        int sizeOfinput=n-State->getNumPlanes();
-        for(int i =0;i<sizeOfinput;i++){
-            State->insertPlanes(new Plane());
-        }
-    }else{
-        int sizeOfRemove=State->getNumPlanes()-n;
-        for(int i =0;i<sizeOfRemove;i++){
-            delete this->State->getPlanes()->at(i);
-        }
-    }
-    numPlanes=State->getNumPlanes();
-  }  
- void MilitaryState::setNumTanks(int n){
- 	if(n==State->getNumTanks()){
-
-    }else if(n>State->getNumTanks()){
-        int sizeOfinput=n-State->getNumTanks();
-        for(int i =0;i<sizeOfinput;i++){
-            State->insertTanks(new Tank());
-        }
-    }else{
-        int sizeOfRemove=State->getNumTanks()-n;
-        for(int i =0;i<sizeOfRemove;i++){
-            delete this->State->getTanks()->at(i);
-        }
-    }
-    
-    numTanks=State->getNumTanks();
- }
- void MilitaryState::setNumTroops(int n){
- 	State->setNumTroops(n);
-    numTroops=State->getNumTroops();  
- }
-
- void MilitaryState::setNumBatalion(int n){
-    if(n==State->getNumBattalions()){
-
-    }else if(n>State->getNumBattalions()){
-        int sizeOfinput=n-State->getNumBattalions();
-        for(int i =0;i<sizeOfinput;i++){
-            State->insertTanks(new Tank());
-        }
-    }else{
-        int sizeOfRemove=State->getNumBattalions()-n;
-        for(int i =0;i<sizeOfRemove;i++){
-            delete this->State->getBatallions()->at(i);
-        }
-    }
-
-    numBattalions=State->getNumBattalions();
-}
-int MilitaryState::getNumBattalions(){
-    return numBattalions;
+void MilitaryState::setTanks(std::vector<Tank*>* _tanks)
+{
+  tanks = _tanks;
 }
 
-int MilitaryState::getNumPlanes(){
-    return numPlanes;
+///////////////////////////////////////////////////////////
+// setBattalions()
+///////////////////////////////////////////////////////////
+
+void MilitaryState::setBattalions(std::vector<Battalion*>* _battalions)
+{
+  battalions = _battalions;
 }
 
-int MilitaryState::getNumShips(){
-    return numShips;
+///////////////////////////////////////////////////////////
+// setVehicleFactories()
+///////////////////////////////////////////////////////////
+
+void MilitaryState::setVehicleFactories(std::vector<VehicleFactory*>* _vehicleFactories)
+{
+  vehicleFactories = _vehicleFactories;
 }
 
-int MilitaryState::getNumTanks(){
-    return numTanks;
+///////////////////////////////////////////////////////////
+// getNumTroops()
+///////////////////////////////////////////////////////////
+
+int MilitaryState::getNumTroops()
+{
+  return numTroops;
+}
+
+///////////////////////////////////////////////////////////
+// updateNumTroops()
+///////////////////////////////////////////////////////////
+
+void MilitaryState::updateNumTroops(int _numTroops, bool isAddition)
+{
+  if (isAddition)
+  {
+    numTroops = numTroops + _numTroops;
+    return;
+  }
+  // subtract
+  if (numTroops - _numTroops < 0)
+    throw std::runtime_error("new numTroops cannot be less than 0");
+  else
+    numTroops = numTroops - _numTroops;
+}
+
+///////////////////////////////////////////////////////////
+// getNumTanks()
+///////////////////////////////////////////////////////////
+
+int MilitaryState::getNumTanks()
+{
+  return tanks->size();
+}
+
+///////////////////////////////////////////////////////////
+// updateNumTanks()
+///////////////////////////////////////////////////////////
+
+void MilitaryState::updateNumTanks(int _numTanks, bool isAddition)
+{
+  if (isAddition)
+  {
+    tanks->resize(tanks->size() + _numTanks);
+    return;
+  }
+  // subtract
+  if (tanks->size() - _numTanks < 0)
+    throw std::runtime_error("new numTanks cannot be less than 0");
+  else
+    tanks->resize(tanks->size() - _numTanks);
+}
+
+///////////////////////////////////////////////////////////
+// getNumShips()
+///////////////////////////////////////////////////////////
+
+int MilitaryState::getNumShips()
+{
+  return ships->size();
+}
+
+///////////////////////////////////////////////////////////
+// setNumShips()
+///////////////////////////////////////////////////////////
+
+void MilitaryState::updateNumShips(int _numShips, bool isAddition)
+{
+  if (isAddition)
+  {
+    ships->resize(ships->size() + _numShips);
+    return;
+  }
+  // subtract
+  if (ships->size() - _numShips < 0)
+    throw std::runtime_error("new numShips cannot be less than 0");
+  else
+    ships->resize(ships->size() - _numShips);
+}
+
+///////////////////////////////////////////////////////////
+// getNumPlanes()
+///////////////////////////////////////////////////////////
+
+int MilitaryState::getNumPlanes()
+{
+  return planes->size();
+}
+
+///////////////////////////////////////////////////////////
+// setNumPlanes()
+///////////////////////////////////////////////////////////
+
+void MilitaryState::updateNumPlanes(int _numPlanes, bool isAddition)
+{
+  if (isAddition)
+  {
+    planes->resize(planes->size() + _numPlanes);
+    return;
+  }
+  // subtract
+  if (planes->size() - _numPlanes < 0)
+    throw std::runtime_error("new numPlanes cannot be less than 0");
+  else
+    planes->resize(planes->size() - _numPlanes);
+}
+
+///////////////////////////////////////////////////////////
+// getNumBattalions()
+///////////////////////////////////////////////////////////
+
+int MilitaryState::getNumBattalions()
+{
+  return battalions->size();
+}
+
+///////////////////////////////////////////////////////////
+// updateNumBattalions()
+///////////////////////////////////////////////////////////
+
+void MilitaryState::updateNumBattalions(int _numBattalions, bool isAddition)
+{
+  if (isAddition)
+  {
+    battalions->resize(battalions->size() + _numBattalions);
+    return;
+  }
+  // subtract
+  if (battalions->size() - _numBattalions < 0)
+    throw std::runtime_error("new numBattalions cannot be less than 0");
+  else
+    battalions->resize(battalions->size() - _numBattalions);
 }
