@@ -29,8 +29,12 @@
 
 Country::~Country()
 {
-  if (countryState->locations != NULL)
-    delete countryState->locations;
+  if (strategy != NULL)
+    delete strategy;
+  if (military != NULL)
+    delete military;
+  if (mediator != NULL)
+    delete mediator;
   if (countryState != NULL)
     delete countryState;
 }
@@ -43,8 +47,9 @@ Country::Country(std::string _name)
 {
   countryState = new CountryState();
   countryState->name = _name;
-  // countryState = NULL;  // @janco what did you have in mind when setting this to NULL? Setting it from outside?
-  countryState->locations = NULL;
+  military = NULL;
+  mediator = NULL;
+  strategy = NULL;
 }
 
 ///////////////////////////////////////////////////////////
@@ -82,9 +87,6 @@ void Country::takeTurn(Country *countryB)
 
 CountryState *Country::getState()
 {
-  // if (countryState != NULL)
-  //   delete countryState;
-  // countryState = new CountryState(this);
   return countryState;
 }
 
@@ -371,7 +373,6 @@ void Country::setCountryState(CountryState *_countryState)
   if (countryState != NULL)
     delete countryState;
   countryState = _countryState;
-  // countryState -> militaryState -> tanks == NULL here
 }
 
 ///////////////////////////////////////////////////////////
@@ -417,6 +418,15 @@ Location *Country::getCapital()
 void Country::setCapital(Location *_capital)
 {
   countryState->capital = _capital;
+}
+
+///////////////////////////////////////////////////////////
+// getLocations()
+///////////////////////////////////////////////////////////
+
+std::vector<Location*>* Country::getLocations()
+{
+  return countryState->locations;
 }
 
 ///////////////////////////////////////////////////////////
@@ -469,4 +479,24 @@ void Country::setMediator(CountryMediator* _mediator)
   if (mediator != NULL)
     delete mediator;
   mediator = _mediator;
+}
+
+///////////////////////////////////////////////////////////
+// getEnemies()
+///////////////////////////////////////////////////////////
+
+std::vector<Country*>* Country::getEnemies()
+{
+  return countryState->enemies; 
+}
+
+///////////////////////////////////////////////////////////
+// setEnemies()
+///////////////////////////////////////////////////////////
+
+void Country::setEnemies(std::vector<Country*>* _enemies)
+{
+  if (countryState->enemies != NULL)
+    delete countryState->enemies;
+  countryState->enemies = _enemies;
 }

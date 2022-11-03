@@ -1,5 +1,6 @@
 #include "CountryState.h"
 #include "MilitaryState.h"
+#include "Location.h"
 #include "Country.h"
 
 CountryState::CountryState()
@@ -11,7 +12,12 @@ CountryState::CountryState()
   capitalSafety = 0;
   warSentiment = 0;
   tradeRouteSafety = 0;
+  selfReliance = 0;
   militaryState = new MilitaryState();
+  locations = NULL;
+  enemies = NULL;
+  capital = NULL;
+  color = "";
 }
 
 CountryState::CountryState(Country* country)
@@ -23,24 +29,55 @@ CountryState::CountryState(Country* country)
   capitalSafety = country->getCapitalSafety();
   warSentiment = country->getWarSentiment();
   tradeRouteSafety = country->getTradeRouteSafety();
-
+  selfReliance = country->getSelfReliance();
   militaryState = new MilitaryState();
+  capital = NULL;
+  capital = country->getCapital();
+  locations = NULL;
+  locations = country->getLocations();
+  enemies = NULL;
+  enemies = country->getEnemies();
+  color = country->getColor();
 }
 
 CountryState::CountryState(const CountryState& cs)
 {
+  name = cs.name;
   numCitizens = cs.numCitizens;
-  politicalStability = cs.politicalStability;
   domesticMorale = cs.domesticMorale;
+  selfReliance = cs.selfReliance;
   borderStrength = cs.borderStrength;
   capitalSafety = cs.capitalSafety;
   warSentiment = cs.warSentiment;
   tradeRouteSafety = cs.tradeRouteSafety;
+  politicalStability = cs.politicalStability;
   militaryState = cs.militaryState->clone();
+  capital = NULL;
+  capital = cs.capital;
+  color = cs.color;
+  enemies = NULL;
+  enemies = cs.enemies;
+  locations = NULL;
+  locations = cs.locations;
 }
 
 CountryState::~CountryState()
 {
+  if (capital != NULL)
+    delete capital;
+
+  if (enemies != NULL)
+  {
+    enemies->resize(0);
+    delete enemies;
+  }
+
+  if (locations != NULL)
+  {
+    locations->resize(0);
+    delete locations;
+  }
+
   delete militaryState;
 }
 
