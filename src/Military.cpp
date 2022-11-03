@@ -1,3 +1,5 @@
+/// @author Jake Mahloko
+
 #include <vector>
 #include <iostream>
 using namespace std;

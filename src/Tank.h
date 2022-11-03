@@ -1,3 +1,5 @@
+/// @author Jake Mahloko
+
 #ifndef __Tank__h__
 #define __Tank__h__
 

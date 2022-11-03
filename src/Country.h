@@ -1,3 +1,5 @@
+/// @author Jake Weatherhead
+
 #ifndef __Country_h__
 #define __Country_h__
 

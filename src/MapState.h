@@ -1,3 +1,5 @@
+/// @author Julian Pienaar
+
 #ifndef __MapState_h__
 #define __MapState_h__
 

@@ -1,5 +1,6 @@
-#include <exception>
+/// @author Jake Mahloko
 
+#include <exception>
 
 #ifndef __VehicleObserver_h__
 #define __VehicleObserver_h__

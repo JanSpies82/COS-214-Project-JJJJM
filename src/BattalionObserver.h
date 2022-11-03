@@ -1,3 +1,5 @@
+/// @author Jake Mahloko
+
 #include <exception>
 using namespace std;
 

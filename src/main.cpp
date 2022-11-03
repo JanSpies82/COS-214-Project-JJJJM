@@ -1,3 +1,5 @@
+/// @author Janco Spies
+
 #include "SimulationManager.h"
 #include <iostream>
 using namespace std;

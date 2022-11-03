@@ -1,3 +1,5 @@
+/// @author Janco Spies
+
 #ifndef __LocationIterator_h__
 #define __LocationIterator_h__
 

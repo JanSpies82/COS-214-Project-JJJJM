@@ -1,3 +1,5 @@
+/// @author Jake Mahloko
+
 #include <exception>
 
 #ifndef __TankFactory_h__

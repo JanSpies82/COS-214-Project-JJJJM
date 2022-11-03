@@ -1,4 +1,5 @@
 ///@author Janco Spies
+
 #include "SuperpowerState.h"
 #include "CountryState.h"
 #include <stdexcept>

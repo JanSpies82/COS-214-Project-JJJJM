@@ -1,3 +1,5 @@
+///@author Mekhail Muller
+
 #ifndef EARLY_STRATEGY_H
 #define EARLY_STRATEGY_H
 

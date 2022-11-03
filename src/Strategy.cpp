@@ -1,3 +1,5 @@
+///@author Mekhail Muller
+
 #include <exception>
 
 #include "Strategy.h"

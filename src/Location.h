@@ -1,3 +1,5 @@
+/// @author Julian Pienaar
+
 #ifndef __Location_h__
 #define __Location_h__
 

@@ -1,3 +1,4 @@
+/// @author Jake Weatherhead
 
 #ifndef __CountryState_h__
 #define __CountryState_h__

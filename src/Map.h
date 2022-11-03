@@ -1,3 +1,5 @@
+/// @author Julian Pienaar
+
 #ifndef __Map_h__
 #define __Map_h__
 

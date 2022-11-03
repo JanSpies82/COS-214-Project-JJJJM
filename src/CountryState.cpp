@@ -1,3 +1,5 @@
+/// @author Jake Weatherhead
+
 #include "CountryState.h"
 #include "MilitaryState.h"
 #include "Location.h"

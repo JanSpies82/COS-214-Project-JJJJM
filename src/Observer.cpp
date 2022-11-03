@@ -1,3 +1,5 @@
+/// @author Jake Weatherhead
+
 #include <exception>
 using namespace std;
 

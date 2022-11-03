@@ -1,3 +1,4 @@
+/// @author Janco Spies
 
 #ifndef __ObserverState_h__
 #define __ObserverState_h__

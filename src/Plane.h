@@ -1,3 +1,5 @@
+/// @author Jake Mahloko
+
 #ifndef __Plane_h__
 #define __Plane_h__
 

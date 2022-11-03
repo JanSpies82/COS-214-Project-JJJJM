@@ -1,3 +1,4 @@
+///@author Mekhail Muller
 
 #include "EarlyStrategy.h"
 #include "Country.h"

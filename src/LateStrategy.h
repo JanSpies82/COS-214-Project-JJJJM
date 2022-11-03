@@ -1,3 +1,5 @@
+///@author Mekhail Muller
+
 #ifndef LATE_STRATEGY_H
 #define LATE_STRATEGY_H
 

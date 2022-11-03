@@ -1,4 +1,5 @@
 ///@author Janco Spies
+
 #include "Superpower.h"
 #include "Country.h"
 #include "SuperpowerState.h"

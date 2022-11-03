@@ -1,3 +1,4 @@
+/// @author Jake Mahloko
 
 #ifndef __Battalion_h__
 #define __Battalion_h__

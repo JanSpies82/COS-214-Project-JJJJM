@@ -1,3 +1,5 @@
+/// @author Jake Mahloko
+
 #include "Military.h"
 #include "MilitaryState.h"
 #include "Ship.h"

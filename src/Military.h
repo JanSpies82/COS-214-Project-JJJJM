@@ -1,3 +1,4 @@
+/// @author Jake Mahloko
 
 #ifndef __Military_h__
 #define __Military_h__

@@ -1,3 +1,5 @@
+/// @author Julian Pienaar
+
 #ifndef __RightNeighbour_h__
 #define __RightNeighbour_h__
 

@@ -1,3 +1,5 @@
+///@author Mekhail Muller
+
 #include <exception>
 using namespace std;
 

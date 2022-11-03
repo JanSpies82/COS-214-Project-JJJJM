@@ -1,3 +1,5 @@
+/// @author Jake Mahloko
+
 #include "Tank.h"
 
 Tank::Tank() {}
