@@ -260,19 +260,21 @@ MilitaryState *MilitaryState::clone()
   vector<Battalion *> *battalionsClone = new vector<Battalion *>();
   vector<VehicleFactory *> *vehicleFactoriesClone = new vector<VehicleFactory *>();
 
-  for (int i = 0; i < ships->size(); i++)
-    shipsClone->push_back(new Ship());
-  for (int i = 0; i < planes->size(); i++)
-    planesClone->push_back(new Plane());
-  for (int i = 0; i < tanks->size(); i++)
-    tanksClone->push_back(new Tank());
-  for (int i = 0; i < battalions->size(); i++)
-    battalionsClone->push_back(new Battalion());
+  if (ships != NULL)
+    for (int i = 0; i < ships->size(); i++)
+      shipsClone->push_back(new Ship());
+  if (planes != NULL)
+    for (int i = 0; i < planes->size(); i++)
+      planesClone->push_back(new Plane());
+  if (tanks != NULL)
+    for (int i = 0; i < tanks->size(); i++)
+      tanksClone->push_back(new Tank());
+  if (battalions != NULL)
+    for (int i = 0; i < battalions->size(); i++)
+      battalionsClone->push_back(new Battalion());
   if (vehicleFactories != NULL)
-  {
     for (int i = 0; i < vehicleFactories->size(); i++)
       vehicleFactoriesClone->push_back(vehicleFactories->at(i)->clone());
-  }
 
   ms->setShips(shipsClone);
   ms->setPlanes(planesClone);
