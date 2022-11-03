@@ -500,3 +500,23 @@ void Country::setEnemies(std::vector<Country*>* _enemies)
     delete countryState->enemies;
   countryState->enemies = _enemies;
 }
+
+///////////////////////////////////////////////////////////
+// getMilitaryState()
+///////////////////////////////////////////////////////////
+
+MilitaryState* Country::getMilitaryState()
+{
+  return countryState->militaryState;
+}
+
+///////////////////////////////////////////////////////////
+// setMilitaryState()
+///////////////////////////////////////////////////////////
+
+void Country::setMilitaryState(MilitaryState* _militaryState)
+{
+  if (countryState->militaryState != NULL)
+    delete countryState->militaryState;
+  countryState->militaryState = _militaryState;
+}

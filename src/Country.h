@@ -309,6 +309,16 @@ public:
    * @brief setter for this country's enemies
   */
   void setEnemies(std::vector<Country*>* _enemies);
+
+  /**
+   * @brief getter for this country's MilitaryState object
+  */
+  MilitaryState* getMilitaryState();
+
+  /**
+   * @brief setter for this country's MilitaryState object
+  */
+  void setMilitaryState(MilitaryState* _militaryState);
  
   
 private:
