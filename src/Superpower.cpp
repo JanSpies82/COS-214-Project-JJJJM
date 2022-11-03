@@ -20,6 +20,16 @@ Superpower::Superpower(string _name){
     countries = new vector<Country*>();
 }
 
+Superpower::Superpower(SuperpowerState *_state){
+    name = _state->getName();
+    countries = new vector<Country*>();
+    for (int i = 0; i < _state->getCountryStateCount(); i++){
+        Country* c = new Country();
+        c->setState(_state->getCountryState(i)->clone());
+        countries->push_back(c);
+    }
+}
+
 Superpower::~Superpower(){
     for (int i = 0; i < countries->size(); i++){
         delete countries->at(i);

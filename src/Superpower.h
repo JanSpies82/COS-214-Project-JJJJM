@@ -19,6 +19,13 @@ public:
   Superpower(std::string _name);
 
   /**
+   * @brief Reconstruct a superpower object from a SuperpowerState
+   * 
+   * @param state : SuperpowerState* - the state to reconstruct from
+   */
+  Superpower(SuperpowerState *_state);
+
+  /**
    * @brief Destroy the Superpower object and delete all of its countries
    *
    */
