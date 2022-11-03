@@ -4,21 +4,15 @@
 using namespace std;
 
 #include "SimulationState.h"
-#include "SimulationManager.h"
 #include "MapState.h"
-#include "WarStage.h"
+#include "StageContextState.h"
 #include "SuperpowerState.h"
-// #include "CountryState.h"
-// #include "MilitaryState.h"
 
-SimulationState::SimulationState(SimulationManager *_simulationManager)
+SimulationState::SimulationState()
 {
-    this->simulationManager = _simulationManager;
     this->timestamp = time(0);
     mapState = NULL;
-    warStage = NULL;
-    // countryStates = new vector<CountryState *>();
-    // militaryStates = new vector<MilitaryState *>();
+    stageContextState = NULL;
     superpowerStates = new vector<SuperpowerState *>();
 }
 
@@ -27,20 +21,12 @@ SimulationState::~SimulationState()
     if (mapState != NULL)
         delete mapState;
     
-    if (warStage != NULL)
-        delete warStage;
+    if (stageContextState != NULL)
+        delete stageContextState;
 
     for (int i = 0; i < superpowerStates->size(); i++)
         delete superpowerStates->at(i);
     delete superpowerStates;
-
-    // for (int i = 0; i < countryStates->size(); i++)
-    //     delete countryStates->at(i);
-    // delete countryStates;
-
-    // for (int i = 0; i < militaryStates->size(); i++)
-    //     delete militaryStates->at(i);
-    // delete militaryStates;
 };
 
 void SimulationState::setMapState(MapState *_mapState)
@@ -50,18 +36,19 @@ void SimulationState::setMapState(MapState *_mapState)
     mapState = _mapState;
 }
 
-void SimulationState::setWarStage(WarStage *_warStage)
+void SimulationState::setStageContextState(StageContextState *_stageContextState)
 {
-    if (warStage != NULL)
-        delete warStage;
-    warStage = _warStage;
+    if (stageContextState != NULL)
+        delete stageContextState;
+    stageContextState = _stageContextState;
 }
 
-WarStage* SimulationState::getWarStage()
+
+StageContextState* SimulationState::getStageContextState()
 {
-    if (warStage == NULL)
-        __throw_out_of_range("SimulationState does not hold a WarStage");
-    return warStage;
+    if (stageContextState == NULL)
+        __throw_out_of_range("SimulationState does not hold a StageContextState");
+    return stageContextState;
 }
 
 MapState *SimulationState::getMapState()
@@ -87,40 +74,6 @@ int SimulationState::getSuperpowerStateCount()
 {
     return superpowerStates->size();
 }
-
-// void SimulationState::addCountryState(CountryState *_countryState)
-// {
-//     countryStates->push_back(_countryState);
-// }
-
-// CountryState *SimulationState::getCountryState(int index)
-// {
-//     if (index < 0 || index >= countryStates->size())
-//         __throw_out_of_range("CountryState index out of range");
-//     return countryStates->at(index);
-// }
-
-// void SimulationState::addMilitaryState(MilitaryState *_militaryState)
-// {
-//     militaryStates->push_back(_militaryState);
-// }
-
-// MilitaryState *SimulationState::getMilitaryState(int index)
-// {
-//     if (index < 0 || index >= militaryStates->size())
-//         __throw_out_of_range("MilitaryState index out of range");
-//     return militaryStates->at(index);
-// }
-
-// int SimulationState::getCountryStateCount()
-// {
-//     return countryStates->size();
-// }
-
-// int SimulationState::getMilitaryStateCount()
-// {
-//     return militaryStates->size();
-// }
 
 time_t SimulationState::getTimestamp()
 {
