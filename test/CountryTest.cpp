@@ -1,5 +1,6 @@
 #include <limits.h>
 #include <stdexcept>
+#include <vector>
 #include "../src/Country.h"
 #include "../src/CountryState.h"
 #include "../src/MilitaryState.h"
@@ -29,25 +30,44 @@ namespace {
     delete countryA;
   }
 
-  // TEST(CountryTest, GetAndSetCountryState)
+  TEST(CountryTest, GetAndSetCountryState)
+  {
+    Country* countryA = new Country("countryA");
+    countryA->setBorderStrength(0.9);
+    countryA->setNumCitizens(1000);
+    countryA->setPoliticalStability(0.9);
+    countryA->setSelfReliance(0.9);
+    countryA->setCapitalSafety(0.9);
+    Country* countryB = new Country("countryB");
+    countryB->setCountryState(new CountryState(countryA));
+    EXPECT_EQ(countryB->getBorderStrength(), 0.9);
+    EXPECT_EQ(countryB->getNumCitizens(), 1000);
+    EXPECT_EQ(countryB->getPoliticalStability(), 0.9);
+    EXPECT_EQ(countryB->getSelfReliance(), 0.9);
+    EXPECT_EQ(countryB->getCapitalSafety(), 0.9);
+    delete countryA;
+    delete countryB;
+  }
+
+  // // Proof of vector deallocation method being memory efficient
+  // TEST(CountryTest, VectorDeallocation)
   // {
-  //   Country* countryA = new Country("countryA");
-  //   countryA->setBorderStrength(0.9);
-  //   countryA->setNumCitizens(1000);
-  //   countryA->setPoliticalStability(0.9);
-  //   countryA->setSelfReliance(0.9);
-  //   countryA->setCapitalSafety(0.9);
+  //   std::vector<Country*>* countries = new std::vector<Country*>();
+  //   countries->push_back(new Country("A"));
+  //   countries->push_back(new Country("B"));
+  //   countries->resize(0);
+  //   delete countries;
+  // }  
 
-  //   Country* countryB = new Country("countryB");
-  //   countryB->setCountryState(new CountryState(countryA));
-  //   // EXPECT_EQ(countryB->getName(), "countryA");
-  //   // EXPECT_EQ(countryB->getBorderStrength(), 0.9);
-  //   // EXPECT_EQ(countryB->getNumCitizens(), 1000);
-  //   // EXPECT_EQ(countryB->getPoliticalStability(), 0.9);
-  //   // EXPECT_EQ(countryB->getSelfReliance(), 0.9);
-  //   // EXPECT_EQ(countryB->getCapitalSafety(), 0.9);
-
-  //   delete countryA;
-  //   delete countryB;
-  // }
+  TEST(CountryTest, CountryStateAddressConstructor)
+  {
+    Country* countryA = new Country("countryA");
+    countryA->setColor("Red");
+    Country* countryB = new Country("countryB");
+    CountryState* c = countryA->getCountryState();
+    countryB->setCountryState(new CountryState(*c));
+    EXPECT_EQ(countryB->getColor(), "Red"); 
+    delete countryA;
+    delete countryB;
+  }
 }
