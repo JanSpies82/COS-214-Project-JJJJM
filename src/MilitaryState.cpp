@@ -5,6 +5,8 @@
 #include "Tank.h"
 #include "Battalion.h"
 #include "VehicleFactory.h"
+#include <vector>
+using namespace std;
 
 ///////////////////////////////////////////////////////////
 // MilitaryState()
