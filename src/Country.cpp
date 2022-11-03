@@ -210,6 +210,8 @@ void Country::compareDomestic(Country *a, Country *b, std::vector<double> *aspec
 
 double Country::compareAspect(int countryA, int countryB)
 {
+  if (countryB == 0)
+    return 0;
   return countryA / countryB;
 }
 
@@ -219,6 +221,8 @@ double Country::compareAspect(int countryA, int countryB)
 
 double Country::compareAspect(double countryA, double countryB)
 {
+  if (countryB == 0)
+    return 0;
   return countryA / countryB;
 }
 
