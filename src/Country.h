@@ -299,6 +299,16 @@ public:
    * @brief setter for this country's mediator
    */
   void setMediator(CountryMediator* _mediator);
+
+  /**
+   * @brief getter for this country's enemies
+  */
+  std::vector<Country*>* getEnemies();
+
+  /**
+   * @brief setter for this country's enemies
+  */
+  void setEnemies(std::vector<Country*>* _enemies);
  
   
 private:
