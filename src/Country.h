@@ -20,10 +20,6 @@ class Location;
 class Country
 {
 public: 
-  /**
-   * @brief default constructor
-   */
-  Country();
 
   /**
    * @brief destructor
