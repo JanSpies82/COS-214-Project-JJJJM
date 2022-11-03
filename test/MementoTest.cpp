@@ -53,7 +53,7 @@ namespace
     TEST(MementoTest, GetStatePos)
     {
         Memento *memento = new Memento();
-        SimulationState *simulationState = new SimulationState(NULL);
+        SimulationState *simulationState = new SimulationState();
         memento->setState(simulationState);
         EXPECT_EQ(memento->getState(), simulationState);
         delete memento;
