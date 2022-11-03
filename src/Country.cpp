@@ -25,6 +25,9 @@ Country::Country()
 {
   countryState = new CountryState();
   countryState->locations = NULL;
+  strategy = NULL;
+  military = NULL;
+  mediator = NULL;
 }
 
 ///////////////////////////////////////////////////////////
@@ -58,6 +61,7 @@ Country::Country(std::string _name)
   military = NULL;
   mediator = NULL;
   strategy = NULL;
+  countryState->locations = NULL;
 }
 
 ///////////////////////////////////////////////////////////

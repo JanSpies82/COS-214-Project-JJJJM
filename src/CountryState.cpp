@@ -24,7 +24,7 @@ CountryState::CountryState()
   color = "";
 }
 
-CountryState::CountryState(Country* country)
+CountryState::CountryState(Country *country)
 {
   numCitizens = country->getNumCitizens();
   politicalStability = country->getPoliticalStability();
@@ -44,7 +44,7 @@ CountryState::CountryState(Country* country)
   color = country->getColor();
 }
 
-CountryState::CountryState(const CountryState& cs)
+CountryState::CountryState(const CountryState &cs)
 {
   name = cs.name;
   numCitizens = cs.numCitizens;
@@ -60,21 +60,26 @@ CountryState::CountryState(const CountryState& cs)
   capital = cs.capital;
   color = cs.color;
   enemies = NULL;
-  vector<Country*> *newEnemies = new vector<Country*>();
-  for (int i = 0; i < cs.enemies->size(); i++)
+  if (cs.enemies != NULL)
   {
-    newEnemies->push_back(cs.enemies->at(i));
+    vector<Country *> *newEnemies = new vector<Country *>();
+    for (int i = 0; i < cs.enemies->size(); i++)
+    {
+      newEnemies->push_back(cs.enemies->at(i));
+    }
+    enemies = newEnemies;
   }
-  enemies = newEnemies;
   locations = NULL;
-  vector<Location*> *newLocations = new vector<Location*>();
-  for (int i = 0; i < cs.locations->size(); i++)
+  if (cs.locations != NULL)
   {
-    newLocations->push_back(cs.locations->at(i));
+    vector<Location *> *newLocations = new vector<Location *>();
+    for (int i = 0; i < cs.locations->size(); i++)
+    {
+      newLocations->push_back(cs.locations->at(i));
+    }
+    locations = newLocations;
   }
-  locations = newLocations;
 }
-
 CountryState::~CountryState()
 {
   // if (capital != NULL)
@@ -97,17 +102,17 @@ CountryState::~CountryState()
   delete militaryState;
 }
 
-CountryState* CountryState::clone()
+CountryState *CountryState::clone()
 {
   return new CountryState(*this);
 }
 
-MilitaryState* CountryState::getMilitaryState()
+MilitaryState *CountryState::getMilitaryState()
 {
   return militaryState;
 }
 
-void CountryState::setMilitaryState(MilitaryState* _militaryState)
+void CountryState::setMilitaryState(MilitaryState *_militaryState)
 {
   if (militaryState != NULL)
     delete militaryState;
