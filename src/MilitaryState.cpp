@@ -22,6 +22,7 @@ MilitaryState::MilitaryState()
   tanks = NULL;
   battalions = NULL;
   vehicleFactories = NULL;
+  numTroops = 0;
 }
 
 ///////////////////////////////////////////////////////////
