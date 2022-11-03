@@ -44,4 +44,3 @@ void Backup::clear()
     
     this->mementos->clear();
 }
-

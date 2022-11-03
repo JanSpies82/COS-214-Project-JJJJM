@@ -1,9 +1,5 @@
 /// @author Jake Mahloko
 
-#include <vector>
-#include <iostream>
-using namespace std;
-
 #include "Military.h"
 #include "Battalion.h"
 #include "Plane.h"
@@ -12,23 +8,19 @@ using namespace std;
 #include "Country.h"
 #include "VehicleFactory.h"
 #include "Vehicle.h"
+#include <vector>
+#include <iostream>
+
+using namespace std;
 
 
-Military::Military()
-{
-}
+Military::Military(){}
 
-Military::Military(Military* copy)
-{
-}
+Military::Military(Military* copy){}
 
-Military::~Military()
-{
-}
+Military::~Military(){}
 
-void attack(Country* country)
-{
-}
+void attack(Country* country){}
 
 //  void Military::setNumTroops(int t){
 //  	numTroops=t;

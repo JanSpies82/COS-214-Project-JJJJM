@@ -1,19 +1,13 @@
 /// @author Jake Mahloko
 
-// #include <exception>
-// using namespace std;
-
 #include "VehicleFactory.h"
 // #include "Military.h"
 
+// using namespace std;
  
- VehicleFactory::VehicleFactory(){
+ VehicleFactory::VehicleFactory(){}
 
- }
-
- VehicleFactory::~VehicleFactory(){
-
- }
+ VehicleFactory::~VehicleFactory(){}
 
  
 

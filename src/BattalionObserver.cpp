@@ -1,14 +1,13 @@
 /// @author Jake Mahloko
 
-#include <exception>
-using namespace std;
-
 #include "BattalionObserver.h"
 #include "ObserverState.h"
 #include "Battalion.h"
 #include "Observer.h"
 
-void BattalionObserver::update() {
+using namespace std;
+
+void BattalionObserver::update() 
+{
 	throw "Not yet implemented";
 }
-

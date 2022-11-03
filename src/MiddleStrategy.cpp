@@ -2,8 +2,8 @@
 
 #include "MiddleStrategy.h"
 #include "Country.h"
-
 #include <iostream>
+
 
 MiddleStrategy::MiddleStrategy(){}
 

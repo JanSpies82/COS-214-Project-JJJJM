@@ -1,17 +1,18 @@
 /// @author Julian Pienaar
 
-#include <iostream>
-#include <exception>
 #include "LeftNeighbour.h"
+#include <iostream>
 
 using namespace std;
 
 LeftNeighbour::LeftNeighbour(Location* _neighbour) : Neighbour(_neighbour){}
 
-Location* LeftNeighbour::getLeft(){
+Location* LeftNeighbour::getLeft()
+{
     return neighbour;
 }
 
-bool LeftNeighbour::hasLeft(){
+bool LeftNeighbour::hasLeft()
+{
     return true;
 }

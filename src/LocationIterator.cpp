@@ -1,10 +1,10 @@
 /// @author Janco Spies
 
-using namespace std;
-
 #include "LocationIterator.h"
 #include "Location.h"
 #include <stdexcept>
+
+using namespace std;
 
 LocationIterator::LocationIterator(Location *_location)
 {
@@ -15,9 +15,7 @@ LocationIterator::LocationIterator(Location *_location)
         nextLocation = nextRow();
 }
 
-LocationIterator::~LocationIterator()
-{
-}
+LocationIterator::~LocationIterator(){}
 
 void LocationIterator::first()
 {

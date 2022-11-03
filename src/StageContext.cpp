@@ -10,28 +10,33 @@
 
 StageContext* StageContext::onlyInstance = NULL;
 
-StageContext::StageContext(){
+StageContext::StageContext()
+{
 	simulationLength = 0;
 	currentRound = 0;
     currentStage = new EarlyStage();
 }
 
-int StageContext::getCurrentRound(){
+int StageContext::getCurrentRound()
+{
 	return currentRound;
 }
 
-StageContext* StageContext::getInstance() {
+StageContext* StageContext::getInstance() 
+{
 	if(onlyInstance == NULL){
 		onlyInstance = new StageContext();
 	}
 	return onlyInstance;
 }
 
-int StageContext::getWarStage(){
+int StageContext::getWarStage()
+{
     return currentStage->getWarStage();
 }
 
-void StageContext::incrementRound(){
+void StageContext::incrementRound()
+{
 	int earlyStage = floor(simulationLength * 0.3);
 	int midStage = floor(simulationLength * 0.9);
 	currentRound++;
@@ -49,29 +54,35 @@ void StageContext::incrementRound(){
 	
 }
 
-void StageContext::setSimulationLength(int _length){
+void StageContext::setSimulationLength(int _length)
+{
 	simulationLength = _length;
 }
 
 
-StageContext::~StageContext(){
+StageContext::~StageContext()
+{
     delete currentStage;
 	onlyInstance = NULL;
 }
 
-int StageContext::getSimulationLength(){
+int StageContext::getSimulationLength()
+{
 	return simulationLength;
 }
 
-void StageContext::setCurrentRound(int _round){
+void StageContext::setCurrentRound(int _round)
+{
 	currentRound = _round;
 }
 
-void StageContext::setCurrentStage(WarStage *_stage){
+void StageContext::setCurrentStage(WarStage *_stage)
+{
 	currentStage = _stage;
 }
 
-StageContextState* StageContext::getState(){
+StageContextState* StageContext::getState()
+{
     StageContextState* state = new StageContextState();
     state->setSimulationLength(simulationLength);
 	state->setCurrentRound(currentRound);
@@ -79,12 +90,10 @@ StageContextState* StageContext::getState(){
     return state;
 }
 
-void StageContext::setState(StageContextState *_state){
+void StageContext::setState(StageContextState *_state)
+{
 	simulationLength = _state->getSimulationLength();
 	currentRound = _state->getCurrentRound();
 	delete currentStage;
 	currentStage = _state->getCurrentStage();
 }
-
-
-
