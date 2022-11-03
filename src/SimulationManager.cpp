@@ -988,7 +988,98 @@ void SimulationManager::removeCountry()
     delete countries;
 };
 
-void SimulationManager::alterCountryState() {}
+void SimulationManager::alterCountryState()
+{
+    vector<Country *> *countries = new vector<Country *>();
+    for (int i = 0; i < superpowers->size(); i++)
+        for (int j = 0; j < superpowers->at(i)->getCountryCount(); j++)
+            countries->push_back(superpowers->at(i)->getCountry(j));
+
+    cout << "Choose a country you would like to alter:" << endl;
+    int i;
+    for (i = 0; i < countries->size(); i++)
+        cout << "[" << i + 1 << "] " << countries->at(i)->getName() << endl;
+    cout << "[" << i + 1 << "] Cancel" << endl;
+    int choice = -1;
+    do
+    {
+        cout << "Choice: " << YELLOW;
+        cin >> choice;
+        cout << RESET;
+        if (!cin.good())
+        {
+            choice = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (choice < 1 || choice > countries->size() + 1);
+
+    if (choice == countries->size() + 1)
+    {
+        cout << "Action cancelled." << endl;
+        delete countries;
+        return;
+    }
+
+    cout << "Select which of the following you would like to change:" << endl;
+    cout << "[1] Border strength (currently " << countries->at(choice - 1)->getBorderStrength() << ")" << endl;
+    cout << "[2] Population (currently " << countries->at(choice - 1)->getNumCitizens() << ")" << endl;
+    cout << "[4] Political stability (currently " << countries->at(choice - 1)->getPoliticalStability() << ")" << endl;
+    cout << "[5] Self relience (currently " << countries->at(choice - 1)->getSelfReliance() << ")" << endl;
+    cout << "[6] War sentiment (currently " << countries->at(choice - 1)->getWarSentiment() << ")" << endl;
+    cout << "[7] Trade route safety (currently " << countries->at(choice - 1)->getTradeRouteSafety() << ")" << endl;
+    cout << "[8] Military attributes " << endl;
+    cout << "[9] Cancel" << endl;
+
+    int choice2 = -1;
+    do
+    {
+        cout << "Choice: " << YELLOW;
+        cin >> choice2;
+        cout << RESET;
+        if (!cin.good())
+        {
+            choice2 = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (choice2 < 1 || choice2 > 9);
+
+    if (choice2 == 9)
+    {
+        cout << "Action cancelled." << endl;
+        delete countries;
+        return;
+    }
+
+    switch (choice2)
+    {
+    case 1:
+        changeBorderStrength(countries->at(choice - 1));
+        break;
+    case 2:
+        changePopulation(countries->at(choice - 1));
+        break;
+    case 4:
+        changePoliticalStability(countries->at(choice - 1));
+        break;
+    case 5:
+        changeSelfReliance(countries->at(choice - 1));
+        break;
+    case 6:
+        changeWarSentiment(countries->at(choice - 1));
+        break;
+    case 7:
+        changeTradeRouteSafety(countries->at(choice - 1));
+        break;
+    case 8:
+        changeMilitaryAttributes(countries->at(choice - 1));
+        break;
+    default:
+        break;
+    }
+    delete countries;
+}
 
 void SimulationManager::changeWarStage()
 {
@@ -1039,6 +1130,124 @@ void SimulationManager::changeWarStage()
         break;
     }
     cout << "War stage changed to " << stageName << " Stage." << endl;
+}
+
+void SimulationManager::changeBorderStrength(Country *_country)
+{
+    double borderStrength = -1;
+    do
+    {
+        cout << "Enter the new border strength (0-1): " << YELLOW;
+        cin >> borderStrength;
+        cout << RESET;
+        if (!cin.good())
+        {
+            borderStrength = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (borderStrength < 0 || borderStrength > 1);
+    _country->setBorderStrength(borderStrength);
+    cout << "Border strength changed to " << borderStrength << "." << endl;
+}
+
+void SimulationManager::changePopulation(Country *_country)
+{
+    int population = -1;
+    do
+    {
+        cout << "Enter the new population (0-1 000 000 000): " << YELLOW;
+        cin >> population;
+        cout << RESET;
+        if (!cin.good())
+        {
+            population = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (population < 0 || population > 1000000000);
+    _country->setNumCitizens(population);
+    cout << "Population changed to " << population << "." << endl;
+}
+
+void SimulationManager::changePoliticalStability(Country *_country)
+{
+    double politicalStability = -1;
+    do
+    {
+        cout << "Enter the new political stability (0-1): " << YELLOW;
+        cin >> politicalStability;
+        cout << RESET;
+        if (!cin.good())
+        {
+            politicalStability = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (politicalStability < 0 || politicalStability > 1);
+    _country->setPoliticalStability(politicalStability);
+    cout << "Political stability changed to " << politicalStability << "." << endl;
+}
+
+void SimulationManager::changeSelfReliance(Country *_country)
+{
+    double selfReliance = -1;
+    do
+    {
+        cout << "Enter the new self reliance (0-1): " << YELLOW;
+        cin >> selfReliance;
+        cout << RESET;
+        if (!cin.good())
+        {
+            selfReliance = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (selfReliance < 0 || selfReliance > 1);
+    _country->setSelfReliance(selfReliance);
+    cout << "Self reliance changed to " << selfReliance << "." << endl;
+}
+
+void SimulationManager::changeWarSentiment(Country *_country)
+{
+    double warSentiment = -1;
+    do
+    {
+        cout << "Enter the new war sentiment (0-1): " << YELLOW;
+        cin >> warSentiment;
+        cout << RESET;
+        if (!cin.good())
+        {
+            warSentiment = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (warSentiment < 0 || warSentiment > 1);
+    _country->setWarSentiment(warSentiment);
+    cout << "War sentiment changed to " << warSentiment << "." << endl;
+}
+
+void SimulationManager::changeTradeRouteSafety(Country *_country)
+{
+    double tradeRouteSafety = -1;
+    do
+    {
+        cout << "Enter the new trade route safety (0-1): " << YELLOW;
+        cin >> tradeRouteSafety;
+        cout << RESET;
+        if (!cin.good())
+        {
+            tradeRouteSafety = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (tradeRouteSafety < 0 || tradeRouteSafety > 1);
+    _country->setTradeRouteSafety(tradeRouteSafety);
+    cout << "Trade route safety changed to " << tradeRouteSafety << "." << endl;
+}
+
+void SimulationManager::changeMilitaryAttributes(Country*_country){
+    //TODO add implementation
 }
 
 bool SimulationManager::isSimulationRunning()
