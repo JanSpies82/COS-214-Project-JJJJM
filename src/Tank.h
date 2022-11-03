@@ -4,7 +4,7 @@
 #include <exception>
 #include "Vehicle.h"
 
-class Tank : public Vehicle
+class Tank: public Vehicle
 {
 
 public:
