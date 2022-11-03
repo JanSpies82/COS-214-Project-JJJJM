@@ -3,6 +3,8 @@
 #include "Strategy.h"
 #include "Country.h"
 
+using namespace std;
+
 Strategy::Strategy(){}
 
 void Strategy::takeTurn(double* strengthRatings, Country* countryA, Country* countryB)
