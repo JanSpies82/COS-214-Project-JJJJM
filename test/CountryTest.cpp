@@ -2,6 +2,8 @@
 #include <stdexcept>
 #include <vector>
 #include "../src/Country.h"
+#include "../src/Location.h"
+#include "../src/Territory.h"
 #include "../src/CountryState.h"
 #include "../src/MilitaryState.h"
 #include "gtest/gtest.h"
@@ -49,15 +51,16 @@ namespace {
     delete countryB;
   }
 
-  // // Proof of vector deallocation method being memory efficient
-  // TEST(CountryTest, VectorDeallocation)
-  // {
-  //   std::vector<Country*>* countries = new std::vector<Country*>();
-  //   countries->push_back(new Country("A"));
-  //   countries->push_back(new Country("B"));
-  //   countries->resize(0);
-  //   delete countries;
-  // }  
+  // Proof of vector deallocation method being memory efficient
+  TEST(CountryTest, VectorDeallocation)
+  {
+    std::vector<Country*>* countries = new std::vector<Country*>();
+    countries->push_back(new Country("A"));
+    countries->push_back(new Country("B"));
+    for (int i = 0; i < countries->size(); i++)
+      delete countries->at(i);
+    delete countries;
+  }  
 
   TEST(CountryTest, CountryStateAddressConstructor)
   {
@@ -69,5 +72,15 @@ namespace {
     EXPECT_EQ(countryB->getColor(), "Red"); 
     delete countryA;
     delete countryB;
+  }
+
+  TEST(CountryTest, setLocations)
+  {
+    std::vector<Location*>* locs = new std::vector<Location*>();
+    for (int i = 0; i < 100; i++)
+      locs->push_back(new Territory(0,0));
+    Country* a = new Country("a");
+    a->setLocations(locs);
+    delete a;
   }
 }
