@@ -27,6 +27,13 @@ class PlaneFactory: public VehicleFactory
 		 **/
 		 Vehicle* manufactureVehicle();
 		 Vehicle* manufactureVehicle(int,int,int);
+
+		/**
+		 * @brief Create a deep copy of the current object
+		 * 
+		 * @return PlaneFactory* 
+		 */
+		 PlaneFactory* clone();
 };
 
 #endif

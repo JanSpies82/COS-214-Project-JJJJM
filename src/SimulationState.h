@@ -1,20 +1,14 @@
-#include <exception>
+///@author Janco Spies
 
 #ifndef __SimulationState_h__
 #define __SimulationState_h__
 
-// #include "SimulationManager.h"
-// #include "Memento.h"
-
 #include <vector>
 #include <ctime>
 
-class SimulationManager;
 class MapState;
 class SuperpowerState;
-class WarStage;
-// class CountryState;
-// class MilitaryState;
+class StageContextState;
 
 class SimulationState
 {
@@ -23,11 +17,8 @@ public:
 	 * @brief Construct a new Simulation State object
 	 *
 	 * Sets the timestamp to the current time
-	 *
-	 * @param _simulationManager : SimulationManager* - Pointer to the SimulationManager object.
 	 */
-	// TODO decide wether SimulationManager is necessary
-	SimulationState(SimulationManager *_simulationManager);
+	SimulationState();
 
 	/**
 	 * @brief Destroy the Simulation State object and delete all held state objects
@@ -45,13 +36,11 @@ public:
 	void setMapState(MapState *_mapState);
 
 	/**
-	 * @brief Set the WarStage object stored by the SimulationState
+	 * @brief Set the Stage Context State object stored by the SimulationState
 	 * 
-	 * If a WarStage is already stored, it is deleted
-	 *
-	 * @param _warStage : WarStage* - Pointer to the WarStage object.
+	 * @param _stageContextState : StageContextState* - Pointer to the StageContextState object.
 	 */
-	void setWarStage(WarStage *_warStage);
+	void setStageContextState(StageContextState *_stageContextState);
 
 	/**
 	 * @brief Add a SuperpowerState object to the SimulationState
@@ -77,20 +66,6 @@ public:
 	 */
 	SuperpowerState *getSuperpowerState(int _index);
 
-	// /**
-	//  * @brief Add a CountryState object to the SimulationState
-	//  *
-	//  * @param _countryState : CountryState* - Pointer to the CountryState object.
-	//  */
-	// void addCountryState(CountryState *_countryState);
-
-	// /**
-	//  * @brief Add a MilitaryState object to the SimulationState
-	//  *
-	//  * @param _militaryState : MilitaryState* - Pointer to the MilitaryState object.
-	//  */
-	// void addMilitaryState(MilitaryState *_militaryState);
-
 	/**
 	 * @brief Get the Map State object stored by the SimulationState
 	 *
@@ -101,47 +76,13 @@ public:
 	MapState *getMapState();
 
 	/**
-	 * @brief Get the War Stage object stored by the SimulationState
+	 * @brief Get the StageContextState object stored by the SimulationState
 	 * 
-	 * Exceptions : std::out_of_range if the SimulationState does not hold a WarStage
+	 * Exceptions : std::out_of_range if the SimulationState does not hold a StageContextState
 	 * 
-	 * @return WarStage* 
+	 * @return StageContextState* 
 	 */
-	WarStage *getWarStage();
-
-	// /**
-	//  * @brief Get the Country State object stored by the SimulationState
-	//  *
-	//  * Exceptions : std::out_of_range if the index is out of range
-	//  *
-	//  * @param index : int - Index of the CountryState object to return.
-	//  * @return CountryState*
-	//  */
-	// CountryState *getCountryState(int index);
-
-	// /**
-	//  * @brief Get the Military State object stored by the SimulationState
-	//  *
-	//  * Exceptions : std::out_of_range if the index is out of range
-	//  *
-	//  * @param index : int - Index of the MilitaryState object to return.
-	//  * @return MilitaryState*
-	//  */
-	// MilitaryState *getMilitaryState(int index);
-
-	// /**
-	//  * @brief Get the number of CountryState objects stored by the SimulationState
-	//  *
-	//  * @return int
-	//  */
-	// int getCountryStateCount();
-
-	// /**
-	//  * @brief Get the number of MilitaryState objects stored by the SimulationState
-	//  *
-	//  * @return int
-	//  */
-	// int getMilitaryStateCount();
+	StageContextState *getStageContextState();
 
 	/**
 	 * @brief Get the Timestamp object stored by the SimulationState
@@ -152,10 +93,7 @@ public:
 
 private:
 	MapState *mapState;
-	WarStage *warStage;
-	SimulationManager *simulationManager;
-	// std::vector<CountryState *> *countryStates;
-	// std::vector<MilitaryState *> *militaryStates;
+	StageContextState *stageContextState;
 	std::vector<SuperpowerState *> *superpowerStates;
 	std::time_t timestamp;
 };

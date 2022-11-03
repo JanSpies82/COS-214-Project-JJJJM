@@ -82,9 +82,9 @@ void Country::takeTurn(Country *countryB)
 
 CountryState *Country::getState()
 {
-  if (countryState != NULL)
-    delete countryState;
-  countryState = new CountryState(this);
+  // if (countryState != NULL)
+  //   delete countryState;
+  // countryState = new CountryState(this);
   return countryState;
 }
 
