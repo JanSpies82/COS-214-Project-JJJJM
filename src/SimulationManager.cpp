@@ -8,6 +8,9 @@
 #include "Backup.h"
 #include "StageContext.h"
 #include "StageContextState.h"
+#include "EarlyStage.h"
+#include "MiddleStage.h"
+#include "LateStage.h"
 #include "Country.h"
 #include "CountryState.h"
 #include "MilitaryState.h"
@@ -885,7 +888,7 @@ void SimulationManager::changeSimulationLength()
 {
     do
     {
-        cout << "Enter the new simulation length (" << turnCount << "-100): " << YELLOW;
+        cout << "Enter the new simulation length (" << ((turnCount>4)?turnCount:4) << "-100): " << YELLOW;
         cin >> maxTurnCount;
         cout << RESET;
         if (!cin.good())
@@ -946,7 +949,56 @@ void SimulationManager::removeCountry()
 
 void SimulationManager::alterCountryState() {}
 
-void SimulationManager::changeWarStage() {}
+void SimulationManager::changeWarStage()
+{
+    cout << "Select the new war stage: " << endl;
+    cout << "[1] Early stage" << endl;
+    cout << "[2] Middle stage" << endl;
+    cout << "[3] Late stage" << endl;
+    cout << "[9] Cancel" << endl;
+
+    int choice = -1;
+    do
+    {
+        cout << "Choice: " << YELLOW;
+        cin >> choice;
+        cout << RESET;
+        if (!cin.good())
+        {
+            choice = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (choice < 1 || (choice > 3 && choice != 9));
+
+    if (choice == 9)
+    {
+        cout << "Action cancelled." << endl;
+        return;
+    }
+
+    saveState();
+
+    StageContext::getInstance()->moveToStage(choice - 1);
+
+    string stageName;
+
+    switch (choice)
+    {
+    case 1:
+        stageName = "Early";
+        break;
+    case 2:
+        stageName = "Middle";
+        break;
+    case 3:
+        stageName = "Late";
+        break;
+    default:
+        break;
+    }
+    cout << "War stage changed to " << stageName << " Stage." << endl;
+}
 
 bool SimulationManager::isSimulationRunning()
 {
