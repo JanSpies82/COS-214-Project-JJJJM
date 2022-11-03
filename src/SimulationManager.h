@@ -122,6 +122,10 @@ private:
 	void setUpScandanavia(Country *_scandanavia);
 	void setUpGermany(Country *_germany);
 	void setUpItaly(Country *_italy);
+	void changeSimulationLength();
+	void removeCountry();
+	void alterCountryState();
+	void changeWarStage();
 };
 
 #endif
