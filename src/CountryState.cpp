@@ -4,6 +4,8 @@
 #include "MilitaryState.h"
 #include "Location.h"
 #include "Country.h"
+#include <vector>
+using namespace std;
 
 CountryState::CountryState()
 {
@@ -58,27 +60,37 @@ CountryState::CountryState(const CountryState& cs)
   capital = cs.capital;
   color = cs.color;
   enemies = NULL;
-  enemies = cs.enemies;
+  vector<Country*> *newEnemies = new vector<Country*>();
+  for (int i = 0; i < cs.enemies->size(); i++)
+  {
+    newEnemies->push_back(cs.enemies->at(i));
+  }
+  enemies = newEnemies;
   locations = NULL;
-  locations = cs.locations;
+  vector<Location*> *newLocations = new vector<Location*>();
+  for (int i = 0; i < cs.locations->size(); i++)
+  {
+    newLocations->push_back(cs.locations->at(i));
+  }
+  locations = newLocations;
 }
 
 CountryState::~CountryState()
 {
-  if (capital != NULL)
-    delete capital;
+  // if (capital != NULL)
+  //   delete capital;
 
   if (enemies != NULL)
   {
-    for (int i = 0; i < enemies->size(); i++)
-      delete enemies->at(i);
+    // for (int i = 0; i < enemies->size(); i++)
+    //   delete enemies->at(i);
     delete enemies;
   }
 
   if (locations != NULL)
   {
-    for (int i = 0; i < locations->size(); i++)
-      delete locations->at(i);
+    // for (int i = 0; i < locations->size(); i++)
+    //   delete locations->at(i);
     delete locations;
   }
 
