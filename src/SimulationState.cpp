@@ -1,12 +1,12 @@
 /// @author Janco Spies
 
-#include <exception>
-using namespace std;
-
 #include "SimulationState.h"
 #include "MapState.h"
 #include "StageContextState.h"
 #include "SuperpowerState.h"
+#include <exception>
+
+using namespace std;
 
 SimulationState::SimulationState()
 {

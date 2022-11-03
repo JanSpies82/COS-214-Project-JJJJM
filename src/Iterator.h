@@ -1,3 +1,5 @@
+/// @author Janco Spies
+
 #ifndef __Iterator_h__
 #define __Iterator_h__
 

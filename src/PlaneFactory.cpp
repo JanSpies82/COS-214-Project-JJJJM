@@ -1,16 +1,14 @@
-// #include <exception>
-using namespace std;
+/// @author Jake Mahloko
 
 #include "PlaneFactory.h"
 // #include "VehicleFactory.h"
 #include "Plane.h"
 
-PlaneFactory::PlaneFactory()
-{
-}
-PlaneFactory::~PlaneFactory()
-{
-}
+using namespace std;
+
+PlaneFactory::PlaneFactory(){}
+
+PlaneFactory::~PlaneFactory(){}
 
 // Vehicle* PlaneFactory::manufactureVehicle(int planeDamage,int damageToTank,int damageToBatallion){
 // 	return new Plane(planeDamage,damageToTank,damageToBatallion);

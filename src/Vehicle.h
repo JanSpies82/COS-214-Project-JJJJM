@@ -1,6 +1,10 @@
+/// @author Jake Mahloko
+
 #ifndef __Vehicle_h__
 #define __Vehicle_h__
+
 #include <exception>
+
 class Vehicle
 {
 

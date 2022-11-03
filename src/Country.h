@@ -1,3 +1,5 @@
+/// @author Jake Weatherhead
+
 #ifndef __Country_h__
 #define __Country_h__
 
@@ -20,10 +22,6 @@ class Location;
 class Country
 {
 public: 
-  /**
-   * @brief default constructor
-   */
-  Country();
 
   /**
    * @brief destructor
@@ -41,6 +39,13 @@ public:
     * @param countryB the country that is being attacked
     */
   void takeTurn(Country* countryB);
+
+/**
+ * @brief country takes its turn using a country from its enemies list
+ * 
+ * Exceptions : std::out_of_range if the enemies vector has not been set
+ */
+  void takeTurn();
 
   /**
    * @brief sets the country's strategy
@@ -299,6 +304,26 @@ public:
    * @brief setter for this country's mediator
    */
   void setMediator(CountryMediator* _mediator);
+
+  /**
+   * @brief getter for this country's enemies
+  */
+  std::vector<Country*>* getEnemies();
+
+  /**
+   * @brief setter for this country's enemies
+  */
+  void setEnemies(std::vector<Country*>* _enemies);
+
+  /**
+   * @brief getter for this country's MilitaryState object
+  */
+  MilitaryState* getMilitaryState();
+
+  /**
+   * @brief setter for this country's MilitaryState object
+  */
+  void setMilitaryState(MilitaryState* _militaryState);
  
  /**
   * @brief Set the State object of the country to the passed in object

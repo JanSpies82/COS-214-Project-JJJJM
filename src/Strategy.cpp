@@ -1,11 +1,11 @@
-#include <exception>
+///@author Mekhail Muller
 
 #include "Strategy.h"
 #include "Country.h"
 
-Strategy::Strategy()
-{
-}
+using namespace std;
+
+Strategy::Strategy(){}
 
 void Strategy::takeTurn(double* strengthRatings, Country* countryA, Country* countryB)
 {

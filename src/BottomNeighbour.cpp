@@ -1,19 +1,18 @@
 /// @author Julian Pienaar
 
-#include <iostream>
-#include <exception>
 #include "BottomNeighbour.h"
+#include <iostream>
 
 using namespace std;
 
 BottomNeighbour::BottomNeighbour(Location* _neighbour) : Neighbour(_neighbour){}
 
-Location* BottomNeighbour::getBottom(){
+Location* BottomNeighbour::getBottom()
+{
     return neighbour;
 }
 
-bool BottomNeighbour::hasBottom(){
+bool BottomNeighbour::hasBottom()
+{
     return true;
 }
-
-

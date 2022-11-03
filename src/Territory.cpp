@@ -1,13 +1,15 @@
 /// @author Julian Pienaar
 
-using namespace std;
-#include <iostream>
-#include <stdexcept>
 #include "Territory.h"
 #include "LocationIterator.h"
 #include "Location.h"
+#include <iostream>
+#include <stdexcept>
 
-Territory::Territory(int _x, int _y, string _color){
+using namespace std;
+
+Territory::Territory(int _x, int _y, string _color)
+{
     xCoordinate=_x;
     yCoordinate=_y;
     color=_color;
@@ -17,14 +19,16 @@ Territory::Territory(int _x, int _y, string _color){
     ownedBy=NULL;
 }
 
-void Territory::add(Location* _neighbour){
+void Territory::add(Location* _neighbour)
+{
     if(location!=NULL)
         location->add(_neighbour);
     else
         location=_neighbour;
 }
 
-Territory::~Territory(){
+Territory::~Territory()
+{
     if(location!=NULL)
         delete location;
 }

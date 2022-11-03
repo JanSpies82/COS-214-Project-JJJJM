@@ -1,3 +1,4 @@
+/// @author Jake Mahloko
 
 #ifndef __Battalion_h__
 #define __Battalion_h__
@@ -13,11 +14,13 @@ class Battalion
 		 * @brief construct a Battalion object
 		 * */
 		Battalion();
+
 		/**
 		 * @brief construct a Battalion object
 		 * @param int value
 		 * */
 		Battalion(int);
+
 		/**
 		 * @brief destroys a Battallion object
 		 **/
@@ -28,8 +31,6 @@ class Battalion
 		 * @param Country*- Country reference object
 		 **/
 		void attack(Country* enemy);
-	
-		
 
 		/**
 		 * @brief sets the number Battalions an attack of a battallion kills.
@@ -42,12 +43,10 @@ class Battalion
 		 * @return int - number of Battalions
 		 **/
 		int getBattalionDestroyed();
-		/**
-		 * 
-		 * 
-		 * */
+
 		void attach(BattalionObserver obs);
 		void dettach(BattalionObserver obs);
+		
 	private:
 	int numBattalionDestroys;
 	int groupSize;

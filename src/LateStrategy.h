@@ -1,3 +1,5 @@
+///@author Mekhail Muller
+
 #ifndef LATE_STRATEGY_H
 #define LATE_STRATEGY_H
 
@@ -6,6 +8,11 @@
 class LateStrategy : public Strategy
 {
 public:
+
+    /**
+     * @brief Construct a new Late Strategy object
+     * 
+     */
     LateStrategy();
 
     /**

@@ -1,10 +1,10 @@
-#include <exception>
+///@author Mekhail Muller
 
 #include "WarStage.h"
 
-WarStage::WarStage(){
-}
+using namespace std;
 
-WarStage::~WarStage(){
-}
+WarStage::WarStage(){}
+
+WarStage::~WarStage(){}
 

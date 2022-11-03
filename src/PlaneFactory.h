@@ -1,12 +1,14 @@
-#include <exception>
-using namespace std;
+/// @author Jake Mahloko
+
 
 #ifndef __PlaneFactory_h__
 #define __PlaneFactory_h__
 
 #include "VehicleFactory.h"
+#include <exception>
+
 	/**
-	*@brief PlaneFactory Inherits from the VehicleFactory class which it uses the factory method 
+	*brief PlaneFactory Inherits from the VehicleFactory class which it uses the factory method 
 	*to create plane objects and return pointer to the object 
  	**/
 class PlaneFactory: public VehicleFactory

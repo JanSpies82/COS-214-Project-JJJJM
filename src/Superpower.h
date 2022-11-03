@@ -1,4 +1,5 @@
 ///@author Janco Spies
+
 #ifndef __Superpower_h__
 #define __Superpower_h__
 

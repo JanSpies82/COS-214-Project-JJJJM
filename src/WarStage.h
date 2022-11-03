@@ -1,6 +1,7 @@
+///@author Mekhail Muller
+
 #include <exception>
 #include <string>
-using namespace std;
 
 #ifndef __WarStage_h__
 #define __WarStage_h__

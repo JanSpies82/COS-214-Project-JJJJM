@@ -1,3 +1,4 @@
+/// @author Janco Spies
 
 #ifndef __SimulationManager_h__
 #define __SimulationManager_h__

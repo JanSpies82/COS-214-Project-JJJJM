@@ -1,10 +1,10 @@
-#include <exception>
-using namespace std;
+///@author Mekhail Muller
 
 #ifndef __Strategy_h__
 #define __Strategy_h__
 
 // #include "Country.h"
+#include <exception>
 
 class Country;
 

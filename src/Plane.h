@@ -1,11 +1,12 @@
+/// @author Jake Mahloko
+
 #ifndef __Plane_h__
 #define __Plane_h__
 
-#include <exception>
+class Country;
 
 #include "Vehicle.h"
-
-class Country;
+#include <exception>
 
 class Plane : public Vehicle
 {
