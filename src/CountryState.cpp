@@ -90,3 +90,10 @@ MilitaryState* CountryState::getMilitaryState()
 {
   return militaryState;
 }
+
+void CountryState::setMilitaryState(MilitaryState* _militaryState)
+{
+  if (militaryState != NULL)
+    delete militaryState;
+  militaryState = _militaryState;
+}

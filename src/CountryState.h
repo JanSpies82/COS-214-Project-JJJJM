@@ -26,6 +26,7 @@ public:
   ~CountryState();
   CountryState* clone();
   MilitaryState* getMilitaryState();
+  void setMilitaryState(MilitaryState* _militaryState);
 
 private: 
   friend class Country;
