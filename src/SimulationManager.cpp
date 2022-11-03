@@ -850,6 +850,14 @@ void SimulationManager::designModeAction()
         }
     } while (choice < 1 || (choice > 4 && choice != 9));
 
+    if (choice == 9)
+    {
+        cout << "Action cancelled." << endl;
+        return;
+    }
+
+    saveState();
+
     switch (choice)
     {
     case 1:
@@ -891,7 +899,50 @@ void SimulationManager::changeSimulationLength()
     cout << "Simulation length changed to " << maxTurnCount << " turns." << endl;
 };
 
-void SimulationManager::removeCountry() {}
+void SimulationManager::removeCountry()
+{
+    vector<Country *> *countries = new vector<Country *>();
+    for (int i = 0; i < superpowers->size(); i++)
+        for (int j = 0; j < superpowers->at(i)->getCountryCount(); j++)
+            countries->push_back(superpowers->at(i)->getCountry(j));
+
+    cout << "Choose a country you would like to remove:" << endl;
+    int i;
+    for (i = 0; i < countries->size(); i++)
+        cout << "[" << i + 1 << "] " << countries->at(i)->getName() << endl;
+    cout << "[" << i + 1 << "] Cancel" << endl;
+    int choice = -1;
+    do
+    {
+        cout << "Choice: " << YELLOW;
+        cin >> choice;
+        cout << RESET;
+        if (!cin.good())
+        {
+            choice = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (choice < 1 || choice > countries->size() + 1);
+
+    if (choice == countries->size() + 1)
+    {
+        cout << "Action cancelled." << endl;
+        delete countries;
+        return;
+    }
+    try
+    {
+        superpowers->at((choice < 2) ? 0 : 1)->removeCountry(countries->at(choice - 1));
+        cout << countries->at(choice - 1)->getName() << " removed." << endl;
+        delete countries->at(choice - 1);
+    }
+    catch (exception &e)
+    {
+        cout << "Error removing country" << endl;
+    }
+    delete countries;
+};
 
 void SimulationManager::alterCountryState() {}
 
