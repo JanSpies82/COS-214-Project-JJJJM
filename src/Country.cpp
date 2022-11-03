@@ -64,6 +64,17 @@ void Country::takeTurn(Country *countryB)
   // strategy->takeTurn(strengthRatings, this, countryB);
 }
 
+void Country::takeTurn()
+{
+  setStrategy();
+  double strengthRatings[2];
+  Country* countryB = getEnemies()->at(rand() % getEnemies()->size());
+  getCountryRating(countryB, strengthRatings);
+  // std::cout << "strengthRatings, [0] : " << strengthRatings[0];
+  // std::cout << " , [1] : " << strengthRatings[1] << "\n";
+  // strategy->takeTurn(strengthRatings, this, enemies[0]);
+}
+
 ///////////////////////////////////////////////////////////
 // setStrategy()
 ///////////////////////////////////////////////////////////

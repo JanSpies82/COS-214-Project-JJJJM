@@ -40,6 +40,13 @@ public:
     */
   void takeTurn(Country* countryB);
 
+/**
+ * @brief country takes its turn using a country from its enemies list
+ * 
+ * Exceptions : std::out_of_range if the enemies vector has not been set
+ */
+  void takeTurn();
+
   /**
    * @brief sets the country's strategy
    * 
