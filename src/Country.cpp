@@ -31,10 +31,10 @@ Country::Country()
 
 Country::~Country()
 {
-  if (countryState != NULL)
-    delete countryState;
   if (countryState->locations != NULL)
     delete countryState->locations;
+  if (countryState != NULL)
+    delete countryState;
 }
 
 ///////////////////////////////////////////////////////////
