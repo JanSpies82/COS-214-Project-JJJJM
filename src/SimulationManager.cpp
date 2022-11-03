@@ -92,7 +92,7 @@ void SimulationManager::runSimulation()
         while (isSimulationRunning())
         {
             takeTurn();
-            viewSummary();
+            // viewSummary();
             if (isSimulationRunning())
                 processMenu();
         }
@@ -175,6 +175,39 @@ void SimulationManager::saveState()
     state->setStageContextState(StageContext::getInstance()->getState());
     backup->addMemento(new Memento(state));
 }
+
+bool SimulationManager::restoreState()
+{
+    if (backup->getMementoCount() == 0)
+    {
+        cout << "No states to restore!" << endl;
+        return false;
+    }
+    try
+    {
+        Memento *m = backup->getMemento();
+        SimulationState *state = m->getState();
+        StageContext::getInstance()->setState(state->getStageContextState());
+        turnCount = StageContext::getInstance()->getCurrentRound();
+        cout << "Restoring state at turn " << turnCount << endl;
+        delete map;
+        map = state->getMapState()->clone();
+        for (int i = 0; i < superpowers->size(); i++)
+            delete superpowers->at(i);
+        delete superpowers;
+        superpowers = new vector<Superpower *>();
+        for (int i = 0; i < state->getSuperpowerStateCount(); i++)
+            superpowers->push_back(new Superpower(state->getSuperpowerState(i)));
+
+        delete m;
+    }
+    catch (exception &e)
+    {
+        cout << "Error: " << e.what() << endl;
+        return false;
+    }
+    return true;
+};
 
 void SimulationManager::setSuperpowers()
 {
@@ -671,14 +704,15 @@ void SimulationManager::processMenu()
 {
     while (true)
     {
+        viewSummary();
         cout << "What would you like to do next?" << endl;
         cout << "[1] Continue simulation" << endl;
         cout << "[2] Restore a previous state" << endl;
         cout << "[3] View a detailed summary of a country" << endl;
-        cout << "[4] View the map" << endl;
-        cout << "[5] View the summary of the system again" << endl;
+        // cout << "[4] View the map" << endl;
+        // cout << "[5] View the summary of the system again" << endl;
         if (designMode)
-            cout << "[6] Change the simulation state" << endl;
+            cout << "[4] Change the simulation state" << endl;
         cout << "[9] Exit simulation" << endl;
 
         int choice = -1;
@@ -693,7 +727,7 @@ void SimulationManager::processMenu()
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
-        } while (choice < 1 || (choice > 6 && choice != 9) || (choice == 6 && !designMode));
+        } while (choice < 1 || (choice > 4 && choice != 9) || (choice == 4 && !designMode));
 
         switch (choice)
         {
@@ -715,19 +749,19 @@ void SimulationManager::processMenu()
             cin.ignore();
             cin.get();
             break;
+        // case 4:
+        //     map->printMap();
+        //     cout << "Press enter to continue..." << endl;
+        //     cin.ignore();
+        //     cin.get();
+        //     break;
+        // case 5:
+        //     viewSummary();
+        //     cout << "Press enter to continue..." << endl;
+        //     cin.ignore();
+        //     cin.get();
+        //     break;
         case 4:
-            map->printMap();
-            cout << "Press enter to continue..." << endl;
-            cin.ignore();
-            cin.get();
-            break;
-        case 5:
-            viewSummary();
-            cout << "Press enter to continue..." << endl;
-            cin.ignore();
-            cin.get();
-            break;
-        case 6:
             designModeAction();
             cout << "Press enter to continue..." << endl;
             cin.ignore();
@@ -736,6 +770,8 @@ void SimulationManager::processMenu()
         case 9:
             isRunning = false;
             return;
+            break;
+        default:
             break;
         }
         system("clear");
@@ -780,7 +816,8 @@ void SimulationManager::viewCountrySummary()
         }
     } while (choice < 1 || choice > countries->size() + 1);
 
-    if (choice == countries->size() + 1){
+    if (choice == countries->size() + 1)
+    {
         cout << "Action cancelled." << endl;
         delete countries;
         return;
@@ -790,40 +827,75 @@ void SimulationManager::viewCountrySummary()
     delete countries;
 };
 
-void SimulationManager::designModeAction(){};
-
-bool SimulationManager::restoreState()
+void SimulationManager::designModeAction()
 {
-    if (backup->getMementoCount() == 0)
-    {
-        cout << "No states to restore!" << endl;
-        return false;
-    }
-    try
-    {
-        Memento *m = backup->getMemento();
-        SimulationState *state = m->getState();
-        StageContext::getInstance()->setState(state->getStageContextState());
-        turnCount = StageContext::getInstance()->getCurrentRound();
-        cout << "Restoring state at turn " << turnCount << endl;
-        delete map;
-        map = state->getMapState()->clone();
-        for (int i = 0; i < superpowers->size(); i++)
-            delete superpowers->at(i);
-        delete superpowers;
-        superpowers = new vector<Superpower *>();
-        for (int i = 0; i < state->getSuperpowerStateCount(); i++)
-            superpowers->push_back(new Superpower(state->getSuperpowerState(i)));
+    cout << "Select an action to perform:" << endl;
+    cout << "[1] Change the simulation length" << endl;
+    cout << "[2] Remove a country" << endl;
+    cout << "[3] Alter the state of a country" << endl;
+    cout << "[4] Change the current war stage" << endl;
+    cout << "[9] Cancel" << endl;
 
-        delete m;
-    }
-    catch (exception &e)
+    int choice = -1;
+    do
     {
-        cout << "Error: " << e.what() << endl;
-        return false;
+        cout << "Choice: " << YELLOW;
+        cin >> choice;
+        cout << RESET;
+        if (!cin.good())
+        {
+            choice = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (choice < 1 || (choice > 4 && choice != 9));
+
+    switch (choice)
+    {
+    case 1:
+        changeSimulationLength();
+        break;
+    case 2:
+        removeCountry();
+        break;
+    case 3:
+        alterCountryState();
+        break;
+    case 4:
+        changeWarStage();
+        break;
+    default:
+        break;
     }
-    return true;
+    // cout << "Press enter to continue..." << endl;
+    // cin.ignore();
+    // cin.get();
+    // system("clear");
 };
+
+void SimulationManager::changeSimulationLength()
+{
+    do
+    {
+        cout << "Enter the new simulation length (" << turnCount << "-100): " << YELLOW;
+        cin >> maxTurnCount;
+        cout << RESET;
+        if (!cin.good())
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input." << endl;
+            return;
+        }
+    } while (maxTurnCount < 4 || maxTurnCount > 100 || maxTurnCount < turnCount);
+    cout << "Simulation length changed to " << maxTurnCount << " turns." << endl;
+};
+
+void SimulationManager::removeCountry() {}
+
+void SimulationManager::alterCountryState() {}
+
+void SimulationManager::changeWarStage() {}
 
 bool SimulationManager::isSimulationRunning()
 {
