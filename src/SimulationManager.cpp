@@ -18,6 +18,7 @@
 #include "TankFactory.h"
 #include "PlaneFactory.h"
 #include "ShipFactory.h"
+#include "MapState.h"
 #include <string>
 #include <iostream>
 #include <limits>
@@ -757,7 +758,38 @@ void SimulationManager::viewCountrySummary(){};
 
 void SimulationManager::designModeAction(){};
 
-bool SimulationManager::restoreState(){};
+bool SimulationManager::restoreState()
+{
+    if (backup->getMementoCount() == 0)
+    {
+        cout << "No states to restore!" << endl;
+        return false;
+    }
+    try
+    {
+        Memento *m = backup->getMemento();
+        SimulationState *state = m->getState();
+        StageContext::getInstance()->setState(state->getStageContextState());
+        turnCount = StageContext::getInstance()->getCurrentRound();
+        cout << "Restoring state at turn " << turnCount << endl;
+        delete map;
+        map = state->getMapState()->clone();
+        for (int i = 0; i < superpowers->size(); i++)
+            delete superpowers->at(i);
+        delete superpowers;
+        superpowers = new vector<Superpower *>();
+        for (int i = 0; i < state->getSuperpowerStateCount(); i++)
+            superpowers->push_back(new Superpower(state->getSuperpowerState(i)));
+
+        delete m;
+    }
+    catch (exception &e)
+    {
+        cout << "Error: " << e.what() << endl;
+        return false;
+    }
+    return true;
+};
 
 bool SimulationManager::isSimulationRunning()
 {
