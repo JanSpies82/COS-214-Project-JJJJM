@@ -8,7 +8,7 @@
 
 #include "VehicleFactory.h"
 	/**
-	*@brief ShipFactory Inherits from the VehicleFactory class which it uses the factory method 
+	*brief ShipFactory Inherits from the VehicleFactory class which it uses the factory method 
 	*to create Ship objects and return pointer to the object 
  	**/
 class ShipFactory: public VehicleFactory

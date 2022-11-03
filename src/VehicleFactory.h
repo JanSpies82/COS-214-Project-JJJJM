@@ -1,12 +1,12 @@
 /// @author Jake Mahloko
 
-#include <exception>
-
 #ifndef __VehicleFactory_h__
 #define __VehicleFactory_h__
+
 #include"Vehicle.h"
+#include <exception>
 	/**
- 	*@brief VehicleFactory class is an abstract class that services as a template class 
+ 	*brief VehicleFactory class is an abstract class that services as a template class 
  	* for the children class of VehicleFactory. The factories are used to create objects of Vehicles 
  	**/
  class VehicleFactory

@@ -3,11 +3,11 @@
 #ifndef __Map_h__
 #define __Map_h__
 
-#include "Territory.h"
-
 class Location;
 class Territory;
 class MapState;
+
+#include "Territory.h"
 
 class Map
 {

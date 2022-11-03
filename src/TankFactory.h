@@ -1,13 +1,13 @@
 /// @author Jake Mahloko
 
-#include <exception>
 
 #ifndef __TankFactory_h__
 #define __TankFactory_h__
 
 #include "VehicleFactory.h"
+#include <exception>
 	/**
-	*@brief TankFactory Inherits from the VehicleFactory class which it uses the factory method 
+	*brief TankFactory Inherits from the VehicleFactory class which it uses the factory method 
 	*to create Tank objects and return pointer to the object 
  	**/
 class TankFactory: public VehicleFactory

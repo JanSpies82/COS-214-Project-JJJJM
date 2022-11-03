@@ -10,23 +10,57 @@
 
 class Country;
 class Location;
-
 class MilitaryState;
 
 class CountryState
 {
 public:
   /**
-    * @brief create new country state
-    * 
-    * @param country country to create state for
-    */
+  * @brief Create new country state
+  * 
+  * @param country country to create state for
+  */
   CountryState();
+
+  /**
+   * @brief Construct a new Country State object
+   * 
+   * @param country 
+   */
   CountryState(Country* country);
+
+  /**
+   * @brief Construct a new Country State object
+   * 
+   * @param cs 
+   */
   CountryState(const CountryState& cs);
+
+  /**
+   * @brief Destroy the Country State object
+   * 
+   */
   ~CountryState();
+
+  /**
+   * @brief Create a clone of the held country state and return it
+   * 
+   * @return CountryState* 
+   */
   CountryState* clone();
+
+  /**
+   * @brief Get the Military State object
+   * 
+   * @return MilitaryState* 
+   */
   MilitaryState* getMilitaryState();
+
+  /**
+   * @brief Set the Military State object
+   * 
+   * @param _militaryState 
+   */
   void setMilitaryState(MilitaryState* _militaryState);
 
 private: 

@@ -16,9 +16,28 @@ class Country;
 class Military
 {
 public:
+/**
+ * @brief Construct a new Military object
+ * 
+ */
   Military();
+
+  /**
+   * @brief Construct a new Military object
+   * 
+   */
   Military(Military*);
+
+  /**
+   * @brief Destroy the Military object
+   * 
+   */
   ~Military();
+
+  /**
+   * @brief 
+   * 
+   */
   void attack(Country*);
 };
 

@@ -8,6 +8,11 @@
 class LateStrategy : public Strategy
 {
 public:
+
+    /**
+     * @brief Construct a new Late Strategy object
+     * 
+     */
     LateStrategy();
 
     /**
