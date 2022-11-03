@@ -573,3 +573,15 @@ void Country::setState(CountryState *_state)
     delete countryState;
   countryState = _state;
 }
+
+void Country::printSummary(){
+  std::cout << "Country: " << countryState->name << std::endl;
+  std::cout << "Population: " << countryState->numCitizens << std::endl;
+  std::cout << "Political Stability: " << countryState->politicalStability << std::endl;
+  std::cout << "Domestic Morale: " << countryState->domesticMorale << std::endl;
+  std::cout << "Self Reliance: " << countryState->selfReliance << std::endl;
+  std::cout << "Border Strength: " << countryState->borderStrength << std::endl;
+  std::cout << "Capital Safety: " << countryState->capitalSafety << std::endl;
+  std::cout << "War Sentiment: " << countryState->warSentiment << std::endl;
+  std::cout << "Trade Route Safety: " << countryState->tradeRouteSafety << std::endl;
+}

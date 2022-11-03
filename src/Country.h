@@ -331,12 +331,16 @@ public:
   void setMilitaryState(MilitaryState *_militaryState);
 
   /**
-   * @brief Set the State object of the country to the passed in object
+   * @brief settervfor the country's CountryState object
    *
    * @param _state : CountryState* - The new state object
    */
   void setState(CountryState *_state);
-
+/**
+ * @brief print a basic summary of the country's state
+ * 
+ */
+ void printSummary();
 private:
   Strategy *strategy;
   Military *military;
