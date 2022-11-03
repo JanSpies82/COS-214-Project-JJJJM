@@ -68,13 +68,15 @@ CountryState::~CountryState()
 
   if (enemies != NULL)
   {
-    enemies->resize(0);
+    for (int i = 0; i < enemies->size(); i++)
+      delete enemies->at(i);
     delete enemies;
   }
 
   if (locations != NULL)
   {
-    locations->resize(0);
+    for (int i = 0; i < locations->size(); i++)
+      delete locations->at(i);
     delete locations;
   }
 
