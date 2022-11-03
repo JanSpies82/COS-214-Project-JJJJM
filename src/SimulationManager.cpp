@@ -6,7 +6,8 @@
 #include "Superpower.h"
 #include "Memento.h"
 #include "Backup.h"
-#include "WarStage.h"
+#include "StageContext.h"
+#include "StageContextState.h"
 #include "Country.h"
 #include "CountryState.h"
 #include "MilitaryState.h"
@@ -67,7 +68,6 @@ SimulationManager::SimulationManager()
     map = NULL;
     superpowers = NULL;
     backup = NULL;
-    warStage = NULL;
     designMode = false;
     isRunning = false;
 }
@@ -79,7 +79,7 @@ SimulationManager::~SimulationManager()
         delete superpowers->at(i);
     delete superpowers;
     delete backup;
-    // delete warStage;
+    delete StageContext::getInstance();
 }
 
 void SimulationManager::runSimulation()
@@ -121,14 +121,13 @@ void SimulationManager::resetSimulation()
     }
     if (backup != NULL)
         delete backup;
-    if (warStage != NULL)
-        delete warStage;
+
+    delete StageContext::getInstance();
 
     system("clear");
     map = new Map();
     superpowers = new std::vector<Superpower *>();
     backup = new Backup();
-    // warStage = new WarStage(); //Maybe not necessary since takeTurn will already handle this?
 
     setSuperpowers();
     setDesignMode();
@@ -149,6 +148,7 @@ void SimulationManager::resetSimulation()
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     } while (maxTurnCount < 4 || maxTurnCount > 100);
+    StageContext::getInstance()->setSimulationLength(maxTurnCount);
     cout << "Simulation is ready to start!" << endl;
     cout << "Press enter to continue..." << endl;
     cin.ignore();
@@ -167,11 +167,11 @@ void SimulationManager::setDesignMode()
 
 void SimulationManager::saveState()
 {
-    SimulationState *state = new SimulationState(this);
+    SimulationState *state = new SimulationState();
     state->setMapState(map->getState());
     state->addSuperpowerState(superpowers->at(0)->getState());
     state->addSuperpowerState(superpowers->at(1)->getState());
-    // state->setWarStage(warStage->clone());
+    state->setStageContextState(StageContext::getInstance()->getState());
     backup->addMemento(new Memento(state));
 }
 
@@ -647,19 +647,7 @@ void SimulationManager::takeTurn()
     saveState();
 
     turnCount++;
-    if (turnCount <= floor(maxTurnCount * 0.3))
-    {
-        // Move to Early Stage
-    }
-    else if (turnCount <= ceil(maxTurnCount * 0.6))
-    {
-        // Move to Middle Stage
-    }
-    else
-    {
-        // Move to Late Stage
-    }
-
+    StageContext::getInstance()->incrementRound();
     for (int i = 0; i < superpowers->at(0)->getCountryCount(); i++)
         superpowers->at(0)->getCountry(i)->takeTurn(NULL); // TODO check whether input parameter should be removed
 
@@ -676,9 +664,6 @@ void SimulationManager::viewSummary()
         superpowers->at(i)->printSummary();
 
     isRunning = ((superpowers->at(0)->getCountryCount() > 0 && superpowers->at(1)->getCountryCount() > 0) && turnCount <= maxTurnCount);
-    // cout << "Press enter to continue..." << endl;
-    // cin.ignore();
-    // cin.get();
 };
 
 void SimulationManager::processMenu()
