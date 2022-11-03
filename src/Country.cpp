@@ -11,8 +11,10 @@
 #include "MiddleStrategy.h"
 #include "LateStrategy.h"
 #include "Strategy.h"
+#include "StageContext.h"
+#include "StageContextState.h"
 #include "Location.h"
-
+#include <exception>
 #include <stdexcept>
 
 ///////////////////////////////////////////////////////////
@@ -23,12 +25,16 @@ Country::~Country()
 {
   if (strategy != NULL)
     delete strategy;
+  strategy = NULL;
   if (military != NULL)
     delete military;
+  military = NULL;
   if (mediator != NULL)
     delete mediator;
+  mediator = NULL;
   if (countryState != NULL)
     delete countryState;
+  countryState = NULL;
 }
 
 ///////////////////////////////////////////////////////////
@@ -50,28 +56,30 @@ Country::Country(std::string _name)
 
 void Country::takeTurn(Country *countryB)
 {
-  // setStrategy();
-  // double strengthRatings[2];
-  // getCountryRating(countryB, strengthRatings);
+  setStrategy();
+  double strengthRatings[2];
+  getCountryRating(countryB, strengthRatings);
+  // std::cout << "strengthRatings, [0] : " << strengthRatings[0];
+  // std::cout << " , [1] : " << strengthRatings[1] << "\n";
   // strategy->takeTurn(strengthRatings, this, countryB);
 }
 
 ///////////////////////////////////////////////////////////
-// setWarStage()
+// setStrategy()
 ///////////////////////////////////////////////////////////
 
-// void Country::setStrategy()
-// {
-//   delete strategy;
-//   strategy = NULL;
+void Country::setStrategy()
+{
+  if (strategy != NULL)
+    delete strategy;
 
-//   if (getTurnCount() < 5)
-//     strategy = new EarlyStrategy();
-//   if (getTurnCount() < 15)
-//     strategy = new MiddleStrategy();
-//   if (getTurnCount() <= 20)
-//     strategy = new LateStrategy();
-// }
+  if (StageContext::getInstance()->getWarStage() == 0)
+    strategy = new EarlyStrategy();
+  if (StageContext::getInstance()->getWarStage() == 1)
+    strategy = new MiddleStrategy();
+  if (StageContext::getInstance()->getWarStage() == 2)
+    strategy = new LateStrategy();
+}
 
 ///////////////////////////////////////////////////////////
 // getState()
@@ -106,38 +114,55 @@ void Country::setNumCitizens(int _numCitizens)
 
 void Country::getCountryRating(Country *b, double *strengthRatings)
 {
-  std::vector<double> strengthScoresA;
-  std::vector<double> strengthScoresB;
-  std::vector<double> aspectScores;
+  std::vector<double>* strengthScoresA = new std::vector<double>();
+  std::vector<double>* strengthScoresB = new std::vector<double>();
+  std::vector<double>* aspectScores = new std::vector<double>();
 
-  compareMilitary(this, b, &aspectScores); // get CountryA's military strength scores
-  for (double score : aspectScores)
-    strengthScoresA.push_back(score);
+  std::cout << "getCountryRating 1\n";
+  compareMilitary(this, b, aspectScores); // get CountryA's military strength scores
+  for (int i = 0; i < aspectScores->size(); i++)
+      strengthScoresA->push_back(aspectScores->at(i));
 
-  compareMilitary(b, this, &aspectScores); // get CountryB's military strength scores
-  for (double score : aspectScores)
-    strengthScoresB.push_back(score);
+  aspectScores->clear();
 
-  compareDomestic(this, b, &aspectScores); // get CountryA's domestic strength scores
-  for (double score : aspectScores)
-    strengthScoresA.push_back(score);
+  std::cout << "getCountryRating 2\n";
+  compareMilitary(b, this, aspectScores); // get CountryB's military strength scores
+  for (int i = 0; i < aspectScores->size(); i++)
+      strengthScoresB->push_back(aspectScores->at(i));
 
-  compareDomestic(b, this, &aspectScores); // get CountryB's domestic strength scores
-  for (double score : aspectScores)
-    strengthScoresB.push_back(score);
+  aspectScores->clear();
 
+  std::cout << "getCountryRating 3\n";
+  compareDomestic(this, b, aspectScores); // get CountryA's domestic strength scores
+  for (int i = 0; i < aspectScores->size(); i++)
+      strengthScoresA->push_back(aspectScores->at(i));
+
+  aspectScores->clear();
+
+  // std::cout << "getCountryRating 4\n";
+  compareDomestic(b, this, aspectScores); // get CountryB's domestic strength scores
+  for (int i = 0; i < aspectScores->size(); i++)
+      strengthScoresB->push_back(aspectScores->at(i));
+
+  // std::cout << "getCountryRating 5\n";
   double strengthA = 0.0;
-  for (double score : strengthScoresA)
-    strengthA += score;
-  strengthA /= strengthScoresA.size(); // CountryA's overall strength
+  for (int i = 0; i < strengthScoresA->size(); i++)
+    strengthA += strengthScoresA->at(i);
+  if (strengthA != 0)
+    strengthA /= strengthScoresA->size(); // CountryA's overall strength
 
   double strengthB = 0.0;
-  for (double score : strengthScoresB)
-    strengthB += score;
-  strengthB /= strengthScoresB.size(); // CountryB's overall strength
+  for (int i = 0; i < strengthScoresB->size(); i++)
+    strengthB += strengthScoresB->at(i);
+  if (strengthB != 0)
+    strengthB /= strengthScoresB->size(); // CountryB's overall strength
 
   strengthRatings[0] = strengthA;
   strengthRatings[1] = strengthB;
+
+  delete strengthScoresA;
+  delete strengthScoresB;
+  delete aspectScores;
 }
 
 ///////////////////////////////////////////////////////////
@@ -148,10 +173,10 @@ void Country::compareMilitary(Country *a, Country *b, std::vector<double> *aspec
 {
   MilitaryState *mA = a->countryState->militaryState;
   MilitaryState *mB = b->countryState->militaryState;
-  (*aspectScores).push_back(compareAspect(mA->getNumTroops(), mB->getNumTroops()));
-  (*aspectScores).push_back(compareAspect(mA->getNumTanks(), mB->getNumTanks()));
-  (*aspectScores).push_back(compareAspect(mA->getNumPlanes(), mB->getNumPlanes()));
-  (*aspectScores).push_back(compareAspect(mA->getNumShips(), mB->getNumShips()));
+  aspectScores->push_back(compareAspect(mA->getNumTroops(), mB->getNumTroops()));
+  aspectScores->push_back(compareAspect(mA->getNumTanks(), mB->getNumTanks()));
+  aspectScores->push_back(compareAspect(mA->getNumPlanes(), mB->getNumPlanes()));
+  aspectScores->push_back(compareAspect(mA->getNumShips(), mB->getNumShips()));
 }
 
 ///////////////////////////////////////////////////////////
