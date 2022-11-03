@@ -129,33 +129,28 @@ void Country::getCountryRating(Country *b, double *strengthRatings)
   std::vector<double>* strengthScoresB = new std::vector<double>();
   std::vector<double>* aspectScores = new std::vector<double>();
 
-  std::cout << "getCountryRating 1\n";
   compareMilitary(this, b, aspectScores); // get CountryA's military strength scores
   for (int i = 0; i < aspectScores->size(); i++)
       strengthScoresA->push_back(aspectScores->at(i));
 
   aspectScores->clear();
 
-  std::cout << "getCountryRating 2\n";
   compareMilitary(b, this, aspectScores); // get CountryB's military strength scores
   for (int i = 0; i < aspectScores->size(); i++)
       strengthScoresB->push_back(aspectScores->at(i));
 
   aspectScores->clear();
 
-  std::cout << "getCountryRating 3\n";
   compareDomestic(this, b, aspectScores); // get CountryA's domestic strength scores
   for (int i = 0; i < aspectScores->size(); i++)
       strengthScoresA->push_back(aspectScores->at(i));
 
   aspectScores->clear();
 
-  // std::cout << "getCountryRating 4\n";
   compareDomestic(b, this, aspectScores); // get CountryB's domestic strength scores
   for (int i = 0; i < aspectScores->size(); i++)
       strengthScoresB->push_back(aspectScores->at(i));
 
-  // std::cout << "getCountryRating 5\n";
   double strengthA = 0.0;
   for (int i = 0; i < strengthScoresA->size(); i++)
     strengthA += strengthScoresA->at(i);
