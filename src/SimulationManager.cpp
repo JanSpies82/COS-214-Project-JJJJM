@@ -754,7 +754,41 @@ void SimulationManager::finalMessage()
         cout << "The simulation ended with the " << superpowers->at(1)->getName() << " winning." << endl;
 };
 
-void SimulationManager::viewCountrySummary(){};
+void SimulationManager::viewCountrySummary()
+{
+    vector<Country *> *countries = new vector<Country *>();
+    for (int i = 0; i < superpowers->size(); i++)
+        for (int j = 0; j < superpowers->at(i)->getCountryCount(); j++)
+            countries->push_back(superpowers->at(i)->getCountry(j));
+
+    cout << "Choose a country you would like to view a summary of:" << endl;
+    int i;
+    for (i = 0; i < countries->size(); i++)
+        cout << "[" << i + 1 << "] " << countries->at(i)->getName() << endl;
+    cout << "[" << i + 1 << "] Cancel" << endl;
+    int choice = -1;
+    do
+    {
+        cout << "Choice: " << YELLOW;
+        cin >> choice;
+        cout << RESET;
+        if (!cin.good())
+        {
+            choice = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (choice < 1 || choice > countries->size() + 1);
+
+    if (choice == countries->size() + 1){
+        cout << "Action cancelled." << endl;
+        delete countries;
+        return;
+    }
+
+    countries->at(choice - 1)->printSummary();
+    delete countries;
+};
 
 void SimulationManager::designModeAction(){};
 
