@@ -300,7 +300,12 @@ public:
    */
   void setMediator(CountryMediator* _mediator);
  
-  
+ /**
+  * @brief Set the State object of the country to the passed in object
+  * 
+  * @param _state : CountryState* - The new state object
+  */
+  void setState(CountryState* _state);
 private:
   Strategy* strategy;
   Military* military;

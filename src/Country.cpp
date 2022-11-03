@@ -19,9 +19,11 @@
 // Country()
 ///////////////////////////////////////////////////////////
 
-// Country::Country()
-// {
-// }
+Country::Country()
+{
+  countryState = new CountryState();
+  countryState->locations = NULL;
+}
 
 ///////////////////////////////////////////////////////////
 // ~Country()
@@ -29,10 +31,10 @@
 
 Country::~Country()
 {
-  if (countryState->locations != NULL)
-    delete countryState->locations;
   if (countryState != NULL)
     delete countryState;
+  if (countryState->locations != NULL)
+    delete countryState->locations;
 }
 
 ///////////////////////////////////////////////////////////
@@ -428,7 +430,7 @@ void Country::setLocations(std::vector<Location *> *_locations)
   countryState->locations = _locations;
   for (int i = 0; i < countryState->locations->size(); i++)
     if (!countryState->locations->at(i)->getIsCapital())
-      countryState->locations->at(i)->setColor(countryState->color);//Set location to be the same color as country
+      countryState->locations->at(i)->setColor(countryState->color); // Set location to be the same color as country
     else
       countryState->locations->at(i)->setColor("\x1B[40m"); // Set capital color to black
 }
@@ -455,7 +457,7 @@ std::string Country::getColor()
 // getMediator()
 ///////////////////////////////////////////////////////////
 
-CountryMediator* Country::getMediator()
+CountryMediator *Country::getMediator()
 {
   return mediator;
 }
@@ -464,9 +466,20 @@ CountryMediator* Country::getMediator()
 // setMediator()
 ///////////////////////////////////////////////////////////
 
-void Country::setMediator(CountryMediator* _mediator)
+void Country::setMediator(CountryMediator *_mediator)
 {
   if (mediator != NULL)
     delete mediator;
   mediator = _mediator;
+}
+
+///////////////////////////////////////////////////////////
+// setState()
+///////////////////////////////////////////////////////////
+
+void Country::setState(CountryState *_state)
+{
+  if (countryState != NULL)
+    delete countryState;
+  countryState = _state;
 }
