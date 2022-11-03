@@ -2,6 +2,10 @@
 #include <stdexcept>
 #include <vector>
 #include "../src/Country.h"
+#include "../src/Ship.h"
+#include "../src/Plane.h"
+#include "../src/Tank.h"
+#include "../src/Vehicle.h"
 #include "../src/Location.h"
 #include "../src/Territory.h"
 #include "../src/CountryState.h"
@@ -82,5 +86,72 @@ namespace {
     Country* a = new Country("a");
     a->setLocations(locs);
     delete a;
+    a = NULL;
+  }
+
+  TEST(CountryTest, identifyStrategy)
+  {
+    // Set countryA countryState
+    Country* countryA = new Country("countryA");
+    countryA->setBorderStrength(0.9);
+    countryA->setNumCitizens(1000);
+    countryA->setCapitalSafety(0.9);
+    countryA->setDomesticMorale(0.9);
+    countryA->setTradeRouteSafety(0.9);
+    countryA->setSelfReliance(0.9);
+    countryA->setPoliticalStability(0.9);
+
+    // Set countryB countryState
+    // Country* countryB = new Country("CountryB");
+    // countryB->setBorderStrength(0.3);
+    // countryB->setNumCitizens(100);
+    // countryB->setCapitalSafety(0.3);
+    // countryB->setDomesticMorale(0.3);
+    // countryB->setTradeRouteSafety(0.3);
+    // countryB->setSelfReliance(0.3);
+    // countryB->setPoliticalStability(0.3);
+
+    // Create countryA militaryState
+    MilitaryState* mA = new MilitaryState();
+
+    std::vector<Ship*>* shipsA = new std::vector<Ship*>();
+    for (int i = 0; i < 100; i++)
+      shipsA->push_back(new Ship());
+    mA->setShips(shipsA);
+    
+    // std::vector<Tank*>* tanksA = new std::vector<Tank*>();
+    // for (int i = 0; i < 100; i++)
+    //   tanksA->push_back(new Tank());
+    // mA->setTanks(tanksA);
+
+    // std::vector<Plane*>* planesA = new std::vector<Plane*>();
+    // for (int i = 0; i < 100; i++)
+    //   planesA->push_back(new Plane());
+    // mA->setPlanes(planesA);
+
+    // Create countryB militaryState
+    // MilitaryState* mB = new MilitaryState();
+
+    // std::vector<Ship*>* shipsB = new std::vector<Ship*>();
+    // for (int i = 0; i < 10; i++)
+    //   shipsB->push_back(new Ship());
+    // mB->setShips(shipsB);
+    
+    // std::vector<Tank*>* tanksB = new std::vector<Tank*>();
+    // for (int i = 0; i < 10; i++)
+    //   tanksB->push_back(new Tank());
+    // mB->setTanks(tanksB);
+
+    // std::vector<Plane*>* planesB = new std::vector<Plane*>();
+    // for (int i = 0; i < 10; i++)
+    //   planesB->push_back(new Plane());
+    // mB->setPlanes(planesB);
+
+    //countryA->setMilitaryState(mA);
+    // countryB->setMilitaryState(mB);
+    // countryA->takeTurn(countryB);
+
+    delete countryA;
+    // delete countryB;
   }
 }
