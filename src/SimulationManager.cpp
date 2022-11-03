@@ -264,8 +264,8 @@ void SimulationManager::setUpUK(Country *_uk)
     vector<Country *> *enemies = new vector<Country *>();
     for (int i = 0; i < superpowers->at(0)->getCountryCount(); i++)
         enemies->push_back(superpowers->at(i)->getCountry(i));
-    delete enemies;
-    // _uk->setEnemy(enemies);
+
+    _uk->setEnemies(enemies);
     _uk->setBorderStrength(0.75);
     _uk->setCapitalSafety(0.65);
     _uk->setDomesticMorale(0.5);
@@ -323,8 +323,8 @@ void SimulationManager::setUpFrance(Country *_france)
     vector<Country *> *enemies = new vector<Country *>();
     for (int i = 0; i < superpowers->at(0)->getCountryCount(); i++)
         enemies->push_back(superpowers->at(i)->getCountry(i));
-    delete enemies;
-    // _france->setEnemy(enemies);
+
+    _france->setEnemies(enemies);
     _france->setBorderStrength(0.25);
     _france->setCapitalSafety(0.4);
     _france->setDomesticMorale(0.3);
@@ -382,8 +382,8 @@ void SimulationManager::setUpBalkans(Country *_balkans)
     vector<Country *> *enemies = new vector<Country *>();
     for (int i = 0; i < superpowers->at(0)->getCountryCount(); i++)
         enemies->push_back(superpowers->at(i)->getCountry(i));
-    delete enemies;
-    // _balkans->setEnemy(enemies);
+
+    _balkans->setEnemies(enemies);
     _balkans->setBorderStrength(0.45);
     _balkans->setCapitalSafety(0.4);
     _balkans->setDomesticMorale(0.6);
@@ -391,7 +391,7 @@ void SimulationManager::setUpBalkans(Country *_balkans)
     _balkans->setSelfReliance(0.6);
     _balkans->setWarSentiment(0.4);
     _balkans->setTradeRouteSafety(0.3);
-    _balkans->setNumCitizens(17000000); // Educated guess
+    _balkans->setNumCitizens(37000000); // Educated guess
 
     vector<VehicleFactory *> *vFactories = new vector<VehicleFactory *>();
     vFactories->push_back(new TankFactory());
@@ -441,8 +441,8 @@ void SimulationManager::setUpSpainPortugal(Country *_spainPortugal)
     vector<Country *> *enemies = new vector<Country *>();
     for (int i = 0; i < superpowers->at(0)->getCountryCount(); i++)
         enemies->push_back(superpowers->at(i)->getCountry(i));
-    delete enemies;
-    // _spainPortugal->setEnemy(enemies);
+
+    _spainPortugal->setEnemies(enemies);
     _spainPortugal->setBorderStrength(0.7);
     _spainPortugal->setCapitalSafety(0.7);
     _spainPortugal->setDomesticMorale(0.8);
@@ -500,8 +500,8 @@ void SimulationManager::setUpSovietUnion(Country *_sovietUnion)
     vector<Country *> *enemies = new vector<Country *>();
     for (int i = 0; i < superpowers->at(0)->getCountryCount(); i++)
         enemies->push_back(superpowers->at(i)->getCountry(i));
-    delete enemies;
-    // _sovietUnion->setEnemy(enemies);
+
+    _sovietUnion->setEnemies(enemies);
     _sovietUnion->setBorderStrength(0.9);
     _sovietUnion->setCapitalSafety(0.9);
     _sovietUnion->setDomesticMorale(0.5);
@@ -559,8 +559,8 @@ void SimulationManager::setUpScandanavia(Country *_scandanavia)
     vector<Country *> *enemies = new vector<Country *>();
     for (int i = 0; i < superpowers->at(0)->getCountryCount(); i++)
         enemies->push_back(superpowers->at(i)->getCountry(i));
-    delete enemies;
-    // _scandanavia->setEnemy(enemies);
+
+    _scandanavia->setEnemies(enemies);
     _scandanavia->setBorderStrength(0.75);
     _scandanavia->setCapitalSafety(0.9);
     _scandanavia->setDomesticMorale(0.6);
@@ -618,8 +618,8 @@ void SimulationManager::setUpGermany(Country *_germany)
     vector<Country *> *enemies = new vector<Country *>();
     for (int i = 0; i < superpowers->at(1)->getCountryCount(); i++)
         enemies->push_back(superpowers->at(i)->getCountry(i));
-    delete enemies;
-    // _germany->setEnemy(enemies);
+
+    _germany->setEnemies(enemies);
     _germany->setBorderStrength(0.6);
     _germany->setCapitalSafety(0.85);
     _germany->setDomesticMorale(0.9);
@@ -678,8 +678,7 @@ void SimulationManager::setUpItaly(Country *_italy)
     for (int i = 0; i < superpowers->at(1)->getCountryCount(); i++)
         enemies->push_back(superpowers->at(i)->getCountry(i));
 
-    delete enemies;
-    // _italy->setEnemy(enemies);
+    _italy->setEnemies(enemies);
     _italy->setBorderStrength(0.5);
     _italy->setCapitalSafety(0.6);
     _italy->setDomesticMorale(0.65);
@@ -727,10 +726,10 @@ void SimulationManager::takeTurn()
     turnCount++;
     StageContext::getInstance()->incrementRound();
     for (int i = 0; i < superpowers->at(0)->getCountryCount(); i++)
-        superpowers->at(0)->getCountry(i)->takeTurn(NULL); // TODO check whether input parameter should be removed
+        superpowers->at(0)->getCountry(i)->takeTurn(); 
 
     for (int i = 0; i < superpowers->at(1)->getCountryCount(); i++)
-        superpowers->at(1)->getCountry(i)->takeTurn(NULL); // TODO check whether input parameter should be removed
+        superpowers->at(1)->getCountry(i)->takeTurn(); 
 };
 
 void SimulationManager::viewSummary()
@@ -867,7 +866,7 @@ void SimulationManager::viewCountrySummary()
         return;
     }
 
-    countries->at(choice - 1)->printSummary();
+    countries->at(choice - 1)->printSummary();//TODO check that this is correct
     delete countries;
 };
 
