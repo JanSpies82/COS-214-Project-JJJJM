@@ -3,6 +3,9 @@
 #ifndef MIDDLE_STRATEGY_H
 #define MIDDLE_STRATEGY_H
 
+#include <iostream>
+#include <cmath>
+
 #include "Strategy.h"
 
 class MiddleStrategy : public Strategy
