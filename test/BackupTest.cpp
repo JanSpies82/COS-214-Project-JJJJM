@@ -38,9 +38,9 @@ namespace
         Memento *m2 = new Memento();
         backup->addMemento(m1);
         backup->addMemento(m2);
-        EXPECT_EQ(backup->getMemento(), m1);
-        EXPECT_EQ(backup->getMementoCount(), 1);
         EXPECT_EQ(backup->getMemento(), m2);
+        EXPECT_EQ(backup->getMementoCount(), 1);
+        EXPECT_EQ(backup->getMemento(), m1);
         EXPECT_EQ(backup->getMementoCount(), 0);
         delete backup;
         delete m1;

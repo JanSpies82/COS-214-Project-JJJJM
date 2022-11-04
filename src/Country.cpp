@@ -18,6 +18,19 @@
 #include <stdexcept>
 
 ///////////////////////////////////////////////////////////
+// Country()
+///////////////////////////////////////////////////////////
+
+Country::Country()
+{
+  countryState = new CountryState();
+  countryState->locations = NULL;
+  strategy = NULL;
+  military = NULL;
+  mediator = NULL;
+}
+
+///////////////////////////////////////////////////////////
 // ~Country()
 ///////////////////////////////////////////////////////////
 
@@ -48,6 +61,7 @@ Country::Country(std::string _name)
   military = NULL;
   mediator = NULL;
   strategy = NULL;
+  countryState->locations = NULL;
 }
 
 ///////////////////////////////////////////////////////////
@@ -66,10 +80,10 @@ void Country::takeTurn(Country *countryB)
 
 void Country::takeTurn()
 {
-  setStrategy();
-  double strengthRatings[2];
-  Country* countryB = getEnemies()->at(rand() % getEnemies()->size());
-  getCountryRating(countryB, strengthRatings);
+  // setStrategy();
+  // double strengthRatings[2];
+  // Country* countryB = getEnemies()->at(rand() % getEnemies()->size());
+  // getCountryRating(countryB, strengthRatings);
   // std::cout << "strengthRatings, [0] : " << strengthRatings[0];
   // std::cout << " , [1] : " << strengthRatings[1] << "\n";
   // strategy->takeTurn(strengthRatings, this, enemies[0]);
@@ -465,7 +479,7 @@ void Country::setLocations(std::vector<Location *> *_locations)
   countryState->locations = _locations;
   for (int i = 0; i < countryState->locations->size(); i++)
     if (!countryState->locations->at(i)->getIsCapital())
-      countryState->locations->at(i)->setColor(countryState->color);//Set location to be the same color as country
+      countryState->locations->at(i)->setColor(countryState->color); // Set location to be the same color as country
     else
       countryState->locations->at(i)->setColor("\x1B[40m"); // Set capital color to black
 }
@@ -492,7 +506,7 @@ std::string Country::getColor()
 // getMediator()
 ///////////////////////////////////////////////////////////
 
-CountryMediator* Country::getMediator()
+CountryMediator *Country::getMediator()
 {
   return mediator;
 }
@@ -501,7 +515,7 @@ CountryMediator* Country::getMediator()
 // setMediator()
 ///////////////////////////////////////////////////////////
 
-void Country::setMediator(CountryMediator* _mediator)
+void Country::setMediator(CountryMediator *_mediator)
 {
   if (mediator != NULL)
     delete mediator;
@@ -546,4 +560,27 @@ void Country::setMilitaryState(MilitaryState* _militaryState)
   if (countryState->militaryState != NULL)
     delete countryState->militaryState;
   countryState->militaryState = _militaryState;
+}
+
+///////////////////////////////////////////////////////////
+// setState()
+///////////////////////////////////////////////////////////
+
+void Country::setState(CountryState *_state)
+{
+  if (countryState != NULL)
+    delete countryState;
+  countryState = _state;
+}
+
+void Country::printSummary(){
+  std::cout << "Country: " << countryState->name << std::endl;
+  std::cout << "Population: " << countryState->numCitizens << std::endl;
+  std::cout << "Political Stability: " << countryState->politicalStability << std::endl;
+  std::cout << "Domestic Morale: " << countryState->domesticMorale << std::endl;
+  std::cout << "Self Reliance: " << countryState->selfReliance << std::endl;
+  std::cout << "Border Strength: " << countryState->borderStrength << std::endl;
+  std::cout << "Capital Safety: " << countryState->capitalSafety << std::endl;
+  std::cout << "War Sentiment: " << countryState->warSentiment << std::endl;
+  std::cout << "Trade Route Safety: " << countryState->tradeRouteSafety << std::endl;
 }

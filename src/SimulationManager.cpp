@@ -8,6 +8,9 @@
 #include "Backup.h"
 #include "StageContext.h"
 #include "StageContextState.h"
+#include "EarlyStage.h"
+#include "MiddleStage.h"
+#include "LateStage.h"
 #include "Country.h"
 #include "CountryState.h"
 #include "MilitaryState.h"
@@ -18,6 +21,7 @@
 #include "TankFactory.h"
 #include "PlaneFactory.h"
 #include "ShipFactory.h"
+#include "MapState.h"
 #include <string>
 #include <iostream>
 #include <limits>
@@ -91,7 +95,7 @@ void SimulationManager::runSimulation()
         while (isSimulationRunning())
         {
             takeTurn();
-            viewSummary();
+            // viewSummary();
             if (isSimulationRunning())
                 processMenu();
         }
@@ -175,6 +179,39 @@ void SimulationManager::saveState()
     backup->addMemento(new Memento(state));
 }
 
+bool SimulationManager::restoreState()
+{
+    if (backup->getMementoCount() == 0)
+    {
+        cout << "No states to restore!" << endl;
+        return false;
+    }
+    try
+    {
+        Memento *m = backup->getMemento();
+        SimulationState *state = m->getState();
+        StageContext::getInstance()->setState(state->getStageContextState());
+        turnCount = StageContext::getInstance()->getCurrentRound();
+        cout << "Restoring state at turn " << turnCount << endl;
+        delete map;
+        map = state->getMapState()->clone();
+        for (int i = 0; i < superpowers->size(); i++)
+            delete superpowers->at(i);
+        delete superpowers;
+        superpowers = new vector<Superpower *>();
+        for (int i = 0; i < state->getSuperpowerStateCount(); i++)
+            superpowers->push_back(new Superpower(state->getSuperpowerState(i)));
+
+        delete m;
+    }
+    catch (exception &e)
+    {
+        cout << "Error: " << e.what() << endl;
+        return false;
+    }
+    return true;
+};
+
 void SimulationManager::setSuperpowers()
 {
     superpowers->push_back(new Superpower("Axis Powers"));
@@ -224,6 +261,11 @@ void SimulationManager::setUpUK(Country *_uk)
     _uk->setColor(countryColors[3]);
     _uk->setLocations(locations);
 
+    vector<Country *> *enemies = new vector<Country *>();
+    for (int i = 0; i < superpowers->at(0)->getCountryCount(); i++)
+        enemies->push_back(superpowers->at(i)->getCountry(i));
+
+    _uk->setEnemies(enemies);
     _uk->setBorderStrength(0.75);
     _uk->setCapitalSafety(0.65);
     _uk->setDomesticMorale(0.5);
@@ -278,6 +320,11 @@ void SimulationManager::setUpFrance(Country *_france)
     _france->setColor(countryColors[4]);
     _france->setLocations(locations);
 
+    vector<Country *> *enemies = new vector<Country *>();
+    for (int i = 0; i < superpowers->at(0)->getCountryCount(); i++)
+        enemies->push_back(superpowers->at(i)->getCountry(i));
+
+    _france->setEnemies(enemies);
     _france->setBorderStrength(0.25);
     _france->setCapitalSafety(0.4);
     _france->setDomesticMorale(0.3);
@@ -332,6 +379,11 @@ void SimulationManager::setUpBalkans(Country *_balkans)
     _balkans->setColor(countryColors[5]);
     _balkans->setLocations(locations);
 
+    vector<Country *> *enemies = new vector<Country *>();
+    for (int i = 0; i < superpowers->at(0)->getCountryCount(); i++)
+        enemies->push_back(superpowers->at(i)->getCountry(i));
+
+    _balkans->setEnemies(enemies);
     _balkans->setBorderStrength(0.45);
     _balkans->setCapitalSafety(0.4);
     _balkans->setDomesticMorale(0.6);
@@ -339,7 +391,7 @@ void SimulationManager::setUpBalkans(Country *_balkans)
     _balkans->setSelfReliance(0.6);
     _balkans->setWarSentiment(0.4);
     _balkans->setTradeRouteSafety(0.3);
-    _balkans->setNumCitizens(17000000); // Educated guess
+    _balkans->setNumCitizens(37000000); // Educated guess
 
     vector<VehicleFactory *> *vFactories = new vector<VehicleFactory *>();
     vFactories->push_back(new TankFactory());
@@ -386,6 +438,11 @@ void SimulationManager::setUpSpainPortugal(Country *_spainPortugal)
     _spainPortugal->setColor(countryColors[2]);
     _spainPortugal->setLocations(locations);
 
+    vector<Country *> *enemies = new vector<Country *>();
+    for (int i = 0; i < superpowers->at(0)->getCountryCount(); i++)
+        enemies->push_back(superpowers->at(i)->getCountry(i));
+
+    _spainPortugal->setEnemies(enemies);
     _spainPortugal->setBorderStrength(0.7);
     _spainPortugal->setCapitalSafety(0.7);
     _spainPortugal->setDomesticMorale(0.8);
@@ -440,6 +497,11 @@ void SimulationManager::setUpSovietUnion(Country *_sovietUnion)
     _sovietUnion->setColor(countryColors[6]);
     _sovietUnion->setLocations(locations);
 
+    vector<Country *> *enemies = new vector<Country *>();
+    for (int i = 0; i < superpowers->at(0)->getCountryCount(); i++)
+        enemies->push_back(superpowers->at(i)->getCountry(i));
+
+    _sovietUnion->setEnemies(enemies);
     _sovietUnion->setBorderStrength(0.9);
     _sovietUnion->setCapitalSafety(0.9);
     _sovietUnion->setDomesticMorale(0.5);
@@ -494,6 +556,11 @@ void SimulationManager::setUpScandanavia(Country *_scandanavia)
     _scandanavia->setColor(countryColors[9]);
     _scandanavia->setLocations(locations);
 
+    vector<Country *> *enemies = new vector<Country *>();
+    for (int i = 0; i < superpowers->at(0)->getCountryCount(); i++)
+        enemies->push_back(superpowers->at(i)->getCountry(i));
+
+    _scandanavia->setEnemies(enemies);
     _scandanavia->setBorderStrength(0.75);
     _scandanavia->setCapitalSafety(0.9);
     _scandanavia->setDomesticMorale(0.6);
@@ -548,6 +615,11 @@ void SimulationManager::setUpGermany(Country *_germany)
     _germany->setColor(countryColors[7]);
     _germany->setLocations(locations);
 
+    vector<Country *> *enemies = new vector<Country *>();
+    for (int i = 0; i < superpowers->at(1)->getCountryCount(); i++)
+        enemies->push_back(superpowers->at(i)->getCountry(i));
+
+    _germany->setEnemies(enemies);
     _germany->setBorderStrength(0.6);
     _germany->setCapitalSafety(0.85);
     _germany->setDomesticMorale(0.9);
@@ -602,6 +674,11 @@ void SimulationManager::setUpItaly(Country *_italy)
     _italy->setColor(countryColors[8]);
     _italy->setLocations(locations);
 
+    vector<Country *> *enemies = new vector<Country *>();
+    for (int i = 0; i < superpowers->at(1)->getCountryCount(); i++)
+        enemies->push_back(superpowers->at(i)->getCountry(i));
+
+    _italy->setEnemies(enemies);
     _italy->setBorderStrength(0.5);
     _italy->setCapitalSafety(0.6);
     _italy->setDomesticMorale(0.65);
@@ -649,10 +726,10 @@ void SimulationManager::takeTurn()
     turnCount++;
     StageContext::getInstance()->incrementRound();
     for (int i = 0; i < superpowers->at(0)->getCountryCount(); i++)
-        superpowers->at(0)->getCountry(i)->takeTurn(NULL); // TODO check whether input parameter should be removed
+        superpowers->at(0)->getCountry(i)->takeTurn(); 
 
     for (int i = 0; i < superpowers->at(1)->getCountryCount(); i++)
-        superpowers->at(1)->getCountry(i)->takeTurn(NULL); // TODO check whether input parameter should be removed
+        superpowers->at(1)->getCountry(i)->takeTurn(); 
 };
 
 void SimulationManager::viewSummary()
@@ -670,14 +747,15 @@ void SimulationManager::processMenu()
 {
     while (true)
     {
+        viewSummary();
         cout << "What would you like to do next?" << endl;
         cout << "[1] Continue simulation" << endl;
         cout << "[2] Restore a previous state" << endl;
         cout << "[3] View a detailed summary of a country" << endl;
-        cout << "[4] View the map" << endl;
-        cout << "[5] View the summary of the system again" << endl;
+        // cout << "[4] View the map" << endl;
+        // cout << "[5] View the summary of the system again" << endl;
         if (designMode)
-            cout << "[6] Change the simulation state" << endl;
+            cout << "[4] Change the simulation state" << endl;
         cout << "[9] Exit simulation" << endl;
 
         int choice = -1;
@@ -692,7 +770,7 @@ void SimulationManager::processMenu()
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
-        } while (choice < 1 || (choice > 6 && choice != 9) || (choice == 6 && !designMode));
+        } while (choice < 1 || (choice > 4 && choice != 9) || (choice == 4 && !designMode));
 
         switch (choice)
         {
@@ -714,19 +792,19 @@ void SimulationManager::processMenu()
             cin.ignore();
             cin.get();
             break;
+        // case 4:
+        //     map->printMap();
+        //     cout << "Press enter to continue..." << endl;
+        //     cin.ignore();
+        //     cin.get();
+        //     break;
+        // case 5:
+        //     viewSummary();
+        //     cout << "Press enter to continue..." << endl;
+        //     cin.ignore();
+        //     cin.get();
+        //     break;
         case 4:
-            map->printMap();
-            cout << "Press enter to continue..." << endl;
-            cin.ignore();
-            cin.get();
-            break;
-        case 5:
-            viewSummary();
-            cout << "Press enter to continue..." << endl;
-            cin.ignore();
-            cin.get();
-            break;
-        case 6:
             designModeAction();
             cout << "Press enter to continue..." << endl;
             cin.ignore();
@@ -735,6 +813,8 @@ void SimulationManager::processMenu()
         case 9:
             isRunning = false;
             return;
+            break;
+        default:
             break;
         }
         system("clear");
@@ -753,11 +833,421 @@ void SimulationManager::finalMessage()
         cout << "The simulation ended with the " << superpowers->at(1)->getName() << " winning." << endl;
 };
 
-void SimulationManager::viewCountrySummary(){};
+void SimulationManager::viewCountrySummary()
+{
+    vector<Country *> *countries = new vector<Country *>();
+    for (int i = 0; i < superpowers->size(); i++)
+        for (int j = 0; j < superpowers->at(i)->getCountryCount(); j++)
+            countries->push_back(superpowers->at(i)->getCountry(j));
 
-void SimulationManager::designModeAction(){};
+    cout << "Choose a country you would like to view a summary of:" << endl;
+    int i;
+    for (i = 0; i < countries->size(); i++)
+        cout << "[" << i + 1 << "] " << countries->at(i)->getName() << endl;
+    cout << "[" << i + 1 << "] Cancel" << endl;
+    int choice = -1;
+    do
+    {
+        cout << "Choice: " << YELLOW;
+        cin >> choice;
+        cout << RESET;
+        if (!cin.good())
+        {
+            choice = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (choice < 1 || choice > countries->size() + 1);
 
-bool SimulationManager::restoreState(){};
+    if (choice == countries->size() + 1)
+    {
+        cout << "Action cancelled." << endl;
+        delete countries;
+        return;
+    }
+
+    countries->at(choice - 1)->printSummary();//TODO check that this is correct
+    delete countries;
+};
+
+void SimulationManager::designModeAction()
+{
+    cout << "Select an action to perform:" << endl;
+    cout << "[1] Change the simulation length" << endl;
+    cout << "[2] Remove a country" << endl;
+    cout << "[3] Alter the state of a country" << endl;
+    cout << "[4] Change the current war stage" << endl;
+    cout << "[9] Cancel" << endl;
+
+    int choice = -1;
+    do
+    {
+        cout << "Choice: " << YELLOW;
+        cin >> choice;
+        cout << RESET;
+        if (!cin.good())
+        {
+            choice = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (choice < 1 || (choice > 4 && choice != 9));
+
+    if (choice == 9)
+    {
+        cout << "Action cancelled." << endl;
+        return;
+    }
+
+    saveState();
+
+    switch (choice)
+    {
+    case 1:
+        changeSimulationLength();
+        break;
+    case 2:
+        removeCountry();
+        break;
+    case 3:
+        alterCountryState();
+        break;
+    case 4:
+        changeWarStage();
+        break;
+    default:
+        break;
+    }
+    // cout << "Press enter to continue..." << endl;
+    // cin.ignore();
+    // cin.get();
+    // system("clear");
+};
+
+void SimulationManager::changeSimulationLength()
+{
+    do
+    {
+        cout << "Enter the new simulation length (" << ((turnCount > 4) ? turnCount : 4) << "-100): " << YELLOW;
+        cin >> maxTurnCount;
+        cout << RESET;
+        if (!cin.good())
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input." << endl;
+            return;
+        }
+    } while (maxTurnCount < 4 || maxTurnCount > 100 || maxTurnCount < turnCount);
+    cout << "Simulation length changed to " << maxTurnCount << " turns." << endl;
+};
+
+void SimulationManager::removeCountry()
+{
+    vector<Country *> *countries = new vector<Country *>();
+    for (int i = 0; i < superpowers->size(); i++)
+        for (int j = 0; j < superpowers->at(i)->getCountryCount(); j++)
+            countries->push_back(superpowers->at(i)->getCountry(j));
+
+    cout << "Choose a country you would like to remove:" << endl;
+    int i;
+    for (i = 0; i < countries->size(); i++)
+        cout << "[" << i + 1 << "] " << countries->at(i)->getName() << endl;
+    cout << "[" << i + 1 << "] Cancel" << endl;
+    int choice = -1;
+    do
+    {
+        cout << "Choice: " << YELLOW;
+        cin >> choice;
+        cout << RESET;
+        if (!cin.good())
+        {
+            choice = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (choice < 1 || choice > countries->size() + 1);
+
+    if (choice == countries->size() + 1)
+    {
+        cout << "Action cancelled." << endl;
+        delete countries;
+        return;
+    }
+    try
+    {
+        superpowers->at((choice < 2) ? 0 : 1)->removeCountry(countries->at(choice - 1));
+        cout << countries->at(choice - 1)->getName() << " removed." << endl;
+        delete countries->at(choice - 1);
+    }
+    catch (exception &e)
+    {
+        cout << "Error removing country" << endl;
+    }
+    delete countries;
+};
+
+void SimulationManager::alterCountryState()
+{
+    vector<Country *> *countries = new vector<Country *>();
+    for (int i = 0; i < superpowers->size(); i++)
+        for (int j = 0; j < superpowers->at(i)->getCountryCount(); j++)
+            countries->push_back(superpowers->at(i)->getCountry(j));
+
+    cout << "Choose a country you would like to alter:" << endl;
+    int i;
+    for (i = 0; i < countries->size(); i++)
+        cout << "[" << i + 1 << "] " << countries->at(i)->getName() << endl;
+    cout << "[" << i + 1 << "] Cancel" << endl;
+    int choice = -1;
+    do
+    {
+        cout << "Choice: " << YELLOW;
+        cin >> choice;
+        cout << RESET;
+        if (!cin.good())
+        {
+            choice = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (choice < 1 || choice > countries->size() + 1);
+
+    if (choice == countries->size() + 1)
+    {
+        cout << "Action cancelled." << endl;
+        delete countries;
+        return;
+    }
+
+    cout << "Select which of the following you would like to change:" << endl;
+    cout << "[1] Border strength (currently " << countries->at(choice - 1)->getBorderStrength() << ")" << endl;
+    cout << "[2] Population (currently " << countries->at(choice - 1)->getNumCitizens() << ")" << endl;
+    cout << "[4] Political stability (currently " << countries->at(choice - 1)->getPoliticalStability() << ")" << endl;
+    cout << "[5] Self relience (currently " << countries->at(choice - 1)->getSelfReliance() << ")" << endl;
+    cout << "[6] War sentiment (currently " << countries->at(choice - 1)->getWarSentiment() << ")" << endl;
+    cout << "[7] Trade route safety (currently " << countries->at(choice - 1)->getTradeRouteSafety() << ")" << endl;
+    cout << "[8] Military attributes " << endl;
+    cout << "[9] Cancel" << endl;
+
+    int choice2 = -1;
+    do
+    {
+        cout << "Choice: " << YELLOW;
+        cin >> choice2;
+        cout << RESET;
+        if (!cin.good())
+        {
+            choice2 = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (choice2 < 1 || choice2 > 9);
+
+    if (choice2 == 9)
+    {
+        cout << "Action cancelled." << endl;
+        delete countries;
+        return;
+    }
+
+    switch (choice2)
+    {
+    case 1:
+        changeBorderStrength(countries->at(choice - 1));
+        break;
+    case 2:
+        changePopulation(countries->at(choice - 1));
+        break;
+    case 4:
+        changePoliticalStability(countries->at(choice - 1));
+        break;
+    case 5:
+        changeSelfReliance(countries->at(choice - 1));
+        break;
+    case 6:
+        changeWarSentiment(countries->at(choice - 1));
+        break;
+    case 7:
+        changeTradeRouteSafety(countries->at(choice - 1));
+        break;
+    case 8:
+        changeMilitaryAttributes(countries->at(choice - 1));
+        break;
+    default:
+        break;
+    }
+    delete countries;
+}
+
+void SimulationManager::changeWarStage()
+{
+    cout << "Select the new war stage: " << endl;
+    cout << "[1] Early stage" << endl;
+    cout << "[2] Middle stage" << endl;
+    cout << "[3] Late stage" << endl;
+    cout << "[9] Cancel" << endl;
+
+    int choice = -1;
+    do
+    {
+        cout << "Choice: " << YELLOW;
+        cin >> choice;
+        cout << RESET;
+        if (!cin.good())
+        {
+            choice = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (choice < 1 || (choice > 3 && choice != 9));
+
+    if (choice == 9)
+    {
+        cout << "Action cancelled." << endl;
+        return;
+    }
+
+    saveState();
+
+    StageContext::getInstance()->moveToStage(choice - 1);
+
+    string stageName;
+
+    switch (choice)
+    {
+    case 1:
+        stageName = "Early";
+        break;
+    case 2:
+        stageName = "Middle";
+        break;
+    case 3:
+        stageName = "Late";
+        break;
+    default:
+        break;
+    }
+    cout << "War stage changed to " << stageName << " Stage." << endl;
+}
+
+void SimulationManager::changeBorderStrength(Country *_country)
+{
+    double borderStrength = -1;
+    do
+    {
+        cout << "Enter the new border strength (0-1): " << YELLOW;
+        cin >> borderStrength;
+        cout << RESET;
+        if (!cin.good())
+        {
+            borderStrength = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (borderStrength < 0 || borderStrength > 1);
+    _country->setBorderStrength(borderStrength);
+    cout << "Border strength changed to " << borderStrength << "." << endl;
+}
+
+void SimulationManager::changePopulation(Country *_country)
+{
+    int population = -1;
+    do
+    {
+        cout << "Enter the new population (0-1 000 000 000): " << YELLOW;
+        cin >> population;
+        cout << RESET;
+        if (!cin.good())
+        {
+            population = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (population < 0 || population > 1000000000);
+    _country->setNumCitizens(population);
+    cout << "Population changed to " << population << "." << endl;
+}
+
+void SimulationManager::changePoliticalStability(Country *_country)
+{
+    double politicalStability = -1;
+    do
+    {
+        cout << "Enter the new political stability (0-1): " << YELLOW;
+        cin >> politicalStability;
+        cout << RESET;
+        if (!cin.good())
+        {
+            politicalStability = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (politicalStability < 0 || politicalStability > 1);
+    _country->setPoliticalStability(politicalStability);
+    cout << "Political stability changed to " << politicalStability << "." << endl;
+}
+
+void SimulationManager::changeSelfReliance(Country *_country)
+{
+    double selfReliance = -1;
+    do
+    {
+        cout << "Enter the new self reliance (0-1): " << YELLOW;
+        cin >> selfReliance;
+        cout << RESET;
+        if (!cin.good())
+        {
+            selfReliance = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (selfReliance < 0 || selfReliance > 1);
+    _country->setSelfReliance(selfReliance);
+    cout << "Self reliance changed to " << selfReliance << "." << endl;
+}
+
+void SimulationManager::changeWarSentiment(Country *_country)
+{
+    double warSentiment = -1;
+    do
+    {
+        cout << "Enter the new war sentiment (0-1): " << YELLOW;
+        cin >> warSentiment;
+        cout << RESET;
+        if (!cin.good())
+        {
+            warSentiment = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (warSentiment < 0 || warSentiment > 1);
+    _country->setWarSentiment(warSentiment);
+    cout << "War sentiment changed to " << warSentiment << "." << endl;
+}
+
+void SimulationManager::changeTradeRouteSafety(Country *_country)
+{
+    double tradeRouteSafety = -1;
+    do
+    {
+        cout << "Enter the new trade route safety (0-1): " << YELLOW;
+        cin >> tradeRouteSafety;
+        cout << RESET;
+        if (!cin.good())
+        {
+            tradeRouteSafety = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (tradeRouteSafety < 0 || tradeRouteSafety > 1);
+    _country->setTradeRouteSafety(tradeRouteSafety);
+    cout << "Trade route safety changed to " << tradeRouteSafety << "." << endl;
+}
+
+void SimulationManager::changeMilitaryAttributes(Country*_country){
+    //TODO add implementation
+}
 
 bool SimulationManager::isSimulationRunning()
 {
