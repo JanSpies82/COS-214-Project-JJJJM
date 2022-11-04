@@ -8,6 +8,7 @@
 
 class Country;
 class SuperpowerState;
+class Map;
 
 class Superpower
 {
@@ -84,6 +85,12 @@ public:
    *
    */
   void printSummary();
+
+  void resetLocations(Map* _map);
+
+  void resetEnemies(std::vector<Country*>* _enemies);
+
+  std::vector<Country*>* getAllCountries();
 
 private:
   std::vector<Country *> *countries;

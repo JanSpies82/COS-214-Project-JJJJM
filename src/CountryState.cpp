@@ -22,6 +22,7 @@ CountryState::CountryState()
   enemies = NULL;
   capital = NULL;
   color = "";
+  isBeingStored=false;
 }
 
 CountryState::CountryState(Country *country)
@@ -42,6 +43,8 @@ CountryState::CountryState(Country *country)
   enemies = NULL;
   enemies = country->getEnemies();
   color = country->getColor();
+  isBeingStored=false;
+
 }
 
 CountryState::CountryState(const CountryState &cs)
@@ -65,21 +68,23 @@ CountryState::CountryState(const CountryState &cs)
     vector<Country *> *newEnemies = new vector<Country *>();
     for (int i = 0; i < cs.enemies->size(); i++)
     {
-      newEnemies->push_back(cs.enemies->at(i));
+      newEnemies->push_back(cs.enemies->at(i)->clone());
     }
     enemies = newEnemies;
   }
   locations = NULL;
   if (cs.locations != NULL)
   {
+    isBeingStored=true;
     vector<Location *> *newLocations = new vector<Location *>();
     for (int i = 0; i < cs.locations->size(); i++)
     {
-      newLocations->push_back(cs.locations->at(i));
+      newLocations->push_back(cs.locations->at(i)->clone());
     }
     locations = newLocations;
   }
 }
+
 CountryState::~CountryState()
 {
   // if (capital != NULL)
@@ -87,15 +92,21 @@ CountryState::~CountryState()
 
   if (enemies != NULL)
   {
-    // for (int i = 0; i < enemies->size(); i++)
-    //   delete enemies->at(i);
+    if(isBeingStored)
+    {
+      for (int i = 0; i < enemies->size(); i++)
+        delete enemies->at(i);
+    }
     delete enemies;
   }
 
   if (locations != NULL)
   {
-    // for (int i = 0; i < locations->size(); i++)
-    //   delete locations->at(i);
+    if(isBeingStored)
+    {
+      for (int i = 0; i < locations->size(); i++)
+        delete locations->at(i);
+    }
     delete locations;
   }
 
@@ -117,4 +128,9 @@ void CountryState::setMilitaryState(MilitaryState *_militaryState)
   if (militaryState != NULL)
     delete militaryState;
   militaryState = _militaryState;
+}
+
+void CountryState::setIsBeingStored(bool _isBeingStored)
+{
+  isBeingStored=_isBeingStored;
 }

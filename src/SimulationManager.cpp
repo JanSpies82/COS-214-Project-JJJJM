@@ -22,6 +22,7 @@
 #include "PlaneFactory.h"
 #include "ShipFactory.h"
 #include "MapState.h"
+#include "LocationIterator.h"
 #include <string>
 #include <iostream>
 #include <limits>
@@ -78,10 +79,10 @@ SimulationManager::SimulationManager()
 
 SimulationManager::~SimulationManager()
 {
-    delete map;
     for (int i = 0; i < superpowers->size(); i++)
         delete superpowers->at(i);
     delete superpowers;
+    delete map;
     delete backup;
     delete StageContext::getInstance();
 }
@@ -115,14 +116,14 @@ void SimulationManager::runSimulation()
 
 void SimulationManager::resetSimulation()
 {
-    if (map != NULL)
-        delete map;
     if (superpowers != NULL)
     {
         for (int i = 0; i < superpowers->size(); i++)
             delete superpowers->at(i);
         delete superpowers;
     }
+    if (map != NULL)
+        delete map;
     if (backup != NULL)
         delete backup;
 
@@ -186,29 +187,33 @@ bool SimulationManager::restoreState()
         cout << "No states to restore!" << endl;
         return false;
     }
-    try
-    {
-        Memento *m = backup->getMemento();
-        SimulationState *state = m->getState();
-        StageContext::getInstance()->setState(state->getStageContextState());
-        turnCount = StageContext::getInstance()->getCurrentRound();
-        cout << "Restoring state at turn " << turnCount << endl;
-        delete map;
-        map = state->getMapState()->clone();
-        for (int i = 0; i < superpowers->size(); i++)
-            delete superpowers->at(i);
-        delete superpowers;
-        superpowers = new vector<Superpower *>();
-        for (int i = 0; i < state->getSuperpowerStateCount(); i++)
-            superpowers->push_back(new Superpower(state->getSuperpowerState(i)));
 
-        delete m;
-    }
-    catch (exception &e)
+    Memento *m = backup->getMemento();
+    SimulationState *state = m->getState();
+    StageContext::getInstance()->setState(state->getStageContextState());
+    turnCount = StageContext::getInstance()->getCurrentRound();
+    cout << "Restoring state at turn " << turnCount << endl;
+    for (int i = 0; i < superpowers->size(); i++)
+        delete superpowers->at(i);
+    delete superpowers;
+    delete map;
+    map = state->getMapState()->clone();
+    superpowers = new vector<Superpower *>();
+    for (int i = 0; i < state->getSuperpowerStateCount(); i++)
+        superpowers->push_back(new Superpower(state->getSuperpowerState(i)));
+
+    for (int i = 0; i < superpowers->size(); i++)
     {
-        cout << "Error: " << e.what() << endl;
-        return false;
+        superpowers->at(i)->resetLocations(map);
     }
+
+    for (int i = 0; i < superpowers->size(); i++)
+    {
+        superpowers->at(i)->resetEnemies(superpowers->at((1+i)%2)->getAllCountries());
+    }
+
+    delete m;
+
     return true;
 };
 
@@ -976,7 +981,14 @@ void SimulationManager::removeCountry()
     }
     try
     {
-        superpowers->at((choice < 2) ? 0 : 1)->removeCountry(countries->at(choice - 1));
+        int index;
+        if(choice<=superpowers->at(0)->getCountryCount())
+            index=0;
+        else
+            index=1;
+        
+        
+        superpowers->at(index)->removeCountry(countries->at(choice - 1));
         cout << countries->at(choice - 1)->getName() << " removed." << endl;
         delete countries->at(choice - 1);
     }

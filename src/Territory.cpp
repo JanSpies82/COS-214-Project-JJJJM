@@ -17,6 +17,7 @@ Territory::Territory(int _x, int _y, string _color)
     isLand=true;
     isCapital=false;
     ownedBy=NULL;
+    lObserver=NULL;
 }
 
 void Territory::add(Location* _neighbour)
@@ -31,4 +32,6 @@ Territory::~Territory()
 {
     if(location!=NULL)
         delete location;
+    if(lObserver!=NULL)
+        delete lObserver;
 }

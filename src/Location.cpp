@@ -3,8 +3,9 @@
 #include "Location.h"
 #include "Map.h"
 #include "LocationIterator.h"
-#include "Observer.h"
+#include "LocationObserver.h"
 #include "Neighbour.h"
+#include "Country.h"
 #include <iostream>
 
 using namespace std;
@@ -87,7 +88,29 @@ Country* Location::getOwnedBy()
 
 void Location::setOwnedBy(Country* _newOwner)
 {
-    ownedBy=_newOwner;
+    if(_newOwner==NULL)
+    {
+        ownedBy=NULL;
+        return;
+    }
+    if(lObserver!=NULL)
+    {
+        ownedBy->detachObserver(lObserver);
+        ownedBy=_newOwner;
+        setColor(ownedBy->getColor());
+        if(isCapital)
+            setColor("\x1B[40m");
+        ownedBy->attachObserver(lObserver);
+    }
+    else
+    {
+        lObserver=new LocationObserver(this);
+        ownedBy=_newOwner;
+        setColor(ownedBy->getColor());
+        if(isCapital)
+            setColor("\x1B[40m");
+        ownedBy->attachObserver(lObserver);
+    }
 }
 
 string Location::getColor()
@@ -104,7 +127,7 @@ Location* Location::clone()
 {
     Location* tClone=new Territory(this->xCoordinate, this->yCoordinate, this->color);
 
-    tClone->setOwnedBy(this->getOwnedBy());
+    //tClone->setOwnedBy(this->getOwnedBy());
     tClone->setIsCapital(this->getIsCapital());
     tClone->setIsLand(this->getIsLand());
 
@@ -139,4 +162,6 @@ bool Location::getIsCapital()
 void Location::setIsCapital(bool _isCapital)
 {
     isCapital=_isCapital;
+    if(isCapital)
+        setColor("\x1B[40m");
 }
