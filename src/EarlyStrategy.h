@@ -5,6 +5,9 @@
 
 #include "Strategy.h"
 
+#include <iostream>
+#include <cmath>
+
 class EarlyStrategy : public Strategy
 {
 public:
