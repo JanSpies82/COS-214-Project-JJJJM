@@ -1,3 +1,5 @@
+/// @author Jake Weatherhead
+
 #ifndef __CountryMediator_h__
 #define __CountryMediator_h__
 

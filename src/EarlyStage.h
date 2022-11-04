@@ -1,5 +1,4 @@
-#include <exception>
-using namespace std;
+///@author Mekhail Muller
 
 #ifndef __EarlyStage_h__
 #define __EarlyStage_h__
@@ -9,15 +8,32 @@ using namespace std;
 // class WarStage;
 class EarlyStage;
 
-class EarlyStage: public WarStage
+class EarlyStage : public WarStage
 {
-
-	public: void handle();
+public:
+    /**
+     * @brief returns warstage via an int = 0
+     * */
+    int getWarStage();
 
     /**
-     * @brief initialises a MiddleStage object and returns it
+     * @brief Construct a new Early Stage object
+     *
      */
-    WarStage* nextStage();
+    EarlyStage();
+
+    /**
+     * @brief Destroy the Early Stage object
+     *
+     */
+    ~EarlyStage();
+
+    /**
+     * @brief Return a deep copy of the Early Stage object
+     *
+     * @return EarlyStage*
+     */
+    EarlyStage *clone();
 };
 
 #endif

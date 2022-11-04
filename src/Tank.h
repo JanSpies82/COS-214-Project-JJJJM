@@ -1,8 +1,9 @@
+/// @author Jake Mahloko
+
 #ifndef __Tank__h__
 #define __Tank__h__
 
 #include <exception>
-
 #include "Vehicle.h"
 
 class Tank : public Vehicle
@@ -10,12 +11,12 @@ class Tank : public Vehicle
 
 public:
 	/**
-	 * @brief constructs the Tank Object
-	 **/
+	 * @brief constructor for the tank object
+	 */
 	Tank();
-
-	/**
-	 * @brief destroys the Tank Object
+	
+	 /** 
+	 * @brief destructor for the tank object
 	 **/
 	~Tank();
 };

@@ -1,11 +1,11 @@
-#include <exception>
-
+/// @author Jake Mahloko
 
 #ifndef __VehicleObserver_h__
 #define __VehicleObserver_h__
 
-// #include "ObserverState.h"
 #include "Observer.h"
+#include <exception>
+
 class ObserverState;
 
 class VehicleObserver: public Observer
@@ -17,8 +17,6 @@ class VehicleObserver: public Observer
 		virtual void update();
 	private:
 	 	ObserverState* observerStates;
-
-	
 };
 
 #endif

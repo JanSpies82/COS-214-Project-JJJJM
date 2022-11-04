@@ -1,6 +1,7 @@
+///@author Mekhail Muller
+
 #include "LateStrategy.h"
 #include "Country.h"
-
 #include <iostream>
 
 LateStrategy::LateStrategy(){}

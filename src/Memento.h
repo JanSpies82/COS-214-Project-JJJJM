@@ -1,3 +1,4 @@
+/// @author Janco Spies
 
 #ifndef __Memento_h__
 #define __Memento_h__

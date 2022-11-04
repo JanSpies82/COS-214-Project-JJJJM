@@ -1,3 +1,5 @@
+/// @author Julian Pienaar
+
 #ifndef __Territory_h__
 #define __Territory_h__
 

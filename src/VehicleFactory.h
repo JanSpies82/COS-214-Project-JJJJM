@@ -1,11 +1,12 @@
-#include <exception>
-using namespace std;
+/// @author Jake Mahloko
 
 #ifndef __VehicleFactory_h__
 #define __VehicleFactory_h__
+
 #include"Vehicle.h"
+#include <exception>
 	/**
- 	*@brief VehicleFactory class is an abstract class that services as a template class 
+ 	*brief VehicleFactory class is an abstract class that services as a template class 
  	* for the children class of VehicleFactory. The factories are used to create objects of Vehicles 
  	**/
  class VehicleFactory
@@ -25,8 +26,12 @@ using namespace std;
 		 **/
 		virtual Vehicle* manufactureVehicle() = 0;
 
-		
-		
+		/**
+		 * @brief Create a deep copy of the current object
+		 * 
+		 * @return VehicleFactory* 
+		 */
+		virtual VehicleFactory* clone()=0;
 };
 
 #endif

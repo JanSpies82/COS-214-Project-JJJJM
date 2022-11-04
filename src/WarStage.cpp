@@ -1,13 +1,10 @@
-#include <exception>
+///@author Mekhail Muller
 
 #include "WarStage.h"
-#include "Country.h"
 
-void WarStage::handle() {
-	throw "Not yet implemented";
-}
+using namespace std;
 
-WarStage* WarStage::clone(){
-	return NULL;
-}
+WarStage::WarStage(){}
+
+WarStage::~WarStage(){}
 

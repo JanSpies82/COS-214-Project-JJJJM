@@ -1,22 +1,25 @@
-// #include <exception>
-using namespace std;
-#include"Ship.h"
+/// @author Jake Mahloko
+
+#include "Ship.h"
 #include "ShipFactory.h"
 // #include "VehicleFactory.h"
 
-		ShipFactory::ShipFactory(){
+using namespace std;
 
-		}
+ShipFactory::ShipFactory(){}
 
-		ShipFactory::~ShipFactory(){
-
-		}
+ShipFactory::~ShipFactory(){}
 
 // 		Vehicle* ShipFactory::manufactureVehicle(int damageBatallion,int damageToShip){
 // 			return new Ship(damageBatallion,damageToShip);
 // 		}
 
-		Vehicle* ShipFactory::manufactureVehicle(){
-			return new Ship();
-		}
+Vehicle *ShipFactory::manufactureVehicle()
+{
+	return new Ship();
+}
 
+ShipFactory *ShipFactory::clone()
+{
+	return new ShipFactory();
+}

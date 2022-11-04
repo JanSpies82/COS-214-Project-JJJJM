@@ -2,6 +2,7 @@
 
 #ifndef __MilitaryState_h__
 #define __MilitaryState_h__
+
 #include <vector>
 #include <exception>
 #include <stdexcept>

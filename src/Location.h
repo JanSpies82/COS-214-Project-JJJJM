@@ -1,11 +1,14 @@
+/// @author Julian Pienaar
+
 #ifndef __Location_h__
 #define __Location_h__
+
+#include <string>
 
 class Map;
 class Observer;
 class Iterator;
 class Country;
-#include <string>
 
 class Location
 {

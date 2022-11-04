@@ -1,13 +1,20 @@
-#include <exception>
-using namespace std;
+///@author Mekhail Muller
 
 #include "LateStage.h"
 #include "WarStage.h"
 
-void LateStage::handle() {
-	throw "Not yet implemented";
+using namespace std;
+
+int LateStage::getWarStage()
+{
+	return 2;
 }
 
-WarStage* LateStage::nextStage(){
-	return NULL;
-};
+LateStage::LateStage(){}
+
+LateStage::~LateStage(){}
+
+LateStage* LateStage::clone()
+{
+	return new LateStage();
+}

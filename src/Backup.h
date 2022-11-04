@@ -1,3 +1,4 @@
+/// @author Janco Spies
 
 #ifndef __Backup_h__
 #define __Backup_h__

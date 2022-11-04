@@ -1,12 +1,15 @@
+/// @author Jake Mahloko
+
 #ifndef __Ship_h__
 #define __Ship_h__
 
 #include <exception>
 
 #include "Vehicle.h"
+#include <exception>
+
 class Ship : public Vehicle
 {
-
 public:
 	/**
 	 * @brief constructs the Ship Object
@@ -17,7 +20,6 @@ public:
 	 * @brief destroys the Ship Object
 	 **/
 	~Ship();
-
 };
 
 #endif

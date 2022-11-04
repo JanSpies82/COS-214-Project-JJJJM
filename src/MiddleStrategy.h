@@ -1,3 +1,5 @@
+///@author Mekhail Muller
+
 #ifndef MIDDLE_STRATEGY_H
 #define MIDDLE_STRATEGY_H
 

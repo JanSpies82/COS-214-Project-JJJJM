@@ -1,3 +1,5 @@
+/// @author Jake Mahloko
+
 #include "Military.h"
 #include "MilitaryState.h"
 #include "Ship.h"
@@ -5,6 +7,9 @@
 #include "Tank.h"
 #include "Battalion.h"
 #include "VehicleFactory.h"
+#include <vector>
+
+using namespace std;
 
 ///////////////////////////////////////////////////////////
 // MilitaryState()
@@ -18,6 +23,7 @@ MilitaryState::MilitaryState()
   planes = NULL;
   battalions = NULL;
   vehicleFactories = NULL;
+  numTroops = 0;
 }
 
 ///////////////////////////////////////////////////////////
@@ -30,7 +36,7 @@ MilitaryState::~MilitaryState()
   {
     for (int i = 0; i < ships->size(); i++)
       delete ships->at(i);
-    
+
     delete ships;
   }
 
@@ -38,7 +44,7 @@ MilitaryState::~MilitaryState()
   {
     for (int i = 0; i < planes->size(); i++)
       delete planes->at(i);
-  
+
     delete planes;
   }
 
@@ -46,7 +52,7 @@ MilitaryState::~MilitaryState()
   {
     for (int i = 0; i < tanks->size(); i++)
       delete tanks->at(i);
-    
+
     delete tanks;
   }
 
@@ -54,7 +60,7 @@ MilitaryState::~MilitaryState()
   {
     for (int i = 0; i < battalions->size(); i++)
       delete battalions->at(i);
-    
+
     delete battalions;
   }
 
@@ -62,7 +68,7 @@ MilitaryState::~MilitaryState()
   {
     for (int i = 0; i < vehicleFactories->size(); i++)
       delete vehicleFactories->at(i);
-    
+
     delete vehicleFactories;
   }
 }
@@ -253,10 +259,32 @@ void MilitaryState::updateNumBattalions(int _numBattalions, bool isAddition)
 MilitaryState *MilitaryState::clone()
 {
   MilitaryState *ms = new MilitaryState();
-  ms->setShips(ships);
-  ms->setPlanes(planes);
-  ms->setTanks(tanks);
-  ms->setBattalions(battalions);
-  ms->setVehicleFactories(vehicleFactories);
+  vector<Ship *> *shipsClone = new vector<Ship *>();
+  vector<Plane *> *planesClone = new vector<Plane *>();
+  vector<Tank *> *tanksClone = new vector<Tank *>();
+  vector<Battalion *> *battalionsClone = new vector<Battalion *>();
+  vector<VehicleFactory *> *vehicleFactoriesClone = new vector<VehicleFactory *>();
+
+  if (ships != NULL)
+    for (int i = 0; i < ships->size(); i++)
+      shipsClone->push_back(new Ship());
+  if (planes != NULL)
+    for (int i = 0; i < planes->size(); i++)
+      planesClone->push_back(new Plane());
+  if (tanks != NULL)
+    for (int i = 0; i < tanks->size(); i++)
+      tanksClone->push_back(new Tank());
+  if (battalions != NULL)
+    for (int i = 0; i < battalions->size(); i++)
+      battalionsClone->push_back(new Battalion());
+  if (vehicleFactories != NULL)
+    for (int i = 0; i < vehicleFactories->size(); i++)
+      vehicleFactoriesClone->push_back(vehicleFactories->at(i)->clone());
+
+  ms->setShips(shipsClone);
+  ms->setPlanes(planesClone);
+  ms->setTanks(tanksClone);
+  ms->setBattalions(battalionsClone);
+  ms->setVehicleFactories(vehicleFactoriesClone);
   return ms;
 }

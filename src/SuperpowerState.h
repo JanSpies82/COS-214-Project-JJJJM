@@ -1,4 +1,5 @@
 ///@author Janco Spies
+
 #ifndef __SuperpowerState_h__
 #define __SuperpowerState_h__
 

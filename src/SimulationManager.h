@@ -1,3 +1,4 @@
+/// @author Janco Spies
 
 #ifndef __SimulationManager_h__
 #define __SimulationManager_h__
@@ -14,7 +15,6 @@ class SimulationState;
 class Superpower;
 class Backup;
 class SimulationManager;
-class WarStage;
 class Country;
 
 class SimulationManager
@@ -109,7 +109,6 @@ protected:
 
 private:
 	Map *map;
-	WarStage *warStage;
 	std::vector<Superpower *> *superpowers;
 	Backup *backup;
 	bool designMode, isRunning;

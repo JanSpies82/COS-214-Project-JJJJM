@@ -1,15 +1,20 @@
-#include <exception>
-using namespace std;
+///@author Mekhail Muller
 
 #include "MiddleStage.h"
 #include "WarStage.h"
 
-void MiddleStage::handle()
+using namespace std;
+
+int MiddleStage::getWarStage()
 {
-	throw "Not yet implemented";
+	return 1;
 }
 
-WarStage *MiddleStage::nextStage()
+MiddleStage::MiddleStage(){}
+
+MiddleStage::~MiddleStage(){}
+
+MiddleStage* MiddleStage::clone()
 {
-	return NULL;
-};
+	return new MiddleStage();
+}

@@ -1,10 +1,13 @@
-#include <exception>
-using namespace std;
+/// @author Jake Weatherhead
 
 #include "Observer.h"
 #include "Location.h"
+#include <exception>
 
-void Observer::update() {
+using namespace std;
+
+void Observer::update() 
+{
 	throw "Not yet implemented";
 }
 

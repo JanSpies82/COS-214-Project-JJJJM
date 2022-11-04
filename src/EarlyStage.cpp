@@ -1,13 +1,20 @@
-#include <exception>
-using namespace std;
+///@author Mekhail Muller
 
 #include "EarlyStage.h"
 #include "WarStage.h"
 
-void EarlyStage::handle() {
-	throw "Not yet implemented";
+using namespace std;
+
+int EarlyStage::getWarStage()
+{
+	return 0;
 }
 
- WarStage* EarlyStage::nextStage(){
-	return NULL;
- };
+EarlyStage::EarlyStage(){}
+
+EarlyStage::~EarlyStage(){}
+
+EarlyStage* EarlyStage::clone()
+{
+	return new EarlyStage();
+}

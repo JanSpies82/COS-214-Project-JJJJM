@@ -1,3 +1,5 @@
+/// @author Julian Pienaar
+
 #ifndef __TopNeighbour_h__
 #define __TopNeighbour_h__
 
