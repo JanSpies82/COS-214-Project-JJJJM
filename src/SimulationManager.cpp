@@ -726,10 +726,10 @@ void SimulationManager::takeTurn()
     turnCount++;
     StageContext::getInstance()->incrementRound();
     for (int i = 0; i < superpowers->at(0)->getCountryCount(); i++)
-        superpowers->at(0)->getCountry(i)->takeTurn(); 
+        superpowers->at(0)->getCountry(i)->takeTurn();
 
     for (int i = 0; i < superpowers->at(1)->getCountryCount(); i++)
-        superpowers->at(1)->getCountry(i)->takeTurn(); 
+        superpowers->at(1)->getCountry(i)->takeTurn();
 };
 
 void SimulationManager::viewSummary()
@@ -866,7 +866,7 @@ void SimulationManager::viewCountrySummary()
         return;
     }
 
-    countries->at(choice - 1)->printSummary();//TODO check that this is correct
+    countries->at(choice - 1)->printSummary(); // TODO check that this is correct
     delete countries;
 };
 
@@ -1245,8 +1245,130 @@ void SimulationManager::changeTradeRouteSafety(Country *_country)
     cout << "Trade route safety changed to " << tradeRouteSafety << "." << endl;
 }
 
-void SimulationManager::changeMilitaryAttributes(Country*_country){
-    //TODO add implementation
+void SimulationManager::changeMilitaryAttributes(Country *_country)
+{
+    cout << "Select which action to perform: " << endl;
+    cout << "[1] Add Tanks (current: " << _country->getMilitaryState()->getNumTanks() << ")" << endl;
+    cout << "[2] Remove Tanks (current: " << _country->getMilitaryState()->getNumTanks() << ")" << endl;
+    cout << "[3] Add Planes (current: " << _country->getMilitaryState()->getNumPlanes() << ")" << endl;
+    cout << "[4] Remove Planes (current: " << _country->getMilitaryState()->getNumPlanes() << ")" << endl;
+    cout << "[5] Add Troops (current: " << _country->getMilitaryState()->getNumTroops() << ")" << endl;
+    cout << "[6] Remove Troops (current: " << _country->getMilitaryState()->getNumTroops() << ")" << endl;
+    cout << "[7] Add Ships (current: " << _country->getMilitaryState()->getNumShips() << ")" << endl;
+    cout << "[8] Remove Ships (current: " << _country->getMilitaryState()->getNumShips() << ")" << endl;
+    cout << "[9] Add Battalions (current: " << _country->getMilitaryState()->getNumBattalions() << ")" << endl;
+    cout << "[10] Remove Battalions (current: " << _country->getMilitaryState()->getNumBattalions() << ")" << endl;
+    cout << "[11] Cancel" << endl;
+
+    int choice = -1;
+    do
+    {
+        cout << "Enter your choice: " << YELLOW;
+        cin >> choice;
+        cout << RESET;
+        if (!cin.good())
+        {
+            choice = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (choice < 1 || choice > 11);
+
+    int max = 100;
+    switch (choice)
+    {
+    case 1:
+        cout << "Enter the number of tanks to add (0-100)" << endl;
+        break;
+    case 2:
+        cout << "Enter the number of tanks to remove (0-" << _country->getMilitaryState()->getNumTanks() << ")" << endl;
+        max = _country->getMilitaryState()->getNumTanks();
+        break;
+    case 3:
+        cout << "Enter the number of planes to add (0-100)" << endl;
+        break;
+    case 4:
+        cout << "Enter the number of planes to remove (0-" << _country->getMilitaryState()->getNumPlanes() << ")" << endl;
+        max = _country->getMilitaryState()->getNumPlanes();
+        break;
+    case 5:
+        cout << "Enter the number of troops to add (0-1000000)" << endl;
+        max = 1000000;
+        break;
+    case 6:
+        cout << "Enter the number of troops to remove (0-" << _country->getMilitaryState()->getNumTroops() << ")" << endl;
+        max = _country->getMilitaryState()->getNumTroops();
+        break;
+    case 7:
+        cout << "Enter the number of ships to add (0-100)" << endl;
+        break;
+    case 8:
+        cout << "Enter the number of ships to remove (0-" << _country->getMilitaryState()->getNumShips() << endl;
+        max = _country->getMilitaryState()->getNumShips();
+        break;
+    case 9:
+        cout << "Enter the number of battalions to add (0-100)" << endl;
+        break;
+    case 10:
+        cout << "Enter the number of battalions to remove (0-" << _country->getMilitaryState()->getNumBattalions() << endl;
+        max = _country->getMilitaryState()->getNumBattalions();
+        break;
+    case 11:
+        cout << "Action cancelled." << endl;
+        return;
+    }
+
+    int num = -1;
+    do
+    {
+        cout << "Number: " << YELLOW;
+        cin >> num;
+        cout << RESET;
+        if (!cin.good())
+        {
+            num = -1;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (num < 0 || num > max);
+
+    switch (choice)
+    {
+    case 1:
+        _country->getMilitaryState()->updateNumTanks(num, true);
+        break;
+    case 2:
+        _country->getMilitaryState()->updateNumTanks(num, false);
+        break;
+    case 3:
+        _country->getMilitaryState()->updateNumPlanes(num, true);
+        break;
+    case 4:
+        _country->getMilitaryState()->updateNumPlanes(num, false);
+        break;
+    case 5:
+        _country->getMilitaryState()->updateNumTroops(num, true);
+        break;
+    case 6:
+        _country->getMilitaryState()->updateNumTroops(num, false);
+        break;
+    case 7:
+        _country->getMilitaryState()->updateNumShips(num, true);
+        break;
+    case 8:
+        _country->getMilitaryState()->updateNumShips(num, false);
+        break;
+    case 9:
+        _country->getMilitaryState()->updateNumBattalions(num, true);
+        break;
+    case 10:
+        _country->getMilitaryState()->updateNumBattalions(num, false);
+        break;
+    case 11:
+        cout << "Action cancelled." << endl;
+        return;
+    }
+    cout << "Change successful." << endl;
 }
 
 bool SimulationManager::isSimulationRunning()
