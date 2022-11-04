@@ -2,6 +2,8 @@
 
 #include "LateStrategy.h"
 #include "Country.h"
+#include "CountryState.h"
+#include "MilitaryState.h"
 #include <iostream>
 
 LateStrategy::LateStrategy(){}
@@ -19,6 +21,7 @@ void LateStrategy::defensiveMove(Country* countryA, Country* countryB)
   countryA->setTradeRouteSafety(0); 
 
   // Set all countryA, militaryState attributes to zero
+  MilitaryState* mA = countryA->getCountryState()->getMilitaryState();
   mA->updateNumBattalions(mA->getNumBattalions(), false);
   mA->updateNumPlanes(mA->getNumPlanes(), false);
   mA->updateNumShips(mA->getNumShips(), false);
