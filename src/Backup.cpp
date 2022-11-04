@@ -19,7 +19,7 @@ Backup::~Backup()
 
 void Backup::addMemento(Memento *_memento)
 {
-    this->mementos->insert(this->mementos->begin(), _memento);
+    this->mementos->push_back(_memento);
 }
 
 Memento *Backup::getMemento()

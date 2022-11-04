@@ -123,6 +123,17 @@ private:
 	void setUpScandanavia(Country *_scandanavia);
 	void setUpGermany(Country *_germany);
 	void setUpItaly(Country *_italy);
+	void changeSimulationLength();
+	void removeCountry();
+	void alterCountryState();
+	void changeWarStage();
+	void changeBorderStrength(Country* _country);
+	void changePopulation(Country* _country);
+	void changePoliticalStability(Country* _country);
+	void changeSelfReliance(Country* _country);
+	void changeWarSentiment(Country* _country);
+	void changeTradeRouteSafety(Country* _country);
+	void changeMilitaryAttributes(Country* _country);
 };
 
 #endif

@@ -4,6 +4,8 @@
 #include "MilitaryState.h"
 #include "Location.h"
 #include "Country.h"
+#include <vector>
+using namespace std;
 
 CountryState::CountryState()
 {
@@ -22,7 +24,7 @@ CountryState::CountryState()
   color = "";
 }
 
-CountryState::CountryState(Country* country)
+CountryState::CountryState(Country *country)
 {
   numCitizens = country->getNumCitizens();
   politicalStability = country->getPoliticalStability();
@@ -42,7 +44,7 @@ CountryState::CountryState(Country* country)
   color = country->getColor();
 }
 
-CountryState::CountryState(const CountryState& cs)
+CountryState::CountryState(const CountryState &cs)
 {
   name = cs.name;
   numCitizens = cs.numCitizens;
@@ -58,44 +60,59 @@ CountryState::CountryState(const CountryState& cs)
   capital = cs.capital;
   color = cs.color;
   enemies = NULL;
-  enemies = cs.enemies;
+  if (cs.enemies != NULL)
+  {
+    vector<Country *> *newEnemies = new vector<Country *>();
+    for (int i = 0; i < cs.enemies->size(); i++)
+    {
+      newEnemies->push_back(cs.enemies->at(i));
+    }
+    enemies = newEnemies;
+  }
   locations = NULL;
-  locations = cs.locations;
+  if (cs.locations != NULL)
+  {
+    vector<Location *> *newLocations = new vector<Location *>();
+    for (int i = 0; i < cs.locations->size(); i++)
+    {
+      newLocations->push_back(cs.locations->at(i));
+    }
+    locations = newLocations;
+  }
 }
-
 CountryState::~CountryState()
 {
-  if (capital != NULL)
-    delete capital;
+  // if (capital != NULL)
+  //   delete capital;
 
   if (enemies != NULL)
   {
-    for (int i = 0; i < enemies->size(); i++)
-      delete enemies->at(i);
+    // for (int i = 0; i < enemies->size(); i++)
+    //   delete enemies->at(i);
     delete enemies;
   }
 
   if (locations != NULL)
   {
-    for (int i = 0; i < locations->size(); i++)
-      delete locations->at(i);
+    // for (int i = 0; i < locations->size(); i++)
+    //   delete locations->at(i);
     delete locations;
   }
 
   delete militaryState;
 }
 
-CountryState* CountryState::clone()
+CountryState *CountryState::clone()
 {
   return new CountryState(*this);
 }
 
-MilitaryState* CountryState::getMilitaryState()
+MilitaryState *CountryState::getMilitaryState()
 {
   return militaryState;
 }
 
-void CountryState::setMilitaryState(MilitaryState* _militaryState)
+void CountryState::setMilitaryState(MilitaryState *_militaryState)
 {
   if (militaryState != NULL)
     delete militaryState;

@@ -8,13 +8,13 @@
 #include "StageContextState.h"
 #include <cmath>
 
-StageContext* StageContext::onlyInstance = NULL;
+StageContext *StageContext::onlyInstance = NULL;
 
 StageContext::StageContext()
 {
 	simulationLength = 0;
 	currentRound = 0;
-    currentStage = new EarlyStage();
+	currentStage = new EarlyStage();
 }
 
 int StageContext::getCurrentRound()
@@ -22,9 +22,10 @@ int StageContext::getCurrentRound()
 	return currentRound;
 }
 
-StageContext* StageContext::getInstance() 
+StageContext *StageContext::getInstance()
 {
-	if(onlyInstance == NULL){
+	if (onlyInstance == NULL)
+	{
 		onlyInstance = new StageContext();
 	}
 	return onlyInstance;
@@ -32,7 +33,7 @@ StageContext* StageContext::getInstance()
 
 int StageContext::getWarStage()
 {
-    return currentStage->getWarStage();
+	return currentStage->getWarStage();
 }
 
 void StageContext::incrementRound()
@@ -41,17 +42,18 @@ void StageContext::incrementRound()
 	int midStage = floor(simulationLength * 0.9);
 	currentRound++;
 
-	if(currentRound == earlyStage){
-		WarStage* current = currentStage;
+	if (currentRound == earlyStage)
+	{
+		WarStage *current = currentStage;
 		currentStage = new MiddleStage();
 		delete current;
 	}
-	else if(currentRound == midStage){
-		WarStage* current = currentStage;
+	else if (currentRound == midStage)
+	{
+		WarStage *current = currentStage;
 		currentStage = new LateStage();
 		delete current;
 	}
-	
 }
 
 void StageContext::setSimulationLength(int _length)
@@ -87,7 +89,7 @@ StageContextState* StageContext::getState()
     state->setSimulationLength(simulationLength);
 	state->setCurrentRound(currentRound);
 	state->setCurrentStage(currentStage->clone());
-    return state;
+	return state;
 }
 
 void StageContext::setState(StageContextState *_state)
@@ -96,4 +98,17 @@ void StageContext::setState(StageContextState *_state)
 	currentRound = _state->getCurrentRound();
 	delete currentStage;
 	currentStage = _state->getCurrentStage();
+}
+
+void StageContext::moveToStage(int _stage)
+{
+	WarStage *current = currentStage;
+	if (_stage == 0)
+		currentStage = new EarlyStage();
+	else if (_stage == 1)
+		currentStage = new MiddleStage();
+	else if (_stage == 2)
+		currentStage = new LateStage();
+	if (current != currentStage)
+		delete current;
 }
