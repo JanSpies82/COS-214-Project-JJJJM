@@ -4,6 +4,7 @@
 #define LATE_STRATEGY_H
 
 #include "Strategy.h"
+#include <cmath>
 
 class LateStrategy : public Strategy
 {
