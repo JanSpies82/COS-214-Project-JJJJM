@@ -1,8 +1,9 @@
 ///@author Mekhail Muller
 
 #include "EarlyStrategy.h"
+#include "CountryState.h"
+#include "MilitaryState.h"
 #include "Country.h"
-#include <iostream>
 
 EarlyStrategy::EarlyStrategy(){}
 
@@ -10,7 +11,8 @@ EarlyStrategy::~EarlyStrategy(){}
 
 void EarlyStrategy::defensiveMove(Country* countryA, Country* countryB) 
 {
-  std::cout << "EarlyStrategy::negotiate selected" << std::endl;
+  std::cout << "EarlyStrategy::defensiveMove selected" << std::endl;
+  srand((unsigned) time(NULL));  // seed rand
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.3
   // CountryB chance of success : 0.7
@@ -24,8 +26,6 @@ void EarlyStrategy::defensiveMove(Country* countryA, Country* countryB)
     countryA->setWarSentiment(countryA->getWarSentiment() * 0.95);
     countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.95); 
 
-    // Update CountryA's MilitaryState 
-
     // Update CountryB's CountryState
     countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.9);
     countryB->setDomesticMorale(countryB->getDomesticMorale() * 0.9);
@@ -33,8 +33,6 @@ void EarlyStrategy::defensiveMove(Country* countryA, Country* countryB)
     countryB->setCapitalSafety(countryB->getCapitalSafety() * 0.9);
     countryB->setWarSentiment(countryB->getWarSentiment() * 0.9);
     countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.9);
-
-    // Update CountryB's MilitaryState
 
     return;
   }
@@ -47,8 +45,6 @@ void EarlyStrategy::defensiveMove(Country* countryA, Country* countryB)
   countryA->setWarSentiment(countryA->getWarSentiment() * 0.95);
   countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.95); 
 
-  // Update CountryA's MilitaryState
-
   // Update CountryB's CountryState
   countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.65);
   countryB->setDomesticMorale(countryB->getDomesticMorale() * 0.65);
@@ -57,13 +53,14 @@ void EarlyStrategy::defensiveMove(Country* countryA, Country* countryB)
   countryB->setWarSentiment(countryB->getWarSentiment() * 0.65);
   countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.65);
 
-  // Update CountryB's MilitaryState
-
 }
 
 void EarlyStrategy::neutralMove(Country* countryA, Country* countryB) 
 {
-  std::cout << "EarlyStrategy::taxImports selected" << std::endl;
+  std::cout << "EarlyStrategy::neutralMove selected" << std::endl;
+  MilitaryState* mA = countryA->getCountryState()->getMilitaryState();
+  MilitaryState* mB = countryB->getCountryState()->getMilitaryState();
+  srand((unsigned) time(NULL));  // seed rand
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.5
   // CountryB chance of success : 0.5
@@ -77,8 +74,6 @@ void EarlyStrategy::neutralMove(Country* countryA, Country* countryB)
     countryA->setWarSentiment(countryA->getWarSentiment() * 0.95);
     countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.95); 
 
-    // Update CountryA's MilitaryState
-
     // Update CountryB's CountryState
     countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.9);
     countryB->setDomesticMorale(countryB->getDomesticMorale() * 0.9);
@@ -86,8 +81,6 @@ void EarlyStrategy::neutralMove(Country* countryA, Country* countryB)
     countryB->setCapitalSafety(countryB->getCapitalSafety() * 0.9);
     countryB->setWarSentiment(countryB->getWarSentiment() * 0.9);
     countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.9);
-
-    // Update CountryB's MilitaryState
 
     return;
   }
@@ -100,8 +93,6 @@ void EarlyStrategy::neutralMove(Country* countryA, Country* countryB)
   countryA->setWarSentiment(countryA->getWarSentiment() * 0.95);
   countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.95);
 
-  // Update CountryA's MilitaryState
-
   // Update CountryB's CountryState
   countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.65);
   countryB->setDomesticMorale(countryB->getDomesticMorale() * 0.65);
@@ -110,12 +101,14 @@ void EarlyStrategy::neutralMove(Country* countryA, Country* countryB)
   countryB->setWarSentiment(countryB->getWarSentiment() * 0.65);
   countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.65);
 
-  // Update CountryB's MilitaryState
 }
 
 void EarlyStrategy::offensiveMove(Country* countryA, Country* countryB) 
 {
-  std::cout << "EarlyStrategy::banImports selected" << std::endl;
+  std::cout << "EarlyStrategy::offensiveMove selected" << std::endl;
+  MilitaryState* mA = countryA->getCountryState()->getMilitaryState();
+  MilitaryState* mB = countryB->getCountryState()->getMilitaryState();
+  srand((unsigned) time(NULL));  // seed rand
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.7
   // CountryB chance of success : 0.3
@@ -139,8 +132,6 @@ void EarlyStrategy::offensiveMove(Country* countryA, Country* countryB)
     countryB->setWarSentiment(countryB->getWarSentiment() * 0.9);
     countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.9);
 
-    // Update CountryB's MilitaryState
-
     return;
   }
   // CountryB wins turn
@@ -152,9 +143,4 @@ void EarlyStrategy::offensiveMove(Country* countryA, Country* countryB)
   countryA->setWarSentiment(countryA->getWarSentiment() * 0.95);
   countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.95);
 
-  // Update CountryA's MilitaryState
-
-  // Update CountryB's CountryState
-
-  // Update CountryB's MilitaryState
 }

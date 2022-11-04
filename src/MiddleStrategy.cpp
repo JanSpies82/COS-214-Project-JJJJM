@@ -12,6 +12,7 @@ MiddleStrategy::~MiddleStrategy(){}
 void MiddleStrategy::defensiveMove(Country* countryA, Country* countryB) 
 {
   std::cout << "MiddleStrategy::defendBorders selected" << std::endl;
+  srand((unsigned) time(NULL));  // seed rand
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.3
   // CountryB chance of success : 0.7
@@ -63,6 +64,7 @@ void MiddleStrategy::defensiveMove(Country* countryA, Country* countryB)
 void MiddleStrategy::neutralMove(Country* countryA, Country* countryB) 
 {
   std::cout << "MiddleStrategy::airstrikeCaptial selected" << std::endl;
+  srand((unsigned) time(NULL));  // seed rand
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.5
   // CountryB chance of success : 0.5
@@ -101,6 +103,7 @@ void MiddleStrategy::neutralMove(Country* countryA, Country* countryB)
 void MiddleStrategy::offensiveMove(Country* countryA, Country* countryB) 
 {
   std::cout << "MiddleStrategy::launchInvasion selected" << std::endl;
+  srand((unsigned) time(NULL));  // seed rand
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.7
   // CountryB chance of success : 0.3

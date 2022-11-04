@@ -18,13 +18,21 @@ void LateStrategy::defensiveMove(Country* countryA, Country* countryB)
   countryA->setWarSentiment(0);
   countryA->setTradeRouteSafety(0); 
 
-  // Update CountryA's MilitaryState
+  // Set all countryA, militaryState attributes to zero
+  mA->updateNumBattalions(mA->getNumBattalions(), false);
+  mA->updateNumPlanes(mA->getNumPlanes(), false);
+  mA->updateNumShips(mA->getNumShips(), false);
+  mA->updateNumTanks(mA->getNumTanks(), false);
+  mA->updateNumTroops(mA->getNumTroops(), false);
   
 }
 
 void LateStrategy::neutralMove(Country* countryA, Country* countryB) 
 {
-  std::cout << "LateStrategy::launchAttacks selected" << std::endl;
+  std::cout << "LateStrategy::neutralMove selected" << std::endl;
+  MilitaryState* mA = countryA->getCountryState()->getMilitaryState();
+  MilitaryState* mB = countryB->getCountryState()->getMilitaryState();
+  srand((unsigned) time(NULL));  // seed rand
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.5
   // CountryB chance of success : 0.5
@@ -76,6 +84,7 @@ void LateStrategy::neutralMove(Country* countryA, Country* countryB)
 void LateStrategy::offensiveMove(Country* countryA, Country* countryB) 
 {
   std::cout << "LateStrategy::occupyCapital selected" << std::endl;
+  srand((unsigned) time(NULL));  // seed rand
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.7
   // CountryB chance of success : 0.3
