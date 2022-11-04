@@ -85,8 +85,9 @@ namespace {
       locs->push_back(new Territory(0,0));
     Country* a = new Country("a");
     a->setLocations(locs);
-    delete a;
-    a = NULL;
+    for (int i = 0; i < locs->size(); i++)
+      delete locs->at(i);
+    delete a;    
   }
 
   TEST(CountryTest, identifyStrategy)
