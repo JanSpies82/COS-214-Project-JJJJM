@@ -2,6 +2,8 @@
 
 #include "MiddleStrategy.h"
 #include "Country.h"
+#include "CountryState.h"
+#include "MilitaryState.h"
 #include <iostream>
 
 
