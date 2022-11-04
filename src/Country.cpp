@@ -80,13 +80,15 @@ void Country::takeTurn(Country *countryB)
 
 void Country::takeTurn()
 {
-  // setStrategy();
-  // double strengthRatings[2];
-  // Country* countryB = getEnemies()->at(rand() % getEnemies()->size());
-  // getCountryRating(countryB, strengthRatings);
-  // std::cout << "strengthRatings, [0] : " << strengthRatings[0];
-  // std::cout << " , [1] : " << strengthRatings[1] << "\n";
-  // strategy->takeTurn(strengthRatings, this, enemies[0]);
+  setStrategy();
+  double strengthRatings[2];
+  srand((unsigned) time(NULL));  // seed rand
+  Country* countryB = getEnemies()->at(rand() % getEnemies()->size());
+  getCountryRating(countryB, strengthRatings);
+  std::cout << "strengthRatings, [0] : " << strengthRatings[0];
+  std::cout << " , [1] : " << strengthRatings[1] << "\n";
+  std::cout << "Country" << this->getName() << " is attacking Country" + countryB->getName() << "\n";
+  strategy->takeTurn(strengthRatings, this, countryB);
 }
 
 ///////////////////////////////////////////////////////////
