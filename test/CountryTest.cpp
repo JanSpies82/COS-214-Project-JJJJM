@@ -237,10 +237,10 @@ namespace
 
     countryX->setMilitaryState(mA);
     countryX->takeTurn();
-    delete countryX;
     for (int i = 0; i < enemies->size(); i++)
       delete enemies->at(i);
-    delete enemies;
+    delete countryX;
+    // delete enemies;
     delete ms;
     delete shipVectors;
     delete planeVectors;
