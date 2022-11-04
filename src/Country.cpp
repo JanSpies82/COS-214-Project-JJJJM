@@ -65,7 +65,7 @@ Country::Country(std::string _name)
 }
 
 ///////////////////////////////////////////////////////////
-// takeTurn()
+// takeTurn(Country*)
 ///////////////////////////////////////////////////////////
 
 void Country::takeTurn(Country *countryB)
@@ -77,6 +77,10 @@ void Country::takeTurn(Country *countryB)
   // std::cout << " , [1] : " << strengthRatings[1] << "\n";
   // strategy->takeTurn(strengthRatings, this, countryB);
 }
+
+///////////////////////////////////////////////////////////
+// takeTurn()
+///////////////////////////////////////////////////////////
 
 void Country::takeTurn()
 {
