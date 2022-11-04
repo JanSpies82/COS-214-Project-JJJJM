@@ -29,11 +29,11 @@ void MiddleStrategy::defensiveMove(Country *countryA, Country *countryB)
     countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.95);
 
     // Update CountryA's MilitaryState
-    mA->updateNumBattalions(floor(mA->getNumBattalions() * 0.8), false);
-    mA->updateNumPlanes(floor(mA->getNumPlanes() * 0.8), false);
-    mA->updateNumShips(floor(mA->getNumShips() * 0.8), false);
-    mA->updateNumTanks(floor(mA->getNumTanks() * 0.8), false);
-    mA->updateNumTroops(floor(mA->getNumTroops() * 0.8), false);
+    mA->updateNumBattalions(floor(mA->getNumBattalions() * 0.2), false);
+    mA->updateNumPlanes(floor(mA->getNumPlanes() * 0.2), false);
+    mA->updateNumShips(floor(mA->getNumShips() * 0.2), false);
+    mA->updateNumTanks(floor(mA->getNumTanks() * 0.2), false);
+    mA->updateNumTroops(floor(mA->getNumTroops() * 0.2), false);
 
     // Update CountryB's CountryState
     countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.65);
@@ -44,11 +44,11 @@ void MiddleStrategy::defensiveMove(Country *countryA, Country *countryB)
     countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.65);
 
     // Update CountryB's MilitaryState
-    mB->updateNumBattalions(floor(mB->getNumBattalions() * 0.6), false);
-    mB->updateNumPlanes(floor(mB->getNumPlanes() * 0.6), false);
-    mB->updateNumShips(floor(mB->getNumShips() * 0.6), false);
-    mB->updateNumTanks(floor(mB->getNumTanks() * 0.6), false);
-    mB->updateNumTroops(floor(mB->getNumTroops() * 0.6), false);
+    mB->updateNumBattalions(floor(mB->getNumBattalions() * 0.4), false);
+    mB->updateNumPlanes(floor(mB->getNumPlanes() * 0.4), false);
+    mB->updateNumShips(floor(mB->getNumShips() * 0.4), false);
+    mB->updateNumTanks(floor(mB->getNumTanks() * 0.4), false);
+    mB->updateNumTroops(floor(mB->getNumTroops() * 0.4), false);
     return;
   }
   // CountryB wins turn
@@ -61,11 +61,11 @@ void MiddleStrategy::defensiveMove(Country *countryA, Country *countryB)
   countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.95);
 
   // Update CountryA's MilitaryState
-  mA->updateNumBattalions(floor(mA->getNumBattalions() * 0.6), false);
-  mA->updateNumPlanes(floor(mA->getNumPlanes() * 0.6), false);
-  mA->updateNumShips(floor(mA->getNumShips() * 0.6), false);
-  mA->updateNumTanks(floor(mA->getNumTanks() * 0.6), false);
-  mA->updateNumTroops(floor(mA->getNumTroops() * 0.6), false);
+  mA->updateNumBattalions(floor(mA->getNumBattalions() * 0.4), false);
+  mA->updateNumPlanes(floor(mA->getNumPlanes() * 0.4), false);
+  mA->updateNumShips(floor(mA->getNumShips() * 0.4), false);
+  mA->updateNumTanks(floor(mA->getNumTanks() * 0.4), false);
+  mA->updateNumTroops(floor(mA->getNumTroops() * 0.4), false);
 
   // Update CountryB's CountryState
   countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.65);
@@ -76,11 +76,11 @@ void MiddleStrategy::defensiveMove(Country *countryA, Country *countryB)
   countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.65);
 
   // Update CountryB's MilitaryState
-  mB->updateNumBattalions(floor(mB->getNumBattalions() * 0.8), false);
-  mB->updateNumPlanes(floor(mB->getNumPlanes() * 0.8), false);
-  mB->updateNumShips(floor(mB->getNumShips() * 0.8), false);
-  mB->updateNumTanks(floor(mB->getNumTanks() * 0.8), false);
-  mB->updateNumTroops(floor(mB->getNumTroops() * 0.8), false);
+  mB->updateNumBattalions(floor(mB->getNumBattalions() * 0.2), false);
+  mB->updateNumPlanes(floor(mB->getNumPlanes() * 0.2), false);
+  mB->updateNumShips(floor(mB->getNumShips() * 0.2), false);
+  mB->updateNumTanks(floor(mB->getNumTanks() * 0.2), false);
+  mB->updateNumTroops(floor(mB->getNumTroops() * 0.2), false);
 }
 
 void MiddleStrategy::neutralMove(Country *countryA, Country *countryB)
@@ -103,11 +103,11 @@ void MiddleStrategy::neutralMove(Country *countryA, Country *countryB)
     countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.95);
 
     // Update CountryA's MilitaryState
-    mA->updateNumBattalions(floor(mA->getNumBattalions() * 0.8), false);
-    mA->updateNumPlanes(floor(mA->getNumPlanes() * 0.8), false);
-    mA->updateNumShips(floor(mA->getNumShips() * 0.8), false);
-    mA->updateNumTanks(floor(mA->getNumTanks() * 0.8), false);
-    mA->updateNumTroops(floor(mA->getNumTroops() * 0.8), false);
+    mA->updateNumBattalions(floor(mA->getNumBattalions() * 0.2), false);
+    mA->updateNumPlanes(floor(mA->getNumPlanes() * 0.2), false);
+    mA->updateNumShips(floor(mA->getNumShips() * 0.2), false);
+    mA->updateNumTanks(floor(mA->getNumTanks() * 0.2), false);
+    mA->updateNumTroops(floor(mA->getNumTroops() * 0.2), false);
 
     // Update CountryB's CountryState
     countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.65);
@@ -150,11 +150,11 @@ void MiddleStrategy::neutralMove(Country *countryA, Country *countryB)
   countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.65);
 
   // Update CountryB's MilitaryState
-  mB->updateNumBattalions(floor(mB->getNumBattalions() * 0.8), false);
-  mB->updateNumPlanes(floor(mB->getNumPlanes() * 0.8), false);
-  mB->updateNumShips(floor(mB->getNumShips() * 0.8), false);
-  mB->updateNumTanks(floor(mB->getNumTanks() * 0.8), false);
-  mB->updateNumTroops(floor(mB->getNumTroops() * 0.8), false);
+  mB->updateNumBattalions(floor(mB->getNumBattalions() * 0.2), false);
+  mB->updateNumPlanes(floor(mB->getNumPlanes() * 0.2), false);
+  mB->updateNumShips(floor(mB->getNumShips() * 0.2), false);
+  mB->updateNumTanks(floor(mB->getNumTanks() * 0.2), false);
+  mB->updateNumTroops(floor(mB->getNumTroops() * 0.2), false);
 }
 
 void MiddleStrategy::offensiveMove(Country *countryA, Country *countryB)
@@ -177,11 +177,11 @@ void MiddleStrategy::offensiveMove(Country *countryA, Country *countryB)
     countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.95);
 
     // Update CountryA's MilitaryState
-    mA->updateNumBattalions(floor(mA->getNumBattalions() * 0.7), false);
-    mA->updateNumPlanes(floor(mA->getNumPlanes() * 0.7), false);
-    mA->updateNumShips(floor(mA->getNumShips() * 0.7), false);
-    mA->updateNumTanks(floor(mA->getNumTanks() * 0.7), false);
-    mA->updateNumTroops(floor(mA->getNumTroops() * 0.7), false);
+    mA->updateNumBattalions(floor(mA->getNumBattalions() * 0.3), false);
+    mA->updateNumPlanes(floor(mA->getNumPlanes() * 0.3), false);
+    mA->updateNumShips(floor(mA->getNumShips() * 0.3), false);
+    mA->updateNumTanks(floor(mA->getNumTanks() * 0.3), false);
+    mA->updateNumTroops(floor(mA->getNumTroops() * 0.3), false);
 
     // Update CountryB's CountryState
     countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.65);
@@ -192,11 +192,11 @@ void MiddleStrategy::offensiveMove(Country *countryA, Country *countryB)
     countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.65);
 
     // Update CountryB's MilitaryState
-    mB->updateNumBattalions(floor(mB->getNumBattalions() * 0.8), false);
-    mB->updateNumPlanes(floor(mB->getNumPlanes() * 0.1), false);
-    mB->updateNumShips(floor(mB->getNumShips() * 0.1), false);
-    mB->updateNumTanks(floor(mB->getNumTanks() * 0.1), false);
-    mB->updateNumTroops(floor(mB->getNumTroops() * 0.1), false);
+    mB->updateNumBattalions(floor(mB->getNumBattalions() * 0.9), false);
+    mB->updateNumPlanes(floor(mB->getNumPlanes() * 0.9), false);
+    mB->updateNumShips(floor(mB->getNumShips() * 0.9), false);
+    mB->updateNumTanks(floor(mB->getNumTanks() * 0.9), false);
+    mB->updateNumTroops(floor(mB->getNumTroops() * 0.9), false);
     return;
   }
   // CountryB wins turn
@@ -209,11 +209,11 @@ void MiddleStrategy::offensiveMove(Country *countryA, Country *countryB)
   countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.95);
 
   // Update CountryA's MilitaryState
-  mA->updateNumBattalions(floor(mA->getNumBattalions() * 0.1), false);
-  mA->updateNumPlanes(floor(mA->getNumPlanes() * 0.1), false);
-  mA->updateNumShips(floor(mA->getNumShips() * 0.1), false);
-  mA->updateNumTanks(floor(mA->getNumTanks() * 0.1), false);
-  mA->updateNumTroops(floor(mA->getNumTroops() * 0.1), false);
+  mA->updateNumBattalions(floor(mA->getNumBattalions() * 0.9), false);
+  mA->updateNumPlanes(floor(mA->getNumPlanes() * 0.9), false);
+  mA->updateNumShips(floor(mA->getNumShips() * 0.9), false);
+  mA->updateNumTanks(floor(mA->getNumTanks() * 0.9), false);
+  mA->updateNumTroops(floor(mA->getNumTroops() * 0.9), false);
 
   // Update CountryB's CountryState
   countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.65);
@@ -224,9 +224,9 @@ void MiddleStrategy::offensiveMove(Country *countryA, Country *countryB)
   countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.65);
 
   // Update CountryB's MilitaryState
-  mB->updateNumBattalions(floor(mB->getNumBattalions() * 0.8), false);
-  mB->updateNumPlanes(floor(mB->getNumPlanes() * 0.8), false);
-  mB->updateNumShips(floor(mB->getNumShips() * 0.8), false);
-  mB->updateNumTanks(floor(mB->getNumTanks() * 0.8), false);
-  mB->updateNumTroops(floor(mB->getNumTroops() * 0.8), false);
+  mB->updateNumBattalions(floor(mB->getNumBattalions() * 0.2), false);
+  mB->updateNumPlanes(floor(mB->getNumPlanes() * 0.2), false);
+  mB->updateNumShips(floor(mB->getNumShips() * 0.2), false);
+  mB->updateNumTanks(floor(mB->getNumTanks() * 0.2), false);
+  mB->updateNumTroops(floor(mB->getNumTroops() * 0.2), false);
 }
