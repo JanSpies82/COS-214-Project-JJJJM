@@ -73,8 +73,6 @@ void Country::takeTurn(Country *countryB)
   setStrategy();
   double strengthRatings[2];
   getCountryRating(countryB, strengthRatings);
-  // std::cout << "strengthRatings, [0] : " << strengthRatings[0];
-  // std::cout << " , [1] : " << strengthRatings[1] << "\n";
   // strategy->takeTurn(strengthRatings, this, countryB);
 }
 
@@ -89,9 +87,6 @@ void Country::takeTurn()
   srand((unsigned) time(NULL));  // seed rand
   Country* countryB = getEnemies()->at(rand() % getEnemies()->size());
   getCountryRating(countryB, strengthRatings);
-  std::cout << "strengthRatings, [0] : " << strengthRatings[0];
-  std::cout << " , [1] : " << strengthRatings[1] << "\n";
-  std::cout << "Country" << this->getName() << " is attacking Country" + countryB->getName() << "\n";
   strategy->takeTurn(strengthRatings, this, countryB);
 }
 
@@ -580,7 +575,9 @@ void Country::setState(CountryState *_state)
 }
 
 void Country::printSummary(){
-  std::cout << "Country: " << countryState->name << std::endl;
+  std::cout << "---------------------------------\n";
+  std::cout << "Summary of " << getName() << std::endl;
+  std::cout << "---------------------------------\n";
   std::cout << "Population: " << countryState->numCitizens << std::endl;
   std::cout << "Political Stability: " << countryState->politicalStability << std::endl;
   std::cout << "Domestic Morale: " << countryState->domesticMorale << std::endl;
@@ -589,4 +586,11 @@ void Country::printSummary(){
   std::cout << "Capital Safety: " << countryState->capitalSafety << std::endl;
   std::cout << "War Sentiment: " << countryState->warSentiment << std::endl;
   std::cout << "Trade Route Safety: " << countryState->tradeRouteSafety << std::endl;
+
+  MilitaryState* thisMilitary = countryState->getMilitaryState();
+  std::cout << "Number Of Battalions " << thisMilitary->getNumBattalions() << std::endl;
+  std::cout << "Number of Tanks: " << thisMilitary->getNumTanks() << std::endl;
+  std::cout << "Number Of Ships: " << thisMilitary->getNumShips() << std::endl;
+  std::cout << "Number Of Planes: " << thisMilitary->getNumPlanes() << std::endl;
+  std::cout << "---------------------------------\n";
 }
