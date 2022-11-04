@@ -1,3 +1,4 @@
+///@author Janco Spies
 #include <limits.h>
 #include <stdexcept>
 #include "../src/Superpower.h"

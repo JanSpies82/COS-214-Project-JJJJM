@@ -1,3 +1,4 @@
+///@author Julian Pienaar
 #include <limits.h>
 #include <stdexcept>
 #include "../src/MapState.h"
