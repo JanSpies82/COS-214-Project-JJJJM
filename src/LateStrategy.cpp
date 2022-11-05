@@ -41,7 +41,7 @@ void LateStrategy::neutralMove(Country *countryA, Country *countryB)
 {
   MilitaryState *mA = countryA->getCountryState()->getMilitaryState();
   MilitaryState *mB = countryB->getCountryState()->getMilitaryState();
-  srand((unsigned)time(NULL)); // seed rand
+  // srand((unsigned)time(NULL)); // seed rand
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.5
   // CountryB chance of success : 0.5
@@ -127,7 +127,7 @@ void LateStrategy::offensiveMove(Country *countryA, Country *countryB)
   std::cout << "LateStrategy::occupyCapital selected" << std::endl;
   MilitaryState *mA = countryA->getCountryState()->getMilitaryState();
   MilitaryState *mB = countryB->getCountryState()->getMilitaryState();
-  srand((unsigned)time(NULL)); // seed rand
+  // srand((unsigned)time(NULL)); // seed rand
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.7
   // CountryB chance of success : 0.3

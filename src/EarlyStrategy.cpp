@@ -15,7 +15,7 @@ EarlyStrategy::~EarlyStrategy() {}
 
 void EarlyStrategy::defensiveMove(Country *countryA, Country *countryB)
 {
-  srand((unsigned)time(NULL)); // seed rand
+  // srand((unsigned)time(NULL)); // seed rand
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.3
   // CountryB chance of success : 0.7
@@ -71,7 +71,7 @@ void EarlyStrategy::defensiveMove(Country *countryA, Country *countryB)
 
 void EarlyStrategy::neutralMove(Country *countryA, Country *countryB)
 {
-  srand((unsigned)time(NULL)); // seed rand
+  // srand((unsigned)time(NULL)); // seed rand
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.5
   // CountryB chance of success : 0.5
@@ -127,7 +127,7 @@ void EarlyStrategy::neutralMove(Country *countryA, Country *countryB)
 
 void EarlyStrategy::offensiveMove(Country *countryA, Country *countryB)
 {
-  srand((unsigned)time(NULL)); // seed rand
+  // srand((unsigned)time(NULL)); // seed rand
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.7
   // CountryB chance of success : 0.3
