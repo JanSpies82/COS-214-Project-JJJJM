@@ -1,3 +1,4 @@
+///@author Mekhail Muller
 #include <limits.h>
 #include <stdexcept>
 #include "../src/StageContext.h"

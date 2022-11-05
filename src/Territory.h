@@ -5,6 +5,7 @@
 
 #include <exception>
 #include "Location.h"
+#include "LocationObserver.h"
 
 class LocationIterator;
 class Neighbour;

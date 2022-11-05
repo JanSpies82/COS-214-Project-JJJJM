@@ -6,7 +6,7 @@
 #include <string>
 
 class Map;
-class Observer;
+class LocationObserver;
 class Iterator;
 class Country;
 
@@ -182,6 +182,7 @@ class Location
 	protected:
 		Location* location;
 		Country* ownedBy;
+		LocationObserver* lObserver;
 		std::string color;
 		bool isCapital;
 		bool isLand;

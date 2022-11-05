@@ -14,8 +14,11 @@
 #include "StageContext.h"
 #include "StageContextState.h"
 #include "Location.h"
+#include "LocationObserver.h"
+#include "Map.h"
 #include <exception>
 #include <stdexcept>
+#include <vector>
 
 ///////////////////////////////////////////////////////////
 // Country()
@@ -28,6 +31,7 @@ Country::Country()
   strategy = NULL;
   military = NULL;
   mediator = NULL;
+  locationObservers=new std::vector<LocationObserver *>();
 }
 
 ///////////////////////////////////////////////////////////
@@ -36,6 +40,12 @@ Country::Country()
 
 Country::~Country()
 {
+
+  if(!countryState->isBeingStored&&countryState->enemies!=NULL)
+    for (int i = 0; i < countryState->enemies->size(); i++)
+    {
+      countryState->enemies->at(i)->removeEnemy(this);
+    }
   if (strategy != NULL)
     delete strategy;
   strategy = NULL;
@@ -48,6 +58,16 @@ Country::~Country()
   if (countryState != NULL)
     delete countryState;
   countryState = NULL;
+  if(locationObservers != NULL)
+  {
+    for (LocationObserver* i:*locationObservers)
+    {
+      if(i!=NULL)
+        i->updateLocation();
+    }
+    delete locationObservers;
+  }
+
 }
 
 ///////////////////////////////////////////////////////////
@@ -62,6 +82,7 @@ Country::Country(std::string _name)
   mediator = NULL;
   strategy = NULL;
   countryState->locations = NULL;
+  locationObservers=new std::vector<LocationObserver *>();
 }
 
 ///////////////////////////////////////////////////////////
@@ -574,6 +595,45 @@ void Country::setState(CountryState *_state)
   countryState = _state;
 }
 
+///////////////////////////////////////////////////////////
+// attachObserver()
+///////////////////////////////////////////////////////////
+
+void Country::attachObserver(LocationObserver *_lObserver)
+{
+  if(locationObservers==NULL)
+  {
+    locationObservers=new std::vector<LocationObserver *>();
+  }
+
+  if(_lObserver==NULL)
+    throw std::invalid_argument("_lObserver must not be NULL");
+
+  locationObservers->push_back(_lObserver);
+}
+
+///////////////////////////////////////////////////////////
+// detachObserver()
+///////////////////////////////////////////////////////////
+
+void Country::detachObserver(LocationObserver *_lObserver)
+{
+  if(locationObservers==NULL)
+  {
+    throw std::logic_error("locationObservers was not initialized thus it can not have elements remove from it");
+  }
+  for (int i = 0 ; i < locationObservers->size() ; i++)
+  {
+    if(_lObserver==locationObservers->at(i))
+      locationObservers->erase(locationObservers->begin()+i);
+  }
+  
+}
+
+///////////////////////////////////////////////////////////
+// printSummary()
+///////////////////////////////////////////////////////////
+
 void Country::printSummary(){
   std::cout << "---------------------------------\n";
   std::cout << "Summary of " << getName() << std::endl;
@@ -593,4 +653,80 @@ void Country::printSummary(){
   std::cout << "Number Of Ships: " << thisMilitary->getNumShips() << std::endl;
   std::cout << "Number Of Planes: " << thisMilitary->getNumPlanes() << std::endl;
   std::cout << "---------------------------------\n";
+}
+
+void Country::resetLocations(Map* _map)
+{
+  std::vector<Location*>* locs=new std::vector<Location*>();
+
+  // std::cout<<getName()<<"\t";
+  // std::cout<<countryState->capital->getX()<<"\t";
+  // std::cout<<countryState->capital->getY()<<"\t";
+  // std::cout<<std::endl;
+  //  Location* l=_map->getLocation(countryState->capital->getX(), countryState->capital->getY());
+  //  l->setIsCapital(true);
+  //  countryState->capital=l;
+  for (int i = 0; i < countryState->locations->size(); i++)
+  {
+    Location* l=_map->getLocation(countryState->locations->at(i)->getX(), countryState->locations->at(i)->getY());
+    l->setIsCapital(countryState->locations->at(i)->getIsCapital());
+    l->setOwnedBy(this);
+    locs->push_back(l);
+    delete countryState->locations->at(i);
+  }
+  // l->setOwnedBy(this);
+  // countryState->capital=l;
+
+  delete countryState->locations;
+  countryState->locations = locs;
+}
+
+Country* Country::clone()
+{
+  Country* c = new Country(this->getName());
+  c->setBorderStrength(getBorderStrength());
+  c->setCapitalSafety(getCapitalSafety());
+  c->setColor(getColor());
+  c->setDomesticMorale(getDomesticMorale());
+  c->setNumCitizens(getNumCitizens());
+  c->setPoliticalStability(getPoliticalStability());
+  c->setSelfReliance(getSelfReliance());
+  c->setTradeRouteSafety(getTradeRouteSafety());
+  c->setWarSentiment(getWarSentiment());
+  c->getState()->enemies=NULL;
+
+  return c;
+}
+
+void Country::resetEnemies(std::vector<Country*>* _enemies)
+{
+  std::vector<Country*>* newEnemies=new std::vector<Country*>();
+
+  for (int i = 0; i < _enemies->size(); i++)
+  {
+    newEnemies->push_back(_enemies->at(i));
+  }
+
+  for (int i = 0; i < getState()->enemies->size(); i++)
+  {
+    delete getState()->enemies->at(i);
+  }
+
+  delete getState()->enemies;
+  getState()->enemies=newEnemies;
+  
+}
+
+void Country::removeEnemy(Country *_enemy)
+{
+  if(countryState->enemies!=NULL)
+  {
+    for (int i = 0; i < countryState->enemies->size(); i++){
+        if (countryState->enemies->at(i) == _enemy){
+            countryState->enemies->erase(countryState->enemies->begin() + i);
+            return;
+        }
+    }
+    throw std::out_of_range("Country not on enemy list");
+  }
 }

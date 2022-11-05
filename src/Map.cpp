@@ -17,7 +17,7 @@ using namespace std;
 
 Map::Map()
 {
-    string colors[10] = {"\x1B[44m", "\x1B[40m", "\x1B[45m", "\x1B[46m", "\x1B[107m", "\x1B[106m", "\x1B[102m", "\x1B[41m", "\x1B[43m", "\x1B[105m"};
+    string colors[11] = {"\x1B[44m", "\x1B[40m", "\x1B[45m", "\x1B[46m", "\x1B[107m", "\x1B[106m", "\x1B[102m", "\x1B[41m", "\x1B[43m", "\x1B[105m", "\x1B[100m"};
 
     int mapVal[27][25] = {
         {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,9,0,0,0,0,6,6},

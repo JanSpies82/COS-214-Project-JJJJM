@@ -1,3 +1,4 @@
+///@author Janco Spies
 #include <gtest/gtest.h>
 
 #include "BackupTest.cpp"

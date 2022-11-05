@@ -76,7 +76,8 @@ namespace
     Country *countryB = new Country("countryB");
     CountryState *c = countryA->getCountryState();
     countryB->setCountryState(new CountryState(*c));
-    EXPECT_EQ(countryB->getColor(), "Red");
+    EXPECT_EQ(countryB->getColor(), "Red"); 
+    countryB->getCountryState()->setIsBeingStored(false);
     delete countryA;
     delete countryB;
   }

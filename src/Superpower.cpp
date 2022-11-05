@@ -4,6 +4,7 @@
 #include "Country.h"
 #include "SuperpowerState.h"
 #include "CountryState.h"
+#include "Map.h"
 #include <stdexcept>
 #include <iostream>
 
@@ -28,6 +29,7 @@ Superpower::Superpower(SuperpowerState *_state){
     for (int i = 0; i < _state->getCountryStateCount(); i++){
         Country* c = new Country();
         c->setState(_state->getCountryState(i)->clone());
+        c->getState()->setIsBeingStored(false);
         countries->push_back(c);
     }
 }
@@ -78,6 +80,7 @@ SuperpowerState *Superpower::getState()
     SuperpowerState *state = new SuperpowerState(name);
     for (int i = 0; i < countries->size(); i++){
         state->addCountryState(countries->at(i)->getState()->clone());
+        state->getCountryState(i)->setIsBeingStored(true);
     }
     return state;
 }
@@ -89,4 +92,26 @@ void Superpower::printSummary()
     for (int i = 0; i < countries->size(); i++){
         // countries->at(i)->printSummary();
     }
+}
+
+void Superpower::resetLocations(Map* _map)
+{
+    for (int i = 0; i < countries->size(); i++)
+    {
+        countries->at(i)->resetLocations(_map);
+    }
+    
+}
+
+void Superpower::resetEnemies(vector<Country*>* _enemies)
+{
+    for (int i = 0; i < countries->size(); i++)
+    {
+        countries->at(i)->resetEnemies(_enemies);
+    }
+}
+
+std::vector<Country*>* Superpower::getAllCountries()
+{
+    return countries;
 }

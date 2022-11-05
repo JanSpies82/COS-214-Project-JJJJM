@@ -19,6 +19,8 @@ class Country;
 class MapState;
 class MilitaryState;
 class Location;
+class LocationObserver;
+class Map;
 
 class Country
 {
@@ -337,16 +339,39 @@ public:
    * @param _state : CountryState* - The new state object
    */
   void setState(CountryState *_state);
-/**
- * @brief print a basic summary of the country's state
- * 
- */
- void printSummary();
+
+  /**
+   * @brief print a basic summary of the country's state
+   * 
+   */
+  void printSummary();
+
+  /**
+   * @brief 
+   * 
+   */
+  void attachObserver(LocationObserver *_lObserver);
+
+  /**
+   * @brief 
+   * 
+   */
+  void detachObserver(LocationObserver *_lObserver);
+
+  void resetLocations(Map* _map);
+
+  Country* clone();
+
+  void resetEnemies(std::vector<Country*>* _enemies);
+
+  void removeEnemy(Country* _enemey);
+  
 private:
   Strategy *strategy;
   Military *military;
   CountryMediator *mediator;
   CountryState *countryState;
+  std::vector<LocationObserver*>* locationObservers;
 };
 
 #endif

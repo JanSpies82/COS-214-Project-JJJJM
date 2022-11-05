@@ -63,6 +63,8 @@ public:
    */
   void setMilitaryState(MilitaryState* _militaryState);
 
+  void setIsBeingStored(bool _isBeingStored);
+
 private: 
   friend class Country;
   std::string name;
@@ -79,6 +81,7 @@ private:
   std::string color;
   std::vector<Country*>* enemies;
   std::vector<Location*>* locations;
+  bool isBeingStored;
 };
 
 #endif

@@ -1,161 +1,86 @@
-// #include <limits.h>
-// #include <stdexcept>
-// #include "../src/SimulationState.h"
-// #include "../src/MapState.h"
-// #include "../src/CountryState.h"
-// #include "../src/MilitaryState.h"
-// #include "../src/Country.h"
-// #include "../src/Map.h"
-// #include "../src/Military.h"
-// #include "gtest/gtest.h"
+///@author Janco Spies
+#include <limits.h>
+#include <stdexcept>
+#include "../src/SimulationState.h"
+#include "../src/MapState.h"
+#include "../src/Map.h"
+#include "../src/Superpower.h"
+#include "../src/SuperpowerState.h"
+#include "../src/StageContext.h"
+#include "../src/StageContextState.h"
+#include "gtest/gtest.h"
 
-// class IteratorTest : public testing::Test
-// {
-// public:
-//     virtual void SetUp() override
-//     {
-//         map = new Map();
-//         // country = new Country();
-//         // military = new Military();
-//         mapState = new MapState(map);
-//     }
-//     virtual void TearDown() override
-//     {
-//         delete map;
-//         // delete country;
-//         // delete military;
-//     }
+namespace {
+    TEST(SimulationStateTest, Constructor) {
+        SimulationState* simulationState = new SimulationState();
+        EXPECT_EQ(simulationState->getSuperpowerStateCount(), 0);
+        delete simulationState;
+    }
 
-//     Map* map;
-//     Country* country;
-//     Military* military;
-//     MapState* mapState;
-//     CountryState* countryState;
-//     MilitaryState* militaryState;
-// };
+    TEST(SimulationStateTest, getMapStatePos){
+        SimulationState* simulationState = new SimulationState();
+        Map* m = new Map();
+        MapState* mapState1 = new MapState(m);
+        simulationState->setMapState(mapState1);
+        EXPECT_EQ(simulationState->getMapState(), mapState1);
+        MapState* mapState2 = new MapState(m);
+        simulationState->setMapState(mapState2);
+        EXPECT_EQ(simulationState->getMapState(), mapState2);
+        delete simulationState;
+        delete m;
+    }
 
-// namespace
-// {
-//     // class FakeMapState : public MapState
-//     // {
-//     // public:
-//     //     FakeMapState() : MapState(NULL) {}
-//     // };
-//     // class FakeCountryState : public CountryState
-//     // {
-//     // public:
-//     //     FakeCountryState() : CountryState(NULL) {}
-//     // };
-//     class FakeMilitaryState : public MilitaryState
-//     {
-//     public:
-//         FakeMilitaryState() : MilitaryState(NULL) {}
-//     };
+    TEST(SimulationStateTest, getMapStateNeg){
+        SimulationState* simulationState = new SimulationState();
+        EXPECT_THROW(simulationState->getMapState(), std::out_of_range);
+        delete simulationState;
+    }
 
-//     TEST(SimulationStateTest, Constructor)
-//     {
-//         SimulationState *simulationState = new SimulationState(NULL);
-//         EXPECT_EQ(simulationState->getTimestamp(), time(0));
-//         EXPECT_EQ(simulationState->getCountryStateCount(), 0);
-//         EXPECT_EQ(simulationState->getCountryStateCount(), 0);
-//         delete simulationState;
-//     }
+    TEST(SimulationStateTest, getStageContextStatePos){
+        SimulationState* simulationState = new SimulationState();
+        StageContextState *stageContextState1 = StageContext::getInstance()->getState();
+        simulationState->setStageContextState(stageContextState1);
+        EXPECT_EQ(simulationState->getStageContextState(), stageContextState1);
+        StageContextState* stageContextState2 = StageContext::getInstance()->getState();
+        simulationState->setStageContextState(stageContextState2);
+        EXPECT_EQ(simulationState->getStageContextState(), stageContextState2);
+        delete simulationState;
+        delete StageContext::getInstance();
+    }
 
-//     TEST(SimulationStateTest, SetMapState)
-//     {
-//         SimulationState *simulationState = new SimulationState(NULL);
-//         Map *m1 = new Map();
-//         MapState *map1 = new MapState(m1);
-//         simulationState->setMapState(map1);
-//         EXPECT_EQ(simulationState->getMapState(), map1);
-//         Map *m2 = new Map();
-//         MapState *map2 = new MapState(m2);
-//         simulationState->setMapState(map2);
-//         EXPECT_EQ(simulationState->getMapState(), map2);
-//         delete simulationState;
-//         delete m1;
-//         delete m2;
-//     }
+    TEST(SimulationStateTest, getStageContextStateNeg){
+        SimulationState* simulationState = new SimulationState();
+        EXPECT_THROW(simulationState->getStageContextState(), std::out_of_range);
+        delete simulationState;
+    }
 
-//     TEST(SimulationStateTest, GetMapState)
-//     {
-//         SimulationState *simulationState = new SimulationState(NULL);
-//         EXPECT_THROW(simulationState->getMapState(), std::out_of_range);
-//         Map *m1 = new Map();
-//         MapState *map1 = new MapState(m1);
-//         simulationState->setMapState(map1);
-//         EXPECT_EQ(simulationState->getMapState(), map1);
-//         delete simulationState;
-//         delete m1;
-//     }
+    TEST(SimulationStateTest, getSuperpowerStateCount){
+        SimulationState* simulationState = new SimulationState();
+        EXPECT_EQ(simulationState->getSuperpowerStateCount(), 0);
+        simulationState->addSuperpowerState(new SuperpowerState(""));
+        EXPECT_EQ(simulationState->getSuperpowerStateCount(), 1);
+        simulationState->addSuperpowerState(new SuperpowerState(""));
+        EXPECT_EQ(simulationState->getSuperpowerStateCount(), 2);
+        delete simulationState;
+    }
 
-//     TEST(SimulationStateTest, AddCountryState)
-//     {
-//         SimulationState *simulationState = new SimulationState(NULL);
-//         Country *c1 = new Country();
-//         CountryState *countryState1 = new CountryState(c1);
-//         simulationState->addCountryState(countryState1);
-//         EXPECT_EQ(simulationState->getCountryStateCount(), 1);
-//         EXPECT_EQ(simulationState->getCountryState(0), countryState1);
-//         Country *c2 = new Country();
-//         CountryState *countryState2 = new CountryState(c2);
-//         simulationState->addCountryState(countryState2);
-//         EXPECT_EQ(simulationState->getCountryStateCount(), 2);
-//         EXPECT_EQ(simulationState->getCountryState(0), countryState1);
-//         EXPECT_EQ(simulationState->getCountryState(1), countryState2);
-//         delete simulationState;
-//         delete c1;
-//         delete c2;
-//     }
+    TEST(SimulationStateTest, getSuperpowerStatePos){
+        SimulationState* simulationState = new SimulationState();
+        SuperpowerState* superpowerState1 = new SuperpowerState("");
+        simulationState->addSuperpowerState(superpowerState1);
+        EXPECT_EQ(simulationState->getSuperpowerState(0), superpowerState1);
+        SuperpowerState* superpowerState2 = new SuperpowerState("");
+        simulationState->addSuperpowerState(superpowerState2);
+        EXPECT_EQ(simulationState->getSuperpowerState(1), superpowerState2);
+        delete simulationState;
+    }
 
-//     TEST(SimulationStateTest, GetCountryState)
-//     {
-//         SimulationState *simulationState = new SimulationState(NULL);
-//         EXPECT_THROW(simulationState->getCountryState(0), std::out_of_range);
-//         Country *c1 = new Country();
-//         CountryState *countryState1 = new CountryState(c1);
-//         simulationState->addCountryState(countryState1);
-//         EXPECT_EQ(simulationState->getCountryState(0), countryState1);
-//         EXPECT_THROW(simulationState->getCountryState(1), std::out_of_range);
-//         Country *c2 = new Country();
-//         CountryState *countryState2 = new CountryState(c2);
-//         simulationState->addCountryState(countryState2);
-//         EXPECT_EQ(simulationState->getCountryState(0), countryState1);
-//         EXPECT_EQ(simulationState->getCountryState(1), countryState2);
-//         EXPECT_THROW(simulationState->getCountryState(2), std::out_of_range);
-//         delete simulationState;
-//         delete c1;
-//         delete c2;
-//     }
-
-//     TEST(SimulationStateTest, AddMilitaryState)
-//     {
-//         SimulationState *simulationState = new SimulationState(NULL);
-//         MilitaryState *militaryState1 = new FakeMilitaryState();
-//         simulationState->addMilitaryState(militaryState1);
-//         EXPECT_EQ(simulationState->getMilitaryStateCount(), 1);
-//         EXPECT_EQ(simulationState->getMilitaryState(0), militaryState1);
-//         MilitaryState *militaryState2 = new FakeMilitaryState();
-//         simulationState->addMilitaryState(militaryState2);
-//         EXPECT_EQ(simulationState->getMilitaryStateCount(), 2);
-//         EXPECT_EQ(simulationState->getMilitaryState(0), militaryState1);
-//         EXPECT_EQ(simulationState->getMilitaryState(1), militaryState2);
-//         delete simulationState;
-//     }
-
-//     TEST(SimulationStateTest, GetMilitaryState)
-//     {
-//         SimulationState *simulationState = new SimulationState(NULL);
-//         EXPECT_THROW(simulationState->getMilitaryState(0), std::out_of_range);
-//         MilitaryState *militaryState1 = new FakeMilitaryState();
-//         simulationState->addMilitaryState(militaryState1);
-//         EXPECT_EQ(simulationState->getMilitaryState(0), militaryState1);
-//         EXPECT_THROW(simulationState->getMilitaryState(1), std::out_of_range);
-//         MilitaryState *militaryState2 = new FakeMilitaryState();
-//         simulationState->addMilitaryState(militaryState2);
-//         EXPECT_EQ(simulationState->getMilitaryState(0), militaryState1);
-//         EXPECT_EQ(simulationState->getMilitaryState(1), militaryState2);
-//         EXPECT_THROW(simulationState->getMilitaryState(2), std::out_of_range);
-//         delete simulationState;
-//     }
-// }
+    TEST(SimulationStateTest, getSuperpowerStateNeg){
+        SimulationState* simulationState = new SimulationState();
+        EXPECT_THROW(simulationState->getSuperpowerState(0), std::out_of_range);
+        simulationState->addSuperpowerState(new SuperpowerState(""));
+        EXPECT_THROW(simulationState->getSuperpowerState(1), std::out_of_range);
+        EXPECT_THROW(simulationState->getSuperpowerState(-1), std::out_of_range);
+        delete simulationState;
+    }
+}
