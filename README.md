@@ -5,7 +5,7 @@ Documentation: //@TODO Add link to doxygen when completed.
 
 Video: //@TODO Add link to video when completed.
 
-Final Class Diagram: //@TODO Add link to final class diagram when completed.
+Final Class Diagram: https://github.com/DeadpanSplash82/COS-214-Project-JJJJM/blob/main/img/Class%20diagrams/Q2.5%20Class%20Diagram%20Final.svg
 
 ## Description of how to run the code: 
 First you will need to download the git repository into a local folder on your device. You will then run the command `cmake CMakeLists.txt` with a terminal set to the
