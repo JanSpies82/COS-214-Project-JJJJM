@@ -53,7 +53,7 @@ public:
    *
    * Exceptions : std::out_of_range if the enemies vector has not been set
    */
-  void takeTurn();
+  void takeTurn(bool *_countryIsDead);
 
   /**
    * @brief sets the country's strategy
@@ -342,36 +342,37 @@ public:
 
   /**
    * @brief print a basic summary of the country's state
-   * 
+   *
    */
   void printSummary();
 
   /**
-   * @brief 
-   * 
+   * @brief
+   *
    */
   void attachObserver(LocationObserver *_lObserver);
 
   /**
-   * @brief 
-   * 
+   * @brief
+   *
    */
   void detachObserver(LocationObserver *_lObserver);
 
-  void resetLocations(Map* _map);
+  void resetLocations(Map *_map);
 
-  Country* clone();
+  Country *clone();
 
-  void resetEnemies(std::vector<Country*>* _enemies);
+  void resetEnemies(std::vector<Country *> *_enemies);
 
-  void removeEnemy(Country* _enemey);
-  
+  void removeEnemy(Country *_enemey);
+
 private:
+  bool checkIsDead();
   Strategy *strategy;
   Military *military;
   CountryMediator *mediator;
   CountryState *countryState;
-  std::vector<LocationObserver*>* locationObservers;
+  std::vector<LocationObserver *> *locationObservers;
 };
 
 #endif
