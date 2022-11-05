@@ -5,9 +5,9 @@
 
 using namespace std;
 
-Strategy::Strategy(){}
+Strategy::Strategy() {}
 
-void Strategy::takeTurn(double* strengthRatings, Country* countryA, Country* countryB)
+void Strategy::takeTurn(double *strengthRatings, Country *countryA, Country *countryB)
 {
   double cmp = strengthRatings[0] - strengthRatings[1];
   if (cmp < -0.5)
@@ -17,4 +17,3 @@ void Strategy::takeTurn(double* strengthRatings, Country* countryA, Country* cou
   if (cmp > 0.5)
     offensiveMove(countryA, countryB);
 }
-

@@ -9,7 +9,7 @@ using namespace std;
 SuperpowerState::SuperpowerState(string _name)
 {
     name = _name;
-    countryStates = new vector<CountryState*>();
+    countryStates = new vector<CountryState *>();
 }
 
 SuperpowerState::~SuperpowerState()
@@ -34,7 +34,7 @@ string SuperpowerState::getName()
     return name;
 }
 
-CountryState* SuperpowerState::getCountryState(int _index)
+CountryState *SuperpowerState::getCountryState(int _index)
 {
     if (_index < 0 || _index >= countryStates->size())
         throw out_of_range("Index out of range");

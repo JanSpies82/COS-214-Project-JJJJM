@@ -60,12 +60,7 @@ const string mapVal[27] = {
     "000000000000000800000550",
 };
 const string countryColors[10] = {"\x1B[44m", "\x1B[40m", "\x1B[45m", "\x1B[46m", "\x1B[107m", "\x1B[106m", "\x1B[102m", "\x1B[41m", "\x1B[43m", "\x1B[105m"};
-
-const std::string RED = "\x1B[31m";
-const std::string GREEN = "\x1B[32m";
 const std::string YELLOW = "\x1B[33m";
-const std::string BLUE = "\x1B[34m";
-const std::string CYAN = "\x1B[36m";
 const std::string RESET = "\x1B[0m";
 
 SimulationManager::SimulationManager()
@@ -96,7 +91,6 @@ void SimulationManager::runSimulation()
         while (isSimulationRunning())
         {
             takeTurn();
-            // viewSummary();
             if (isSimulationRunning())
                 processMenu();
         }
@@ -209,7 +203,7 @@ bool SimulationManager::restoreState()
 
     for (int i = 0; i < superpowers->size(); i++)
     {
-        superpowers->at(i)->resetEnemies(superpowers->at((1+i)%2)->getAllCountries());
+        superpowers->at(i)->resetEnemies(superpowers->at((1 + i) % 2)->getAllCountries());
     }
 
     delete m;
@@ -249,7 +243,6 @@ void SimulationManager::setSuperpowers()
     setUpScandanavia(scandanavia);
     setUpGermany(germany);
     setUpItaly(italy);
-
 }
 
 void SimulationManager::setUpUK(Country *_uk)
@@ -397,7 +390,7 @@ void SimulationManager::setUpBalkans(Country *_balkans)
     _balkans->setSelfReliance(0.6);
     _balkans->setWarSentiment(0.4);
     _balkans->setTradeRouteSafety(0.3);
-    _balkans->setNumCitizens(37000000); // Educated guess
+    _balkans->setNumCitizens(37000000);
 
     vector<VehicleFactory *> *vFactories = new vector<VehicleFactory *>();
     vFactories->push_back(new TankFactory());
@@ -726,7 +719,7 @@ void SimulationManager::setUpItaly(Country *_italy)
 
 void SimulationManager::takeTurn()
 {
-    bool* countryIsDead = new bool();
+    bool *countryIsDead = new bool();
     *countryIsDead = false;
     system("clear");
     saveState();
@@ -739,7 +732,7 @@ void SimulationManager::takeTurn()
         superpowers->at(0)->getCountry(i)->takeTurn(countryIsDead);
         if (*countryIsDead)
         {
-            Country* c = superpowers->at(0)->getCountry(i);
+            Country *c = superpowers->at(0)->getCountry(i);
             superpowers->at(0)->removeCountry(c);
             delete c;
         }
@@ -751,7 +744,7 @@ void SimulationManager::takeTurn()
         superpowers->at(1)->getCountry(i)->takeTurn(countryIsDead);
         if (*countryIsDead)
         {
-            Country* c = superpowers->at(1)->getCountry(i);
+            Country *c = superpowers->at(1)->getCountry(i);
             superpowers->at(1)->removeCountry(c);
             delete c;
         }
@@ -779,8 +772,6 @@ void SimulationManager::processMenu()
         cout << "[1] Continue simulation" << endl;
         cout << "[2] Restore a previous state" << endl;
         cout << "[3] View a detailed summary of a country" << endl;
-        // cout << "[4] View the map" << endl;
-        // cout << "[5] View the summary of the system again" << endl;
         if (designMode)
             cout << "[4] Change the simulation state" << endl;
         cout << "[9] Exit simulation" << endl;
@@ -819,18 +810,6 @@ void SimulationManager::processMenu()
             cin.ignore();
             cin.get();
             break;
-        // case 4:
-        //     map->printMap();
-        //     cout << "Press enter to continue..." << endl;
-        //     cin.ignore();
-        //     cin.get();
-        //     break;
-        // case 5:
-        //     viewSummary();
-        //     cout << "Press enter to continue..." << endl;
-        //     cin.ignore();
-        //     cin.get();
-        //     break;
         case 4:
             designModeAction();
             cout << "Press enter to continue..." << endl;
@@ -893,7 +872,7 @@ void SimulationManager::viewCountrySummary()
         return;
     }
 
-    countries->at(choice - 1)->printSummary(); // TODO check that this is correct
+    countries->at(choice - 1)->printSummary();
     delete countries;
 };
 
@@ -945,10 +924,6 @@ void SimulationManager::designModeAction()
     default:
         break;
     }
-    // cout << "Press enter to continue..." << endl;
-    // cin.ignore();
-    // cin.get();
-    // system("clear");
 };
 
 void SimulationManager::changeSimulationLength()
@@ -1004,12 +979,11 @@ void SimulationManager::removeCountry()
     try
     {
         int index;
-        if(choice<=superpowers->at(0)->getCountryCount())
-            index=0;
+        if (choice <= superpowers->at(0)->getCountryCount())
+            index = 0;
         else
-            index=1;
-        
-        
+            index = 1;
+
         superpowers->at(index)->removeCountry(countries->at(choice - 1));
         cout << countries->at(choice - 1)->getName() << " removed." << endl;
         delete countries->at(choice - 1);

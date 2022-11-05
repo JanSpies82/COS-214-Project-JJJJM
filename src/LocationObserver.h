@@ -9,12 +9,12 @@ class Location;
 
 class LocationObserver
 {
-    public:
-        LocationObserver(Location* _location);
-        ~LocationObserver();
-        void updateLocation(std::string _newColor);
+public:
+    LocationObserver(Location *_location);
+    ~LocationObserver();
+    void updateLocation(std::string _newColor);
 
-    private:
-        Location* location;
+private:
+    Location *location;
 };
 #endif

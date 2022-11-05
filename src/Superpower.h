@@ -22,7 +22,7 @@ public:
 
   /**
    * @brief Reconstruct a superpower object from a SuperpowerState
-   * 
+   *
    * @param state : SuperpowerState* - the state to reconstruct from
    */
   Superpower(SuperpowerState *_state);
@@ -86,11 +86,11 @@ public:
    */
   void printSummary();
 
-  void resetLocations(Map* _map);
+  void resetLocations(Map *_map);
 
-  void resetEnemies(std::vector<Country*>* _enemies);
+  void resetEnemies(std::vector<Country *> *_enemies);
 
-  std::vector<Country*>* getAllCountries();
+  std::vector<Country *> *getAllCountries();
 
 private:
   std::vector<Country *> *countries;

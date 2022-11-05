@@ -37,7 +37,7 @@ public:
 
 	/**
 	 * @brief Set the Stage Context State object stored by the SimulationState
-	 * 
+	 *
 	 * @param _stageContextState : StageContextState* - Pointer to the StageContextState object.
 	 */
 	void setStageContextState(StageContextState *_stageContextState);
@@ -77,10 +77,10 @@ public:
 
 	/**
 	 * @brief Get the StageContextState object stored by the SimulationState
-	 * 
+	 *
 	 * Exceptions : std::out_of_range if the SimulationState does not hold a StageContextState
-	 * 
-	 * @return StageContextState* 
+	 *
+	 * @return StageContextState*
 	 */
 	StageContextState *getStageContextState();
 

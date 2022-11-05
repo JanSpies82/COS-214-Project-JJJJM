@@ -3,11 +3,6 @@
 #ifndef __SimulationManager_h__
 #define __SimulationManager_h__
 
-// #include "Map.h"
-// #include "SimulationState.h"
-// #include "Superpower.h"
-// #include "Backup.h"
-
 #include <vector>
 
 class Map;
@@ -69,7 +64,7 @@ protected:
 
 	/**
 	 * @brief Take a turn in the simulation by having each country take a turn
-	 * 
+	 *
 	 * Increments the turn count and facilitates the switching of war stages. Also saves the state of the system before the turn is taken
 	 *
 	 */
@@ -77,33 +72,33 @@ protected:
 
 	/**
 	 * @brief Provide the user with a summary of the simulation at this point in time
-	 * 
+	 *
 	 * Also view the menu of next options available to the user
 	 */
 	void viewSummary();
 
 	/**
 	 * @brief Display the menu of options available to the user and perform that action
-	 * 
+	 *
 	 * In design mode will allow the user to change the state of the simulation
 	 */
 	void processMenu();
 
 	/**
 	 * @brief Display a detailed summary of a country within the simulation
-	 * 
+	 *
 	 */
 	void viewCountrySummary();
 
 	/**
 	 * @brief Change the state of the simulation in design mode
-	 * 
+	 *
 	 */
 	void designModeAction();
 
 	/**
 	 * @brief Display the last message of the simulation providing a summary of the simulation as a whole after completion
-	 * 
+	 *
 	 */
 	void finalMessage();
 
@@ -127,13 +122,13 @@ private:
 	void removeCountry();
 	void alterCountryState();
 	void changeWarStage();
-	void changeBorderStrength(Country* _country);
-	void changePopulation(Country* _country);
-	void changePoliticalStability(Country* _country);
-	void changeSelfReliance(Country* _country);
-	void changeWarSentiment(Country* _country);
-	void changeTradeRouteSafety(Country* _country);
-	void changeMilitaryAttributes(Country* _country);
+	void changeBorderStrength(Country *_country);
+	void changePopulation(Country *_country);
+	void changePoliticalStability(Country *_country);
+	void changeSelfReliance(Country *_country);
+	void changeWarSentiment(Country *_country);
+	void changeTradeRouteSafety(Country *_country);
+	void changeMilitaryAttributes(Country *_country);
 };
 
 #endif

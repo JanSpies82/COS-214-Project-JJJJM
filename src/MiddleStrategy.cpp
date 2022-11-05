@@ -223,7 +223,7 @@ void MiddleStrategy::offensiveMove(Country *countryA, Country *countryB)
   std::cout << "(MiddleStrategy) " << countryA->getColor()
             << countryA->getName() << RESET << " implemented offensiveMove against "
             << countryB->getColor() << countryB->getName() << RESET << " and lost\n";
-            
+
   countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.75);
   countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.75);
   countryA->setBorderStrength(countryA->getBorderStrength() * 0.75);

@@ -5,9 +5,9 @@
 
 using namespace std;
 
-LeftNeighbour::LeftNeighbour(Location* _neighbour) : Neighbour(_neighbour){}
+LeftNeighbour::LeftNeighbour(Location *_neighbour) : Neighbour(_neighbour) {}
 
-Location* LeftNeighbour::getLeft()
+Location *LeftNeighbour::getLeft()
 {
     return neighbour;
 }

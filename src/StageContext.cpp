@@ -61,10 +61,9 @@ void StageContext::setSimulationLength(int _length)
 	simulationLength = _length;
 }
 
-
 StageContext::~StageContext()
 {
-    delete currentStage;
+	delete currentStage;
 	onlyInstance = NULL;
 }
 
@@ -83,10 +82,10 @@ void StageContext::setCurrentStage(WarStage *_stage)
 	currentStage = _stage;
 }
 
-StageContextState* StageContext::getState()
+StageContextState *StageContext::getState()
 {
-    StageContextState* state = new StageContextState();
-    state->setSimulationLength(simulationLength);
+	StageContextState *state = new StageContextState();
+	state->setSimulationLength(simulationLength);
 	state->setCurrentRound(currentRound);
 	state->setCurrentStage(currentStage->clone());
 	return state;

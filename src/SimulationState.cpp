@@ -20,7 +20,7 @@ SimulationState::~SimulationState()
 {
     if (mapState != NULL)
         delete mapState;
-    
+
     if (stageContextState != NULL)
         delete stageContextState;
 
@@ -43,8 +43,7 @@ void SimulationState::setStageContextState(StageContextState *_stageContextState
     stageContextState = _stageContextState;
 }
 
-
-StageContextState* SimulationState::getStageContextState()
+StageContextState *SimulationState::getStageContextState()
 {
     if (stageContextState == NULL)
         __throw_out_of_range("SimulationState does not hold a StageContextState");

@@ -26,7 +26,7 @@ Memento *Backup::getMemento()
 {
     if (this->mementos->size() == 0)
         __throw_out_of_range("Backup is empty");
-    
+
     Memento *memento = this->mementos->back();
     this->mementos->pop_back();
     return memento;
@@ -41,6 +41,6 @@ void Backup::clear()
 {
     for (int i = 0; i < this->mementos->size(); i++)
         delete this->mementos->at(i);
-    
+
     this->mementos->clear();
 }

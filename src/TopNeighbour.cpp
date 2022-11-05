@@ -6,9 +6,9 @@
 
 using namespace std;
 
-TopNeighbour::TopNeighbour(Location* _neighbour) : Neighbour(_neighbour){}
+TopNeighbour::TopNeighbour(Location *_neighbour) : Neighbour(_neighbour) {}
 
-Location* TopNeighbour::getTop()
+Location *TopNeighbour::getTop()
 {
     return neighbour;
 }

@@ -13,7 +13,6 @@ class Superpower;
 class Military;
 class CountryState;
 class Citizen;
-class CountryMediator;
 class Strategy;
 class Country;
 class MapState;
@@ -304,16 +303,6 @@ public:
   std::string getColor();
 
   /**
-   * @brief getter for this country's mediator
-   */
-  CountryMediator *getMediator();
-
-  /**
-   * @brief setter for this country's mediator
-   */
-  void setMediator(CountryMediator *_mediator);
-
-  /**
    * @brief getter for this country's enemies
    */
   std::vector<Country *> *getEnemies();
@@ -373,7 +362,6 @@ private:
   std::string colorOfDestroyedBy="\x1B[100m";
   Strategy *strategy;
   Military *military;
-  CountryMediator *mediator;
   CountryState *countryState;
   std::vector<LocationObserver *> *locationObservers;
 };

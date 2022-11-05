@@ -5,40 +5,34 @@
 
 #include <vector>
 
-class VehicleFactory;
-class Plane;
-class Ship;
-class Tank;
-class Battalion;
 class Country;
-
 
 class Military
 {
 public:
-/**
- * @brief Construct a new Military object
- * 
- */
+  /**
+   * @brief Construct a new Military object
+   *
+   */
   Military();
 
   /**
    * @brief Construct a new Military object
-   * 
+   *
    */
-  Military(Military*);
+  Military(Military * _military);
 
   /**
    * @brief Destroy the Military object
-   * 
+   *
    */
   ~Military();
 
   /**
-   * @brief 
-   * 
+   * @brief
+   *
    */
-  void attack(Country*);
+  void attack(Country * _country);
 };
 
 #endif

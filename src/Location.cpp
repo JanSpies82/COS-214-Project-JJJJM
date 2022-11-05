@@ -10,35 +10,35 @@
 
 using namespace std;
 
-Location::~Location(){}
+Location::~Location() {}
 
-Location* Location::getRight()
+Location *Location::getRight()
 {
-    if(location!=NULL)
+    if (location != NULL)
         return location->getRight();
     else
         __throw_out_of_range("No Right Neighbour");
 }
 
-Location* Location::getLeft()
+Location *Location::getLeft()
 {
-    if(location!=NULL)
+    if (location != NULL)
         return location->getLeft();
     else
         __throw_out_of_range("No Left Neighbour");
 }
 
-Location* Location::getTop()
+Location *Location::getTop()
 {
-    if(location!=NULL)
+    if (location != NULL)
         return location->getTop();
     else
         __throw_out_of_range("No Top Neighbour");
 }
 
-Location* Location::getBottom()
+Location *Location::getBottom()
 {
-    if(location!=NULL)
+    if (location != NULL)
         return location->getBottom();
     else
         __throw_out_of_range("No Bottom Neighbour");
@@ -46,68 +46,68 @@ Location* Location::getBottom()
 
 bool Location::hasRight()
 {
-    if(location!=NULL)
+    if (location != NULL)
         return location->hasRight();
     else
-        return false;    
+        return false;
 }
 
 bool Location::hasLeft()
 {
-    if(location!=NULL)
+    if (location != NULL)
         return location->hasLeft();
     else
-        return false;    
+        return false;
 }
 
 bool Location::hasTop()
 {
-    if(location!=NULL)
+    if (location != NULL)
         return location->hasTop();
     else
-        return false;    
+        return false;
 }
 
 bool Location::hasBottom()
 {
-    if(location!=NULL)
+    if (location != NULL)
         return location->hasBottom();
     else
-        return false;    
+        return false;
 }
 
-Iterator* Location::createIterator()
+Iterator *Location::createIterator()
 {
     return new LocationIterator(this);
 }
 
-Country* Location::getOwnedBy()
+Country *Location::getOwnedBy()
 {
     return ownedBy;
 }
 
-void Location::setOwnedBy(Country* _newOwner)
+void Location::setOwnedBy(Country *_newOwner)
 {
-    if(_newOwner==NULL)
+    if (_newOwner == NULL)
     {
-        ownedBy=NULL;
+        ownedBy = NULL;
         return;
     }
-    if(lObserver!=NULL)
+    if (lObserver != NULL)
     {
         ownedBy->detachObserver(lObserver);
-        ownedBy=_newOwner;
+        ownedBy = _newOwner;
         setColor(ownedBy->getColor());
-        if(isCapital)
+        if (isCapital)
             setColor("\x1B[40m");
         ownedBy->attachObserver(lObserver);
     }
     else
     {
-        lObserver=new LocationObserver(this);
-        ownedBy=_newOwner;
+        lObserver = new LocationObserver(this);
+        ownedBy = _newOwner;
         setColor(ownedBy->getColor());
-        if(isCapital)
+        if (isCapital)
             setColor("\x1B[40m");
         ownedBy->attachObserver(lObserver);
     }
@@ -118,16 +118,15 @@ string Location::getColor()
     return color;
 }
 
-void Location::setColor(/*char _colour*/string _color)
+void Location::setColor(string _color)
 {
-    color=_color;
+    color = _color;
 }
 
-Location* Location::clone()
+Location *Location::clone()
 {
-    Location* tClone=new Territory(this->xCoordinate, this->yCoordinate, this->color);
+    Location *tClone = new Territory(this->xCoordinate, this->yCoordinate, this->color);
 
-    //tClone->setOwnedBy(this->getOwnedBy());
     tClone->setIsCapital(this->getIsCapital());
     tClone->setIsLand(this->getIsLand());
 
@@ -151,7 +150,7 @@ bool Location::getIsLand()
 
 void Location::setIsLand(bool _isLand)
 {
-    isLand=_isLand;
+    isLand = _isLand;
 }
 
 bool Location::getIsCapital()
@@ -161,7 +160,7 @@ bool Location::getIsCapital()
 
 void Location::setIsCapital(bool _isCapital)
 {
-    isCapital=_isCapital;
-    if(isCapital)
+    isCapital = _isCapital;
+    if (isCapital)
         setColor("\x1B[40m");
 }

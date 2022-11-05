@@ -8,33 +8,33 @@
 // class WarStage;
 class MiddleStage;
 
-class MiddleStage: public WarStage
+class MiddleStage : public WarStage
 {
 
-	public:    
+public:
         /**
          * @brief returns warstage via int = 1
-        */
+         */
         int getWarStage();
 
         /**
          * @brief Construct a new Middle Stage object
-         * 
+         *
          */
         MiddleStage();
 
         /**
          * @brief Destroy the Middle Stage object
-         * 
+         *
          */
         ~MiddleStage();
 
         /**
          * @brief Return a deep copy of the Middle Stage object
-         * 
-         * @return MiddleStage* 
+         *
+         * @return MiddleStage*
          */
-        MiddleStage* clone();
+        MiddleStage *clone();
 };
 
 #endif

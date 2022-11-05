@@ -6,7 +6,6 @@
 #include "Military.h"
 #include "MilitaryState.h"
 #include "CountryState.h"
-#include "CountryMediator.h"
 #include "EarlyStrategy.h"
 #include "MiddleStrategy.h"
 #include "LateStrategy.h"
@@ -30,7 +29,6 @@ Country::Country()
   countryState->locations = NULL;
   strategy = NULL;
   military = NULL;
-  mediator = NULL;
   locationObservers = new std::vector<LocationObserver *>();
 }
 
@@ -51,9 +49,6 @@ Country::~Country()
   if (military != NULL)
     delete military;
   military = NULL;
-  if (mediator != NULL)
-    delete mediator;
-  mediator = NULL;
   if (countryState != NULL)
     delete countryState;
   countryState = NULL;
@@ -77,7 +72,6 @@ Country::Country(std::string _name)
   countryState = new CountryState();
   countryState->name = _name;
   military = NULL;
-  mediator = NULL;
   strategy = NULL;
   countryState->locations = NULL;
   locationObservers = new std::vector<LocationObserver *>();
@@ -92,7 +86,6 @@ void Country::takeTurn(Country *countryB)
   setStrategy();
   double strengthRatings[2];
   getCountryRating(countryB, strengthRatings);
-  // strategy->takeTurn(strengthRatings, this, countryB);
 }
 
 ///////////////////////////////////////////////////////////
@@ -103,10 +96,9 @@ void Country::takeTurn(bool *_countryIsDead)
 {
   setStrategy();
   double strengthRatings[2];
-  srand((unsigned)time(NULL)); // seed rand
+  srand((unsigned)time(NULL));
   if (getEnemies()->size() == 0)
   {
-    // std::cout << getName() << " has no enemies" << std::endl;
     return;
   }
   Country *countryB = getEnemies()->at(rand() % getEnemies()->size());
@@ -559,26 +551,6 @@ std::string Country::getColor()
 }
 
 ///////////////////////////////////////////////////////////
-// getMediator()
-///////////////////////////////////////////////////////////
-
-CountryMediator *Country::getMediator()
-{
-  return mediator;
-}
-
-///////////////////////////////////////////////////////////
-// setMediator()
-///////////////////////////////////////////////////////////
-
-void Country::setMediator(CountryMediator *_mediator)
-{
-  if (mediator != NULL)
-    delete mediator;
-  mediator = _mediator;
-}
-
-///////////////////////////////////////////////////////////
 // getEnemies()
 ///////////////////////////////////////////////////////////
 
@@ -692,14 +664,6 @@ void Country::printSummary()
 void Country::resetLocations(Map *_map)
 {
   std::vector<Location *> *locs = new std::vector<Location *>();
-
-  // std::cout<<getName()<<"\t";
-  // std::cout<<countryState->capital->getX()<<"\t";
-  // std::cout<<countryState->capital->getY()<<"\t";
-  // std::cout<<std::endl;
-  //  Location* l=_map->getLocation(countryState->capital->getX(), countryState->capital->getY());
-  //  l->setIsCapital(true);
-  //  countryState->capital=l;
   for (int i = 0; i < countryState->locations->size(); i++)
   {
     Location *l = _map->getLocation(countryState->locations->at(i)->getX(), countryState->locations->at(i)->getY());
@@ -708,8 +672,6 @@ void Country::resetLocations(Map *_map)
     locs->push_back(l);
     delete countryState->locations->at(i);
   }
-  // l->setOwnedBy(this);
-  // countryState->capital=l;
 
   delete countryState->locations;
   countryState->locations = locs;

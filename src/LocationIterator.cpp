@@ -9,13 +9,13 @@ using namespace std;
 LocationIterator::LocationIterator(Location *_location)
 {
     current = _location;
-    if(current->hasRight())
+    if (current->hasRight())
         nextLocation = current->getRight();
-    else if(current->hasBottom())
+    else if (current->hasBottom())
         nextLocation = nextRow();
 }
 
-LocationIterator::~LocationIterator(){}
+LocationIterator::~LocationIterator() {}
 
 void LocationIterator::first()
 {
@@ -24,7 +24,6 @@ void LocationIterator::first()
 
     while (current->hasTop())
         current = current->getTop();
-
 }
 
 void LocationIterator::next()
@@ -34,15 +33,14 @@ void LocationIterator::next()
 
     current = nextLocation;
 
-    if(current->hasRight())
+    if (current->hasRight())
     {
-        nextLocation=current->getRight();
+        nextLocation = current->getRight();
     }
-    else if(current->hasBottom())
+    else if (current->hasBottom())
     {
-        nextLocation=nextRow();
+        nextLocation = nextRow();
     }
-    
 }
 
 bool LocationIterator::isDone()
@@ -50,7 +48,7 @@ bool LocationIterator::isDone()
     return !hasNext();
 }
 
-Location* LocationIterator::getCurrent()
+Location *LocationIterator::getCurrent()
 {
     return current;
 }
@@ -60,17 +58,17 @@ bool LocationIterator::hasNext()
     return current->hasRight() || current->hasBottom();
 }
 
-Location* LocationIterator::nextRow(){
-    Location* temp=current;
+Location *LocationIterator::nextRow()
+{
+    Location *temp = current;
 
-    if(temp->hasBottom())
-        temp=temp->getBottom();
+    if (temp->hasBottom())
+        temp = temp->getBottom();
     else
         return temp;
 
-    while(temp->hasLeft())
-        temp=temp->getLeft();
+    while (temp->hasLeft())
+        temp = temp->getLeft();
 
     return temp;
-    
 }

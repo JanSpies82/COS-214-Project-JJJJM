@@ -4,7 +4,6 @@
 
 using namespace std;
 
-WarStage::WarStage(){}
+WarStage::WarStage() {}
 
-WarStage::~WarStage(){}
-
+WarStage::~WarStage() {}

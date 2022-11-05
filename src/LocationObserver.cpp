@@ -6,16 +6,16 @@
 
 using namespace std;
 
-LocationObserver::LocationObserver(Location* _location)
+LocationObserver::LocationObserver(Location *_location)
 {
-    location=_location;
+    location = _location;
 }
 
-LocationObserver::~LocationObserver(){}
+LocationObserver::~LocationObserver() {}
 
-void LocationObserver::updateLocation(string _newColor="\x1B[100m")
+void LocationObserver::updateLocation(string _newColor = "\x1B[100m")
 {
-    if(location!=NULL)
+    if (location != NULL)
     {
         location->setColor(_newColor);
         location->setIsCapital(false);

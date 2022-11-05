@@ -5,13 +5,13 @@
 #include "MilitaryState.h"
 #include "Country.h"
 
-EarlyStrategy::EarlyStrategy(){}
+EarlyStrategy::EarlyStrategy() {}
 
-EarlyStrategy::~EarlyStrategy(){}
+EarlyStrategy::~EarlyStrategy() {}
 
-void EarlyStrategy::defensiveMove(Country* countryA, Country* countryB) 
+void EarlyStrategy::defensiveMove(Country *countryA, Country *countryB)
 {
-  srand((unsigned) time(NULL));  // seed rand
+  srand((unsigned)time(NULL)); // seed rand
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.3
   // CountryB chance of success : 0.7
@@ -23,7 +23,7 @@ void EarlyStrategy::defensiveMove(Country* countryA, Country* countryB)
     countryA->setBorderStrength(countryA->getBorderStrength() * 0.99);
     countryA->setCapitalSafety(countryA->getCapitalSafety() * 0.99);
     countryA->setWarSentiment(countryA->getWarSentiment() * 0.99);
-    countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.99); 
+    countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.99);
 
     // Update CountryB's CountryState
     countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.95);
@@ -42,7 +42,7 @@ void EarlyStrategy::defensiveMove(Country* countryA, Country* countryB)
   countryA->setBorderStrength(countryA->getBorderStrength() * 0.95);
   countryA->setCapitalSafety(countryA->getCapitalSafety() * 0.95);
   countryA->setWarSentiment(countryA->getWarSentiment() * 0.95);
-  countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.95); 
+  countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.95);
 
   // Update CountryB's CountryState
   countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.99);
@@ -51,12 +51,11 @@ void EarlyStrategy::defensiveMove(Country* countryA, Country* countryB)
   countryB->setCapitalSafety(countryB->getCapitalSafety() * 0.99);
   countryB->setWarSentiment(countryB->getWarSentiment() * 0.99);
   countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.99);
-
 }
 
-void EarlyStrategy::neutralMove(Country* countryA, Country* countryB) 
+void EarlyStrategy::neutralMove(Country *countryA, Country *countryB)
 {
-  srand((unsigned) time(NULL));  // seed rand
+  srand((unsigned)time(NULL)); // seed rand
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.5
   // CountryB chance of success : 0.5
@@ -68,7 +67,7 @@ void EarlyStrategy::neutralMove(Country* countryA, Country* countryB)
     countryA->setBorderStrength(countryA->getBorderStrength() * 0.99);
     countryA->setCapitalSafety(countryA->getCapitalSafety() * 0.99);
     countryA->setWarSentiment(countryA->getWarSentiment() * 0.99);
-    countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.99); 
+    countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.99);
 
     // Update CountryB's CountryState
     countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.95);
@@ -87,7 +86,7 @@ void EarlyStrategy::neutralMove(Country* countryA, Country* countryB)
   countryA->setBorderStrength(countryA->getBorderStrength() * 0.95);
   countryA->setCapitalSafety(countryA->getCapitalSafety() * 0.95);
   countryA->setWarSentiment(countryA->getWarSentiment() * 0.95);
-  countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.95); 
+  countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.95);
 
   // Update CountryB's CountryState
   countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.99);
@@ -96,12 +95,11 @@ void EarlyStrategy::neutralMove(Country* countryA, Country* countryB)
   countryB->setCapitalSafety(countryB->getCapitalSafety() * 0.99);
   countryB->setWarSentiment(countryB->getWarSentiment() * 0.99);
   countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.99);
-
 }
 
-void EarlyStrategy::offensiveMove(Country* countryA, Country* countryB) 
+void EarlyStrategy::offensiveMove(Country *countryA, Country *countryB)
 {
-  srand((unsigned) time(NULL));  // seed rand
+  srand((unsigned)time(NULL)); // seed rand
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.7
   // CountryB chance of success : 0.3
@@ -113,7 +111,7 @@ void EarlyStrategy::offensiveMove(Country* countryA, Country* countryB)
     countryA->setBorderStrength(countryA->getBorderStrength() * 0.99);
     countryA->setCapitalSafety(countryA->getCapitalSafety() * 0.99);
     countryA->setWarSentiment(countryA->getWarSentiment() * 0.99);
-    countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.99); 
+    countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.99);
 
     // Update CountryB's CountryState
     countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.95);
@@ -132,7 +130,7 @@ void EarlyStrategy::offensiveMove(Country* countryA, Country* countryB)
   countryA->setBorderStrength(countryA->getBorderStrength() * 0.95);
   countryA->setCapitalSafety(countryA->getCapitalSafety() * 0.95);
   countryA->setWarSentiment(countryA->getWarSentiment() * 0.95);
-  countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.95); 
+  countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.95);
 
   // Update CountryB's CountryState
   countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.99);
@@ -141,5 +139,4 @@ void EarlyStrategy::offensiveMove(Country* countryA, Country* countryB)
   countryB->setCapitalSafety(countryB->getCapitalSafety() * 0.99);
   countryB->setWarSentiment(countryB->getWarSentiment() * 0.99);
   countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.99);
-
 }

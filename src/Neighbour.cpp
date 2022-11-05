@@ -7,22 +7,22 @@
 
 using namespace std;
 
-Neighbour::Neighbour(Location* _neighbour)
+Neighbour::Neighbour(Location *_neighbour)
 {
-    this->neighbour=_neighbour;
-    location=NULL;
+    this->neighbour = _neighbour;
+    location = NULL;
 }
 
-void Neighbour::add(Location* _neighbour)
+void Neighbour::add(Location *_neighbour)
 {
-    if(location!=NULL)
+    if (location != NULL)
         location->add(_neighbour);
     else
-        location=_neighbour;
+        location = _neighbour;
 }
 
 Neighbour::~Neighbour()
 {
-    if(location!=NULL)
+    if (location != NULL)
         delete location;
 }

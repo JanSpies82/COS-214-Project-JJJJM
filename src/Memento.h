@@ -3,9 +3,6 @@
 #ifndef __Memento_h__
 #define __Memento_h__
 
-// #include "Backup.h"
-// #include "SimulationState.h"
-
 class Backup;
 class SimulationState;
 
@@ -23,7 +20,7 @@ public:
 	 *
 	 * @param _state : SimulationState* - The state to save
 	 */
-	Memento(SimulationState* _simulationState);
+	Memento(SimulationState *_simulationState);
 
 	/**
 	 * @brief Destroy the Memento object and delete its stored SimulationState
@@ -35,7 +32,7 @@ public:
 	 * @brief Get the SimulationState object stored by the Memento
 	 *
 	 * Exceptions : std::out_of_range if the Memento does not hold a SimulationState
-	 * 
+	 *
 	 * @return SimulationState*
 	 */
 	SimulationState *getState();

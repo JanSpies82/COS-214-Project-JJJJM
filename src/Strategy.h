@@ -8,7 +8,6 @@
 
 class Country;
 
-//! Strategy Class
 /*!
  * This class determines which strategy to choose for a country.
  */

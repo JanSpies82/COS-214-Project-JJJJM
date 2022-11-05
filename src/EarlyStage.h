@@ -5,7 +5,6 @@
 
 #include "WarStage.h"
 
-// class WarStage;
 class EarlyStage;
 
 class EarlyStage : public WarStage

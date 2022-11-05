@@ -80,7 +80,7 @@ public:
 
     /**
      * @brief Move to the war stage specified by the parameter
-     * 
+     *
      * @param _stage : int - the stage we want to move to
      */
     void moveToStage(int _stage);

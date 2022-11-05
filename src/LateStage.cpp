@@ -1,8 +1,6 @@
 ///@author Mekhail Muller
 
 #include "LateStage.h"
-#include "WarStage.h"
-
 using namespace std;
 
 int LateStage::getWarStage()

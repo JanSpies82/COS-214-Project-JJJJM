@@ -2,14 +2,13 @@
 
 #include "Map.h"
 #include "MapState.h"
-#include "SimulationState.h"
 #include <exception>
 
 using namespace std;
 
-MapState::MapState(Map* _m)
+MapState::MapState(Map *_m)
 {
-    mapState=new Map(_m);
+    mapState = new Map(_m);
 }
 
 MapState::~MapState()
@@ -17,8 +16,7 @@ MapState::~MapState()
     delete mapState;
 }
 
-Map* MapState::clone()
+Map *MapState::clone()
 {
     return new Map(mapState);
 }
-

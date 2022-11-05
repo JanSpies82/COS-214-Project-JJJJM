@@ -10,28 +10,28 @@ using namespace std;
 
 Territory::Territory(int _x, int _y, string _color)
 {
-    xCoordinate=_x;
-    yCoordinate=_y;
-    color=_color;
-    location=NULL;
-    isLand=true;
-    isCapital=false;
-    ownedBy=NULL;
-    lObserver=NULL;
+    xCoordinate = _x;
+    yCoordinate = _y;
+    color = _color;
+    location = NULL;
+    isLand = true;
+    isCapital = false;
+    ownedBy = NULL;
+    lObserver = NULL;
 }
 
-void Territory::add(Location* _neighbour)
+void Territory::add(Location *_neighbour)
 {
-    if(location!=NULL)
+    if (location != NULL)
         location->add(_neighbour);
     else
-        location=_neighbour;
+        location = _neighbour;
 }
 
 Territory::~Territory()
 {
-    if(location!=NULL)
+    if (location != NULL)
         delete location;
-    if(lObserver!=NULL)
+    if (lObserver != NULL)
         delete lObserver;
 }

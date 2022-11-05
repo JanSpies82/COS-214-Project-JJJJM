@@ -37,45 +37,31 @@ MilitaryState::MilitaryState()
 
 MilitaryState::~MilitaryState()
 {
-  // if (ships != NULL)
-  // {
+
   for (int i = 0; i < ships->size(); i++)
     delete ships->at(i);
 
   delete ships;
-  // }
 
-  // if (planes != NULL)
-  // {
   for (int i = 0; i < planes->size(); i++)
     delete planes->at(i);
 
   delete planes;
-  // }
 
-  // if (tanks != NULL)
-  // {
   for (int i = 0; i < tanks->size(); i++)
     delete tanks->at(i);
 
   delete tanks;
-  // }
 
-  // if (battalions != NULL)
-  // {
   for (int i = 0; i < battalions->size(); i++)
     delete battalions->at(i);
 
   delete battalions;
-  // }
 
-  // if (vehicleFactories != NULL)
-  // {
   for (int i = 0; i < vehicleFactories->size(); i++)
     delete vehicleFactories->at(i);
 
   delete vehicleFactories;
-  // }
 }
 
 ///////////////////////////////////////////////////////////
@@ -196,8 +182,6 @@ void MilitaryState::updateNumTanks(int _numTanks, bool isAddition)
     return;
   }
   // subtract
-  // if (tanks->size() < _numTanks)
-  //   throw std::runtime_error("new numTanks cannot be less than 0");
   else
   {
     for (int i = 0; i < _numTanks; i++)
@@ -233,8 +217,6 @@ void MilitaryState::updateNumShips(int _numShips, bool isAddition)
     return;
   }
   // subtract
-  // if (ships->size() < _numShips)
-  //   throw std::runtime_error("new numShips cannot be less than 0");
   else
   {
     for (int i = 0; i < _numShips; i++)
@@ -270,10 +252,6 @@ void MilitaryState::updateNumPlanes(int _numPlanes, bool isAddition)
     return;
   }
   // subtract
-  // if (planes->size() < _numPlanes)
-  //   for (int i = 0; i < planes->size(); i++)
-  //     planes->pop_back();
-  //   // throw std::runtime_error("new numPlanes cannot be less than 0");
   else
   {
     for (int i = 0; i < _numPlanes; i++)
@@ -309,10 +287,6 @@ void MilitaryState::updateNumBattalions(int _numBattalions, bool isAddition)
     return;
   }
   // subtract
-  // if (battalions->size() < _numBattalions)
-  //   for (int i = 0; i < battalions->size(); i++)
-  //     battalions->pop_back();
-    // throw std::runtime_error("new numBattalions cannot be less than 0");
   else
   {
     for (int i = 0; i < _numBattalions; i++)

@@ -87,9 +87,6 @@ CountryState::CountryState(const CountryState &cs)
 
 CountryState::~CountryState()
 {
-  // if (capital != NULL)
-  //   delete capital;
-
   if (enemies != NULL)
   {
     if(isBeingStored)

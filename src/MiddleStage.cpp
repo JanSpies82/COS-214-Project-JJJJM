@@ -1,7 +1,6 @@
 ///@author Mekhail Muller
 
 #include "MiddleStage.h"
-#include "WarStage.h"
 
 using namespace std;
 
