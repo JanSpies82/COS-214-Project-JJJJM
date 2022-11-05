@@ -726,16 +726,39 @@ void SimulationManager::setUpItaly(Country *_italy)
 
 void SimulationManager::takeTurn()
 {
+    bool* countryIsDead = new bool();
+    *countryIsDead = false;
     system("clear");
     saveState();
 
     turnCount++;
     StageContext::getInstance()->incrementRound();
     for (int i = 0; i < superpowers->at(0)->getCountryCount(); i++)
-        superpowers->at(0)->getCountry(i)->takeTurn();
+    {
+        *countryIsDead = false;
+        superpowers->at(0)->getCountry(i)->takeTurn(countryIsDead);
+        if (*countryIsDead)
+        {
+            std::cout << "Superpower thinks country is dead" << *countryIsDead << std::endl;
+            Country* c = superpowers->at(0)->getCountry(i);
+            superpowers->at(0)->removeCountry(c);
+            delete c;
+        }
+    }
 
     for (int i = 0; i < superpowers->at(1)->getCountryCount(); i++)
-        superpowers->at(1)->getCountry(i)->takeTurn();
+    {
+        *countryIsDead = false;
+        superpowers->at(1)->getCountry(i)->takeTurn(countryIsDead);
+        if (*countryIsDead)
+        {
+            std::cout << "Superpower thinks country is dead" << *countryIsDead << std::endl;
+            Country* c = superpowers->at(1)->getCountry(i);
+            superpowers->at(1)->removeCountry(c);
+            delete c;
+        }
+    }
+    delete countryIsDead;
 };
 
 void SimulationManager::viewSummary()
