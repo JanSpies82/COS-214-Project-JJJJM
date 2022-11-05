@@ -19,39 +19,39 @@ void EarlyStrategy::defensiveMove(Country* countryA, Country* countryB)
   if (randomOutcome <= 0.3) // CountryA wins turn
   {
     // Update CountryA's CountryState
-    countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
-    countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
-    countryA->setBorderStrength(countryA->getBorderStrength() * 0.95);
-    countryA->setCapitalSafety(countryA->getCapitalSafety() * 0.95);
-    countryA->setWarSentiment(countryA->getWarSentiment() * 0.95);
-    countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.95); 
+    countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.99);
+    countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.99);
+    countryA->setBorderStrength(countryA->getBorderStrength() * 0.99);
+    countryA->setCapitalSafety(countryA->getCapitalSafety() * 0.99);
+    countryA->setWarSentiment(countryA->getWarSentiment() * 0.99);
+    countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.99); 
 
     // Update CountryB's CountryState
-    countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.9);
-    countryB->setDomesticMorale(countryB->getDomesticMorale() * 0.9);
-    countryB->setBorderStrength(countryB->getBorderStrength() * 0.9);
-    countryB->setCapitalSafety(countryB->getCapitalSafety() * 0.9);
-    countryB->setWarSentiment(countryB->getWarSentiment() * 0.9);
-    countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.9);
+    countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.95);
+    countryB->setDomesticMorale(countryB->getDomesticMorale() * 0.95);
+    countryB->setBorderStrength(countryB->getBorderStrength() * 0.95);
+    countryB->setCapitalSafety(countryB->getCapitalSafety() * 0.95);
+    countryB->setWarSentiment(countryB->getWarSentiment() * 0.95);
+    countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.95);
 
     return;
   }
   // CountryB wins turn
   // Update CountryA's CountryState
-  countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
-  countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
+  countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.95);
+  countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.95);
   countryA->setBorderStrength(countryA->getBorderStrength() * 0.95);
   countryA->setCapitalSafety(countryA->getCapitalSafety() * 0.95);
   countryA->setWarSentiment(countryA->getWarSentiment() * 0.95);
   countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.95); 
 
   // Update CountryB's CountryState
-  countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.65);
-  countryB->setDomesticMorale(countryB->getDomesticMorale() * 0.65);
-  countryB->setBorderStrength(countryB->getBorderStrength() * 0.65);
-  countryB->setCapitalSafety(countryB->getCapitalSafety() * 0.65);
-  countryB->setWarSentiment(countryB->getWarSentiment() * 0.65);
-  countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.65);
+  countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.99);
+  countryB->setDomesticMorale(countryB->getDomesticMorale() * 0.99);
+  countryB->setBorderStrength(countryB->getBorderStrength() * 0.99);
+  countryB->setCapitalSafety(countryB->getCapitalSafety() * 0.99);
+  countryB->setWarSentiment(countryB->getWarSentiment() * 0.99);
+  countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.99);
 
 }
 
@@ -65,39 +65,39 @@ void EarlyStrategy::neutralMove(Country* countryA, Country* countryB)
   if (randomOutcome <= 0.5) // CountryA wins turn
   {
     // Update CountryA's CountryState
-    countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
-    countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
-    countryA->setBorderStrength(countryA->getBorderStrength() * 0.95);
-    countryA->setCapitalSafety(countryA->getCapitalSafety() * 0.95);
-    countryA->setWarSentiment(countryA->getWarSentiment() * 0.95);
-    countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.95); 
+    countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.99);
+    countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.99);
+    countryA->setBorderStrength(countryA->getBorderStrength() * 0.99);
+    countryA->setCapitalSafety(countryA->getCapitalSafety() * 0.99);
+    countryA->setWarSentiment(countryA->getWarSentiment() * 0.99);
+    countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.99); 
 
     // Update CountryB's CountryState
-    countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.9);
-    countryB->setDomesticMorale(countryB->getDomesticMorale() * 0.9);
-    countryB->setBorderStrength(countryB->getBorderStrength() * 0.9);
-    countryB->setCapitalSafety(countryB->getCapitalSafety() * 0.9);
-    countryB->setWarSentiment(countryB->getWarSentiment() * 0.9);
-    countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.9);
+    countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.95);
+    countryB->setDomesticMorale(countryB->getDomesticMorale() * 0.95);
+    countryB->setBorderStrength(countryB->getBorderStrength() * 0.95);
+    countryB->setCapitalSafety(countryB->getCapitalSafety() * 0.95);
+    countryB->setWarSentiment(countryB->getWarSentiment() * 0.95);
+    countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.95);
 
     return;
   }
   // CountryB wins turn
   // Update CountryA's CountryState
-  countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
-  countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
+  countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.95);
+  countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.95);
   countryA->setBorderStrength(countryA->getBorderStrength() * 0.95);
   countryA->setCapitalSafety(countryA->getCapitalSafety() * 0.95);
   countryA->setWarSentiment(countryA->getWarSentiment() * 0.95);
-  countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.95);
+  countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.95); 
 
   // Update CountryB's CountryState
-  countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.65);
-  countryB->setDomesticMorale(countryB->getDomesticMorale() * 0.65);
-  countryB->setBorderStrength(countryB->getBorderStrength() * 0.65);
-  countryB->setCapitalSafety(countryB->getCapitalSafety() * 0.65);
-  countryB->setWarSentiment(countryB->getWarSentiment() * 0.65);
-  countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.65);
+  countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.99);
+  countryB->setDomesticMorale(countryB->getDomesticMorale() * 0.99);
+  countryB->setBorderStrength(countryB->getBorderStrength() * 0.99);
+  countryB->setCapitalSafety(countryB->getCapitalSafety() * 0.99);
+  countryB->setWarSentiment(countryB->getWarSentiment() * 0.99);
+  countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.99);
 
 }
 
@@ -111,32 +111,38 @@ void EarlyStrategy::offensiveMove(Country* countryA, Country* countryB)
   if (randomOutcome <= 0.7) // CountryA wins turn
   {
     // Update CountryA's CountryState
-    countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
-    countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
-    countryA->setBorderStrength(countryA->getBorderStrength() * 0.95);
-    countryA->setCapitalSafety(countryA->getCapitalSafety() * 0.95);
-    countryA->setWarSentiment(countryA->getWarSentiment() * 0.95);
-    countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.95); 
+    countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.99);
+    countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.99);
+    countryA->setBorderStrength(countryA->getBorderStrength() * 0.99);
+    countryA->setCapitalSafety(countryA->getCapitalSafety() * 0.99);
+    countryA->setWarSentiment(countryA->getWarSentiment() * 0.99);
+    countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.99); 
 
-    // Update CountryA's MilitaryState
-
-    // Update CountryB's domestic state
-    countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.9);
-    countryB->setDomesticMorale(countryB->getDomesticMorale() * 0.9);
-    countryB->setBorderStrength(countryB->getBorderStrength() * 0.9);
-    countryB->setCapitalSafety(countryB->getCapitalSafety() * 0.9);
-    countryB->setWarSentiment(countryB->getWarSentiment() * 0.9);
-    countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.9);
+    // Update CountryB's CountryState
+    countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.95);
+    countryB->setDomesticMorale(countryB->getDomesticMorale() * 0.95);
+    countryB->setBorderStrength(countryB->getBorderStrength() * 0.95);
+    countryB->setCapitalSafety(countryB->getCapitalSafety() * 0.95);
+    countryB->setWarSentiment(countryB->getWarSentiment() * 0.95);
+    countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.95);
 
     return;
   }
   // CountryB wins turn
   // Update CountryA's CountryState
-  countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
-  countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
+  countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.95);
+  countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.95);
   countryA->setBorderStrength(countryA->getBorderStrength() * 0.95);
   countryA->setCapitalSafety(countryA->getCapitalSafety() * 0.95);
   countryA->setWarSentiment(countryA->getWarSentiment() * 0.95);
-  countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.95);
+  countryA->setTradeRouteSafety(countryA->getTradeRouteSafety() * 0.95); 
+
+  // Update CountryB's CountryState
+  countryB->setPoliticalStability(countryB->getPoliticalStability() * 0.99);
+  countryB->setDomesticMorale(countryB->getDomesticMorale() * 0.99);
+  countryB->setBorderStrength(countryB->getBorderStrength() * 0.99);
+  countryB->setCapitalSafety(countryB->getCapitalSafety() * 0.99);
+  countryB->setWarSentiment(countryB->getWarSentiment() * 0.99);
+  countryB->setTradeRouteSafety(countryB->getTradeRouteSafety() * 0.99);
 
 }
