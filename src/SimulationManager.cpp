@@ -739,7 +739,6 @@ void SimulationManager::takeTurn()
         superpowers->at(0)->getCountry(i)->takeTurn(countryIsDead);
         if (*countryIsDead)
         {
-            std::cout << "Superpower thinks country is dead" << *countryIsDead << std::endl;
             Country* c = superpowers->at(0)->getCountry(i);
             superpowers->at(0)->removeCountry(c);
             delete c;
@@ -752,7 +751,6 @@ void SimulationManager::takeTurn()
         superpowers->at(1)->getCountry(i)->takeTurn(countryIsDead);
         if (*countryIsDead)
         {
-            std::cout << "Superpower thinks country is dead" << *countryIsDead << std::endl;
             Country* c = superpowers->at(1)->getCountry(i);
             superpowers->at(1)->removeCountry(c);
             delete c;

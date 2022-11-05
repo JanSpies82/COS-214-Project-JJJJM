@@ -40,8 +40,6 @@ Country::Country()
 
 Country::~Country()
 {
-  std::cout << getName() << " is being destroyed" << std::endl;
-  std::cout << checkIsDead() << std::endl;
   if (!countryState->isBeingStored && countryState->enemies != NULL)
     for (int i = 0; i < countryState->enemies->size(); i++)
     {
@@ -108,12 +106,11 @@ void Country::takeTurn(bool *_countryIsDead)
   srand((unsigned)time(NULL)); // seed rand
   if (getEnemies()->size() == 0)
   {
-    std::cout << getName() << " has no enemies" << std::endl;
+    // std::cout << getName() << " has no enemies" << std::endl;
     return;
   }
   Country *countryB = getEnemies()->at(rand() % getEnemies()->size());
   getCountryRating(countryB, strengthRatings);
-  std::cout << "Country " << getName() << " is attacking " << countryB->getName() << ": " << *_countryIsDead << std::endl;
   strategy->takeTurn(strengthRatings, this, countryB);
   *_countryIsDead = checkIsDead();
 }
@@ -132,7 +129,6 @@ bool Country::checkIsDead()
   stateSum += getTradeRouteSafety();
   stateSum += getDomesticMorale();
   stateSum += getWarSentiment();
-  std::cout << getName() << " state sum: " << stateSum << ": (stateSum < 0): " << (stateSum < 0) << std::endl;
   return (stateSum < 1);
 }
 
