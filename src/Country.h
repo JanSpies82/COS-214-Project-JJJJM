@@ -342,25 +342,58 @@ public:
   void attachObserver(LocationObserver *_lObserver);
 
   /**
-   * @brief
-   *
+   * @brief detaches an observer of this country
+   * 
+   * @param _lObserver the observer to detach
    */
   void detachObserver(LocationObserver *_lObserver);
 
+  /**
+   * @brief 
+   * 
+   * @param _map 
+   */
   void resetLocations(Map *_map);
 
+  /**
+   * @brief creates a clone of this country
+   * 
+   * @return a pointer to the newly cloned country
+  */
   Country *clone();
 
+  /**
+   * @brief 
+   * 
+   * @param _enemies
+   */
   void resetEnemies(std::vector<Country *> *_enemies);
 
-  void removeEnemy(Country *_enemey);
+  /**
+   * @brief removes an enemy from this country's enemies vector
+   * 
+   * @param _enemy enemy to be removed
+   */
+  void removeEnemy(Country *_enemy);
 
+  /**
+   * @brief sets the color of the colorOfDestroyedBy attribute
+   * 
+   * @param _newColorOfDestroyedBy color of the country that destroyed this country
+   */
   void setColorOfDestroyedBy(std::string _newColorOfDestroyedBy);
 
+  /**
+   * @brief evaluates whether countryA was defeated by countryB
+   * 
+   * @param countryA the country that is checked to see if it was defeated
+   * 
+   * @param countryB the country that is checked to see if it defeated countryA
+   */
   bool checkIsDead(Country* countryA, Country* countryB);
 
 private:
-  bool checkIsDead();
+  // bool checkIsDead();
   std::string colorOfDestroyedBy="\x1B[100m";
   Strategy *strategy;
   Military *military;

@@ -96,9 +96,6 @@ void Country::takeTurn(Country *countryB)
 // takeTurn()
 ///////////////////////////////////////////////////////////
 
-// Problem: takeTurn only called checkIsDead for countryA
-// Solved: now, both countries are checked using updated checkIsDead
-
 void Country::takeTurn(bool *_countryIsDead)
 {
   setStrategy();
@@ -130,18 +127,18 @@ void Country::takeTurn(bool *_countryIsDead)
 // checkIsDead()
 ///////////////////////////////////////////////////////////
 
-bool Country::checkIsDead()
-{
-  double stateSum = 0;
-  stateSum += getBorderStrength();
-  stateSum += getSelfReliance();
-  stateSum += getCapitalSafety();
-  stateSum += getPoliticalStability();
-  stateSum += getTradeRouteSafety();
-  stateSum += getDomesticMorale();
-  stateSum += getWarSentiment();
-  return (stateSum < 1);
-}
+// bool Country::checkIsDead()
+// {
+//   double stateSum = 0;
+//   stateSum += getBorderStrength();
+//   stateSum += getSelfReliance();
+//   stateSum += getCapitalSafety();
+//   stateSum += getPoliticalStability();
+//   stateSum += getTradeRouteSafety();
+//   stateSum += getDomesticMorale();
+//   stateSum += getWarSentiment();
+//   return (stateSum < 1);
+// }
 
 ///////////////////////////////////////////////////////////
 // checkIsDead(Country*, Country*)
@@ -158,7 +155,7 @@ bool Country::checkIsDead(Country* countryA, Country* countryB)
   stateSum += countryA->getDomesticMorale();
   stateSum += countryA->getWarSentiment();
 
-  if (stateSum < 1)
+  if (stateSum < 0.5)
   {
     std::string colorB = countryB->getColor();
     std::string sType = strategyList[StageContext::getInstance()->getWarStage()];
@@ -167,7 +164,7 @@ bool Country::checkIsDead(Country* countryA, Country* countryB)
               << " by " << colorB << countryB->getName()
               << RESET << std::endl;
   }
-  return (stateSum < 1);
+  return (stateSum < 0.5);
 }
 
 ///////////////////////////////////////////////////////////
@@ -694,6 +691,10 @@ void Country::printSummary()
   std::cout << "---------------------------------\n";
 }
 
+///////////////////////////////////////////////////////////
+// resetLocations()
+///////////////////////////////////////////////////////////
+
 void Country::resetLocations(Map *_map)
 {
   std::vector<Location *> *locs = new std::vector<Location *>();
@@ -709,6 +710,10 @@ void Country::resetLocations(Map *_map)
   delete countryState->locations;
   countryState->locations = locs;
 }
+
+///////////////////////////////////////////////////////////
+// clone()
+///////////////////////////////////////////////////////////
 
 Country *Country::clone()
 {
@@ -726,6 +731,10 @@ Country *Country::clone()
 
   return c;
 }
+
+///////////////////////////////////////////////////////////
+// resetEnemies()
+///////////////////////////////////////////////////////////
 
 void Country::resetEnemies(std::vector<Country *> *_enemies)
 {
@@ -745,6 +754,10 @@ void Country::resetEnemies(std::vector<Country *> *_enemies)
   getState()->enemies = newEnemies;
 }
 
+///////////////////////////////////////////////////////////
+// removeEnemy()
+///////////////////////////////////////////////////////////
+
 void Country::removeEnemy(Country *_enemy)
 {
   if (countryState->enemies != NULL)
@@ -760,6 +773,10 @@ void Country::removeEnemy(Country *_enemy)
     throw std::out_of_range("Country not on enemy list");
   }
 }
+
+///////////////////////////////////////////////////////////
+// setColorOfDestroyed()
+///////////////////////////////////////////////////////////
 
 void Country::setColorOfDestroyedBy(std::string _newColorOfDestroyedBy)
 {
