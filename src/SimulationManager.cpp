@@ -231,15 +231,6 @@ void SimulationManager::setSuperpowers()
     Country *germany = new Country("Germany");
     Country *italy = new Country("Italy");
 
-    setUpUK(uk);
-    setUpFrance(france);
-    setUpBalkans(balkans);
-    setUpSpainPortugal(spainPortugal);
-    setUpSovietUnion(sovietUnion);
-    setUpScandanavia(scandanavia);
-    setUpGermany(germany);
-    setUpItaly(italy);
-
     superpowers->at(0)->addCountry(germany);
     superpowers->at(0)->addCountry(italy);
 
@@ -249,6 +240,16 @@ void SimulationManager::setSuperpowers()
     superpowers->at(1)->addCountry(spainPortugal);
     superpowers->at(1)->addCountry(sovietUnion);
     superpowers->at(1)->addCountry(scandanavia);
+
+    setUpUK(uk);
+    setUpFrance(france);
+    setUpBalkans(balkans);
+    setUpSpainPortugal(spainPortugal);
+    setUpSovietUnion(sovietUnion);
+    setUpScandanavia(scandanavia);
+    setUpGermany(germany);
+    setUpItaly(italy);
+
 }
 
 void SimulationManager::setUpUK(Country *_uk)
@@ -268,7 +269,7 @@ void SimulationManager::setUpUK(Country *_uk)
 
     vector<Country *> *enemies = new vector<Country *>();
     for (int i = 0; i < superpowers->at(0)->getCountryCount(); i++)
-        enemies->push_back(superpowers->at(i)->getCountry(i));
+        enemies->push_back(superpowers->at(0)->getCountry(i));
 
     _uk->setEnemies(enemies);
     _uk->setBorderStrength(0.75);
@@ -327,7 +328,7 @@ void SimulationManager::setUpFrance(Country *_france)
 
     vector<Country *> *enemies = new vector<Country *>();
     for (int i = 0; i < superpowers->at(0)->getCountryCount(); i++)
-        enemies->push_back(superpowers->at(i)->getCountry(i));
+        enemies->push_back(superpowers->at(0)->getCountry(i));
 
     _france->setEnemies(enemies);
     _france->setBorderStrength(0.25);
@@ -386,7 +387,7 @@ void SimulationManager::setUpBalkans(Country *_balkans)
 
     vector<Country *> *enemies = new vector<Country *>();
     for (int i = 0; i < superpowers->at(0)->getCountryCount(); i++)
-        enemies->push_back(superpowers->at(i)->getCountry(i));
+        enemies->push_back(superpowers->at(0)->getCountry(i));
 
     _balkans->setEnemies(enemies);
     _balkans->setBorderStrength(0.45);
@@ -445,7 +446,7 @@ void SimulationManager::setUpSpainPortugal(Country *_spainPortugal)
 
     vector<Country *> *enemies = new vector<Country *>();
     for (int i = 0; i < superpowers->at(0)->getCountryCount(); i++)
-        enemies->push_back(superpowers->at(i)->getCountry(i));
+        enemies->push_back(superpowers->at(0)->getCountry(i));
 
     _spainPortugal->setEnemies(enemies);
     _spainPortugal->setBorderStrength(0.7);
@@ -504,7 +505,7 @@ void SimulationManager::setUpSovietUnion(Country *_sovietUnion)
 
     vector<Country *> *enemies = new vector<Country *>();
     for (int i = 0; i < superpowers->at(0)->getCountryCount(); i++)
-        enemies->push_back(superpowers->at(i)->getCountry(i));
+        enemies->push_back(superpowers->at(0)->getCountry(i));
 
     _sovietUnion->setEnemies(enemies);
     _sovietUnion->setBorderStrength(0.9);
@@ -563,7 +564,7 @@ void SimulationManager::setUpScandanavia(Country *_scandanavia)
 
     vector<Country *> *enemies = new vector<Country *>();
     for (int i = 0; i < superpowers->at(0)->getCountryCount(); i++)
-        enemies->push_back(superpowers->at(i)->getCountry(i));
+        enemies->push_back(superpowers->at(0)->getCountry(i));
 
     _scandanavia->setEnemies(enemies);
     _scandanavia->setBorderStrength(0.75);
@@ -622,7 +623,7 @@ void SimulationManager::setUpGermany(Country *_germany)
 
     vector<Country *> *enemies = new vector<Country *>();
     for (int i = 0; i < superpowers->at(1)->getCountryCount(); i++)
-        enemies->push_back(superpowers->at(i)->getCountry(i));
+        enemies->push_back(superpowers->at(1)->getCountry(i));
 
     _germany->setEnemies(enemies);
     _germany->setBorderStrength(0.6);
@@ -681,7 +682,7 @@ void SimulationManager::setUpItaly(Country *_italy)
 
     vector<Country *> *enemies = new vector<Country *>();
     for (int i = 0; i < superpowers->at(1)->getCountryCount(); i++)
-        enemies->push_back(superpowers->at(i)->getCountry(i));
+        enemies->push_back(superpowers->at(1)->getCountry(i));
 
     _italy->setEnemies(enemies);
     _italy->setBorderStrength(0.5);
