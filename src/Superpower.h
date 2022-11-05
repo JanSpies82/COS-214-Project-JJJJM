@@ -86,10 +86,25 @@ public:
    */
   void printSummary();
 
+/**
+ * @brief Link the countries owned by the superpower to the passed in map after the simulation has been restored
+ * 
+ * @param _map : Map* - pointer to the current map
+ */
   void resetLocations(Map *_map);
 
+/**
+ * @brief Link the countries owned by the superpower's enemies to the passed in vector after the simulation has been restored
+ * 
+ * @param _enemies : std::vector<Superpower*> - vector of pointers to the superpowers enemies
+ */
   void resetEnemies(std::vector<Country *> *_enemies);
 
+/**
+ * @brief Get the vector of countries owned by the superpower
+ * 
+ * @return std::vector<Country *>* 
+ */
   std::vector<Country *> *getAllCountries();
 
 private:
