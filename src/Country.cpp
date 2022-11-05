@@ -31,7 +31,7 @@ Country::Country()
   strategy = NULL;
   military = NULL;
   mediator = NULL;
-  locationObservers=new std::vector<LocationObserver *>();
+  locationObservers = new std::vector<LocationObserver *>();
 }
 
 ///////////////////////////////////////////////////////////
@@ -40,8 +40,9 @@ Country::Country()
 
 Country::~Country()
 {
-
-  if(!countryState->isBeingStored&&countryState->enemies!=NULL)
+  std::cout << getName() << " is being destroyed" << std::endl;
+  std::cout << checkIsDead() << std::endl;
+  if (!countryState->isBeingStored && countryState->enemies != NULL)
     for (int i = 0; i < countryState->enemies->size(); i++)
     {
       countryState->enemies->at(i)->removeEnemy(this);
@@ -58,16 +59,15 @@ Country::~Country()
   if (countryState != NULL)
     delete countryState;
   countryState = NULL;
-  if(locationObservers != NULL)
+  if (locationObservers != NULL)
   {
-    for (LocationObserver* i:*locationObservers)
+    for (LocationObserver *i : *locationObservers)
     {
-      if(i!=NULL)
+      if (i != NULL)
         i->updateLocation();
     }
     delete locationObservers;
   }
-
 }
 
 ///////////////////////////////////////////////////////////
@@ -82,7 +82,7 @@ Country::Country(std::string _name)
   mediator = NULL;
   strategy = NULL;
   countryState->locations = NULL;
-  locationObservers=new std::vector<LocationObserver *>();
+  locationObservers = new std::vector<LocationObserver *>();
 }
 
 ///////////////////////////////////////////////////////////
@@ -101,14 +101,39 @@ void Country::takeTurn(Country *countryB)
 // takeTurn()
 ///////////////////////////////////////////////////////////
 
-void Country::takeTurn()
+void Country::takeTurn(bool *_countryIsDead)
 {
   setStrategy();
   double strengthRatings[2];
-  srand((unsigned) time(NULL));  // seed rand
-  Country* countryB = getEnemies()->at(rand() % getEnemies()->size());
+  srand((unsigned)time(NULL)); // seed rand
+  if (getEnemies()->size() == 0)
+  {
+    std::cout << getName() << " has no enemies" << std::endl;
+    return;
+  }
+  Country *countryB = getEnemies()->at(rand() % getEnemies()->size());
   getCountryRating(countryB, strengthRatings);
+  std::cout << "Country " << getName() << " is attacking " << countryB->getName() << ": " << *_countryIsDead << std::endl;
   strategy->takeTurn(strengthRatings, this, countryB);
+  *_countryIsDead = checkIsDead();
+}
+
+///////////////////////////////////////////////////////////
+// checkIsDead()
+///////////////////////////////////////////////////////////
+
+bool Country::checkIsDead()
+{
+  double stateSum = 0;
+  stateSum += getBorderStrength();
+  stateSum += getSelfReliance();
+  stateSum += getCapitalSafety();
+  stateSum += getPoliticalStability();
+  stateSum += getTradeRouteSafety();
+  stateSum += getDomesticMorale();
+  stateSum += getWarSentiment();
+  std::cout << getName() << " state sum: " << stateSum << ": (stateSum < 0): " << (stateSum < 0) << std::endl;
+  return (stateSum < 1);
 }
 
 ///////////////////////////////////////////////////////////
@@ -161,31 +186,31 @@ void Country::setNumCitizens(int _numCitizens)
 
 void Country::getCountryRating(Country *b, double *strengthRatings)
 {
-  std::vector<double>* strengthScoresA = new std::vector<double>();
-  std::vector<double>* strengthScoresB = new std::vector<double>();
-  std::vector<double>* aspectScores = new std::vector<double>();
+  std::vector<double> *strengthScoresA = new std::vector<double>();
+  std::vector<double> *strengthScoresB = new std::vector<double>();
+  std::vector<double> *aspectScores = new std::vector<double>();
 
   compareMilitary(this, b, aspectScores); // get CountryA's military strength scores
   for (int i = 0; i < aspectScores->size(); i++)
-      strengthScoresA->push_back(aspectScores->at(i));
+    strengthScoresA->push_back(aspectScores->at(i));
 
   aspectScores->clear();
 
   compareMilitary(b, this, aspectScores); // get CountryB's military strength scores
   for (int i = 0; i < aspectScores->size(); i++)
-      strengthScoresB->push_back(aspectScores->at(i));
+    strengthScoresB->push_back(aspectScores->at(i));
 
   aspectScores->clear();
 
   compareDomestic(this, b, aspectScores); // get CountryA's domestic strength scores
   for (int i = 0; i < aspectScores->size(); i++)
-      strengthScoresA->push_back(aspectScores->at(i));
+    strengthScoresA->push_back(aspectScores->at(i));
 
   aspectScores->clear();
 
   compareDomestic(b, this, aspectScores); // get CountryB's domestic strength scores
   for (int i = 0; i < aspectScores->size(); i++)
-      strengthScoresB->push_back(aspectScores->at(i));
+    strengthScoresB->push_back(aspectScores->at(i));
 
   double strengthA = 0.0;
   for (int i = 0; i < strengthScoresA->size(); i++)
@@ -487,7 +512,7 @@ void Country::setCapital(Location *_capital)
 // getLocations()
 ///////////////////////////////////////////////////////////
 
-std::vector<Location*>* Country::getLocations()
+std::vector<Location *> *Country::getLocations()
 {
   return countryState->locations;
 }
@@ -548,16 +573,16 @@ void Country::setMediator(CountryMediator *_mediator)
 // getEnemies()
 ///////////////////////////////////////////////////////////
 
-std::vector<Country*>* Country::getEnemies()
+std::vector<Country *> *Country::getEnemies()
 {
-  return countryState->enemies; 
+  return countryState->enemies;
 }
 
 ///////////////////////////////////////////////////////////
 // setEnemies()
 ///////////////////////////////////////////////////////////
 
-void Country::setEnemies(std::vector<Country*>* _enemies)
+void Country::setEnemies(std::vector<Country *> *_enemies)
 {
   if (countryState->enemies != NULL)
     delete countryState->enemies;
@@ -568,7 +593,7 @@ void Country::setEnemies(std::vector<Country*>* _enemies)
 // getMilitaryState()
 ///////////////////////////////////////////////////////////
 
-MilitaryState* Country::getMilitaryState()
+MilitaryState *Country::getMilitaryState()
 {
   return countryState->militaryState;
 }
@@ -577,7 +602,7 @@ MilitaryState* Country::getMilitaryState()
 // setMilitaryState()
 ///////////////////////////////////////////////////////////
 
-void Country::setMilitaryState(MilitaryState* _militaryState)
+void Country::setMilitaryState(MilitaryState *_militaryState)
 {
   if (countryState->militaryState != NULL)
     delete countryState->militaryState;
@@ -601,12 +626,12 @@ void Country::setState(CountryState *_state)
 
 void Country::attachObserver(LocationObserver *_lObserver)
 {
-  if(locationObservers==NULL)
+  if (locationObservers == NULL)
   {
-    locationObservers=new std::vector<LocationObserver *>();
+    locationObservers = new std::vector<LocationObserver *>();
   }
 
-  if(_lObserver==NULL)
+  if (_lObserver == NULL)
     throw std::invalid_argument("_lObserver must not be NULL");
 
   locationObservers->push_back(_lObserver);
@@ -618,23 +643,23 @@ void Country::attachObserver(LocationObserver *_lObserver)
 
 void Country::detachObserver(LocationObserver *_lObserver)
 {
-  if(locationObservers==NULL)
+  if (locationObservers == NULL)
   {
     throw std::logic_error("locationObservers was not initialized thus it can not have elements remove from it");
   }
-  for (int i = 0 ; i < locationObservers->size() ; i++)
+  for (int i = 0; i < locationObservers->size(); i++)
   {
-    if(_lObserver==locationObservers->at(i))
-      locationObservers->erase(locationObservers->begin()+i);
+    if (_lObserver == locationObservers->at(i))
+      locationObservers->erase(locationObservers->begin() + i);
   }
-  
 }
 
 ///////////////////////////////////////////////////////////
 // printSummary()
 ///////////////////////////////////////////////////////////
 
-void Country::printSummary(){
+void Country::printSummary()
+{
   std::cout << "---------------------------------\n";
   std::cout << "Summary of " << getName() << std::endl;
   std::cout << "---------------------------------\n";
@@ -647,7 +672,7 @@ void Country::printSummary(){
   std::cout << "War Sentiment: " << countryState->warSentiment << std::endl;
   std::cout << "Trade Route Safety: " << countryState->tradeRouteSafety << std::endl;
 
-  MilitaryState* thisMilitary = countryState->getMilitaryState();
+  MilitaryState *thisMilitary = countryState->getMilitaryState();
   std::cout << "Number Of Battalions " << thisMilitary->getNumBattalions() << std::endl;
   std::cout << "Number of Tanks: " << thisMilitary->getNumTanks() << std::endl;
   std::cout << "Number Of Ships: " << thisMilitary->getNumShips() << std::endl;
@@ -655,9 +680,9 @@ void Country::printSummary(){
   std::cout << "---------------------------------\n";
 }
 
-void Country::resetLocations(Map* _map)
+void Country::resetLocations(Map *_map)
 {
-  std::vector<Location*>* locs=new std::vector<Location*>();
+  std::vector<Location *> *locs = new std::vector<Location *>();
 
   // std::cout<<getName()<<"\t";
   // std::cout<<countryState->capital->getX()<<"\t";
@@ -668,7 +693,7 @@ void Country::resetLocations(Map* _map)
   //  countryState->capital=l;
   for (int i = 0; i < countryState->locations->size(); i++)
   {
-    Location* l=_map->getLocation(countryState->locations->at(i)->getX(), countryState->locations->at(i)->getY());
+    Location *l = _map->getLocation(countryState->locations->at(i)->getX(), countryState->locations->at(i)->getY());
     l->setIsCapital(countryState->locations->at(i)->getIsCapital());
     l->setOwnedBy(this);
     locs->push_back(l);
@@ -681,9 +706,9 @@ void Country::resetLocations(Map* _map)
   countryState->locations = locs;
 }
 
-Country* Country::clone()
+Country *Country::clone()
 {
-  Country* c = new Country(this->getName());
+  Country *c = new Country(this->getName());
   c->setBorderStrength(getBorderStrength());
   c->setCapitalSafety(getCapitalSafety());
   c->setColor(getColor());
@@ -693,14 +718,14 @@ Country* Country::clone()
   c->setSelfReliance(getSelfReliance());
   c->setTradeRouteSafety(getTradeRouteSafety());
   c->setWarSentiment(getWarSentiment());
-  c->getState()->enemies=NULL;
+  c->getState()->enemies = NULL;
 
   return c;
 }
 
-void Country::resetEnemies(std::vector<Country*>* _enemies)
+void Country::resetEnemies(std::vector<Country *> *_enemies)
 {
-  std::vector<Country*>* newEnemies=new std::vector<Country*>();
+  std::vector<Country *> *newEnemies = new std::vector<Country *>();
 
   for (int i = 0; i < _enemies->size(); i++)
   {
@@ -713,19 +738,20 @@ void Country::resetEnemies(std::vector<Country*>* _enemies)
   }
 
   delete getState()->enemies;
-  getState()->enemies=newEnemies;
-  
+  getState()->enemies = newEnemies;
 }
 
 void Country::removeEnemy(Country *_enemy)
 {
-  if(countryState->enemies!=NULL)
+  if (countryState->enemies != NULL)
   {
-    for (int i = 0; i < countryState->enemies->size(); i++){
-        if (countryState->enemies->at(i) == _enemy){
-            countryState->enemies->erase(countryState->enemies->begin() + i);
-            return;
-        }
+    for (int i = 0; i < countryState->enemies->size(); i++)
+    {
+      if (countryState->enemies->at(i) == _enemy)
+      {
+        countryState->enemies->erase(countryState->enemies->begin() + i);
+        return;
+      }
     }
     throw std::out_of_range("Country not on enemy list");
   }
