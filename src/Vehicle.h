@@ -15,7 +15,7 @@ public:
 	Vehicle();
 
 	/**
-	 * @brief destroys a Vechile object
+	 * @brief destroys a Vehicle object
 	 **/
 	virtual ~Vehicle();
 };

@@ -3,6 +3,8 @@
 #ifndef __Ship_h__
 #define __Ship_h__
 
+#include <exception>
+
 #include "Vehicle.h"
 #include <exception>
 

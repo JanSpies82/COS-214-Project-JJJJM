@@ -36,7 +36,9 @@ namespace
         MilitaryState *testMilitaryState = new MilitaryState();
         testMilitaryState->updateNumTroops(1000, true);
         EXPECT_EQ(testMilitaryState->getNumTroops(), 1000);
-        EXPECT_THROW(testMilitaryState->updateNumTroops(1500, false), std::runtime_error);
+        testMilitaryState->updateNumTroops(1500, false);
+        EXPECT_EQ(testMilitaryState->getNumTroops(), 0);
+        // EXPECT_THROW(testMilitaryState->updateNumTroops(1500, false), std::runtime_error);
         delete testMilitaryState;
     }
 
@@ -55,7 +57,9 @@ namespace
         MilitaryState *testMilitaryState = new MilitaryState();
         testMilitaryState->updateNumTanks(10, true);
         EXPECT_EQ(testMilitaryState->getNumTanks(), 10);
-        EXPECT_THROW(testMilitaryState->updateNumTanks(15, false), std::runtime_error);
+        testMilitaryState->updateNumTanks(15, false);
+        EXPECT_EQ(testMilitaryState->getNumTanks(), 0);
+        // EXPECT_THROW(testMilitaryState->updateNumTanks(15, false), std::runtime_error);
         delete testMilitaryState;
     }
 
@@ -85,7 +89,9 @@ namespace
         MilitaryState *testMilitaryState = new MilitaryState();
         testMilitaryState->updateNumBattalions(10, true);
         EXPECT_EQ(testMilitaryState->getNumBattalions(), 10);
-        EXPECT_THROW(testMilitaryState->updateNumBattalions(15, false), std::runtime_error);
+        testMilitaryState->updateNumBattalions(15, false);
+        EXPECT_EQ(testMilitaryState->getNumBattalions(), 0);
+        // EXPECT_THROW(testMilitaryState->updateNumBattalions(15, false), std::runtime_error);
         delete testMilitaryState;
     }
 
@@ -115,7 +121,9 @@ namespace
         MilitaryState *testMilitaryState = new MilitaryState();
         testMilitaryState->updateNumShips(10, true);
         EXPECT_EQ(testMilitaryState->getNumShips(), 10);
-        EXPECT_THROW(testMilitaryState->updateNumShips(15, false), std::runtime_error);
+        testMilitaryState->updateNumShips(15, false);
+        EXPECT_EQ(testMilitaryState->getNumShips(), 0);
+        // EXPECT_THROW(testMilitaryState->updateNumShips(15, false), std::runtime_error);
         delete testMilitaryState;
     }
 
@@ -145,7 +153,9 @@ namespace
         MilitaryState *testMilitaryState = new MilitaryState();
         testMilitaryState->updateNumPlanes(10, true);
         EXPECT_EQ(testMilitaryState->getNumPlanes(), 10);
-        EXPECT_THROW(testMilitaryState->updateNumPlanes(15, false), std::runtime_error);
+        testMilitaryState->updateNumPlanes(15, false);
+        EXPECT_EQ(testMilitaryState->getNumPlanes(), 0);
+        // EXPECT_THROW(testMilitaryState->updateNumPlanes(15, false), std::runtime_error);
         delete testMilitaryState;
     }
 

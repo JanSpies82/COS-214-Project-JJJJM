@@ -169,7 +169,7 @@ void MilitaryState::updateNumTroops(int _numTroops, bool isAddition)
   }
   // subtract
   if (numTroops - _numTroops < 0)
-    throw std::runtime_error("new numTroops cannot be less than 0");
+    numTroops = 0;
   else
     numTroops = numTroops - _numTroops;
 }
@@ -196,8 +196,8 @@ void MilitaryState::updateNumTanks(int _numTanks, bool isAddition)
     return;
   }
   // subtract
-  if (tanks->size() < _numTanks)
-    throw std::runtime_error("new numTanks cannot be less than 0");
+  // if (tanks->size() < _numTanks)
+  //   throw std::runtime_error("new numTanks cannot be less than 0");
   else
   {
     for (int i = 0; i < _numTanks; i++)
@@ -205,6 +205,8 @@ void MilitaryState::updateNumTanks(int _numTanks, bool isAddition)
       Tank *tank = tanks->back();
       tanks->pop_back();
       delete tank;
+      if (tanks->empty())
+        break;
     }
   }
 }
@@ -231,17 +233,19 @@ void MilitaryState::updateNumShips(int _numShips, bool isAddition)
     return;
   }
   // subtract
-  if (ships->size() < _numShips)
-    throw std::runtime_error("new numShips cannot be less than 0");
+  // if (ships->size() < _numShips)
+  //   throw std::runtime_error("new numShips cannot be less than 0");
   else
+  {
+    for (int i = 0; i < _numShips; i++)
     {
-      for (int i = 0; i < _numShips; i++)
-      {
-        Ship *ship = ships->back();
-        ships->pop_back();
-        delete ship;
-      }
+      Ship *ship = ships->back();
+      ships->pop_back();
+      delete ship;
+      if (ships->empty())
+        break;
     }
+  }
 }
 
 ///////////////////////////////////////////////////////////
@@ -266,17 +270,21 @@ void MilitaryState::updateNumPlanes(int _numPlanes, bool isAddition)
     return;
   }
   // subtract
-  if (planes->size() < _numPlanes)
-    throw std::runtime_error("new numPlanes cannot be less than 0");
+  // if (planes->size() < _numPlanes)
+  //   for (int i = 0; i < planes->size(); i++)
+  //     planes->pop_back();
+  //   // throw std::runtime_error("new numPlanes cannot be less than 0");
   else
+  {
+    for (int i = 0; i < _numPlanes; i++)
     {
-      for (int i = 0; i < _numPlanes; i++)
-      {
-        Plane *plane = planes->back();
-        planes->pop_back();
-        delete plane;
-      }
+      Plane *plane = planes->back();
+      planes->pop_back();
+      delete plane;
+      if (planes->empty())
+        return;
     }
+  }
 }
 
 ///////////////////////////////////////////////////////////
@@ -301,17 +309,21 @@ void MilitaryState::updateNumBattalions(int _numBattalions, bool isAddition)
     return;
   }
   // subtract
-  if (battalions->size() < _numBattalions)
-    throw std::runtime_error("new numBattalions cannot be less than 0");
+  // if (battalions->size() < _numBattalions)
+  //   for (int i = 0; i < battalions->size(); i++)
+  //     battalions->pop_back();
+    // throw std::runtime_error("new numBattalions cannot be less than 0");
   else
+  {
+    for (int i = 0; i < _numBattalions; i++)
     {
-      for (int i = 0; i < _numBattalions; i++)
-      {
-        Battalion *battalion = battalions->back();
-        battalions->pop_back();
-        delete battalion;
-      }
+      Battalion *battalion = battalions->back();
+      battalions->pop_back();
+      delete battalion;
+      if (battalions->empty())
+        break;
     }
+  }
 }
 
 ///////////////////////////////////////////////////////////

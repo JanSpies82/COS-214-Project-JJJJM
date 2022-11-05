@@ -6,16 +6,16 @@
 #include <exception>
 #include "Vehicle.h"
 
-class Tank: public Vehicle
+class Tank : public Vehicle
 {
 
 public:
 	/**
 	 * @brief constructor for the tank object
-	 **/
+	 */
 	Tank();
-
-	/**
+	
+	 /** 
 	 * @brief destructor for the tank object
 	 **/
 	~Tank();

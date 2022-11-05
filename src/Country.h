@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 #include <exception>
+#include <cstdlib>
 
 class WarStage;
 class Superpower;
