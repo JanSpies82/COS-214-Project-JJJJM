@@ -120,7 +120,7 @@ void Country::takeTurn(bool *_countryIsDead)
       i->setOwnedBy(countryB);
     }
   }
-  checkIsDead(countryB, this); // check if country
+  checkIsDead(countryB, this); // check if countryB is dead
 }
 
 ///////////////////////////////////////////////////////////
