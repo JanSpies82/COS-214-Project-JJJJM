@@ -1,5 +1,4 @@
 /// @author Jake Weatherhead
-
 #include <limits.h>
 #include <stdexcept>
 #include <vector>

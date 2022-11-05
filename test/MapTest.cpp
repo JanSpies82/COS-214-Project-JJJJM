@@ -1,4 +1,4 @@
-///@Julian Pienaar
+///@author Julian Pienaar
 #include <limits.h>
 #include <iostream>
 #include <stdexcept>
