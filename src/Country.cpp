@@ -96,7 +96,7 @@ void Country::takeTurn(bool *_countryIsDead)
 {
   setStrategy();
   double strengthRatings[2];
-  srand((unsigned)time(NULL));
+  // srand((unsigned)time(NULL));
   if (getEnemies()->size() == 0)
   {
     return;
