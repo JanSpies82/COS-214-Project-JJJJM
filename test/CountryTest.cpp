@@ -171,6 +171,7 @@ namespace
     // Create 5 enemies for countryX
     std::string names[5] = {"A", "B", "C", "D", "E"};
     std::vector<Country *> *enemies = new std::vector<Country *>();
+    std::vector<Country *> *enemiescopy = new std::vector<Country *>();
     std::vector<MilitaryState *> *ms = new std::vector<MilitaryState *>();
     std::vector<std::vector<Ship*>*>* shipVectors = new std::vector<std::vector<Ship*>*>();
     std::vector<std::vector<Tank*>*>* tankVectors = new std::vector<std::vector<Tank*>*>();
@@ -178,6 +179,7 @@ namespace
     for (int i = 0; i < 5; i++)
     {
       enemies->push_back(new Country(names[i]));
+      enemiescopy->push_back(enemies->at(i));
       enemies->at(i)->setBorderStrength((double)rand() / (double)RAND_MAX);
       enemies->at(i)->setNumCitizens((double)rand() / (double)RAND_MAX * 1000);
       enemies->at(i)->setCapitalSafety((double)rand() / (double)RAND_MAX);
@@ -240,10 +242,10 @@ namespace
 
     countryX->setMilitaryState(mA);
     countryX->takeTurn();
-    for (int i = 0; i < enemies->size(); i++)
-      delete enemies->at(i);
     delete countryX;
-    // delete enemies;
+    for (int i = 0; i < enemiescopy->size(); i++)
+      delete enemiescopy->at(i);
+    delete enemiescopy;
     delete ms;
     delete shipVectors;
     delete planeVectors;
