@@ -366,8 +366,11 @@ public:
 
   void removeEnemy(Country *_enemey);
 
+  void setColorOfDestroyedBy(std::string _newColorOfDestroyedBy);
+
 private:
   bool checkIsDead();
+  std::string colorOfDestroyedBy="\x1B[100m";
   Strategy *strategy;
   Military *military;
   CountryMediator *mediator;

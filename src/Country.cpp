@@ -62,7 +62,7 @@ Country::~Country()
     for (LocationObserver *i : *locationObservers)
     {
       if (i != NULL)
-        i->updateLocation();
+        i->updateLocation(colorOfDestroyedBy);
     }
     delete locationObservers;
   }
@@ -113,6 +113,8 @@ void Country::takeTurn(bool *_countryIsDead)
   getCountryRating(countryB, strengthRatings);
   strategy->takeTurn(strengthRatings, this, countryB);
   *_countryIsDead = checkIsDead();
+  if(*_countryIsDead)
+    setColorOfDestroyedBy(countryB->getColor());
 }
 
 ///////////////////////////////////////////////////////////
@@ -751,4 +753,9 @@ void Country::removeEnemy(Country *_enemy)
     }
     throw std::out_of_range("Country not on enemy list");
   }
+}
+
+void Country::setColorOfDestroyedBy(std::string _newColorOfDestroyedBy)
+{
+  colorOfDestroyedBy=_newColorOfDestroyedBy;
 }

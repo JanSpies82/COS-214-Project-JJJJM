@@ -13,11 +13,11 @@ LocationObserver::LocationObserver(Location* _location)
 
 LocationObserver::~LocationObserver(){}
 
-void LocationObserver::updateLocation()
+void LocationObserver::updateLocation(string _newColor="\x1B[100m")
 {
     if(location!=NULL)
     {
-        location->setColor("\x1B[100m");
+        location->setColor(_newColor);
         location->setIsCapital(false);
         location->setOwnedBy(NULL);
     }
