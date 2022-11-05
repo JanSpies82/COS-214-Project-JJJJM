@@ -139,7 +139,7 @@ void SimulationManager::resetSimulation()
     turnCount = 0;
     isRunning = true;
 
-    cout << "What would you like the maximum turn count to be? (4-100)" << endl;
+    cout << "What would you like the maximum turn count to be? (10-100)" << endl;
     maxTurnCount = -1;
     do
     {
@@ -152,7 +152,7 @@ void SimulationManager::resetSimulation()
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
-    } while (maxTurnCount < 4 || maxTurnCount > 100);
+    } while (maxTurnCount < 10 || maxTurnCount > 100);
     StageContext::getInstance()->setSimulationLength(maxTurnCount);
     cout << "Simulation is ready to start!" << endl;
     cout << "Press enter to continue..." << endl;
