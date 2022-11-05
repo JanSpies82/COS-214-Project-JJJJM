@@ -114,7 +114,18 @@ void Country::takeTurn(bool *_countryIsDead)
   strategy->takeTurn(strengthRatings, this, countryB);
   *_countryIsDead = checkIsDead();
   if(*_countryIsDead)
+  {
     setColorOfDestroyedBy(countryB->getColor());
+    std::vector<Location*>* myLocations=getState()->locations;
+
+    for (Location* i:*myLocations)
+    {
+      i->setIsCapital(false);
+      countryB->getState()->locations->push_back(i);
+      i->setOwnedBy(countryB);
+    }
+    
+  }
 }
 
 ///////////////////////////////////////////////////////////
