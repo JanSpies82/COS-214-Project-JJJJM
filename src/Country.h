@@ -357,6 +357,8 @@ public:
 
   void setColorOfDestroyedBy(std::string _newColorOfDestroyedBy);
 
+  bool checkIsDead(Country* countryA, Country* countryB);
+
 private:
   bool checkIsDead();
   std::string colorOfDestroyedBy="\x1B[100m";

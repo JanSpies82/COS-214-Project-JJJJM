@@ -19,6 +19,10 @@
 #include <stdexcept>
 #include <vector>
 
+const std::string RESET = "\x1B[0m";
+const std::string BOLD = "\x1B[1m";
+static std::string strategyList[3] = { "EarlyStrategy", "MiddleStrategy", "LateStrategy" };
+
 ///////////////////////////////////////////////////////////
 // Country()
 ///////////////////////////////////////////////////////////
@@ -92,6 +96,9 @@ void Country::takeTurn(Country *countryB)
 // takeTurn()
 ///////////////////////////////////////////////////////////
 
+// Problem: takeTurn only called checkIsDead for countryA
+// Solved: now, both countries are checked using updated checkIsDead
+
 void Country::takeTurn(bool *_countryIsDead)
 {
   setStrategy();
@@ -104,20 +111,19 @@ void Country::takeTurn(bool *_countryIsDead)
   Country *countryB = getEnemies()->at(rand() % getEnemies()->size());
   getCountryRating(countryB, strengthRatings);
   strategy->takeTurn(strengthRatings, this, countryB);
-  *_countryIsDead = checkIsDead();
+  *_countryIsDead = checkIsDead(this, countryB); // check if countryA is dead
   if(*_countryIsDead)
   {
     setColorOfDestroyedBy(countryB->getColor());
-    std::vector<Location*>* myLocations=getState()->locations;
-
+    std::vector<Location*>* myLocations=getState()->locations;      
     for (Location* i:*myLocations)
     {
       i->setIsCapital(false);
       countryB->getState()->locations->push_back(i);
       i->setOwnedBy(countryB);
     }
-    
   }
+  checkIsDead(countryB, this); // check if country
 }
 
 ///////////////////////////////////////////////////////////
@@ -134,6 +140,33 @@ bool Country::checkIsDead()
   stateSum += getTradeRouteSafety();
   stateSum += getDomesticMorale();
   stateSum += getWarSentiment();
+  return (stateSum < 1);
+}
+
+///////////////////////////////////////////////////////////
+// checkIsDead(Country*, Country*)
+///////////////////////////////////////////////////////////
+
+bool Country::checkIsDead(Country* countryA, Country* countryB)
+{
+  double stateSum = 0;
+  stateSum += countryA->getBorderStrength();
+  stateSum += countryA->getSelfReliance();
+  stateSum += countryA->getCapitalSafety();
+  stateSum += countryA->getPoliticalStability();
+  stateSum += countryA->getTradeRouteSafety();
+  stateSum += countryA->getDomesticMorale();
+  stateSum += countryA->getWarSentiment();
+
+  if (stateSum < 1)
+  {
+    std::string colorB = countryB->getColor();
+    std::string sType = strategyList[StageContext::getInstance()->getWarStage()];
+    std::cout << "(" << sType << ") " << colorB << countryA->getName() << RESET
+              << " was " << BOLD <<  "captured" << RESET 
+              << " by " << colorB << countryB->getName()
+              << RESET << std::endl;
+  }
   return (stateSum < 1);
 }
 
