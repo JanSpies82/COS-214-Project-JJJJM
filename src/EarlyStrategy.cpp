@@ -11,7 +11,6 @@ EarlyStrategy::~EarlyStrategy(){}
 
 void EarlyStrategy::defensiveMove(Country* countryA, Country* countryB) 
 {
-  std::cout << "EarlyStrategy::defensiveMove selected" << std::endl;
   srand((unsigned) time(NULL));  // seed rand
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.3
@@ -57,7 +56,6 @@ void EarlyStrategy::defensiveMove(Country* countryA, Country* countryB)
 
 void EarlyStrategy::neutralMove(Country* countryA, Country* countryB) 
 {
-  std::cout << "EarlyStrategy::neutralMove selected" << std::endl;
   srand((unsigned) time(NULL));  // seed rand
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.5
@@ -103,7 +101,6 @@ void EarlyStrategy::neutralMove(Country* countryA, Country* countryB)
 
 void EarlyStrategy::offensiveMove(Country* countryA, Country* countryB) 
 {
-  std::cout << "EarlyStrategy::offensiveMove selected" << std::endl;
   srand((unsigned) time(NULL));  // seed rand
   double randomOutcome = (double)rand() / (double)RAND_MAX;
   // CountryA chance of success : 0.7
