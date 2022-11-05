@@ -6,6 +6,8 @@
 #include "MilitaryState.h"
 
 const std::string RESET = "\x1B[0m";
+const std::string BOLDRED = "\x1B[1;31m";
+const std::string BOLDGREEN = "\x1B[1;32m";
 
 MiddleStrategy::MiddleStrategy() {}
 
@@ -22,8 +24,10 @@ void MiddleStrategy::defensiveMove(Country *countryA, Country *countryB)
   if (randomOutcome <= 0.3) // CountryA wins turn
   {
     std::cout << "(MiddleStrategy) " << countryA->getColor()
-              << countryA->getName() << RESET << " implemented defensiveMove against "
-              << countryB->getColor() << countryB->getName() << RESET << " and won\n";
+              << countryA->getName() << RESET << BOLDGREEN << " won"
+              << RESET << " defensiveMove against "
+              << countryB->getColor() << countryB->getName()
+              << RESET << "\n";
 
     // Update CountryA's CountryState
     countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.99);
@@ -59,8 +63,10 @@ void MiddleStrategy::defensiveMove(Country *countryA, Country *countryB)
   // CountryB wins turn
   // Update CountryA's CountryState
   std::cout << "(MiddleStrategy) " << countryA->getColor()
-            << countryA->getName() << RESET << " implemented defensiveMove against "
-            << countryB->getColor() << countryB->getName() << RESET << " and lost\n";
+            << countryA->getName() << RESET << BOLDRED << " lost"
+            << RESET << " defensiveMove against "
+            << countryB->getColor() << countryB->getName()
+            << RESET << "\n";
 
   countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.75);
   countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.75);
@@ -104,8 +110,10 @@ void MiddleStrategy::neutralMove(Country *countryA, Country *countryB)
   {
     // Update CountryA's CountryState
     std::cout << "(MiddleStrategy) " << countryA->getColor()
-              << countryA->getName() << RESET << " implemented neutralMove against "
-              << countryB->getColor() << countryB->getName() << RESET << " and won\n";
+              << countryA->getName() << RESET << BOLDGREEN << " won"
+              << RESET << " neutralMove against "
+              << countryB->getColor() << countryB->getName()
+              << RESET << "\n";
 
     countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
     countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
@@ -140,8 +148,10 @@ void MiddleStrategy::neutralMove(Country *countryA, Country *countryB)
   // CountryB wins turn
   // Update CountryA's CountryState
   std::cout << "(MiddleStrategy) " << countryA->getColor()
-            << countryA->getName() << RESET << " implemented neutralMove against "
-            << countryB->getColor() << countryB->getName() << RESET << " and lost\n";
+            << countryA->getName() << RESET << BOLDRED << " lost"
+            << RESET << " neutralMove against "
+            << countryB->getColor() << countryB->getName()
+            << RESET << "\n";
 
   countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.8);
   countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.8);
@@ -185,8 +195,10 @@ void MiddleStrategy::offensiveMove(Country *countryA, Country *countryB)
   {
     // Update CountryA's CountryState
     std::cout << "(MiddleStrategy) " << countryA->getColor()
-              << countryA->getName() << RESET << " implemented offensiveMove against "
-              << countryB->getColor() << countryB->getName() << RESET << " and won\n";
+              << countryA->getName() << RESET << BOLDGREEN << " won"
+              << RESET << " offensiveMove against "
+              << countryB->getColor() << countryB->getName()
+              << RESET << "\n";
 
     countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.9);
     countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.9);
@@ -221,8 +233,10 @@ void MiddleStrategy::offensiveMove(Country *countryA, Country *countryB)
   // CountryB wins turn
   // Update CountryA's CountryState
   std::cout << "(MiddleStrategy) " << countryA->getColor()
-            << countryA->getName() << RESET << " implemented offensiveMove against "
-            << countryB->getColor() << countryB->getName() << RESET << " and lost\n";
+            << countryA->getName() << RESET << BOLDRED << " lost"
+            << RESET << " offensiveMove against "
+            << countryB->getColor() << countryB->getName()
+            << RESET << "\n";
 
   countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.75);
   countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.75);

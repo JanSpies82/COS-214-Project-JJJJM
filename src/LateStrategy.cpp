@@ -6,6 +6,10 @@
 #include "MilitaryState.h"
 #include <iostream>
 
+const std::string RESET = "\x1B[0m";
+const std::string BOLDRED = "\x1B[1;31m";
+const std::string BOLDGREEN = "\x1B[1;32m";
+
 LateStrategy::LateStrategy() {}
 
 LateStrategy::~LateStrategy() {}
@@ -13,6 +17,11 @@ LateStrategy::~LateStrategy() {}
 void LateStrategy::defensiveMove(Country *countryA, Country *countryB)
 {
   // countryA surrenders and loses war
+  std::cout << "(LateStrategy) " << countryA->getColor()
+            << countryA->getName() << RESET << " surrendered to "
+            << countryB->getColor() << countryB->getName() << RESET << " and "
+            << BOLDRED << "lost" << RESET << " the turn\n";
+
   countryA->setPoliticalStability(0);
   countryA->setDomesticMorale(0);
   countryA->setBorderStrength(0);
@@ -31,7 +40,6 @@ void LateStrategy::defensiveMove(Country *countryA, Country *countryB)
 
 void LateStrategy::neutralMove(Country *countryA, Country *countryB)
 {
-  std::cout << "LateStrategy::neutralMove selected" << std::endl;
   MilitaryState *mA = countryA->getCountryState()->getMilitaryState();
   MilitaryState *mB = countryB->getCountryState()->getMilitaryState();
   srand((unsigned)time(NULL)); // seed rand
@@ -41,6 +49,11 @@ void LateStrategy::neutralMove(Country *countryA, Country *countryB)
   if (randomOutcome <= 0.5) // CountryA wins turn
   {
     // Update CountryA's CountryState
+    std::cout << "(LateStrategy) " << countryA->getColor()
+              << countryA->getName() << RESET << " implemented neutralMove against "
+              << countryB->getColor() << countryB->getName() << RESET << " and "
+              << BOLDGREEN << "won" << RESET << " the turn\n";
+
     countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.6);
     countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.6);
     countryA->setBorderStrength(countryA->getBorderStrength() * 0.65);
@@ -73,6 +86,11 @@ void LateStrategy::neutralMove(Country *countryA, Country *countryB)
   }
   // CountryB wins turn
   // Update CountryA's CountryState
+  std::cout << "(LateStrategy) " << countryA->getColor()
+            << countryA->getName() << RESET << " surrenders to "
+            << countryB->getColor() << countryB->getName() << RESET << " and "
+            << BOLDRED << "lost" << RESET << " the turn\n";
+
   countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.1);
   countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.1);
   countryA->setBorderStrength(countryA->getBorderStrength() * 0.15);
@@ -115,6 +133,11 @@ void LateStrategy::offensiveMove(Country *countryA, Country *countryB)
   if (randomOutcome <= 0.7) // CountryA wins turn
   {
     // Update CountryA's CountryState
+    std::cout << "(LateStrategy) " << countryA->getColor()
+              << countryA->getName() << RESET << " implemented offensiveMove against "
+              << countryB->getColor() << countryB->getName() << RESET << " and "
+              << BOLDGREEN << "won" << RESET << " the turn\n";
+
     countryB->setPoliticalStability(0);
     countryB->setDomesticMorale(0);
     countryB->setBorderStrength(0);
@@ -132,6 +155,11 @@ void LateStrategy::offensiveMove(Country *countryA, Country *countryB)
   }
   // CountryB wins turn
   // Update CountryA's CountryState
+  std::cout << "(LateStrategy) " << countryA->getColor()
+            << countryA->getName() << RESET << " implemented offensiveMove against "
+            << countryB->getColor() << countryB->getName() << RESET << " and "
+            << BOLDRED << "won" << RESET << " the turn\n";
+
   countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.4);
   countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.4);
   countryA->setBorderStrength(countryA->getBorderStrength() * 0.4);

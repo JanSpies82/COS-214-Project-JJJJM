@@ -5,6 +5,10 @@
 #include "MilitaryState.h"
 #include "Country.h"
 
+const std::string RESET = "\x1B[0m";
+const std::string BOLDRED = "\x1B[1;31m";
+const std::string BOLDGREEN = "\x1B[1;32m";
+
 EarlyStrategy::EarlyStrategy() {}
 
 EarlyStrategy::~EarlyStrategy() {}
@@ -18,6 +22,12 @@ void EarlyStrategy::defensiveMove(Country *countryA, Country *countryB)
   if (randomOutcome <= 0.3) // CountryA wins turn
   {
     // Update CountryA's CountryState
+    std::cout << "(EarlyStrategy) " << countryA->getColor()
+              << countryA->getName() << RESET << BOLDGREEN << " won"
+              << RESET << " defensiveMove against "
+              << countryB->getColor() << countryB->getName()
+              << RESET << "\n";
+
     countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.99);
     countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.99);
     countryA->setBorderStrength(countryA->getBorderStrength() * 0.99);
@@ -37,6 +47,12 @@ void EarlyStrategy::defensiveMove(Country *countryA, Country *countryB)
   }
   // CountryB wins turn
   // Update CountryA's CountryState
+  std::cout << "(EarlyStrategy) " << countryA->getColor()
+            << countryA->getName() << RESET << BOLDRED << " lost"
+            << RESET << " defensiveMove against "
+            << countryB->getColor() << countryB->getName()
+            << RESET << "\n";
+
   countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.95);
   countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.95);
   countryA->setBorderStrength(countryA->getBorderStrength() * 0.95);
@@ -62,6 +78,12 @@ void EarlyStrategy::neutralMove(Country *countryA, Country *countryB)
   if (randomOutcome <= 0.5) // CountryA wins turn
   {
     // Update CountryA's CountryState
+    std::cout << "(EarlyStrategy) " << countryA->getColor()
+              << countryA->getName() << RESET << BOLDGREEN << " won"
+              << RESET << " neutralMove against "
+              << countryB->getColor() << countryB->getName()
+              << RESET << "\n";
+
     countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.99);
     countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.99);
     countryA->setBorderStrength(countryA->getBorderStrength() * 0.99);
@@ -81,6 +103,12 @@ void EarlyStrategy::neutralMove(Country *countryA, Country *countryB)
   }
   // CountryB wins turn
   // Update CountryA's CountryState
+  std::cout << "(EarlyStrategy) " << countryA->getColor()
+            << countryA->getName() << RESET << BOLDRED << " lost"
+            << RESET << " neutralMove against "
+            << countryB->getColor() << countryB->getName()
+            << RESET << "\n";
+
   countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.95);
   countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.95);
   countryA->setBorderStrength(countryA->getBorderStrength() * 0.95);
@@ -106,6 +134,12 @@ void EarlyStrategy::offensiveMove(Country *countryA, Country *countryB)
   if (randomOutcome <= 0.7) // CountryA wins turn
   {
     // Update CountryA's CountryState
+    std::cout << "(EarlyStrategy) " << countryA->getColor()
+              << countryA->getName() << RESET << BOLDGREEN << " won"
+              << RESET << " offensiveMove against "
+              << countryB->getColor() << countryB->getName()
+              << RESET << "\n";
+
     countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.99);
     countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.99);
     countryA->setBorderStrength(countryA->getBorderStrength() * 0.99);
@@ -125,6 +159,12 @@ void EarlyStrategy::offensiveMove(Country *countryA, Country *countryB)
   }
   // CountryB wins turn
   // Update CountryA's CountryState
+  std::cout << "(EarlyStrategy) " << countryA->getColor()
+            << countryA->getName() << RESET << BOLDRED << " lost"
+            << RESET << " offensiveMove against "
+            << countryB->getColor() << countryB->getName()
+            << RESET << "\n";
+
   countryA->setPoliticalStability(countryA->getPoliticalStability() * 0.95);
   countryA->setDomesticMorale(countryA->getDomesticMorale() * 0.95);
   countryA->setBorderStrength(countryA->getBorderStrength() * 0.95);
