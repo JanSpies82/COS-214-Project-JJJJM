@@ -719,37 +719,48 @@ void SimulationManager::setUpItaly(Country *_italy)
 
 void SimulationManager::takeTurn()
 {
-    bool *countryIsDead = new bool();
-    *countryIsDead = false;
+    bool *countryIsDead = new bool[2];
+    countryIsDead[0] = false;
+    countryIsDead[1] = false;
     system("clear");
     saveState();
-
     turnCount++;
     StageContext::getInstance()->incrementRound();
     for (int i = 0; i < superpowers->at(0)->getCountryCount(); i++)
     {
-        *countryIsDead = false;
-        superpowers->at(0)->getCountry(i)->takeTurn(countryIsDead);
-        if (*countryIsDead)
+        countryIsDead[0] = false;
+        countryIsDead[1] = false;
+        Country *countryB = superpowers->at(0)->getCountry(i)->takeTurn(countryIsDead);
+        if (countryIsDead[0])
         {
             Country *c = superpowers->at(0)->getCountry(i);
             superpowers->at(0)->removeCountry(c);
             delete c;
+        } else if (countryIsDead[1])
+        {
+            superpowers->at(1)->removeCountry(countryB);
+            delete countryB;
         }
     }
 
     for (int i = 0; i < superpowers->at(1)->getCountryCount(); i++)
     {
-        *countryIsDead = false;
-        superpowers->at(1)->getCountry(i)->takeTurn(countryIsDead);
-        if (*countryIsDead)
+        countryIsDead[0] = false;
+        countryIsDead[1] = false;
+
+        Country *countryB = superpowers->at(1)->getCountry(i)->takeTurn(countryIsDead);
+        if (countryIsDead[0])
         {
             Country *c = superpowers->at(1)->getCountry(i);
             superpowers->at(1)->removeCountry(c);
             delete c;
+        } else if (countryIsDead[1])
+        {
+            superpowers->at(0)->removeCountry(countryB);
+            delete countryB;
         }
     }
-    delete countryIsDead;
+    delete[] countryIsDead;
 };
 
 void SimulationManager::viewSummary()
@@ -831,12 +842,12 @@ void SimulationManager::finalMessage()
 {
     cout << endl
          << "Simulation ended after " << turnCount << " turns." << endl;
-    if (superpowers->at(0)->getCountryCount() > 0 && superpowers->at(1)->getCountryCount() > 0)
+    if (superpowers->at(0)->getCountryCount() > 0 && superpowers->at(1)->getCountryCount() >= 3)
         cout << "The simulation ended in a stalemate." << endl;
-    else if (superpowers->at(0)->getCountryCount() > 0)
-        cout << "The simulation ended with the " << superpowers->at(0)->getName() << " winning." << endl;
-    else
+    else if (superpowers->at(0)->getCountryCount() == 0)
         cout << "The simulation ended with the " << superpowers->at(1)->getName() << " winning." << endl;
+    else
+        cout << "The simulation ended with the " << superpowers->at(0)->getName() << " winning." << endl;
 };
 
 void SimulationManager::viewCountrySummary()
