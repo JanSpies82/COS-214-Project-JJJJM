@@ -2,15 +2,19 @@
 #include <limits.h>
 #include <stdexcept>
 #include "../src/PlaneFactory.h"
+#include"../src/Plane.h"
 #include "gtest/gtest.h"
 
 namespace {
 	TEST(PlaneFactoryTest,creationOfObject){
     	PlaneFactory* planeManufacture=new PlaneFactory();
-    	EXPECT_EQ(planeManufacture->manufactureVehicle()!=NULL,true);
-    	EXPECT_EQ(planeManufacture->clone()!=NULL,true);
+    	Plane* plane=static_cast<Plane*>(planeManufacture->manufactureVehicle());
+    	PlaneFactory* plant2=planeManufacture->clone();
+    	 	
+    	delete plane;
+    	delete plant2;
     	delete planeManufacture;
-    	
+    	  	
     }
     
 }

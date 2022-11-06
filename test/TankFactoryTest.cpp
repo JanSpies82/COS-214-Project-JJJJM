@@ -2,6 +2,7 @@
 #include <limits.h>
 #include <stdexcept>
 #include "../src/TankFactory.h"
+#include"../src/Tank.h"
 #include "gtest/gtest.h"
 
 namespace {
@@ -9,10 +10,13 @@ namespace {
 
     TEST(TankFactoryTest,creationOfObject){
     	TankFactory* tankManufacture=new TankFactory();
-    	EXPECT_EQ(tankManufacture->manufactureVehicle()!=NULL,true);
-    	EXPECT_EQ(tankManufacture->clone()!=NULL,true);
-    	delete tankManufacture;
-    	
+        Tank* tank =static_cast<Tank*>(tankManufacture->manufactureVehicle());
+        TankFactory* plant2=tankManufacture->clone();
+    
+    	delete tank;
+        delete plant2;
+        delete tankManufacture;
+        
     }
 
 }
