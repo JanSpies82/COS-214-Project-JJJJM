@@ -99,7 +99,7 @@ void Superpower::printSummary()
     cout << "Countries: " << countries->size() << endl;
     for (int i = 0; i < countries->size(); i++)
     {
-        cout << "\t" << countries->at(i)->getName() << endl;
+        // cout << "\t" << countries->at(i)->getName() << endl;
     }
 }
 
