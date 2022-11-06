@@ -1,4 +1,4 @@
-/// @author Jake Mahloko
+/// @author Jacob Mahloko
 
 #ifndef __MilitaryState_h__
 #define __MilitaryState_h__

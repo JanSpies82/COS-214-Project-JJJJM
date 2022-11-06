@@ -1,4 +1,4 @@
-/// @author Jake Mahloko
+/// @author Jacob Mahloko
 
 #include "Military.h"
 #include "MilitaryState.h"

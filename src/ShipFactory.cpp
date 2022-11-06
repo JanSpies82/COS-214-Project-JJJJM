@@ -1,4 +1,4 @@
-/// @author Jake Mahloko
+/// @author Jacob Mahloko
 
 #include "Ship.h"
 #include "ShipFactory.h"

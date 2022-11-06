@@ -1,4 +1,4 @@
-///@author Janco Spies
+///@Jacob Mahloko
 #include <limits.h>
 #include <stdexcept>
 #include "../src/MilitaryState.h"
