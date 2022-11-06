@@ -1,4 +1,4 @@
-/// @author Jake Mahloko
+/// @author Jacob Mahloko
 
 #ifndef __TankFactory_h__
 #define __TankFactory_h__
