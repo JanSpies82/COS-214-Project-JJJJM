@@ -21,7 +21,7 @@
 
 const std::string RESET = "\x1B[0m";
 const std::string BOLD = "\x1B[1m";
-static std::string strategyList[3] = { "EarlyStrategy", "MiddleStrategy", "LateStrategy" };
+static std::string strategyList[3] = {"EarlyStrategy", "MiddleStrategy", "LateStrategy"};
 
 ///////////////////////////////////////////////////////////
 // Country()
@@ -96,31 +96,43 @@ void Country::takeTurn(Country *countryB)
 // takeTurn(bool *)
 ///////////////////////////////////////////////////////////
 
-void Country::takeTurn(bool *_countryIsDead)
+Country *Country::takeTurn(bool *_countryIsDead)
 {
   setStrategy();
   double strengthRatings[2];
   // srand((unsigned)time(NULL));
   if (getEnemies()->size() == 0)
   {
-    return;
+    return NULL;
   }
   Country *countryB = getEnemies()->at(rand() % getEnemies()->size());
   getCountryRating(countryB, strengthRatings);
   strategy->takeTurn(strengthRatings, this, countryB);
-  *_countryIsDead = checkIsDead(this, countryB); // check if countryA is dead
-  if(*_countryIsDead)
+  _countryIsDead[0] = checkIsDead(this, countryB); // check if countryA is dead
+  if (_countryIsDead[0])
   {
     setColorOfDestroyedBy(countryB->getColor());
-    std::vector<Location*>* myLocations=getState()->locations;      
-    for (Location* i:*myLocations)
+    std::vector<Location *> *myLocations = getState()->locations;
+    for (Location *i : *myLocations)
     {
       i->setIsCapital(false);
       countryB->getState()->locations->push_back(i);
       i->setOwnedBy(countryB);
     }
   }
-  checkIsDead(countryB, this); // check if countryB is dead
+  _countryIsDead[1] = checkIsDead(countryB, this); // check if countryB is dead
+  if (_countryIsDead[1])
+  {
+    countryB->setColorOfDestroyedBy(this->getColor());
+    std::vector<Location *> *myLocations = countryB->getState()->locations;
+    for (Location *i : *myLocations)
+    {
+      i->setIsCapital(false);
+      this->getState()->locations->push_back(i);
+      i->setOwnedBy(this);
+    }
+  }
+  return countryB;
 }
 
 ///////////////////////////////////////////////////////////
@@ -144,7 +156,7 @@ void Country::takeTurn(bool *_countryIsDead)
 // checkIsDead(Country*, Country*)
 ///////////////////////////////////////////////////////////
 
-bool Country::checkIsDead(Country* countryA, Country* countryB)
+bool Country::checkIsDead(Country *countryA, Country *countryB)
 {
   double stateSum = 0;
   stateSum += countryA->getBorderStrength();
@@ -160,7 +172,7 @@ bool Country::checkIsDead(Country* countryA, Country* countryB)
     std::string colorB = countryB->getColor();
     std::string sType = strategyList[StageContext::getInstance()->getWarStage()];
     std::cout << "(" << sType << ") " << colorB << countryA->getName() << RESET
-              << " was " << BOLD <<  "captured" << RESET 
+              << " was " << BOLD << "captured" << RESET
               << " by " << colorB << countryB->getName()
               << RESET << std::endl;
   }
@@ -780,5 +792,5 @@ void Country::removeEnemy(Country *_enemy)
 
 void Country::setColorOfDestroyedBy(std::string _newColorOfDestroyedBy)
 {
-  colorOfDestroyedBy=_newColorOfDestroyedBy;
+  colorOfDestroyedBy = _newColorOfDestroyedBy;
 }

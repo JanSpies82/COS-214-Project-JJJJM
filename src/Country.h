@@ -53,7 +53,7 @@ public:
    * 
    * @param _countryIsDead whether this country was defeated after this turn
    */
-  void takeTurn(bool *_countryIsDead);
+  Country* takeTurn(bool *_countryIsDead);
 
   /**
    * @brief sets this country's strategy based on the current war stage of the simulation
