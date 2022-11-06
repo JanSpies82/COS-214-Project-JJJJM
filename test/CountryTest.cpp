@@ -240,8 +240,9 @@ namespace
     mA->setPlanes(planesA);
 
     countryX->setMilitaryState(mA);
-    bool* temp = new bool();
-    *temp = false;
+    bool* temp = new bool[2];
+    temp[0] = false;
+    temp[1] = false;
     countryX->takeTurn(temp);
     delete countryX;
     for (int i = 0; i < enemiescopy->size(); i++)
@@ -251,6 +252,6 @@ namespace
     delete shipVectors;
     delete planeVectors;
     delete tankVectors;
-    delete temp;
+    delete[] temp;
   }
 }
