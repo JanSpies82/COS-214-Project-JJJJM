@@ -93,7 +93,7 @@ void Country::takeTurn(Country *countryB)
 }
 
 ///////////////////////////////////////////////////////////
-// takeTurn()
+// takeTurn(bool *)
 ///////////////////////////////////////////////////////////
 
 void Country::takeTurn(bool *_countryIsDead)
@@ -155,7 +155,7 @@ bool Country::checkIsDead(Country* countryA, Country* countryB)
   stateSum += countryA->getDomesticMorale();
   stateSum += countryA->getWarSentiment();
 
-  if (stateSum < 0.5)
+  if (stateSum < 0.75)
   {
     std::string colorB = countryB->getColor();
     std::string sType = strategyList[StageContext::getInstance()->getWarStage()];
@@ -164,7 +164,7 @@ bool Country::checkIsDead(Country* countryA, Country* countryB)
               << " by " << colorB << countryB->getName()
               << RESET << std::endl;
   }
-  return (stateSum < 0.5);
+  return (stateSum < 0.75);
 }
 
 ///////////////////////////////////////////////////////////
@@ -203,7 +203,7 @@ int Country::getNumCitizens()
 }
 
 ///////////////////////////////////////////////////////////
-// setNumCitizens()
+// setNumCitizens(int)
 ///////////////////////////////////////////////////////////
 
 void Country::setNumCitizens(int _numCitizens)
@@ -212,7 +212,7 @@ void Country::setNumCitizens(int _numCitizens)
 }
 
 ///////////////////////////////////////////////////////////
-// getCountryRating()
+// getCountryRating(Country*, double*)
 ///////////////////////////////////////////////////////////
 
 void Country::getCountryRating(Country *b, double *strengthRatings)
@@ -264,7 +264,7 @@ void Country::getCountryRating(Country *b, double *strengthRatings)
 }
 
 ///////////////////////////////////////////////////////////
-// compareMilitary()
+// compareMilitary(Country*, Country*, std::vector<double>*)
 ///////////////////////////////////////////////////////////
 
 void Country::compareMilitary(Country *a, Country *b, std::vector<double> *aspectScores)
@@ -278,7 +278,7 @@ void Country::compareMilitary(Country *a, Country *b, std::vector<double> *aspec
 }
 
 ///////////////////////////////////////////////////////////
-// compareDomestic(Country)
+// compareDomestic(Country*, Country*, std::vector<double>*)
 ///////////////////////////////////////////////////////////
 
 void Country::compareDomestic(Country *a, Country *b, std::vector<double> *aspectScores)
@@ -323,7 +323,7 @@ double Country::getPoliticalStability()
 }
 
 ///////////////////////////////////////////////////////////
-// setPoliticalStability()
+// setPoliticalStability(double)
 ///////////////////////////////////////////////////////////
 
 void Country::setPoliticalStability(double _politicalStability)
@@ -346,7 +346,7 @@ double Country::getDomesticMorale()
 }
 
 ///////////////////////////////////////////////////////////
-// setDomesticMorale()
+// setDomesticMorale(double)
 ///////////////////////////////////////////////////////////
 
 void Country::setDomesticMorale(double _domesticMorale)
@@ -369,7 +369,7 @@ double Country::getSelfReliance()
 }
 
 ///////////////////////////////////////////////////////////
-// setSelfReliance()
+// setSelfReliance(double)
 ///////////////////////////////////////////////////////////
 
 void Country::setSelfReliance(double _selfReliance)
@@ -392,7 +392,7 @@ double Country::getBorderStrength()
 }
 
 ///////////////////////////////////////////////////////////
-// setBorderStrength()
+// setBorderStrength(double)
 ///////////////////////////////////////////////////////////
 
 void Country::setBorderStrength(double _borderStrength)
@@ -415,7 +415,7 @@ double Country::getCapitalSafety()
 }
 
 ///////////////////////////////////////////////////////////
-// setCapitalSafety()
+// setCapitalSafety(double)
 ///////////////////////////////////////////////////////////
 
 void Country::setCapitalSafety(double _capitalSafety)
@@ -438,7 +438,7 @@ double Country::getWarSentiment()
 }
 
 ///////////////////////////////////////////////////////////
-// setWarSentiment()
+// setWarSentiment(double)
 ///////////////////////////////////////////////////////////
 
 void Country::setWarSentiment(double _warSentiment)
@@ -461,7 +461,7 @@ double Country::getTradeRouteSafety()
 }
 
 ///////////////////////////////////////////////////////////
-// setTradeRouteSafety()
+// setTradeRouteSafety(double)
 ///////////////////////////////////////////////////////////
 
 void Country::setTradeRouteSafety(double _tradeRouteSafety)
@@ -484,7 +484,7 @@ CountryState *Country::getCountryState()
 }
 
 ///////////////////////////////////////////////////////////
-// setCountryState()
+// setCountryState(CountryState*)
 ///////////////////////////////////////////////////////////
 
 void Country::setCountryState(CountryState *_countryState)
@@ -504,7 +504,7 @@ std::string Country::getName()
 }
 
 ///////////////////////////////////////////////////////////
-// setName()
+// setName(std::string)
 ///////////////////////////////////////////////////////////
 
 void Country::setName(std::string _name)
@@ -563,7 +563,7 @@ void Country::setLocations(std::vector<Location *> *_locations)
 }
 
 ///////////////////////////////////////////////////////////
-// setColor(std::string _color)
+// setColor(std::string)
 ///////////////////////////////////////////////////////////
 
 void Country::setColor(std::string _color)
@@ -590,7 +590,7 @@ std::vector<Country *> *Country::getEnemies()
 }
 
 ///////////////////////////////////////////////////////////
-// setEnemies()
+// setEnemies(std::vector<Country *> *)
 ///////////////////////////////////////////////////////////
 
 void Country::setEnemies(std::vector<Country *> *_enemies)
@@ -610,7 +610,7 @@ MilitaryState *Country::getMilitaryState()
 }
 
 ///////////////////////////////////////////////////////////
-// setMilitaryState()
+// setMilitaryState(MilitaryState *)
 ///////////////////////////////////////////////////////////
 
 void Country::setMilitaryState(MilitaryState *_militaryState)
@@ -621,7 +621,7 @@ void Country::setMilitaryState(MilitaryState *_militaryState)
 }
 
 ///////////////////////////////////////////////////////////
-// setState()
+// setState(CountryState *)
 ///////////////////////////////////////////////////////////
 
 void Country::setState(CountryState *_state)
@@ -632,7 +632,7 @@ void Country::setState(CountryState *_state)
 }
 
 ///////////////////////////////////////////////////////////
-// attachObserver()
+// attachObserver(LocationObserver *)
 ///////////////////////////////////////////////////////////
 
 void Country::attachObserver(LocationObserver *_lObserver)
@@ -649,7 +649,7 @@ void Country::attachObserver(LocationObserver *_lObserver)
 }
 
 ///////////////////////////////////////////////////////////
-// detachObserver()
+// detachObserver(LocationObserver *)
 ///////////////////////////////////////////////////////////
 
 void Country::detachObserver(LocationObserver *_lObserver)
@@ -692,7 +692,7 @@ void Country::printSummary()
 }
 
 ///////////////////////////////////////////////////////////
-// resetLocations()
+// resetLocations(Map*)
 ///////////////////////////////////////////////////////////
 
 void Country::resetLocations(Map *_map)
@@ -733,7 +733,7 @@ Country *Country::clone()
 }
 
 ///////////////////////////////////////////////////////////
-// resetEnemies()
+// resetEnemies(std::vector<Country *> *)
 ///////////////////////////////////////////////////////////
 
 void Country::resetEnemies(std::vector<Country *> *_enemies)
@@ -755,7 +755,7 @@ void Country::resetEnemies(std::vector<Country *> *_enemies)
 }
 
 ///////////////////////////////////////////////////////////
-// removeEnemy()
+// removeEnemy(Country *)
 ///////////////////////////////////////////////////////////
 
 void Country::removeEnemy(Country *_enemy)
@@ -775,7 +775,7 @@ void Country::removeEnemy(Country *_enemy)
 }
 
 ///////////////////////////////////////////////////////////
-// setColorOfDestroyed()
+// setColorOfDestroyed(std::string)
 ///////////////////////////////////////////////////////////
 
 void Country::setColorOfDestroyedBy(std::string _newColorOfDestroyedBy)
