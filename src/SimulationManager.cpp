@@ -265,8 +265,8 @@ void SimulationManager::setUpUK(Country *_uk)
         enemies->push_back(superpowers->at(0)->getCountry(i));
 
     _uk->setEnemies(enemies);
-    _uk->setBorderStrength(0.75);
-    _uk->setCapitalSafety(0.65);
+    _uk->setBorderStrength(0.32);
+    _uk->setCapitalSafety(0.5);
     _uk->setDomesticMorale(0.5);
     _uk->setPoliticalStability(0.4);
     _uk->setSelfReliance(0.3);
@@ -385,9 +385,9 @@ void SimulationManager::setUpBalkans(Country *_balkans)
     _balkans->setEnemies(enemies);
     _balkans->setBorderStrength(0.45);
     _balkans->setCapitalSafety(0.4);
-    _balkans->setDomesticMorale(0.6);
+    _balkans->setDomesticMorale(0.25);
     _balkans->setPoliticalStability(0.3);
-    _balkans->setSelfReliance(0.6);
+    _balkans->setSelfReliance(0.33);
     _balkans->setWarSentiment(0.4);
     _balkans->setTradeRouteSafety(0.3);
     _balkans->setNumCitizens(37000000);
@@ -442,13 +442,13 @@ void SimulationManager::setUpSpainPortugal(Country *_spainPortugal)
         enemies->push_back(superpowers->at(0)->getCountry(i));
 
     _spainPortugal->setEnemies(enemies);
-    _spainPortugal->setBorderStrength(0.7);
-    _spainPortugal->setCapitalSafety(0.7);
-    _spainPortugal->setDomesticMorale(0.8);
-    _spainPortugal->setPoliticalStability(0.6);
-    _spainPortugal->setSelfReliance(0.7);
-    _spainPortugal->setWarSentiment(0.6);
-    _spainPortugal->setTradeRouteSafety(0.5);
+    _spainPortugal->setBorderStrength(0.5);
+    _spainPortugal->setCapitalSafety(0.4);
+    _spainPortugal->setDomesticMorale(0.25);
+    _spainPortugal->setPoliticalStability(0.33);
+    _spainPortugal->setSelfReliance(0.4);
+    _spainPortugal->setWarSentiment(0.5);
+    _spainPortugal->setTradeRouteSafety(0.32);
     _spainPortugal->setNumCitizens(45418200);
 
     vector<VehicleFactory *> *vFactories = new vector<VehicleFactory *>();
@@ -501,13 +501,13 @@ void SimulationManager::setUpSovietUnion(Country *_sovietUnion)
         enemies->push_back(superpowers->at(0)->getCountry(i));
 
     _sovietUnion->setEnemies(enemies);
-    _sovietUnion->setBorderStrength(0.9);
-    _sovietUnion->setCapitalSafety(0.9);
-    _sovietUnion->setDomesticMorale(0.5);
-    _sovietUnion->setPoliticalStability(0.4);
-    _sovietUnion->setSelfReliance(0.8);
-    _sovietUnion->setWarSentiment(0.5);
-    _sovietUnion->setTradeRouteSafety(0.5);
+    _sovietUnion->setBorderStrength(0.5);
+    _sovietUnion->setCapitalSafety(0.6);
+    _sovietUnion->setDomesticMorale(0.2);
+    _sovietUnion->setPoliticalStability(0.1);
+    _sovietUnion->setSelfReliance(0.3);
+    _sovietUnion->setWarSentiment(0.25);
+    _sovietUnion->setTradeRouteSafety(0.2);
     _sovietUnion->setNumCitizens(168524000);
 
     vector<VehicleFactory *> *vFactories = new vector<VehicleFactory *>();
@@ -560,13 +560,13 @@ void SimulationManager::setUpScandanavia(Country *_scandanavia)
         enemies->push_back(superpowers->at(0)->getCountry(i));
 
     _scandanavia->setEnemies(enemies);
-    _scandanavia->setBorderStrength(0.75);
-    _scandanavia->setCapitalSafety(0.9);
-    _scandanavia->setDomesticMorale(0.6);
-    _scandanavia->setPoliticalStability(0.7);
-    _scandanavia->setSelfReliance(0.7);
-    _scandanavia->setWarSentiment(0.5);
-    _scandanavia->setTradeRouteSafety(0.5);
+    _scandanavia->setBorderStrength(0.3);
+    _scandanavia->setCapitalSafety(0.4);
+    _scandanavia->setDomesticMorale(0.5);
+    _scandanavia->setPoliticalStability(0.5);
+    _scandanavia->setSelfReliance(0.25);
+    _scandanavia->setWarSentiment(0.34);
+    _scandanavia->setTradeRouteSafety(0.4);
     _scandanavia->setNumCitizens(16945200);
 
     vector<VehicleFactory *> *vFactories = new vector<VehicleFactory *>();
@@ -679,12 +679,12 @@ void SimulationManager::setUpItaly(Country *_italy)
 
     _italy->setEnemies(enemies);
     _italy->setBorderStrength(0.5);
-    _italy->setCapitalSafety(0.6);
-    _italy->setDomesticMorale(0.65);
-    _italy->setPoliticalStability(0.65);
-    _italy->setSelfReliance(0.7);
-    _italy->setWarSentiment(0.9);
-    _italy->setTradeRouteSafety(0.7);
+    _italy->setCapitalSafety(0.4);
+    _italy->setDomesticMorale(0.5);
+    _italy->setPoliticalStability(0.6);
+    _italy->setSelfReliance(0.4);
+    _italy->setWarSentiment(0.5);
+    _italy->setTradeRouteSafety(0.5);
     _italy->setNumCitizens(73086517);
 
     vector<VehicleFactory *> *vFactories = new vector<VehicleFactory *>();
