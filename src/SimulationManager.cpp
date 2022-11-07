@@ -158,10 +158,13 @@ void SimulationManager::setDesignMode()
 {
     cout << "Would you like to run the simulation in design mode?(y/n)" << endl;
     string input = "";
-    cout << "Choice: " << YELLOW;
-    cin >> input;
-    cout << RESET;
-    designMode = (input == "y" || input == "Y");
+    do
+    {
+        cout << "Choice: " << YELLOW;
+        cin >> input;
+        cout << RESET;
+    } while (input != "y" && input != "n");
+    designMode = (input == "y");
 };
 
 void SimulationManager::saveState()
@@ -736,7 +739,8 @@ void SimulationManager::takeTurn()
             Country *c = superpowers->at(0)->getCountry(i);
             superpowers->at(0)->removeCountry(c);
             delete c;
-        } else if (countryIsDead[1])
+        }
+        else if (countryIsDead[1])
         {
             superpowers->at(1)->removeCountry(countryB);
             delete countryB;
@@ -754,7 +758,8 @@ void SimulationManager::takeTurn()
             Country *c = superpowers->at(1)->getCountry(i);
             superpowers->at(1)->removeCountry(c);
             delete c;
-        } else if (countryIsDead[1])
+        }
+        else if (countryIsDead[1])
         {
             superpowers->at(0)->removeCountry(countryB);
             delete countryB;
