@@ -397,6 +397,12 @@ public:
    */
   bool checkIsDead(Country* countryA, Country* countryB);
 
+/**
+ * @brief boost all of the country's attributes by a fixed amount
+ * 
+ * @param _country : Country* - The country to boost
+ */
+  void getBoost(Country* _country); 
 private:
   // bool checkIsDead();
   std::string colorOfDestroyedBy="\x1B[100m";

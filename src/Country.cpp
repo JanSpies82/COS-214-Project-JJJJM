@@ -119,6 +119,7 @@ Country *Country::takeTurn(bool *_countryIsDead)
       countryB->getState()->locations->push_back(i);
       i->setOwnedBy(countryB);
     }
+    getBoost(countryB);
   }
   _countryIsDead[1] = checkIsDead(countryB, this); // check if countryB is dead
   if (_countryIsDead[1])
@@ -131,6 +132,7 @@ Country *Country::takeTurn(bool *_countryIsDead)
       this->getState()->locations->push_back(i);
       i->setOwnedBy(this);
     }
+    getBoost(this);
   }
   return countryB;
 }
@@ -167,7 +169,7 @@ bool Country::checkIsDead(Country *countryA, Country *countryB)
   stateSum += countryA->getDomesticMorale();
   stateSum += countryA->getWarSentiment();
 
-  if (stateSum < 0.75)
+  if (stateSum < 1)
   {
     std::string colorB = countryB->getColor();
     std::string sType = strategyList[StageContext::getInstance()->getWarStage()];
@@ -176,7 +178,50 @@ bool Country::checkIsDead(Country *countryA, Country *countryB)
               << " by " << colorB << countryB->getName()
               << RESET << std::endl;
   }
-  return (stateSum < 0.75);
+  return (stateSum < 1);
+}
+
+///////////////////////////////////////////////////////////
+// checkIsDead(Country*, Country*)
+///////////////////////////////////////////////////////////
+
+void Country::getBoost(Country* _country){
+  double boostAmount = 0.45;
+  if (_country->getBorderStrength() + boostAmount > 1)
+    _country->setBorderStrength(1);
+  else
+    _country->setBorderStrength(_country->getBorderStrength() + boostAmount);
+
+  if (_country->getCapitalSafety() + boostAmount > 1)
+    _country->setCapitalSafety(1);
+  else
+    _country->setCapitalSafety(_country->getCapitalSafety() + boostAmount);
+
+  if (_country->getPoliticalStability() + boostAmount > 1)
+    _country->setPoliticalStability(1);
+  else
+    _country->setPoliticalStability(_country->getPoliticalStability() + boostAmount);
+
+  if (_country->getTradeRouteSafety() + boostAmount > 1)
+    _country->setTradeRouteSafety(1);
+  else
+    _country->setTradeRouteSafety(_country->getTradeRouteSafety() + boostAmount);
+
+  if (_country->getDomesticMorale() + boostAmount > 1)
+    _country->setDomesticMorale(1);
+  else
+    _country->setDomesticMorale(_country->getDomesticMorale() + boostAmount);
+
+  if (_country->getWarSentiment() + boostAmount > 1)
+    _country->setWarSentiment(1);
+  else
+    _country->setWarSentiment(_country->getWarSentiment() + boostAmount);
+
+  _country->getState()->getMilitaryState()->updateNumBattalions(5, true);
+  _country->getState()->getMilitaryState()->updateNumPlanes(5, true);
+  _country->getState()->getMilitaryState()->updateNumShips(5, true);
+  _country->getState()->getMilitaryState()->updateNumTanks(5, true);
+  _country->getState()->getMilitaryState()->updateNumTroops(50000, true);
 }
 
 ///////////////////////////////////////////////////////////
