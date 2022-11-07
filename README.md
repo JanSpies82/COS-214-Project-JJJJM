@@ -3,7 +3,7 @@ Report: https://docs.google.com/document/d/10lOOXJjRGtorS7gM9F1tC6DdJpZdyge9qDsC
 
 Documentation: //@TODO Add link to doxygen when completed.
 
-Video: //@TODO Add link to video when completed.
+Video: https://drive.google.com/file/d/18bGO1xRJn9dCiEzLxA6UFCW9MFujStML/view?usp=sharing
 
 Final Class Diagram: https://github.com/DeadpanSplash82/COS-214-Project-JJJJM/blob/main/img/Class%20diagrams/Q2.5%20Class%20Diagram%20Final.svg
 
