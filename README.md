@@ -1,5 +1,5 @@
 # COS-214-Project-JJJJM
-Report: https://docs.google.com/document/d/10lOOXJjRGtorS7gM9F1tC6DdJpZdyge9qDsCGhBfjKM/edit?usp=drivesdk
+Report: https://docs.google.com/document/d/10lOOXJjRGtorS7gM9F1tC6DdJpZdyge9qDsCGhBfjKM/edit?usp=sharing
 
 Documentation: https://github.com/DeadpanSplash82/COS-214-Project-JJJJM/blob/main/Documentation/Documentation.pdf
 
