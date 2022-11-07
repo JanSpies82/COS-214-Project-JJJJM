@@ -1,5 +1,7 @@
 /// @author Janco Spies
 
+//https://github.com/DeadpanSplash82/COS-214-Project-JJJJM
+
 #include "SimulationManager.h"
 #include <iostream>
 
